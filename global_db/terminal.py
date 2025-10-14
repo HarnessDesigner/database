@@ -1,0 +1,155 @@
+from typing import Iterable as _Iterable
+
+from . import EntryBase, TableBase
+
+from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
+                     SeriesMixin, FamilyMixin, ImageMixin, DatasheetMixin, CADMixin,
+                     MaterialMixin)
+
+from . import cavity_lock as _cavity_lock
+
+
+class TerminalsTable(TableBase):
+    __table_name__: str = 'terminals'
+
+    def __iter__(self) -> _Iterable["Terminal"]:
+        for db_id in TableBase.__iter__(self):
+            yield Terminal(self, db_id)
+
+    def insert(self, part_number: str, mfg_id: int, description: str, gender_id: int,
+               series_id: int, family_id: int, sealing: bool, cavity_lock_id: int,
+               image_id: int, datasheet_id: int, cad_id: int, material_id: int,
+               blade_size: float, resistance_mohms: float, mating_cycles: int,
+               max_vibration_g: int, max_current_ma: int, wire_size_min_awg: int,
+               wire_size_max_awg: int, wire_dia_min: float, wire_dia_max: float,
+               min_wire_cross: float, max_wire_cross: float) -> "Terminal":
+
+        db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
+                                 gender_id=gender_id, series_id=series_id, family_id=family_id, sealing=int(sealing),
+                                 cavity_lock_id=cavity_lock_id, image_id=image_id, datasheet_id=datasheet_id,
+                                 cad_id=cad_id, material_id=material_id, blade_size=blade_size,
+                                 resistance_mohms=resistance_mohms, mating_cycles=mating_cycles,
+                                 max_vibration_g=max_vibration_g, max_current_ma=max_current_ma,
+                                 wire_size_min_awg=wire_size_min_awg, wire_size_max_awg=wire_size_max_awg,
+                                 wire_dia_min=wire_dia_min, wire_dia_max=wire_dia_max,
+                                 min_wire_cross=min_wire_cross, max_wire_cross=max_wire_cross)
+        return Terminal(self, db_id)
+
+
+class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
+               SeriesMixin, FamilyMixin, ImageMixin, DatasheetMixin, CADMixin, MaterialMixin):
+
+    _table: TerminalsTable = None
+
+    @property
+    def cavity_lock(self) -> _cavity_lock.CavityLock:
+        lock_type_id = self._table.select('cavity_lock_id', id=self._db_id)
+        return _cavity_lock.CavityLock(self._table.db.cavity_locks_table, lock_type_id[0][0])
+
+    @cavity_lock.setter
+    def cavity_lock(self, value: _cavity_lock.CavityLock):
+        self._table.update(self._db_id, cavity_lock_id=value.db_id)
+
+    @property
+    def cavity_lock_id(self) -> int:
+        return self._table.select('cavity_lock_id', id=self._db_id)[0][0]
+
+    @cavity_lock_id.setter
+    def cavity_lock_id(self, value: int):
+        self._table.update(self._db_id, cavity_lock_id=value)
+
+    @property
+    def sealing(self) -> bool:
+        return bool(self._table.select('sealing', id=self._db_id)[0][0])
+
+    @sealing.setter
+    def sealing(self, value: bool):
+        self._table.update(self._db_id, size=int(value))
+
+    @property
+    def blade_size(self) -> float:
+        return self._table.select('blade_size', id=self._db_id)[0][0]
+
+    @blade_size.setter
+    def blade_size(self, value: float):
+        self._table.update(self._db_id, blade_size=value)
+
+    @property
+    def resistance_mohms(self) -> int:
+        return self._table.select('resistance_mohms', id=self._db_id)[0][0]
+
+    @resistance_mohms.setter
+    def resistance_mohms(self, value: int):
+        self._table.update(self._db_id, resistance_mohms=value)
+
+    @property
+    def mating_cycles(self) -> int:
+        return self._table.select('mating_cycles', id=self._db_id)[0][0]
+
+    @mating_cycles.setter
+    def mating_cycles(self, value: int):
+        self._table.update(self._db_id, mating_cycles=value)
+
+    @property
+    def max_vibration_g(self) -> int:
+        return self._table.select('max_vibration_g', id=self._db_id)[0][0]
+
+    @max_vibration_g.setter
+    def max_vibration_g(self, value: int):
+        self._table.update(self._db_id, max_vibration_g=value)
+
+    @property
+    def max_current_ma(self) -> int:
+        return self._table.select('max_current_ma', id=self._db_id)[0][0]
+
+    @max_current_ma.setter
+    def max_current_ma(self, value: int):
+        self._table.update(self._db_id, max_current_ma=value)
+
+    @property
+    def wire_size_min_awg(self) -> int:
+        return self._table.select('wire_size_min_awg', id=self._db_id)[0][0]
+
+    @wire_size_min_awg.setter
+    def wire_size_min_awg(self, value: int):
+        self._table.update(self._db_id, wire_size_min_awg=value)
+
+    @property
+    def wire_size_max_awg(self) -> int:
+        return self._table.select('wire_size_max_awg', id=self._db_id)[0][0]
+
+    @wire_size_max_awg.setter
+    def wire_size_max_awg(self, value: int):
+        self._table.update(self._db_id, wire_size_max_awg=value)
+
+    @property
+    def wire_dia_min(self) -> float:
+        return self._table.select('wire_dia_min', id=self._db_id)[0][0]
+
+    @wire_dia_min.setter
+    def wire_dia_min(self, value: float):
+        self._table.update(self._db_id, wire_dia_min=value)
+
+    @property
+    def wire_dia_max(self) -> float:
+        return self._table.select('wire_dia_max', id=self._db_id)[0][0]
+
+    @wire_dia_max.setter
+    def wire_dia_max(self, value: float):
+        self._table.update(self._db_id, wire_dia_max=value)
+
+    @property
+    def min_wire_cross(self) -> float:
+        return self._table.select('min_wire_cross', id=self._db_id)[0][0]
+
+    @min_wire_cross.setter
+    def min_wire_cross(self, value: float):
+        self._table.update(self._db_id, min_wire_cross=value)
+
+    @property
+    def max_wire_cross(self) -> float:
+        return self._table.select('max_wire_cross', id=self._db_id)[0][0]
+
+    @max_wire_cross.setter
+    def max_wire_cross(self, value: float):
+        self._table.update(self._db_id, max_wire_cross=value)
