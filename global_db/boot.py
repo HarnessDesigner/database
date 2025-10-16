@@ -192,6 +192,12 @@ class BootChoiceControl(wx.StaticBox):
 
 
 
+class AddBootDialog(wx.Dialog):
+
+    def __init__(self, parent, db_obj):
+
+        self.db_obj = db_obj
+
 
 class Boot(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
            SeriesMixin, ImageMixin, DatasheetMixin, CADMixin, ColorMixin):

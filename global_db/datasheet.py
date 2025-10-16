@@ -34,4 +34,3 @@ class Datasheet(EntryBase):
     @data.setter
     def data(self, value: bytes | None):
         self._table.update(self._db_id, data=value)
-

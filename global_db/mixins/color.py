@@ -1,5 +1,7 @@
 from . import BaseMixin
 
+import wx
+
 
 class ColorMixin(BaseMixin):
 
@@ -22,3 +24,19 @@ class ColorMixin(BaseMixin):
 
 
 from .. import color as _color  # NOQA
+
+
+class ColorControl(wx.BoxSizer):
+
+    def __init__(self, parent, db_obj: ColorMixin):
+        wx.BoxSizer.__init__(self, wx.HORIZONTAL)
+
+        label = wx.StaticText(parent, wx.ID_ANY, label='Part Number:')
+        ctrl = wx.TextCtrl(parent, wx.ID_ANY, value=db_obj.color)
+        ctrl.Enable(False)
+        self.Add(label, 0, wx.RIGHT | wx.ALIGN_CENTER_VERTICAL, 5)
+        self.Add(ctrl, 0, wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 5)
+
+    def Save(self):
+        pass
+
