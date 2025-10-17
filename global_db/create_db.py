@@ -2084,3 +2084,289 @@ if __name__ == '__main__':
 
     cur_.close()
     con_.close()
+
+
+for feature in data['features']:
+    if feature['code'] == '911841':
+        for value in feature['values']:
+            if value == '25':
+
+'905343' - branch count
+
+'904325' - shape, y, etc...
+
+
+'901781' temperature range
+
+
+'''
+{
+        "part_number": "416486-000",
+        "images": [
+            "https://www.te.com/catalog/common/images/PartImages/pr3j4-79tran.jpg"
+        ],
+        "datasheets": [
+            [
+                "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1-1773853-4_moldedparts&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=416486-000",
+                "pdf"
+            ],
+            [
+                "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=2392785-1_vg-products&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=416486-000",
+                "pdf"
+            ]
+        ],
+        "cads": [],
+        "models3d": [],
+        "models2d": [],
+        "features": [
+            {
+                "code": "911841",
+                "label": "Material Systems Code",
+                "values": [
+                    "25"
+                ],
+                "uom": null
+            },
+            {
+                "code": "904325",
+                "label": "Molded Part Shape",
+                "values": [
+                    "Y Shape"
+                ],
+                "uom": null
+            },
+            {
+                "code": "905343",
+                "label": "Number of Branches & Legs",
+                "values": [
+                    "3"
+                ],
+                "uom": null
+            },
+            {
+                "code": "905410",
+                "label": "Material Code",
+                "values": [
+                    "25"
+                ],
+                "uom": null
+            },
+            {
+                "code": "901781",
+                "label": "Operating Temperature Range",
+                "values": [
+                    "-75 \u2013 150"
+                ],
+                "uom": "\u00b0C"
+            },
+            {
+                "code": "911839",
+                "label": "Adhesive Requirement",
+                "values": [
+                    "Adhesive Precoat"
+                ],
+                "uom": null
+            },
+            
+            904428   Resistance Protection
+            905381   Adhesive Code
+            911839  Adhesive Requirement
+            
+            {
+                "code": "904428",
+                "label": "Resistance Protection",
+                "values": [
+                    "Long-Term Fluid Exposure at High Temperatures"
+                ],
+                "uom": null
+            },
+            {
+                "code": "905381",
+                "label": "Adhesive Code",
+                "values": [
+                    "225"
+                ],
+                "uom": null
+            }
+        ],
+        "feature_groups": [
+        
+        904325   Shape
+        905343  Branches
+        911839  Adhesive Requirement
+        
+        911841  series
+        
+        
+            {
+                "code": "904325",
+                "label": "Molded Part Shape",
+                "values": [
+                    "Y Shape"
+                ],
+                "uom": null
+            },
+            {
+                "code": "905343",
+                "label": "Number of Branches & Legs",
+                "values": [
+                    "3"
+                ],
+                "uom": null
+            },
+            {
+                "code": "911839",
+                "label": "Adhesive Requirement",
+                "values": [
+                    "Adhesive Precoat"
+                ],
+                "uom": null
+            },
+            {
+                "code": "911841",
+                "label": "Material Systems Code",
+                "values": [
+                    "25"
+                ],
+                "uom": null
+            },
+            
+            908582  material
+            
+            {
+                "code": "908582",
+                "label": "Primary Product Material",
+                "values": [
+                    "Fluid Resistant Modified Elastomer"
+                ],
+                "uom": null
+            },
+            {
+                "code": "905410",
+                "label": "Material Code",
+                "values": [
+                    "25"
+                ],
+                "uom": null
+            },
+            
+            904711 branch 1 diameter range
+            904713 branch 2 diameter range
+            904715 branch 3 diameter range
+            904717 branch 4 diameter range
+            904719 branch 5 diameter range
+            
+            
+            {
+                "code": "904711",
+                "label": "Inside Diameter Range (Body)",
+                "values": [
+                    "12.7 \u2013 26.9"
+                ],
+                "uom": "mm"
+            },
+            {
+                "code": "904713",
+                "label": "Inside Diameter Range (Leg 1)",
+                "values": [
+                    "12.7 \u2013 26.9"
+                ],
+                "uom": "mm"
+            },
+            {
+                "code": "904715",
+                "label": "Inside Diameter Range (Leg 2)",
+                "values": [
+                    "3.6 \u2013 6.6"
+                ],
+                "uom": "mm"
+            },
+            {
+                "code": "911840",
+                "label": "Flammability Performance",
+                "values": [
+                    "Flame-Retardant",
+                    "Low Fire Hazard"
+                ],
+                "uom": null
+            },
+            
+            901781   temp range
+            
+            
+            
+            {
+                "code": "901781",
+                "label": "Operating Temperature Range",
+                "values": [
+                    "-75 \u2013 150"
+                ],
+                "uom": "\u00b0C"
+            },
+            {
+                "code": "904428",
+                "label": "Resistance Protection",
+                "values": [
+                    "Long-Term Fluid Exposure at High Temperatures"
+                ],
+                "uom": null
+            },
+            
+            904428  Resistance Protection
+            
+            904911  mechanical resistance
+            {
+                "code": "904911",
+                "label": "Mechanical Resistance",
+                "values": [
+                    "Fluids",
+                    "Mechanical Damage"
+                ],
+                "uom": null
+            },
+            {
+                "code": "908180",
+                "label": "Size Code",
+                "values": [
+                    "024"
+                ],
+                "uom": null
+            },
+            
+            
+            908179  series
+            
+            
+            {
+                "code": "908179",
+                "label": "Molded Part Shape Code",
+                "values": [
+                    "342A"
+                ],
+                "uom": null
+            },
+            {
+                "code": "905381",
+                "label": "Adhesive Code",
+                "values": [
+                    "225"
+                ],
+                "uom": null
+            }
+        ],
+        "description1": "Y Shape Cable Transistion, 3 Branches , 25 Material Code, 25 Material Systems Code, -75 \u2013 150 \u00b0C [-103 \u2013 302 \u00b0F], 225 Adhesive Code",
+        "description2": "342A024-25/225-0",
+        "compat_parts": [
+            {
+                "part_number": "9-120035-5",
+                "features": []
+            },
+            {
+                "part_number": "9-120035-6",
+                "features": []
+            }
+        ]
+    },
+
+
+'''
