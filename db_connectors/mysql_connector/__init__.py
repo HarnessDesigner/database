@@ -26,6 +26,8 @@ import mysql.connector
 from mysql.connector import errorcode
 import mysql.connector.constants
 
+from .. import ConnectorBase
+
 from ....config import Config as _Config
 from ....gui_controls import auto_complete
 
@@ -68,8 +70,7 @@ class Config(_Config):
     auth_plugin = ''
     openid_token_file = ''  # Path to the file containing the OpenID JWT formatted identity token.
 
-    global_database_name = 'harness_maker'
-    project_database_name = 'harness_maker_projects'
+    database_name = 'harness_maker'
     recent_projects = []
     recent_users = []
 
@@ -148,21 +149,29 @@ class LoginDialog(wx.Dialog):
         )
 
 
-class _DBase:
+class SQLConnector(ConnectorBase):
 
-    def __init__(self, sql_connector, username, password, db_name):
-        self.sql_connector = sql_connector
-        self.username = username
-        self.password = password
-        self.db_name = db_name
+    def __init__(self, mainframe):
+        super().__init__(mainframe, Config.database_name)
         self._connection: mysql.connector.MySQLConnection = None
         self._cursor: _MySQLCursor = None
 
     def connect(self):
+        dlg = LoginDialog(self.mainframe)
+        try:
+            if dlg.ShowModal() == wx.ID_OK:
+                username, password = dlg.GetValue()
+            else:
+                return False
+        except:  # NOQA
+            raise RuntimeError('This should not happen')
+        finally:
+            dlg.Destroy()
+
         try:
             self._connection = mysql.connector.connect(
-                user=self.username,
-                password=self.password,
+                user=username,
+                password=password,
                 host=Config.host,
                 port=Config.port,
                 compress=Config.compress,
@@ -194,23 +203,17 @@ class _DBase:
                 print("Database does not exist")
             else:
                 print(err)
+            return False
 
-            self.username = None
-            self.password = None
-            raise
+        if username in Config.recent_users:
+            Config.recent_users.remove(username)
+        Config.recent_users.insert(0, username)
 
-        else:
-            if self.username in Config.recent_users:
-                Config.recent_users.remove(self.username)
-            Config.recent_users.insert(0, self.username)
+        while len(Config.recent_users) > 5:
+            Config.recent_users = Config.recent_users[:-1]
 
-            while len(Config.recent_users) > 5:
-                Config.recent_users = Config.recent_users[:-1]
-
-            self._cursor = self._connection.cursor()
-
-        self.username = None
-        self.password = None
+        self._cursor = self._connection.cursor()
+        return True
 
     def execute(self, operation: _StrOrBytes,
                 params: _Optional[_ParamsSequenceOrDictType] = None,
@@ -247,65 +250,6 @@ class _DBase:
 
         self._cursor = None
         self._connection = None
-
-
-class GlobalDBase(_DBase):
-    pass
-
-
-class ProjectDBase(_DBase):
-
-    def __init__(self, sql_connector, username, password, db_name):
-        super().__init__(sql_connector, username, password, db_name)
-        self._project_id = None
-
-    def select_project(self):
-        from .project_dialog import OpenProjectDialog
-
-        project_names = []
-
-        self.execute(f'SELECT name FROM projects;')
-        for name in self.fetchall():
-            project_names.append(name[0])
-
-        dlg = OpenProjectDialog(self.sql_connector.parent, Config.recent_projects, project_names)
-
-        if dlg.ShowModal() != wx.ID_CANCEL:
-            project = dlg.GetValue()
-        else:
-            project = None
-
-        dlg.Destroy()
-
-        return project
-
-    def load_project(self, project_name):
-        self.execute(f'SELECT id FROM projects WHERE name = "{project_name};')
-        res = self.fetchall()
-
-        if res:
-            self._project_id = res[0][0]
-        else:
-            self.execute(f'INSERT INTO projects (name) VALUES (?);', (project_name,))
-            self.commit()
-            self._project_id = self.lastrowid
-
-    @property
-    def recent_projects(self):
-        return Config.recent_projects[:]
-
-
-class SQLConnector:
-
-    def __init__(self, parent):
-        dlg = LoginDialog(parent)
-        try:
-            if dlg.ShowModal() == wx.ID_OK:
-                username, password = dlg.GetValue()
-                self.global_db = GlobalDBase(self, username, password, Config.global_database_name)
-                self.project_db = ProjectDBase(self, username, password, Config.project_database_name)
-        finally:
-            dlg.Destroy()
 
 
 if __name__ == '__main__':

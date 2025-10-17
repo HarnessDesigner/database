@@ -5,7 +5,10 @@ import os
 BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 
-def create_tables(con, cur):
+def create_tables(con, cur=None):
+    if cur is None:
+        cur = con
+
     cur.execute('CREATE TABLE manufacturers('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'name TEXT UNIQUE NOT NULL, '
@@ -547,7 +550,7 @@ def create_tables(con, cur):
                 'FOREIGN KEY (min_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                
                 'FOREIGN KEY (cavity_lock_id) REFERENCES terminal_locks(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                
-                'FOREIGN KEY (wire_orientation_id) REFERENCES directions(id) ON DELETE SET DEFAULT ON UPDATE CASCADE' 
+                'FOREIGN KEY (direction_id) REFERENCES directions(id) ON DELETE SET DEFAULT ON UPDATE CASCADE' 
                 ');')
     con.commit()
 
@@ -576,6 +579,214 @@ def create_tables(con, cur):
                 'rgb INTEGER DEFAULT 255 NOT NULL, '
                 'FOREIGN KEY (cavity_map_id) REFERENCES cavity_maps(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
+    con.commit()
+
+
+    # ================ project tables ======================
+    cur.execute('CREATE TABLE projects('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'name TEXT NOT NULL, '
+                'obj_count INTEGER DEFAULT 0 NOT NULL'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_coordinates_3d('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'x REAL DEFAULT "0.0" NOT NULL, '
+                'y REAL DEFAULT "0.0" NOT NULL, '
+                'z REAL DEFAULT "0.0" NOT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_coordinates_2d('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'x REAL DEFAULT "0.0" NOT NULL, '
+                'y REAL DEFAULT "0.0" NOT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_circuits('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'circuit_num INTEGER NOT NULL, '
+                'name TEXT DEFAULT "" NOT NULL, '
+                'description TEXT DEFAULT "" NOT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_bundle_layouts('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'coord_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_wire3d_layouts('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'coord_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+
+    cur.execute('CREATE TABLE pjt_wire2d_layouts('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'coord_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+
+    cur.execute('CREATE TABLE pjt_bundles('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'start_coord_id INTEGER DEFAULT NULL, '
+                'stop_coord_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES bundle_covers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_splices('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'circuit_id INTEGER DEFAULT NULL, '
+                'coord3d_id INTEGER DEFAULT NULL, '
+                'coord2d_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES splices(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord3d_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord2d_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_housings('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'name TEXT DEFAULT "" NOT NULL, '
+                'coord3d_id INTEGER DEFAULT NULL, '
+                'coord2d_id INTEGER DEFAULT NULL, '
+                'x_angle_3d REAL DEFAULT "0.0" NOT NULL, '
+                'y_angle_3d REAL DEFAULT "0.0" NOT NULL, '
+                'z_angle_3d REAL DEFAULT "0.0" NOT NULL, '
+                'angle_2d REAL DEFAULT "0.0" NOT NULL, '
+                'seal_ids TEXT DEFAULT "[]" NOT NULL, '
+                'cpa_lock_ids TEXT DEFAULT "[]" NOT NULL, '
+                'tpa_lock_ids TEXT DEFAULT "[]" NOT NULL, '
+                'cover_id INTEGER DEFAULT NULL, '
+                'boot_id INTEGER DEFAULT NULL, '
+                'accessory_ids TEXT DEFAULT "[]" NOT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES housings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord2d_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (cover_id) REFERENCES covers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (boot_id) REFERENCES boots(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_cavity_maps('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'housing_id INTEGER NOT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES cavity_maps(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_cavities('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'cavity_map_id INTEGER NOT NULL, '
+                'name TEXT DEFAULT "" NOT NULL, '
+                'coord2d_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES cavities(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (cavity_map_id) REFERENCES pjt_cavity_maps(id) ON DELETE CASCADE ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_terminals('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'cavity_id INTEGER NOT NULL, '
+                'seal_id INTEGER DEFAULT NULL, '
+                'circuit_id INTEGER DEFAULT NULL, '
+                'coord3d_id INTEGER DEFAULT NULL, '
+                'coord2d_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (cavity_id) REFERENCES pjt_cavities(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (seal_id) REFERENCES seals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (circuit_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (coord2d_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_transitions('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'name TEXT DEFAULT "" NOT NULL, '
+                'branch1_coord_id INTEGER DEFAULT NULL, '
+                'branch2_coord_id INTEGER DEFAULT NULL, '
+                'branch3_coord_id INTEGER DEFAULT NULL, '
+                'branch4_coord_id INTEGER DEFAULT NULL, '
+                'branch5_coord_id INTEGER DEFAULT NULL, '
+                'branch6_coord_id INTEGER DEFAULT NULL, '
+                'x_angle REAL DEFAULT "0.0" NOT NULL, '
+                'y_angle REAL DEFAULT "0.0" NOT NULL, '
+                'z_angle REAL DEFAULT "0.0" NOT NULL, '                
+                
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch1_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch2_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch3_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch4_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch5_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch6_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+    cur.execute('CREATE TABLE pjt_wires('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'circuit_id INTEGER DEFAULT NULL, '
+                'start_coord3d_id INTEGER DEFAULT NULL, '
+                'stop_coord3d_id INTEGER DEFAULT NULL, '
+                'start_coord2d_id INTEGER DEFAULT NULL, '
+                'stop_coord2d_id INTEGER DEFAULT NULL, '
+                'is_visible INTEGER DEFAULT 1, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (circuit_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_coord2d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_coord2d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'                ');')
     con.commit()
 
 
@@ -1407,7 +1618,7 @@ def get_family_id(con, cur, family, mfg_id):
 
 
 def load_tpa_locks(con, cur):
-    with open(r'C:\Users\drsch\Desktop\HarnessMaker\tpa_locks.csv', 'r') as f:
+    with open(r'tpa_locks.csv', 'r') as f:
         data = f.read().split('\n')
 
     for line in data:
@@ -1459,7 +1670,7 @@ def load_tpa_locks(con, cur):
 
 
 def load_cpa_locks(con, cur):
-    with open(r'C:\Users\drsch\Desktop\HarnessMaker\cpa_locks.csv', 'r') as f:
+    with open(r'cpa_locks.csv', 'r') as f:
         data = f.read().split('\n')
 
     for line in data:
@@ -1512,7 +1723,7 @@ def load_cpa_locks(con, cur):
 
 def load_covers(con, cur):
 
-    with open(r'C:\Users\drsch\Desktop\HarnessMaker\covers.csv', 'r') as f:
+    with open(r'covers.csv', 'r') as f:
         data = f.read().split('\n')
 
     for line in data:
@@ -1551,7 +1762,7 @@ def load_covers(con, cur):
 
 def load_seals(con, cur):
 
-    with open(r'C:\Users\drsch\Desktop\HarnessMaker\seals.csv', 'r') as f:
+    with open(r'seals.csv', 'r') as f:
         data = f.read().split('\n')
 
     for line in data:
@@ -1599,7 +1810,7 @@ def load_seals(con, cur):
 
 def load_terminals(con, cur):
 
-    with open(r'C:\Users\drsch\Desktop\HarnessMaker\terminals.csv', 'r') as f:
+    with open(r'terminals.csv', 'r') as f:
         data = f.read().split('\n')
 
     for line in data:
@@ -1668,7 +1879,7 @@ def load_terminals(con, cur):
 
 
 def load_housings(con, cur):
-    with open(r'C:\Users\drsch\Desktop\HarnessMaker\housings.csv', 'r') as f:
+    with open(r'housings.csv', 'r') as f:
         data = f.read().split('\n')
 
     for line in data:
@@ -1834,7 +2045,7 @@ def get_cavities(filename):
 
 
 def load_cavity_maps(con, cur):
-    path = r'C:\Users\drsch\Desktop\HarnessMaker\harness_maker_2\images'
+    path = r'images'
 
     cur.execute('SELECT id, part_number, terminal_sizes, num_pins, rows FROM housings;')
     for id_, part_number, terminal_sizes, num_pins, rows in cur.fetchall():
@@ -1952,7 +2163,7 @@ def load_cavity_maps(con, cur):
 
 def load_transitions(con, cur):
 
-    path = r'C:\Users\drsch\Desktop\HarnessMaker\harness_maker_2\images\transitions'
+    path = r'images\transitions'
     cur.execute('SELECT id, name FROM transition_series;')
     for series_id, series_name in cur.fetchall():
         if series_id == 0:
@@ -1997,7 +2208,6 @@ def load_transitions(con, cur):
                         'VALUES (?, ?, ?, ?, ?, ?, ?, ?);',
                         (tran_map_id, idx, name, x, y, width, height, rgb))
             con.commit()
-
 
 
 def load_shrink_tube(con, cur):
@@ -2070,21 +2280,22 @@ if __name__ == '__main__':
     con_ = sqlite3.connect('test.db')
     cur_ = con_.cursor()
     create_tables(con_, cur_)
-    preload_database(con_, cur_)
-
-    load_tpa_locks(con_, cur_)
-    load_cpa_locks(con_, cur_)
-    load_covers(con_, cur_)
-    load_seals(con_, cur_)
-    load_terminals(con_, cur_)
-    load_housings(con_, cur_)
-    load_cavity_maps(con_, cur_)
-    load_transitions(con_, cur_)
-    load_shrink_tube(con_, cur_)
+    # preload_database(con_, cur_)
+    #
+    # load_tpa_locks(con_, cur_)
+    # load_cpa_locks(con_, cur_)
+    # load_covers(con_, cur_)
+    # load_seals(con_, cur_)
+    # load_terminals(con_, cur_)
+    # load_housings(con_, cur_)
+    # load_cavity_maps(con_, cur_)
+    # load_transitions(con_, cur_)
+    # load_shrink_tube(con_, cur_)
 
     cur_.close()
     con_.close()
 
+'''
 
 for feature in data['features']:
     if feature['code'] == '911841':
@@ -2099,7 +2310,6 @@ for feature in data['features']:
 '901781' temperature range
 
 
-'''
 {
         "part_number": "416486-000",
         "images": [

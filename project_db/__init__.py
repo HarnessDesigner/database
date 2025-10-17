@@ -1,5 +1,17 @@
 
-from typing import Iterable as _Iterable
+from typing import Iterable as _Iterable, TYPE_CHECKING
+import wx
+
+
+from ....config import Config as _Config
+
+
+class Config(_Config):
+    recent_projects = []
+
+
+if TYPE_CHECKING:
+    from ... import ui as _ui
 
 
 class PJTEntryBase:
@@ -22,24 +34,23 @@ class PJTTableBase:
 
     def __init__(self, db: "PJTTables", project_id: int | None = None):
         self.db = db
+        self._con = db.connector
+
         self.project_id = project_id
 
-        self._con = db.con
-        self._cur = db.cur
-
     def __getitem__(self, item):
-        self._cur.execute(f'SELECT * FROM {self.__table_name__} WHERE id = {item};')
+        self._con.execute(f'SELECT * FROM {self.__table_name__} WHERE id = {item};')
 
-        for line in self._cur.fetchall():
+        for line in self._con.fetchall():
             return line
 
     def __iter__(self) -> _Iterable[int]:
         if self.project_id is None:
-            self._cur.execute(f'SELECT id FROM {self.__table_name__};')
+            self._con.execute(f'SELECT id FROM {self.__table_name__};')
         else:
-            self._cur.execute(f'SELECT id FROM {self.__table_name__} WHERE project_id = {self.project_id};')
+            self._con.execute(f'SELECT id FROM {self.__table_name__} WHERE project_id = {self.project_id};')
 
-        for line in self._cur.fetchall():
+        for line in self._con.fetchall():
             yield line[0]
 
     @property
@@ -47,9 +58,9 @@ class PJTTableBase:
         return self.__table_name__
 
     def __contains__(self, db_id: int) -> bool:
-        self._cur.execute(f'SELECT id FROM {self.__table_name__} WHERE id = {db_id};')
+        self._con.execute(f'SELECT id FROM {self.__table_name__} WHERE id = {db_id};')
 
-        if self._cur.fetchall():
+        if self._con.fetchall():
             return True
 
         return False
@@ -71,9 +82,9 @@ class PJTTableBase:
 
         fields = ', '.join(fields)
         values = ', '.join(values)
-        self._cur.execute(f'INSERT INTO {self.__table_name__} ({fields}) VALUES ({values});', args)
+        self._con.execute(f'INSERT INTO {self.__table_name__} ({fields}) VALUES ({values});', args)
         self._con.commit()
-        return self._cur.lastrowid
+        return self._con.lastrowid
 
     def select(self, *args, **kwargs):
         args = ', '.join(args)
@@ -95,12 +106,12 @@ class PJTTableBase:
 
         where = f' WHERE {values}'
 
-        self._cur.execute(f'SELECT {args} FROM {self.__table_name__}{where};')
-        res = self._cur.fetchall()
+        self._con.execute(f'SELECT {args} FROM {self.__table_name__}{where};')
+        res = self._con.fetchall()
         return res
 
     def delete(self, db_id: int) -> None:
-        self._cur.execute(f'DELETE FROM {self.__table_name__} WHERE id = {db_id};')
+        self._con.execute(f'DELETE FROM {self.__table_name__} WHERE id = {db_id};')
         self._con.commit()
 
     def update(self, db_id: int, **kwargs):
@@ -112,17 +123,17 @@ class PJTTableBase:
             values.append(value)
 
         fields = ', '.join(fields)
-        self._cur.execute(f'UPDATE {self.__table_name__} SET {fields} WHERE id = {db_id};', values)
+        self._con.execute(f'UPDATE {self.__table_name__} SET {fields} WHERE id = {db_id};', values)
         self._con.commit()
 
     def execute(self, cmd, params=None):
         if params is None:
-            self._cur.execute(cmd)
+            self._con.execute(cmd)
         else:
-            self._cur.execute(cmd, params)
+            self._con.execute(cmd, params)
 
     def fetchall(self):
-        return self._cur.fetchall()
+        return self._con.fetchall()
 
 
 from .pjt_bundle import PJTBundlesTable  # NOQA
@@ -145,12 +156,10 @@ from .project import ProjectsTable  # NOQA
 
 class PJTTables:
 
-    def __init__(self, global_db, connector):
-        self.global_db = global_db
-
-        self.connector = connector
-        self.con = connector.con
-        self.cur = connector.cur
+    def __init__(self, mainframe: "_ui.MainFrame"):
+        self.mainframe = mainframe
+        self.global_db = mainframe.global_db
+        self.connector = mainframe.db_connector
 
         self._projects_table = ProjectsTable(self)
 
@@ -246,48 +255,45 @@ class PJTTables:
         return self._pjt_terminals_table
 
 
+class Project:
 
-circuits
-id, circuit_num, name, description
+    def __init__(self, mainframe: "_ui.MainFrame"):
+        self.mainframe = mainframe
+        self.connector = self.mainframe.db_connector
+        self.project_id = None
+        self.project_name = ''
+        self.tables = PJTTables(self.mainframe)
 
-terminals
-id, project_id, part_id, cavity_id, seal_id, circuit_id, coord3d_id, coord2d_id
+    def select_project(self):
+        from ...dialogs.project_dialog import OpenProjectDialog
 
+        project_names = []
 
-cavities
-id, project_id, part_id, cavity_map_id, terminal_id, name
+        self.connector.execute(f'SELECT name FROM projects;')
+        for name in self.connector.fetchall():
+            project_names.append(name[0])
 
-cavity_maps
-id, project_id, part_id, housing_id
+        dlg = OpenProjectDialog(self.mainframe, Config.recent_projects, project_names)
 
+        if dlg.ShowModal() != wx.ID_CANCEL:
+            project_name = dlg.GetValue()
+        else:
+            project_name = None
 
-housings
-id, project_id, part_id, name, coords3d_id, coords2d_id, x_angle_3d, y_angle_3d, z_angle_3d, angle_2d, seal_ids, cpa_lock_ids, tpa_lock_ids, cover_id, boot_id, accessory_ids
+        dlg.Destroy()
 
+        self.connector.execute(f'SELECT id FROM projects WHERE name = "{project_name};')
+        res = self.connector.fetchall()
 
-coordinates_2d
-id, project_id, x, y
+        if res:
+            self.project_id = res[0][0]
+        else:
+            self.connector.execute(f'INSERT INTO projects (name) VALUES (?);', (project_name,))
+            self.connector.commit()
+            self.project_id = self.connector.lastrowid
 
-coordinates_3d
-id, project_id, x, y, z
+        self.tables.load(self.project_id)
 
-transitions
-id, project_id, part_id, name, branch1_coord_id, branch2_coord_id, branch3_coord_id, branch4_coord_id, branch5_coord_id, branch6_coord_id, angle_x, angle_y, angle_z
-
-bundle_layouts
-id, project_id, coord_id,
-
-bundles
-id, project_id, part_id, start_coord_id, stop_coord_id
-
-wire2d_layouts
-id, project_id, coord_id
-
-wire3d_layouts
-id, project_id, coord_id
-
-splices
-id, project_id, part_id, circuit_id, coord3d_id, coord2d_id
-
-wires
-id, project_id, part_id, circuit_id, start_coord3d_id, stop_coord3d_id, start_coord2d_id, stop_coord2d_id, is_visible
+    @property
+    def recent_projects(self):
+        return Config.recent_projects[:]
