@@ -27,7 +27,7 @@ class PJTCoordinates2DTable(PJTTableBase):
         PJTTableBase.delete(self, db_id)
 
     def insert(self, x: float, y: float) -> "PJTCoordinate2D":
-        db_id = PJTTableBase.insert(self, project_id=self.project_id, x=x, y=y)
+        db_id = PJTTableBase.insert(self, x=x, y=y)
         return PJTCoordinate2D(self, db_id, self.project_id)
 
 
@@ -51,7 +51,7 @@ class PJTCoordinate2D(PJTEntryBase):
         self._table.update(self._db_id, y=float(value))
 
     @property
-    def coords(self) -> _point.Point:
+    def point(self) -> _point.Point:
         point = _point.Point(self.x, self.y, project_id=self._table.project_id, point_id=self._db_id)
         point.Bind(self.__on_update)
         return point

@@ -11,8 +11,9 @@ class PJTBundlesTable(PJTTableBase):
             yield PJTBundle(self, db_id, self.project_id)
 
     def insert(self, part_id: int, start_coord_id: int, stop_coord_id: int) -> "PJTBundle":
-        db_id = PJTTableBase.insert(self, project_id=self.project_id, part_id=part_id,
-                                    start_coord_id=start_coord_id, stop_coord_id=stop_coord_id)
+        db_id = PJTTableBase.insert(self, part_id=part_id, start_coord_id=start_coord_id,
+                                    stop_coord_id=stop_coord_id)
+
         return PJTBundle(self, db_id, self.project_id)
 
 
@@ -20,9 +21,9 @@ class PJTBundle(PJTEntryBase):
     _table: PJTBundlesTable = None
 
     @property
-    def start_coord(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def start_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
         coord_id = self.start_coord_id
-        return self._table.db.pjt_coordinate_3d[coord_id]
+        return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
     def start_coord_id(self) -> int:
@@ -33,9 +34,9 @@ class PJTBundle(PJTEntryBase):
         self._table.update(self._db_id, start_coord_id=value)
 
     @property
-    def stop_coord(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def stop_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
         coord_id = self.stop_coord_id
-        return self._table.db.pjt_coordinate_3d[coord_id]
+        return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
     def stop_coord_id(self) -> int:
@@ -62,5 +63,6 @@ class PJTBundle(PJTEntryBase):
         self._table.update(self._db_id, part_id=value)
 
 
-from . import pjt_coordinate_3d as _pjt_coordinate_3d
-from ..global_db.protection import bundle as _bundle
+from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
+
+from ..global_db.protection import bundle as _bundle  # NOQA

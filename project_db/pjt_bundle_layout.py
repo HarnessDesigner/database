@@ -11,7 +11,8 @@ class PJTBundleLayoutsTable(PJTTableBase):
             yield PJTBundleLayout(self, db_id, self.project_id)
 
     def insert(self, coord_id: int) -> "PJTBundleLayout":
-        db_id = PJTTableBase.insert(self, project_id=self.project_id, coord_id=coord_id)
+        db_id = PJTTableBase.insert(self, coord_id=coord_id)
+
         return PJTBundleLayout(self, db_id, self.project_id)
 
 
@@ -19,9 +20,9 @@ class PJTBundleLayout(PJTEntryBase):
     _table: PJTBundleLayoutsTable = None
 
     @property
-    def coord(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
         coord_id = self.coord_id
-        return self._table.db.pjt_coordinate_3d[coord_id]
+        return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
     def coord_id(self) -> int:
@@ -32,4 +33,4 @@ class PJTBundleLayout(PJTEntryBase):
         self._table.update(self._db_id, coord_id=value)
 
 
-from . import pjt_coordinate_3d as _pjt_coordinate_3d
+from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA

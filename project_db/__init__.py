@@ -20,7 +20,7 @@ class PJTEntryBase:
 class PJTTableBase:
     __table_name__: str = None
 
-    def __init__(self, db: "PJTTablesBase", project_id: int):
+    def __init__(self, db: "PJTTables", project_id: int | None = None):
         self.db = db
         self.project_id = project_id
 
@@ -34,7 +34,10 @@ class PJTTableBase:
             return line
 
     def __iter__(self) -> _Iterable[int]:
-        self._cur.execute(f'SELECT id FROM {self.__table_name__} WHERE project_id = {self.project_id};')
+        if self.project_id is None:
+            self._cur.execute(f'SELECT id FROM {self.__table_name__};')
+        else:
+            self._cur.execute(f'SELECT id FROM {self.__table_name__} WHERE project_id = {self.project_id};')
 
         for line in self._cur.fetchall():
             yield line[0]
@@ -52,9 +55,14 @@ class PJTTableBase:
         return False
 
     def insert(self, **kwargs) -> int:
-        fields = ['project_id']
-        values = ['?']
-        args = [self.project_id]
+        fields = []
+        values = []
+        args = []
+
+        if self.project_id is not None:
+            fields.append('project_id')
+            values.append('?')
+            args.append(self.project_id)
 
         for key, value in kwargs.items():
             fields.append(key)
@@ -70,7 +78,11 @@ class PJTTableBase:
     def select(self, *args, **kwargs):
         args = ', '.join(args)
 
-        values = [f'project_id = {self.project_id}']
+        values = []
+
+        if self.project_id is not None:
+            values.append(f'project_id = {self.project_id}')
+
         for key, value in kwargs.items():
             if isinstance(value, (str, float)):
                 value = f'"{value}"'
@@ -113,450 +125,169 @@ class PJTTableBase:
         return self._cur.fetchall()
 
 
-class PJTTablesBase:
+from .pjt_bundle import PJTBundlesTable  # NOQA
+from .pjt_bundle_layout import PJTBundleLayoutsTable  # NOQA
+from .pjt_circuit import PJTCircuitsTable  # NOQA
+from .pjt_coordinate_2d import PJTCoordinates2DTable  # NOQA
+from .pjt_coordinate_3d import PJTCoordinates3DTable  # NOQA
+from .pjt_housing import PJTHousingsTable  # NOQA
+from .pjt_splice import PJTSplicesTable  # NOQA
+from .pjt_transition import PJTTransitionsTable  # NOQA
+from .pjt_wire import PJTWiresTable  # NOQA
+from .pjt_wire2d_layout import PJTWire2DLayoutsTable  # NOQA
+from .pjt_wire3d_layout import PJTWire3DLayoutsTable  # NOQA
+from .pjt_cavity_map import PJTCavityMapsTable  # NOQA
+from .pjt_cavity import PJTCavitiesTable  # NOQA
+from .pjt_terminal import PJTTerminalsTable  # NOQA
 
-    def __init__(self, connector):
+from .project import ProjectsTable  # NOQA
+
+
+class PJTTables:
+
+    def __init__(self, global_db, connector):
+        self.global_db = global_db
+
         self.connector = connector
-        self.con = connector
-        self.cur = connector
+        self.con = connector.con
+        self.cur = connector.cur
 
-        self._boots_table = None
-        self._manufacturers_table = None
-        self._tpa_locks_table = None
-        self._cpa_locks_table = None
-        self._materials_table = None
-        self._covers_table = None
-        self._housings_table = None
-        self._seals_table = None
-        self._series_table = None
-        self._terminals_table = None
-        self._wires_table = None
-        self._cavity_locks_table = None
-        self._colors_table = None
-        self._directions_table = None
-        self._cads_table = None
-        self._datasheets_table = None
-        self._families_table = None
-        self._genders_table = None
-        self._images_table = None
-        self._sealings_table = None
-        self._temperatures_table = None
-        self._ip_solids_table = None
-        self._ip_fluids_table = None
-        self._ip_supps_table = None
-        self._ip_ratings_table = None
-        self._cavities_table = None
-        self._cavity_maps_table = None
-        self._bundle_cover_series_table = None
-        self._bundle_cover_resistances_table = None
-        self._bundle_cover_materials_table = None
-        self._bundle_cover_rigidities_table = None
-        self._bundle_covers_table = None
-        self._transition_branches_table = None
-        self._transition_adhesives_table = None
-        self._transition_sizes_table = None
-        self._transition_materials_table = None
-        self._transition_series_table = None
-        self._transition_families_table = None
-        self._transition_protections_table = None
-        self._transition_shapes_table = None
-        self._transition_layouts_table = None
-        self._transitions_table = None
+        self._projects_table = ProjectsTable(self)
+
+        self._pjt_bundles_table = None
+        self._pjt_bundle_layouts_table = None
+        self._pjt_circuits_table = None
+        self._pjt_coordinates_2d_table = None
+        self._pjt_coordinates_3d_table = None
+        self._pjt_housings_table = None
+        self._pjt_splices_table = None
+        self._pjt_transitions_table = None
+        self._pjt_wires_table = None
+        self._pjt_wire_2d_layouts_table = None
+        self._pjt_wire_3d_layouts_table = None
+        self._pjt_cavities_table = None
+        self._pjt_cavity_maps_table = None
+        self._pjt_terminals_table = None
+
+    def load(self, project_id):
+        self._pjt_bundles_table = PJTBundlesTable(self, project_id)
+        self._pjt_bundle_layouts_table = PJTBundleLayoutsTable(self, project_id)
+        self._pjt_circuits_table = PJTCircuitsTable(self, project_id)
+        self._pjt_coordinates_2d_table = PJTCoordinates2DTable(self, project_id)
+        self._pjt_coordinates_3d_table = PJTCoordinates3DTable(self, project_id)
+        self._pjt_housings_table = PJTHousingsTable(self, project_id)
+        self._pjt_splices_table = PJTSplicesTable(self, project_id)
+        self._pjt_transitions_table = PJTTransitionsTable(self, project_id)
+        self._pjt_wires_table = PJTWiresTable(self, project_id)
+        self._pjt_wire_2d_layouts_table = PJTWire2DLayoutsTable(self, project_id)
+        self._pjt_wire_3d_layouts_table = PJTWire3DLayoutsTable(self, project_id)
+        self._pjt_cavities_table = PJTCavitiesTable(self, project_id)
+        self._pjt_cavity_maps_table = PJTCavityMapsTable(self, project_id)
+        self._pjt_terminals_table = PJTTerminalsTable(self, project_id)
 
     @property
-    def boots_table(self) -> BootsTable:
-        return self._boots_table
+    def pjt_bundles_table(self) -> PJTBundlesTable:
+        return self._pjt_bundles_table
 
     @property
-    def manufacturers_table(self) -> ManufacturersTable:
-        return self._manufacturers_table
+    def pjt_bundle_layouts_table(self) -> PJTBundleLayoutsTable:
+        return self._pjt_bundle_layouts_table
 
     @property
-    def tpa_locks_table(self) -> TPALocksTable:
-        return self._tpa_locks_table
+    def pjt_circuits_table(self) -> PJTCircuitsTable:
+        return self._pjt_circuits_table
 
     @property
-    def cpa_locks_table(self) -> CPALocksTable:
-        return self._cpa_locks_table
+    def pjt_coordinates_2d_table(self) -> PJTCoordinates2DTable:
+        return self._pjt_coordinates_2d_table
 
     @property
-    def materials_table(self) -> MaterialsTable:
-        return self._materials_table
+    def pjt_coordinates_3d_table(self) -> PJTCoordinates3DTable:
+        return self._pjt_coordinates_3d_table
 
     @property
-    def covers_table(self) -> CoversTable:
-        return self._covers_table
+    def pjt_housings_table(self) -> PJTHousingsTable:
+        return self._pjt_housings_table
 
     @property
-    def housings_table(self) -> HousingsTable:
-        return self._housings_table
+    def pjt_splices_table(self) -> PJTSplicesTable:
+        return self._pjt_splices_table
 
     @property
-    def seals_table(self) -> SealsTable:
-        return self._seals_table
+    def pjt_transitions_table(self) -> PJTTransitionsTable:
+        return self._pjt_transitions_table
 
     @property
-    def series_table(self) -> SeriesTable:
-        return self._series_table
+    def pjt_wires_table(self) -> PJTWiresTable:
+        return self._pjt_wires_table
 
     @property
-    def terminals_table(self) -> TerminalsTable:
-        return self._terminals_table
+    def pjt_wire_2d_layouts_table(self) -> PJTWire2DLayoutsTable:
+        return self._pjt_wire_2d_layouts_table
 
     @property
-    def wires_table(self) -> WiresTable:
-        return self._wires_table
+    def pjt_wire_3d_layouts_table(self) -> PJTWire3DLayoutsTable:
+        return self._pjt_wire_3d_layouts_table
 
     @property
-    def cavity_locks_table(self) -> CavityLocksTable:
-        return self._cavity_locks_table
+    def projects_table(self) -> ProjectsTable:
+        return self._projects_table
 
     @property
-    def colors_table(self) -> ColorsTable:
-        return self._colors_table
+    def pjt_cavities_table(self) -> PJTCavitiesTable:
+        return self._pjt_cavities_table
 
     @property
-    def directions_table(self) -> DirectionsTable:
-        return self._directions_table
+    def pjt_cavity_maps_table(self) -> PJTCavityMapsTable:
+        return self._pjt_cavity_maps_table
 
     @property
-    def cads_table(self) -> CADsTable:
-        return self._cads_table
+    def pjt_terminals_table(self) -> PJTTerminalsTable:
+        return self._pjt_terminals_table
 
-    @property
-    def datasheets_table(self) -> DatasheetsTable:
-        return self._datasheets_table
 
-    @property
-    def families_table(self) -> FamiliesTable:
-        return self._families_table
 
-    @property
-    def genders_table(self) -> GendersTable:
-        return self._genders_table
-
-    @property
-    def images_table(self) -> ImagesTable:
-        return self._images_table
-
-    @property
-    def sealings_table(self) -> SealingsTable:
-        return self._sealings_table
-
-    @property
-    def temperatures_table(self) -> TemperaturesTable:
-        return self._temperatures_table
-
-    @property
-    def ip_solids_table(self) -> IPSolidsTable:
-        return self._ip_solids_table
-
-    @property
-    def ip_fluids_table(self) -> IPFluidsTable:
-        return self._ip_fluids_table
-
-    @property
-    def ip_supps_table(self) -> IPSuppsTable:
-        return self._ip_supps_table
-
-    @property
-    def ip_ratings_table(self) -> IPRatingsTable:
-        return self._ip_ratings_table
-
-    @property
-    def cavities_table(self) -> CavitiesTable:
-        return self._cavities_table
-
-    @property
-    def cavity_maps_table(self) -> CavityMapsTable:
-        return self._cavity_maps_table
-
-    @property
-    def bundle_cover_series_table(self) -> BundleCoverSeriesTable:
-        return self._bundle_cover_series_table
-
-    @property
-    def bundle_cover_resistances_table(self) -> BundleCoverResistancesTable:
-        return self._bundle_cover_resistances_table
-
-    @property
-    def bundle_cover_materials_table(self) -> BundleCoverMaterialsTable:
-        return self._bundle_cover_materials_table
-
-    @property
-    def bundle_cover_rigidities_table(self) -> BundleCoverRigiditiesTable:
-        return self._bundle_cover_rigidities_table
-
-    @property
-    def bundle_covers_table(self) -> BundleCoversTable:
-        return self._bundle_covers_table
-
-    @property
-    def transition_branches_table(self) -> TransitionBranchesTable:
-        return self._transition_branches_table
-
-    @property
-    def transition_adhesives_table(self) -> TransitionAdhesivesTable:
-        return self._transition_adhesives_table
-
-    @property
-    def transition_sizes_table(self) -> TransitionSizesTable:
-        return self._transition_sizes_table
-
-    @property
-    def transition_materials_table(self) -> TransitionMaterialsTable:
-        return self._transition_materials_table
-
-    @property
-    def transition_series_table(self) -> TransitionSeriesTable:
-        return self._transition_series_table
-
-    @property
-    def transition_families_table(self) -> TransitionFamiliesTable:
-        return self._transition_families_table
-
-    @property
-    def transition_protections_table(self) -> TransitionProtectionsTable:
-        return self._transition_protections_table
-
-    @property
-    def transition_shapes_table(self) -> TransitionShapesTable:
-        return self._transition_shapes_table
-
-    @property
-    def transition_layouts_table(self) -> TransitionLayoutsTable:
-        return self._transition_layouts_table
-
-    @property
-    def transitions_table(self) -> TransitionsTable:
-        return self._transitions_table
-
-pjt_manufacturers
-id, global_id, local_id
-
-pjt_temperatures
-id, global_id, local_id
-
-pjt_genders
-id, global_id, local_id
-
-pjt_transition_protections
-id, global_id, local_id
-
-pjt_transition_adhesives
-id, global_id, local_id
-
-pjt_transition_sizes
-id, global_id, local_id
-
-pjt_transition_materials
-id, global_id, local_id
-
-pjt_transition_families
-id, global_id, local_id
-
-pjt_transition_shapes
-id, global_id, local_id
-
-pjt_cads
-id, global_id, local_id
-
-pjt_cavity_locks
-id, global_id, local_id
-
-pjt_colors
-id, global_id, local_id
-
-pjt_datasheets
-id, global_id, local_id
-
-pjt_directions
-id, global_id, local_id
-
-pjt_images
-id, global_id, local_id
-
-pjt_ip_fluids
-id, global_id, local_id
-
-pjt_ip_solids
-id, global_id, local_id
-
-pjt_ip_supps
-id, global_id, local_id
-
-pjt_materials
-id, global_id, local_id
-
-pjt_series
-id, global_id, local_id
-
-pjt_families
-id, global_id, local_id
-
-pjt_ip_ratings
-id, global_id, local_id
-
-pjt_transition_series
-id, global_id, local_id
-
-pjt_transitions
-id, global_id, local_id
-
-pjt_transition_maps
-id, global_id, local_id
-
-pjt_transition_branches
-id, global_id, local_id
-
-pjt_boots
-id, global_id, local_id
-
-pjt_bundle_cover_series
-id, global_id, local_id
-
-pjt_bundle_cover_resistances
-id, global_id, local_id
-
-pjt_bundle_cover_materials
-id, global_id, local_id
-
-pjt_bundle_cover_rigidities
-id, global_id, local_id
-
-pjt_bundle_covers
-id, global_id, local_id
-
-pjt_covers
-id, global_id, local_id
-
-pjt_cpa_locks
-id, global_id, local_id
-
-pjt_tpa_locks
-id, global_id, local_id
-
-pjt_seals
-id, global_id, local_id
-
-pjt_wires
-id, global_id, local_id
-
-pjt_terminals
-id, global_id, local_id
-
-pjt_housings
-id, global_id, local_id
-
-pjt_cavity_maps
-id, global_id, local_id
-
-pjt_cavities
-id, global_id, local_id
-
-
-
+circuits
+id, circuit_num, name, description
 
 terminals
-id, project_id, part_id, circuit_id, cavity_id
+id, project_id, part_id, cavity_id, seal_id, circuit_id, coord3d_id, coord2d_id
 
-seals
-id, project_id, part_id, cavity_id
 
 cavities
-id, project_id, part_id, cavity_map_id, name, wire_ids
+id, project_id, part_id, cavity_map_id, terminal_id, name
 
 cavity_maps
 id, project_id, part_id, housing_id
 
+
 housings
-id, project_id, part_id, coords3d_id, coords2d_id, x_angle_3d, y_angle_3d, z_angle_3d, angle_2d
+id, project_id, part_id, name, coords3d_id, coords2d_id, x_angle_3d, y_angle_3d, z_angle_3d, angle_2d, seal_ids, cpa_lock_ids, tpa_lock_ids, cover_id, boot_id, accessory_ids
 
 
+coordinates_2d
+id, project_id, x, y
 
 coordinates_3d
-
 id, project_id, x, y, z
 
-
 transitions
-id, project_id, part_id, branch1_coord_id, branch2_coord_id, branch3_coord_id, branch4_coord_id, branch5_coord_id, branch6_coord_id
-
+id, project_id, part_id, name, branch1_coord_id, branch2_coord_id, branch3_coord_id, branch4_coord_id, branch5_coord_id, branch6_coord_id, angle_x, angle_y, angle_z
 
 bundle_layouts
 id, project_id, coord_id,
 
-
 bundles
-id, project_id, part_id, start_coord_id, end_coord_id
-
-
+id, project_id, part_id, start_coord_id, stop_coord_id
 
 wire2d_layouts
-id, project_id, circuit_id, coord_id
+id, project_id, coord_id
 
-
-wire3d_lauouts
-id, project_id, circuit_id, coord_id
-
+wire3d_layouts
+id, project_id, coord_id
 
 splices
 id, project_id, part_id, circuit_id, coord3d_id, coord2d_id
 
-
 wires
-id, project_id, part_id, circuit_id, start_coord3d_id, end_coord3d_id, start_coord2d_id, end_coord2d_id
-
-
-
-
-
-
-
-
-
-schematic_housings
-id, project_id, x1, y1, x2, y2,
-
-schematic_terminals
-id, project_id, x1, y1, x2, y2,
-
-schematic_bundles
-id, project_id, x1, y1, x2, y2,
-
-schematic_transitions
-id, project_id, x1, y1, x2, y2,
-
-
-schematic_wires
-id, project_id, x1, y1, x2, y2,
-
-schematic_layouts
-id, project_id, x, y
-
-schematics
-id, project_id
-
-
-projects
-id, name, schematic_id, plan_id
-
-
-project_parts
-id,project_id, part_id, part_type
-
-
-part_types
-
-TRANSITION = 1
-BOOT = 2
-BUNDLE_COVER = 3
-COVER = 4
-CPA_LOCK = 5
-TPA_LOCK = 6
-SEAL = 7
-WIRE = 8
-TERMINAL = 9
-HOUSING = 10
-
-
+id, project_id, part_id, circuit_id, start_coord3d_id, stop_coord3d_id, start_coord2d_id, stop_coord2d_id, is_visible

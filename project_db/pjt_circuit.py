@@ -12,7 +12,7 @@ class PJTCircuitsTable(PJTTableBase):
             yield PJTCircuit(self, db_id, self.project_id)
 
     def insert(self, circuit_num: int, name: str, description: str) -> "PJTCircuit":
-        db_id = PJTTableBase.insert(self, project_id=self.project_id, circuit_num=circuit_num,
+        db_id = PJTTableBase.insert(self, circuit_num=circuit_num,
                                     name=name, description=description)
 
         return PJTCircuit(self, db_id, self.project_id)

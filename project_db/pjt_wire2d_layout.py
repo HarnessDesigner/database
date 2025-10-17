@@ -12,7 +12,7 @@ class PJTWire2DLayoutsTable(PJTTableBase):
             yield PJTWire2DLayout(self, db_id, self.project_id)
 
     def insert(self, coord_id: int) -> "PJTWire2DLayout":
-        db_id = PJTTableBase.insert(self, project_id=self.project_id, coord_id=coord_id)
+        db_id = PJTTableBase.insert(self, coord_id=coord_id)
         return PJTWire2DLayout(self, db_id, self.project_id)
 
 
@@ -20,9 +20,9 @@ class PJTWire2DLayout(PJTEntryBase):
     _table: PJTWire2DLayoutsTable = None
 
     @property
-    def coord(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
+    def point(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
         coord_id = self.coord_id
-        return self._table.db.pjt_coordinate_2d[coord_id]
+        return self._table.db.pjt_coordinates_2d_table[coord_id]
 
     @property
     def coord_id(self) -> int:

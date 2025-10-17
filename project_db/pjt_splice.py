@@ -12,8 +12,9 @@ class PJTSplicesTable(PJTTableBase):
             yield PJTSplice(self, db_id, self.project_id)
 
     def insert(self, part_id: int, circuit_id: int, coord3d_id: int, coord2d_id: int) -> "PJTSplice":
-        db_id = PJTTableBase.insert(self, project_id=self.project_id, part_id=part_id,
-                                    circuit_id=circuit_id, coord3d_id=coord3d_id, coord2d_id=coord2d_id)
+        db_id = PJTTableBase.insert(self, part_id=part_id, circuit_id=circuit_id,
+                                    coord3d_id=coord3d_id, coord2d_id=coord2d_id)
+
         return PJTSplice(self, db_id, self.project_id)
 
 
@@ -21,9 +22,9 @@ class PJTSplice(PJTEntryBase):
     _table: PJTSplicesTable = None
 
     @property
-    def coord3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def point3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
         coord_id = self.coord3d_id
-        return self._table.db.pjt_coordinate_3d[coord_id]
+        return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
     def coord3d_id(self) -> int:
@@ -34,9 +35,9 @@ class PJTSplice(PJTEntryBase):
         self._table.update(self._db_id, coord3d_id=value)
 
     @property
-    def coord2d(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
+    def point2d(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
         coord_id = self.coord2d_id
-        return self._table.db.pjt_coordinate_2d[coord_id]
+        return self._table.db.pjt_coordinates_2d_table[coord_id]
 
     @property
     def coord2d_id(self) -> int:
@@ -49,7 +50,7 @@ class PJTSplice(PJTEntryBase):
     @property
     def circuit(self) -> "_pjt_circuit.PJTCircuit":
         circuit_id = self.circuit_id
-        return self._table.db.pjt_circuits[circuit_id]
+        return self._table.db.pjt_circuits_table[circuit_id]
 
     @property
     def circuit_id(self) -> int:
@@ -76,8 +77,8 @@ class PJTSplice(PJTEntryBase):
         self._table.update(self._db_id, part_id=value)
 
 
-from . import pjt_coordinate_3d as _pjt_coordinate_3d
-from . import pjt_coordinate_2d as _pjt_coordinate_2d
-from . import pjt_circuit as _pjt_circuit
+from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
+from . import pjt_coordinate_2d as _pjt_coordinate_2d  # NOQA
+from . import pjt_circuit as _pjt_circuit  # NOQA
 
-from ..global_db import splice as _splice
+from ..global_db import splice as _splice  # NOQA
