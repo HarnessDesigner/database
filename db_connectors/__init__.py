@@ -1,6 +1,6 @@
 from typing import Optional as _Optional, Generator as _Generator
 
-from ....config import Config as _Config
+from ...config import Config as _Config
 
 
 CONNECTOR_SQLITE = 1
