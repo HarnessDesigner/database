@@ -1,4 +1,4 @@
-from . import BaseMixin
+from .base import BaseMixin
 
 
 class NameMixin(BaseMixin):
