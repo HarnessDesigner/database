@@ -1,10 +1,18 @@
+from typing import TYPE_CHECKING
+
 from .base import BaseMixin
+
+
+if TYPE_CHECKING:
+    from .. import material as _material  # NOQA
 
 
 class MaterialMixin(BaseMixin):
 
     @property
     def material(self) -> "_material.Material":
+        from .. import material as _material  # NOQA
+
         material_id = self._table.select('material_id', id=self._db_id)
         return _material.Material(self._table.db.materials_table, material_id[0][0])
 
@@ -19,6 +27,3 @@ class MaterialMixin(BaseMixin):
     @material_id.setter
     def material_id(self, value: int):
         self._table.update(self._db_id, material_id=value)
-
-
-from .. import material as _material  # NOQA

@@ -1,10 +1,18 @@
+from typing import TYPE_CHECKING
+
 from .base import BaseMixin
+
+
+if TYPE_CHECKING:
+    from .. import temperature as _temperature  # NOQA
 
 
 class TemperatureMixin(BaseMixin):
 
     @property
     def min_temp(self) -> "_temperature.Temperature":
+        from .. import temperature as _temperature  # NOQA
+
         min_temp_id = self._table.select('min_temp_id', id=self._db_id)
         return _temperature.Temperature(self._table.db.temperatures_table, min_temp_id[0][0])
 
@@ -22,6 +30,8 @@ class TemperatureMixin(BaseMixin):
 
     @property
     def max_temp(self) -> "_temperature.Temperature":
+        from .. import temperature as _temperature  # NOQA
+
         max_temp_id = self._table.select('max_temp_id', id=self._db_id)
         return _temperature.Temperature(self._table.db.temperatures_table, max_temp_id[0][0])
 
@@ -36,6 +46,3 @@ class TemperatureMixin(BaseMixin):
     @max_temp_id.setter
     def max_temp_id(self, value: int):
         self._table.update(self._db_id, max_temp_id=value)
-
-
-from .. import temperature as _temperature  # NOQA

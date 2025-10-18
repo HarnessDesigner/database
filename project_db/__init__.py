@@ -3,7 +3,7 @@ from typing import Iterable as _Iterable, TYPE_CHECKING
 import wx
 
 
-from ....config import Config as _Config
+from ...config import Config as _Config
 
 
 class Config(_Config):

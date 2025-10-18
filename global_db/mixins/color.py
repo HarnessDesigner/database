@@ -1,12 +1,20 @@
+from typing import TYPE_CHECKING
+
 from .base import BaseMixin
 
 import wx
+
+
+if TYPE_CHECKING:
+    from .. import color as _color  # NOQA
 
 
 class ColorMixin(BaseMixin):
 
     @property
     def color(self) -> "_color.Color":
+        from .. import color as _color  # NOQA
+
         color_id = self._table.select('color_id', id=self._db_id)
         return _color.Color(self._table.db.colors_table, color_id[0][0])
 
@@ -22,8 +30,6 @@ class ColorMixin(BaseMixin):
     def color_id(self, value: int):
         self._table.update(self._db_id, color_id=value)
 
-
-from .. import color as _color  # NOQA
 
 
 class ColorControl(wx.BoxSizer):
