@@ -166,6 +166,9 @@ class GlobalDB:
 
         self.connector = mainframe.db_connector
 
+        if self.connector.create_tables:
+            self._setup_new_db()
+
         self._boots_table = BootsTable(self)
         self._manufacturers_table = ManufacturersTable(self)
         self._tpa_locks_table = TPALocksTable(self)

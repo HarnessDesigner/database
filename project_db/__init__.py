@@ -282,7 +282,7 @@ class Project:
 
         dlg.Destroy()
 
-        self.connector.execute(f'SELECT id FROM projects WHERE name = "{project_name};')
+        self.connector.execute(f'SELECT id FROM projects WHERE name = "{project_name}";')
         res = self.connector.fetchall()
 
         if res:

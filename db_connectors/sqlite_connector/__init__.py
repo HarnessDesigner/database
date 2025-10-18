@@ -51,6 +51,9 @@ class SQLConnector(ConnectorBase):
     def __init__(self, mainframe):
         super().__init__(mainframe, Config.database_path)
 
+        if not os.path.exists(Config.database_path):
+            self.create_tables = True
+
         self._connection: sqlite3.Connection = None
         self._cursor: sqlite3.Cursor = None
 
@@ -61,13 +64,17 @@ class SQLConnector(ConnectorBase):
     def execute(self, operation: str,
                 params: _Optional[_ParamsSequenceOrDictType] = None,
                 _=None) -> _Optional[_Generator[sqlite3.Cursor, None, None]]:
-        self._cursor.execute(operation, params)
+
+        if params is None:
+            return self._cursor.execute(operation)
+        else:
+            return self._cursor.execute(operation, params)
 
     def executemany(
         self, operation: str, seq_params: _Sequence[_ParamsSequenceOrDictType]
     ) -> _Optional[_Generator[sqlite3.Cursor, None, None]]:
 
-        self._cursor.executemany(operation, seq_params)
+        return self._cursor.executemany(operation, seq_params)
 
     @property
     def lastrowid(self) -> _Optional[int]:
