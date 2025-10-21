@@ -1,12 +1,12 @@
-from typing import Iterable as _Iterable
+from typing import Iterable as _Iterable, TYPE_CHECKING
 
 from . import EntryBase, TableBase
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
-                     SeriesMixin, FamilyMixin, ImageMixin, DatasheetMixin, CADMixin,
-                     MaterialMixin)
+                     SeriesMixin, FamilyMixin, ResourceMixin, WeightMixin, CavityLockMixin)
 
-from . import cavity_lock as _cavity_lock
+if TYPE_CHECKING:
+    from . import plating as _plating
 
 
 class TerminalsTable(TableBase):
@@ -22,7 +22,8 @@ class TerminalsTable(TableBase):
                blade_size: float, resistance_mohms: float, mating_cycles: int,
                max_vibration_g: int, max_current_ma: int, wire_size_min_awg: int,
                wire_size_max_awg: int, wire_dia_min: float, wire_dia_max: float,
-               min_wire_cross: float, max_wire_cross: float) -> "Terminal":
+               min_wire_cross: float, max_wire_cross: float, plating_id: int,
+               weight: float) -> "Terminal":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
                                  gender_id=gender_id, series_id=series_id, family_id=family_id, sealing=int(sealing),
@@ -32,31 +33,15 @@ class TerminalsTable(TableBase):
                                  max_vibration_g=max_vibration_g, max_current_ma=max_current_ma,
                                  wire_size_min_awg=wire_size_min_awg, wire_size_max_awg=wire_size_max_awg,
                                  wire_dia_min=wire_dia_min, wire_dia_max=wire_dia_max,
-                                 min_wire_cross=min_wire_cross, max_wire_cross=max_wire_cross)
+                                 min_wire_cross=min_wire_cross, max_wire_cross=max_wire_cross,
+                                 plating_id=plating_id, weight=weight)
         return Terminal(self, db_id)
 
 
 class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
-               SeriesMixin, FamilyMixin, ImageMixin, DatasheetMixin, CADMixin, MaterialMixin):
+               SeriesMixin, FamilyMixin, ResourceMixin, WeightMixin, CavityLockMixin):
 
     _table: TerminalsTable = None
-
-    @property
-    def cavity_lock(self) -> _cavity_lock.CavityLock:
-        lock_type_id = self._table.select('cavity_lock_id', id=self._db_id)
-        return _cavity_lock.CavityLock(self._table.db.cavity_locks_table, lock_type_id[0][0])
-
-    @cavity_lock.setter
-    def cavity_lock(self, value: _cavity_lock.CavityLock):
-        self._table.update(self._db_id, cavity_lock_id=value.db_id)
-
-    @property
-    def cavity_lock_id(self) -> int:
-        return self._table.select('cavity_lock_id', id=self._db_id)[0][0]
-
-    @cavity_lock_id.setter
-    def cavity_lock_id(self, value: int):
-        self._table.update(self._db_id, cavity_lock_id=value)
 
     @property
     def sealing(self) -> bool:
@@ -153,3 +138,22 @@ class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, 
     @max_wire_cross.setter
     def max_wire_cross(self, value: float):
         self._table.update(self._db_id, max_wire_cross=value)
+
+    @property
+    def plating(self) -> "_plating.Plating":
+        from .plating import Plating
+        plating_id = self.plating_id
+
+        return Plating(self._table.db.platings_table, plating_id)
+
+    @plating.setter
+    def plating(self, value: "_plating.Plating"):
+        self._table.update(self._db_id, plating_id=value.db_id)
+
+    @property
+    def plating_id(self) -> int:
+        return self._table.select('plating_id', id=self._db_id)[0][0]
+
+    @plating_id.setter
+    def plating_id(self, value: int):
+        self._table.update(self._db_id, plating_id=value)

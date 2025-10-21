@@ -11,7 +11,7 @@ from . import cavity_lock as _cavity_lock
 
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin, 
-                     SeriesMixin, GenderMixin, ImageMixin, DatasheetMixin, CADMixin,
+                     SeriesMixin, GenderMixin, ResourceMixin, WeightMixin, CavityLockMixin,
                      TemperatureMixin, DirectionMixin, DimensionMixin, ColorMixin)
 
 
@@ -27,8 +27,9 @@ class HousingsTable(TableBase):
                gender_id: int, ip_rating_id: int, image_id: int, datasheet_id: int, cad_id: int,
                min_temp_id: int, max_temp_id: int, cavity_lock_id: int, direction_id: int, sealed: bool,
                length: float, width: float, height: float, centerline: float, color_id: int, rows: int,
-               num_pins: int, terminal_sizes: list[float], compat_cpas: list, compat_tpas: list,
-               compat_covers: list, compat_terminals: list, compat_seals: list, mates_to: list) -> "Housing":
+               num_pins: int, terminal_sizes: list[float], compat_cpas: list[str], compat_tpas: list[str],
+               compat_covers: list[str], compat_terminals: list[str], compat_seals: list[str],
+               compat_housings: list[str], weight: float) -> "Housing":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
                                  family_id=family_id, series_id=series_id, gender_id=gender_id, 
@@ -39,14 +40,14 @@ class HousingsTable(TableBase):
                                  color_id=color_id, rows=rows, num_pins=num_pins, terminal_sizes=str(terminal_sizes),
                                  compat_cpas=str(compat_cpas), compat_tpas=str(compat_tpas), 
                                  compat_covers=str(compat_covers), compat_terminals=str(compat_terminals),
-                                 compat_seals=str(compat_seals), mates_to=str(mates_to))
+                                 compat_seals=str(compat_seals), mates_to=str(compat_housings), weight=weight)
 
         return Housing(self, db_id)
 
 
 class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin, 
-              SeriesMixin, GenderMixin, ImageMixin, DatasheetMixin, CADMixin, TemperatureMixin, 
-              DirectionMixin, DimensionMixin, ColorMixin):
+              SeriesMixin, ColorMixin, TemperatureMixin, ResourceMixin, GenderMixin,
+              DirectionMixin, DimensionMixin, WeightMixin, CavityLockMixin):
 
     _table: HousingsTable = None
 

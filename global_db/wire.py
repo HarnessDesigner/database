@@ -3,7 +3,7 @@ from typing import Iterable as _Iterable
 from . import EntryBase, TableBase
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
-                     DatasheetMixin, ImageMixin, CADMixin, FamilyMixin)
+                     ResourceMixin, WeightMixin, ColorMixin, FamilyMixin, MaterialMixin)
 
 from . import material as _material
 from . import color as _color
@@ -19,23 +19,23 @@ class WiresTable(TableBase):
             yield Wire(self, db_id)
 
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int, series_id: int,
-               image_id: int, datasheet_id: int, cad_id: int, primary_color_id: int, addl_color_ids: list,
-               core_material_id: int, num_conductors: int, shielded: bool, tpi: int, conductor_dia_mm: float,
-               size_mm2: float, size_awg: int, od_mm: float, max_temp_id: int) -> "Wire":
+               image_id: int, datasheet_id: int, cad_id: int, color_id: int, addl_color_ids: list,
+               material_id: int, num_conductors: int, shielded: bool, tpi: int, conductor_dia_mm: float,
+               size_mm2: float, size_awg: int, od_mm: float, max_temp_id: int, weight: float) -> "Wire":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
                                  family_id=family_id, series_id=series_id, image_id=image_id,
-                                 datasheet_id=datasheet_id, cad_id=cad_id, primary_color_id=primary_color_id,
-                                 addl_color_ids=str(addl_color_ids), core_material_id=core_material_id,
+                                 datasheet_id=datasheet_id, cad_id=cad_id, color_id=color_id,
+                                 addl_color_ids=str(addl_color_ids), material_id=material_id,
                                  num_conductors=num_conductors, shielded=int(shielded), tpi=tpi,
                                  conductor_dia_mm=conductor_dia_mm, size_mm2=size_mm2, size_awg=size_awg,
-                                 od_mm=od_mm, max_temp_id=max_temp_id)
+                                 od_mm=od_mm, max_temp_id=max_temp_id, weight=weight)
 
         return Wire(self, db_id)
 
 
 class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
-           DatasheetMixin, ImageMixin, FamilyMixin, SeriesMixin, CADMixin):
+           FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin, ColorMixin, MaterialMixin):
 
     _table: WiresTable = None
 
@@ -106,40 +106,6 @@ class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
     def addl_colors(self, value: list[_color.Color]):
         addl_color_ids = [color.db_id for color in value]
         self._table.update(self._db_id, addl_color_ids=addl_color_ids)
-
-    @property
-    def core_material(self) -> _material.Material:
-        core_material_id = self._table.select('core_material_id', id=self._db_id)
-        return _material.Material(self, core_material_id[0][0])
-
-    @core_material.setter
-    def core_material(self, value: _material.Material):
-        self._table.update(self._db_id, core_material_id=value.db_id)
-
-    @property
-    def core_material_id(self) -> int:
-        return self._table.select('core_material_id', id=self._db_id)[0][0]
-
-    @core_material_id.setter
-    def core_material_id(self, value: int):
-        self._table.update(self._db_id, core_material_id=value)
-
-    @property
-    def primary_color(self) -> _color.Color:
-        primary_color_id = self._table.select('primary_color_id', id=self._db_id)
-        return _color.Color(self, primary_color_id[0][0])
-
-    @primary_color.setter
-    def primary_color(self, value: _color.Color):
-        self._table.update(self._db_id, primary_color_id=value.db_id)
-
-    @property
-    def primary_color_id(self) -> int:
-        return self._table.select('primary_color_id', id=self._db_id)[0][0]
-
-    @primary_color_id.setter
-    def primary_color_id(self, value: int):
-        self._table.update(self._db_id, primary_color_id=value)
 
     @property
     def max_temp(self) -> _temperature.Temperature:

@@ -22,7 +22,7 @@ class EntryBase:
 class TableBase:
     __table_name__: str = None
 
-    def __init__(self, db: "GlobalDB"):
+    def __init__(self, db: "GLBTables"):
         self.db = db
         self._con = db.connector
 
@@ -115,16 +115,16 @@ class TableBase:
         return self._con.fetchall()
 
 
+from .accessory import AccessoriesTable  # NOQA
 from .boot import BootsTable  # NOQA
 from .wire import WiresTable  # NOQA
 from .cover import CoversTable  # NOQA
 from .seal import SealsTable  # NOQA
-from .datasheet import DatasheetsTable  # NOQA
 from .manufacturer import ManufacturersTable  # NOQA
 from .tpa_lock import TPALocksTable  # NOQA
 from .cpa_lock import CPALocksTable  # NOQA
+from .plating import PlatingsTable  # NOQA
 from .material import MaterialsTable  # NOQA
-from .image import ImagesTable  # NOQA
 from .direction import DirectionsTable  # NOQA
 from .terminal import TerminalsTable  # NOQA
 from .series import SeriesTable  # NOQA
@@ -132,34 +132,25 @@ from .housing import HousingsTable  # NOQA
 from .color import ColorsTable  # NOQA
 from .sealing import SealingsTable  # NOQA
 from .temperature import TemperaturesTable  # NOQA
-from .cad import CADsTable  # NOQA
+from .resource import ResourcesTable  # NOQA
 from .cavity import CavitiesTable  # NOQA
 from .cavity_lock import CavityLocksTable  # NOQA
-from .cavity_map import CavityMapsTable  # NOQA
 from .family import FamiliesTable  # NOQA
 from .gender import GendersTable  # NOQA
 from .ip import IPRatingsTable  # NOQA
 from .ip.fluid import IPFluidsTable  # NOQA
 from .ip.solid import IPSolidsTable  # NOQA
 from .ip.supp import IPSuppsTable  # NOQA
-from .protection.bundle.series import BundleCoverSeriesTable  # NOQA
-from .protection.bundle.resistant import BundleCoverResistancesTable  # NOQA
-from .protection.bundle.material import BundleCoverMaterialsTable  # NOQA
-from .protection.bundle.rigidity import BundleCoverRigiditiesTable  # NOQA
+from .rigidity import RigiditiesTable  # NOQA
 from .protection.bundle import BundleCoversTable  # NOQA
-from .protection.transition.shape import TransitionShapesTable  # NOQA
-from .protection.transition.layout import TransitionLayoutsTable  # NOQA
-from .protection.transition.branch import TransitionBranchesTable  # NOQA
-from .protection.transition.adhesive import TransitionAdhesivesTable  # NOQA
-from .protection.transition.size import TransitionSizesTable  # NOQA
-from .protection.transition.material import TransitionMaterialsTable  # NOQA
-from .protection.transition.series import TransitionSeriesTable  # NOQA
-from .protection.transition.family import TransitionFamiliesTable  # NOQA
-from .protection.transition.protection import TransitionProtectionsTable  # NOQA
-from .protection.transition import TransitionsTable  # NOQA
+from .shape import ShapesTable  # NOQA
+from .transition_branchs import TransitionBranchesTable  # NOQA
+from .adhesive import AdhesivesTable  # NOQA
+from .protection import ProtectionsTable  # NOQA
+from .transition import TransitionsTable  # NOQA
 
 
-class GlobalDB:
+class GLBTables:
 
     def __init__(self, mainframe: "_ui.MainFrame"):
         self.mainframe = mainframe
@@ -174,6 +165,7 @@ class GlobalDB:
         self._tpa_locks_table = TPALocksTable(self)
         self._cpa_locks_table = CPALocksTable(self)
         self._materials_table = MaterialsTable(self)
+        self._platings_table = PlatingsTable(self)
         self._covers_table = CoversTable(self)
         self._housings_table = HousingsTable(self)
         self._seals_table = SealsTable(self)
@@ -183,11 +175,9 @@ class GlobalDB:
         self._cavity_locks_table = CavityLocksTable(self)
         self._colors_table = ColorsTable(self)
         self._directions_table = DirectionsTable(self)
-        self._cads_table = CADsTable(self)
-        self._datasheets_table = DatasheetsTable(self)
+        self._resources_table = ResourcesTable(self)
         self._families_table = FamiliesTable(self)
         self._genders_table = GendersTable(self)
-        self._images_table = ImagesTable(self)
         self._sealings_table = SealingsTable(self)
         self._temperatures_table = TemperaturesTable(self)
         self._ip_solids_table = IPSolidsTable(self)
@@ -195,22 +185,18 @@ class GlobalDB:
         self._ip_supps_table = IPSuppsTable(self)
         self._ip_ratings_table = IPRatingsTable(self)
         self._cavities_table = CavitiesTable(self)
-        self._cavity_maps_table = CavityMapsTable(self)
-        self._bundle_cover_series_table = BundleCoverSeriesTable(self)
-        self._bundle_cover_resistances_table = BundleCoverResistancesTable(self)
-        self._bundle_cover_materials_table = BundleCoverMaterialsTable(self)
-        self._bundle_cover_rigidities_table = BundleCoverRigiditiesTable(self)
+        self._protections_table = ProtectionsTable(self)
         self._bundle_covers_table = BundleCoversTable(self)
         self._transition_branches_table = TransitionBranchesTable(self)
-        self._transition_adhesives_table = TransitionAdhesivesTable(self)
-        self._transition_sizes_table = TransitionSizesTable(self)
-        self._transition_materials_table = TransitionMaterialsTable(self)
-        self._transition_series_table = TransitionSeriesTable(self)
-        self._transition_families_table = TransitionFamiliesTable(self)
-        self._transition_protections_table = TransitionProtectionsTable(self)
-        self._transition_shapes_table = TransitionShapesTable(self)
-        self._transition_layouts_table = TransitionLayoutsTable(self)
+        self._adhesives_table = AdhesivesTable(self)
+        self._protections_table = ProtectionsTable(self)
+        self._shapes_table = ShapesTable(self)
         self._transitions_table = TransitionsTable(self)
+        self._accessories_table = AccessoriesTable(self)
+
+    @property
+    def accessories_table(self) -> AccessoriesTable:
+        return self._accessories_table
 
     @property
     def boots_table(self) -> BootsTable:
@@ -227,6 +213,10 @@ class GlobalDB:
     @property
     def cpa_locks_table(self) -> CPALocksTable:
         return self._cpa_locks_table
+
+    @property
+    def platings_table(self) -> PlatingsTable:
+        return self._platings_table
 
     @property
     def materials_table(self) -> MaterialsTable:
@@ -269,12 +259,8 @@ class GlobalDB:
         return self._directions_table
 
     @property
-    def cads_table(self) -> CADsTable:
-        return self._cads_table
-
-    @property
-    def datasheets_table(self) -> DatasheetsTable:
-        return self._datasheets_table
+    def resources_table(self) -> ResourcesTable:
+        return self._resources_table
 
     @property
     def families_table(self) -> FamiliesTable:
@@ -283,10 +269,6 @@ class GlobalDB:
     @property
     def genders_table(self) -> GendersTable:
         return self._genders_table
-
-    @property
-    def images_table(self) -> ImagesTable:
-        return self._images_table
 
     @property
     def sealings_table(self) -> SealingsTable:
@@ -315,27 +297,6 @@ class GlobalDB:
     @property
     def cavities_table(self) -> CavitiesTable:
         return self._cavities_table
-
-    @property
-    def cavity_maps_table(self) -> CavityMapsTable:
-        return self._cavity_maps_table
-
-    @property
-    def bundle_cover_series_table(self) -> BundleCoverSeriesTable:
-        return self._bundle_cover_series_table
-
-    @property
-    def bundle_cover_resistances_table(self) -> BundleCoverResistancesTable:
-        return self._bundle_cover_resistances_table
-
-    @property
-    def bundle_cover_materials_table(self) -> BundleCoverMaterialsTable:
-        return self._bundle_cover_materials_table
-
-    @property
-    def bundle_cover_rigidities_table(self) -> BundleCoverRigiditiesTable:
-        return self._bundle_cover_rigidities_table
-
     @property
     def bundle_covers_table(self) -> BundleCoversTable:
         return self._bundle_covers_table
@@ -345,36 +306,16 @@ class GlobalDB:
         return self._transition_branches_table
 
     @property
-    def transition_adhesives_table(self) -> TransitionAdhesivesTable:
-        return self._transition_adhesives_table
+    def adhesives_table(self) -> AdhesivesTable:
+        return self._adhesives_table
 
     @property
-    def transition_sizes_table(self) -> TransitionSizesTable:
-        return self._transition_sizes_table
+    def protections_table(self) -> ProtectionsTable:
+        return self._protections_table
 
     @property
-    def transition_materials_table(self) -> TransitionMaterialsTable:
-        return self._transition_materials_table
-
-    @property
-    def transition_series_table(self) -> TransitionSeriesTable:
-        return self._transition_series_table
-
-    @property
-    def transition_families_table(self) -> TransitionFamiliesTable:
-        return self._transition_families_table
-
-    @property
-    def transition_protections_table(self) -> TransitionProtectionsTable:
-        return self._transition_protections_table
-
-    @property
-    def transition_shapes_table(self) -> TransitionShapesTable:
-        return self._transition_shapes_table
-
-    @property
-    def transition_layouts_table(self) -> TransitionLayoutsTable:
-        return self._transition_layouts_table
+    def shapes_table(self) -> ShapesTable:
+        return self._shapes_table
 
     @property
     def transitions_table(self) -> TransitionsTable:
@@ -384,9 +325,59 @@ class GlobalDB:
         self.connector.execute('PRAGMA foreign_keys = ON;')
         self.connector.commit()
 
-        from . import create_db
+        from ..setup_db import create_tables
 
-        create_db.create_tables(self.connector)
+        funcs = (
+            create_tables.accessories,
+            create_tables.resources,
+            create_tables.manufacturers,
+            create_tables.temperatures,
+            create_tables.genders,
+            create_tables.protections,
+            create_tables.adhesives,
+            create_tables.cavity_locks,
+            create_tables.colors,
+            create_tables.directions,
+            create_tables.ip_fluids,
+            create_tables.ip_solids,
+            create_tables.ip_supps,
+            create_tables.platings,
+            create_tables.materials,
+            create_tables.shapes,
+            create_tables.series,
+            create_tables.families,
+            create_tables.ip_ratings,
+            create_tables.transitions,
+            create_tables.transition_branches,
+            create_tables.boots,
+            create_tables.bundle_covers,
+            create_tables.covers,
+            create_tables.cpa_locks,
+            create_tables.tpa_locks,
+            create_tables.seals,
+            create_tables.wires,
+            create_tables.terminals,
+            create_tables.housings,
+            create_tables.cavities,
+            create_tables.projects,
+            create_tables.pjt_coordinates_3d,
+            create_tables.pjt_coordinates_2d,
+            create_tables.pjt_circuits,
+            create_tables.pjt_bundle_layouts,
+            create_tables.pjt_wire3d_layouts,
+            create_tables.pjt_wire2d_layouts,
+            create_tables.pjt_bundles,
+            create_tables.pjt_splices,
+            create_tables.pjt_housings,
+            create_tables.pjt_cavities,
+            create_tables.pjt_terminals,
+            create_tables.pjt_transitions,
+            create_tables.pjt_wires
+        )
+
+        for func in funcs:
+            func(self.connector, self.connector)
+
         # create_db.preload_database(self.connector)
         # create_db.load_tpa_locks(self.connector)
         # create_db.load_cpa_locks(self.connector)

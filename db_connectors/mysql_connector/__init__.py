@@ -46,7 +46,7 @@ _ParamsSequenceOrDictType = _Union[_ParamsDictType, _ParamsSequenceType]
 _RowType = _Tuple[_ToPythonOutputTypes, ...]
 
 
-class Config(_Config):
+class Config(metaclass=_Config):
     host = 'local_host'
     port = 3306
     compress = False

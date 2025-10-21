@@ -24,7 +24,7 @@ class ConfigTable:
         value = str(value)
 
         if key not in self:
-            self._cur.execute(f'INSERT INTO {self.name} (key, value) VALUES("{key}", "{value}");')
+            self._cur.execute(f'INSERT INTO {self.name} (key, value) VALUES(?, ?);', (key, value))
         else:
             self._cur.execute(f'UPDATE {self.name} SET value = "{value}" WHERE key = "{key}";')
 

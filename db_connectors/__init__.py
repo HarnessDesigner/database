@@ -7,7 +7,7 @@ CONNECTOR_SQLITE = 1
 CONNECTOR_MYSQL = 2
 
 
-class Config(_Config):
+class Config(metaclass=_Config):
     db_connector = CONNECTOR_SQLITE
 
 

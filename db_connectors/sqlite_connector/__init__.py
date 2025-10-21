@@ -28,7 +28,7 @@ from .... import utils
 from .. import ConnectorBase
 
 
-class Config(_Config):
+class Config(metaclass=_Config):
     database_path = os.path.join(utils.get_appdata(), 'harness_maker.db')
 
 

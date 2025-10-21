@@ -5,7 +5,10 @@ from . import EntryBase, TableBase
 from .mixins import NameMixin
 
 if TYPE_CHECKING:
-    from . import cavity_map as _cavity_map
+    from . import housing as _housing
+
+from ...geometry import point as _point
+from ...wrappers.decimal import Decimal as _decimal
 
 
 class CavitiesTable(TableBase):
@@ -15,10 +18,13 @@ class CavitiesTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Cavity(self, db_id)
 
-    def insert(self, cavity_map_id: int, idx: int, name: int, size: float, x: int, 
-               y: int, w: int, h: int, rgb: int) -> "Cavity":
-        db_id = TableBase.insert(self, cavity_map_id=cavity_map_id, idx=idx,
-                                 name=name, size=size, x=x, y=y, w=w, h=h, rgb=rgb)
+    def insert(self, housing_id: int, idx: int, name: str, size: float, point_2d: _point.Point,
+               point_3d: _point.Point, x_angle: _decimal, y_angle: _decimal, z_angle: _decimal) -> "Cavity":
+
+        db_id = TableBase.insert(self, housing_id=housing_id, idx=idx, name=name, size=size,
+                                 point_2d=str(list(point_2d.as_float()[:-1])),
+                                 point_3d=str(list(point_3d.as_float())),
+                                 rotation_3d=str([float(x_angle), float(y_angle), float(z_angle)]))
 
         return Cavity(self, db_id)
 
@@ -27,15 +33,16 @@ class Cavity(EntryBase, NameMixin):
     _table: CavitiesTable = None
 
     @property
-    def cavity_map(self) -> "_cavity_map.CavityMap":
-        from .cavity_map import CavityMap
-        cavity_map_id = self._table.select('cavity_map_id', id=self._db_id)
-        return CavityMap(self._table.db.cavity_maps_table, cavity_map_id[0][0])
+    def housing(self) -> "_housing.Housing":
+        from .housing import Housing
+
+        housing_id = self.housing_id
+        return Housing(self._table.db.housings_table, housing_id)
 
     @property
-    def cavity_map_id(self) -> int:
-        return self._table.select('cavity_map_id', id=self._db_id)[0][0]
-        
+    def housing_id(self) -> int:
+        return self._table.select('housing_id', id=self._db_id)[0][0]
+
     @property
     def idx(self) -> int:
         return self._table.select('idx', id=self._db_id)[0][0]
@@ -53,51 +60,28 @@ class Cavity(EntryBase, NameMixin):
         self._table.update(self._db_id, size=value)
 
     @property
-    def x(self) -> int:
-        return self._table.select('x', id=self._db_id)[0][0]
+    def point_2d(self) -> _point.Point:
+        point = eval(self._table.select('point_2d', id=self._db_id)[0][0])
+        return _point.Point(_decimal(point[0]), _decimal(point[1]), _decimal(0.0))
 
-    @x.setter
-    def x(self, value: int):
-        self._table.update(self._db_id, x=value)
-
-    @property
-    def y(self) -> int:
-        return self._table.select('y', id=self._db_id)[0][0]
-
-    @y.setter
-    def y(self, value: int):
-        self._table.update(self._db_id, y=value)
+    @point_2d.setter
+    def point_2d(self, value: _point.Point):
+        self._table.update(self._db_id, point_2d=str(list(value.as_float()[:-1])))
 
     @property
-    def width(self) -> int:
-        return self._table.select('w', id=self._db_id)[0][0]
+    def point_3d(self) -> _point.Point:
+        point = eval(self._table.select('point_3d', id=self._db_id)[0][0])
+        return _point.Point(_decimal(point[0]), _decimal(point[1]), _decimal(point[2]))
 
-    @width.setter
-    def width(self, value: int):
-        self._table.update(self._db_id, w=value)
-
-    @property
-    def height(self) -> int:
-        return self._table.select('h', id=self._db_id)[0][0]
-
-    @height.setter
-    def height(self, value: int):
-        self._table.update(self._db_id, h=value)
+    @point_3d.setter
+    def point_3d(self, value: _point.Point):
+        self._table.update(self._db_id, point_3d=str(list(value.as_float())))
 
     @property
-    def rgb(self) -> tuple[int, int, int, int]:
-        rgb = self._table.select('rgb', id=self._db_id)[0][0]
-        
-        r = rgb >> 16
-        g = rgb >> 8 & 0xFF
-        b = rgb & 0xFF
-        
-        return r, g, b, 255
+    def rotation_3d(self) -> tuple[_decimal, _decimal, _decimal]:
+        rotation = eval(self._table.select('rotation_3d', id=self._db_id)[0][0])
+        return _decimal(rotation[0]), _decimal(rotation[1]), _decimal(rotation[2])
 
-    @rgb.setter
-    def rgb(self, value: tuple[int, int, int, int]):
-        r, g, b = value[:3]
-        
-        rgb = r << 16 | g << 8 | b
-        self._table.update(self._db_id, rgb=rgb)
-
+    @rotation_3d.setter
+    def rotation_3d(self, value: tuple[_decimal, _decimal, _decimal]):
+        self._table.update(self._db_id, rotation_3d=str([float(item) for item in value]))

@@ -13,7 +13,7 @@ except ImportError:
         pass
 
 
-class Config(_Config):
+class Config(metaclass=_Config):
     size = (950, 950)
     pos = (0, 0)
 

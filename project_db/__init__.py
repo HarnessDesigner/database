@@ -1,14 +1,5 @@
 
 from typing import Iterable as _Iterable, TYPE_CHECKING
-import wx
-
-
-from ...config import Config as _Config
-
-
-class Config(_Config):
-    recent_projects = []
-
 
 if TYPE_CHECKING:
     from ... import ui as _ui
@@ -253,47 +244,3 @@ class PJTTables:
     @property
     def pjt_terminals_table(self) -> PJTTerminalsTable:
         return self._pjt_terminals_table
-
-
-class Project:
-
-    def __init__(self, mainframe: "_ui.MainFrame"):
-        self.mainframe = mainframe
-        self.connector = self.mainframe.db_connector
-        self.project_id = None
-        self.project_name = ''
-        self.tables = PJTTables(self.mainframe)
-
-    def select_project(self):
-        from ...dialogs.project_dialog import OpenProjectDialog
-
-        project_names = []
-
-        self.connector.execute(f'SELECT name FROM projects;')
-        for name in self.connector.fetchall():
-            project_names.append(name[0])
-
-        dlg = OpenProjectDialog(self.mainframe, Config.recent_projects, project_names)
-
-        if dlg.ShowModal() != wx.ID_CANCEL:
-            project_name = dlg.GetValue()
-        else:
-            project_name = None
-
-        dlg.Destroy()
-
-        self.connector.execute(f'SELECT id FROM projects WHERE name = "{project_name}";')
-        res = self.connector.fetchall()
-
-        if res:
-            self.project_id = res[0][0]
-        else:
-            self.connector.execute(f'INSERT INTO projects (name) VALUES (?);', (project_name,))
-            self.connector.commit()
-            self.project_id = self.connector.lastrowid
-
-        self.tables.load(self.project_id)
-
-    @property
-    def recent_projects(self):
-        return Config.recent_projects[:]
