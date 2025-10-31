@@ -141,10 +141,9 @@ from .ip import IPRatingsTable  # NOQA
 from .ip.fluid import IPFluidsTable  # NOQA
 from .ip.solid import IPSolidsTable  # NOQA
 from .ip.supp import IPSuppsTable  # NOQA
-from .rigidity import RigiditiesTable  # NOQA
-from .protection.bundle import BundleCoversTable  # NOQA
+from .bundle_cover import BundleCoversTable  # NOQA
 from .shape import ShapesTable  # NOQA
-from .transition_branchs import TransitionBranchesTable  # NOQA
+from .transition_branch import TransitionBranchesTable  # NOQA
 from .adhesive import AdhesivesTable  # NOQA
 from .protection import ProtectionsTable  # NOQA
 from .transition import TransitionsTable  # NOQA
@@ -297,6 +296,7 @@ class GLBTables:
     @property
     def cavities_table(self) -> CavitiesTable:
         return self._cavities_table
+
     @property
     def bundle_covers_table(self) -> BundleCoversTable:
         return self._bundle_covers_table

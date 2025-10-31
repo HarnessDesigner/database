@@ -20,36 +20,6 @@ class PJTCavityMapsTable(PJTTableBase):
 class PJTCavityMap(PJTEntryBase):
     _table: PJTCavityMapsTable = None
 
-    @property
-    def cavities(self) -> list["_pjt_cavity.PJTCavity"]:
-        cavities = [None] * self.part.count
-
-        cavity_ids = self._table.db.pjt_cavities_table.select(
-            'id', cavity_map_id=self._db_id)
-
-        for cavity_id in cavity_ids:
-            cavity = _pjt_cavity.PJTCavity(
-                self._table.db.pjt_cavities_table, cavity_id[0], self.project_id)
-
-            cavities[cavity.part.idx] = cavity
-
-        return cavities
-
-    def add_cavity(self, index, name):
-        cavities = self.cavities
-        assert cavities[index] is None, 'Sanity Check'
-
-        part = self.part
-        cavity_part = part.cavities[index]
-
-        if name is None:
-            name = cavity_part.name
-
-        cavity = self._table.db.pjt_cavities_table.insert(
-            part_id=cavity_part.db_id, cavity_map_id=self._db_id,
-            name=name, terminal_id=None)
-
-        return cavity
 
     @property
     def housing(self) -> "_pjt_housing.PJTHousing":
@@ -83,5 +53,3 @@ class PJTCavityMap(PJTEntryBase):
 
 from . import pjt_cavity as _pjt_cavity  # NOQA
 from . import pjt_housing as _pjt_housing  # NOQA
-
-from ..global_db import cavity_map as _cavity_map  # NOQA

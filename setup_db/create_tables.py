@@ -560,7 +560,6 @@ def housings(con, cur):
                 'footprint_id INTEGER DEFAULT 0 NOT NULL, '
                 'model_2d_id INTEGER DEFAULT 0 NOT NULL, '
                 'model_3d_id INTEGER DEFAULT 0 NOT NULL, '
-                'weight REAL DEFAULT "0.0" NOT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -576,7 +575,7 @@ def housings(con, cur):
                 'FOREIGN KEY (cavitymap_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cavitymap_overlay_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, ' 
                 'FOREIGN KEY (model_2d_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (model_3d_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '  
+                'FOREIGN KEY (model_3d_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'  
                 ');')
     con.commit()
 
@@ -720,7 +719,7 @@ def projects(con, cur):
     cur.execute('CREATE TABLE projects('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'name TEXT NOT NULL, '
-                'obj_count INTEGER DEFAULT 0 NOT NULL'
+                'object_count INTEGER DEFAULT 0 NOT NULL'
                 ');')
     con.commit()
 
@@ -961,11 +960,9 @@ if __name__ == '__main__':
         families,
         ip_ratings,
         accessories,
-        transition_series,
         transitions,
         transition_branches,
         boots,
-        bundle_cover_resistances,
         bundle_covers,
         covers,
         cpa_locks,

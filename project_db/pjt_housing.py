@@ -29,6 +29,38 @@ class PJTHousingsTable(PJTTableBase):
 class PJTHousing(PJTEntryBase):
     _table: PJTHousingsTable = None
 
+
+    @property
+    def cavities(self) -> list["_pjt_cavity.PJTCavity"]:
+        cavities = [None] * self.part.count
+
+        cavity_ids = self._table.db.pjt_cavities_table.select(
+            'id', cavity_map_id=self._db_id)
+
+        for cavity_id in cavity_ids:
+            cavity = _pjt_cavity.PJTCavity(
+                self._table.db.pjt_cavities_table, cavity_id[0], self.project_id)
+
+            cavities[cavity.part.idx] = cavity
+
+        return cavities
+
+    def add_cavity(self, index, name):
+        cavities = self.cavities
+        assert cavities[index] is None, 'Sanity Check'
+
+        part = self.part
+        cavity_part = part.cavities[index]
+
+        if name is None:
+            name = cavity_part.name
+
+        cavity = self._table.db.pjt_cavities_table.insert(
+            part_id=cavity_part.db_id, cavity_map_id=self._db_id,
+            name=name, terminal_id=None)
+
+        return cavity
+
     @property
     def point3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
         coord_id = self.coord3d_id
@@ -211,14 +243,6 @@ class PJTHousing(PJTEntryBase):
         self._table.update(self._db_id, name=value)
 
     @property
-    def cavity_map(self) -> "_pjt_cavity_map.PJTCavityMap":
-        cavity_map_id = self._table.db.pjt_cavity_maps_table.select(
-            'id', housing_id=self.db_id, project_id=self.project_id)
-
-        return _pjt_cavity_map.PJTCavityMap(
-            self._table.db.pjt_cavity_maps_table, cavity_map_id, self.project_id)
-
-    @property
     def part(self) -> "_housing.Housing":
         part_id = self.part_id
         if part_id is None:
@@ -237,7 +261,7 @@ class PJTHousing(PJTEntryBase):
 
 from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
 from . import pjt_coordinate_2d as _pjt_coordinate_2d  # NOQA
-from . import pjt_cavity_map as _pjt_cavity_map  # NOQA
+from . import pjt_cavity as _pjt_cavity  # NOQA
 
 
 from ..global_db import housing as _housing  # NOQA
@@ -247,3 +271,6 @@ from ..global_db import cpa_lock as _cpa_lock  # NOQA
 from ..global_db import seal as _seal  # NOQA
 from ..global_db import boot as _boot  # NOQA
 from ..global_db import accessory as _accessory  # NOQA
+
+
+

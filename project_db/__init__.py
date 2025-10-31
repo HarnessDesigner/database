@@ -138,7 +138,6 @@ from .pjt_transition import PJTTransitionsTable  # NOQA
 from .pjt_wire import PJTWiresTable  # NOQA
 from .pjt_wire2d_layout import PJTWire2DLayoutsTable  # NOQA
 from .pjt_wire3d_layout import PJTWire3DLayoutsTable  # NOQA
-from .pjt_cavity_map import PJTCavityMapsTable  # NOQA
 from .pjt_cavity import PJTCavitiesTable  # NOQA
 from .pjt_terminal import PJTTerminalsTable  # NOQA
 
@@ -166,10 +165,17 @@ class PJTTables:
         self._pjt_wire_2d_layouts_table = None
         self._pjt_wire_3d_layouts_table = None
         self._pjt_cavities_table = None
-        self._pjt_cavity_maps_table = None
         self._pjt_terminals_table = None
+        self._points_2d = []
+        self._points_3d = []
+
+        self._current_count = 0
 
     def load(self, project_id):
+        self.mainframe.unload()
+
+        self._current_count = 0
+
         self._pjt_bundles_table = PJTBundlesTable(self, project_id)
         self._pjt_bundle_layouts_table = PJTBundleLayoutsTable(self, project_id)
         self._pjt_circuits_table = PJTCircuitsTable(self, project_id)
@@ -182,8 +188,39 @@ class PJTTables:
         self._pjt_wire_2d_layouts_table = PJTWire2DLayoutsTable(self, project_id)
         self._pjt_wire_3d_layouts_table = PJTWire3DLayoutsTable(self, project_id)
         self._pjt_cavities_table = PJTCavitiesTable(self, project_id)
-        self._pjt_cavity_maps_table = PJTCavityMapsTable(self, project_id)
         self._pjt_terminals_table = PJTTerminalsTable(self, project_id)
+
+        # the points are how we initially identify thing. It links together
+        # the various objects. As an example say I have a wire and in the
+        # middle of that wire there is a "layout" to add a bend in the wire.
+        # the actual back end code has that translated into 2 wires and a
+        # layout where the ends of the wire that share the layout also share
+        # the same point as the layout on those ends. So When a user grabs that
+        # layout and moves it when the coordinates change for the point the
+        # layout position and each end of the wire  positions all get changed
+        # in a single go. The editor representation for only those specific
+        # objects get redrawn. I don't need to hold any references to any of
+        # the objects other than the shared points. This is due to how matplotlib
+        # is written and me having the ability to extend/monkeypath portions
+        # of the matplotlib code where I am able to attach our objects to the
+        # matplotlib objects (artists) that represent the graphical elements
+        # in the editor. This works out well because I was able to entend matplotlib
+        # so it properly translates screen cords into world coords so mouse interaction
+        # takes place. I am able to adjust the coordinates of our object from events
+        # that occur in the matplot lib objects.
+
+        self._points_2d = [point.point for point in self._pjt_coordinates_2d_table]
+        self._points_3d = [point.point for point in self._pjt_coordinates_3d_table]
+
+        # the loading occurs using multiple threads to speed things up.
+        # The plan is to have a thread running that creates multiple SQL
+        # connections. One thread and one connection for each of the database
+        # tables. The main thread will be responsible only for rendering the
+        # GUI. There will be a few more threads that do the actual number
+        # crunching. In order to use actual parallel processing I will be using
+        # Python with the GIL turned off. I have to see if that is even possible
+        # yet if I compile the program using Cython.
+        self.mainframe.load()
 
     @property
     def pjt_bundles_table(self) -> PJTBundlesTable:
@@ -236,10 +273,6 @@ class PJTTables:
     @property
     def pjt_cavities_table(self) -> PJTCavitiesTable:
         return self._pjt_cavities_table
-
-    @property
-    def pjt_cavity_maps_table(self) -> PJTCavityMapsTable:
-        return self._pjt_cavity_maps_table
 
     @property
     def pjt_terminals_table(self) -> PJTTerminalsTable:

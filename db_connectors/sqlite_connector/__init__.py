@@ -65,10 +65,14 @@ class SQLConnector(ConnectorBase):
                 params: _Optional[_ParamsSequenceOrDictType] = None,
                 _=None) -> _Optional[_Generator[sqlite3.Cursor, None, None]]:
 
-        if params is None:
-            return self._cursor.execute(operation)
-        else:
-            return self._cursor.execute(operation, params)
+        try:
+            if params is None:
+                return self._cursor.execute(operation)
+            else:
+                return self._cursor.execute(operation, params)
+        except:
+            print(operation)
+            raise
 
     def executemany(
         self, operation: str, seq_params: _Sequence[_ParamsSequenceOrDictType]

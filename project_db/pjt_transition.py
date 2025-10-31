@@ -167,4 +167,4 @@ class PJTTransition(PJTEntryBase):
 
 from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
 
-from ..global_db.protection import transition as _transition  # NOQA
+from ..global_db import transition as _transition  # NOQA

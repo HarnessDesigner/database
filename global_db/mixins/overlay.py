@@ -1,15 +1,22 @@
+from typing import TYPE_CHECKING
+
 from .base import BaseMixin
+
+if TYPE_CHECKING:
+    from .. import resource as _resource
 
 
 class OverlayMixin(BaseMixin):
 
     @property
-    def overlay(self) -> "_image.Image":
+    def overlay(self) -> "_resource.Resource":
+        from ..resource import Resource
+
         image_id = self._table.select('overlay_id', id=self._db_id)
-        return _image.Image(self._table.db.images_table, image_id[0])
+        return Resource(self._table.db.resources_table, image_id[0])
 
     @overlay.setter
-    def overlay(self, value: "_image.Image"):
+    def overlay(self, value: "_resource.Resource"):
         self._table.update(self._db_id, overlay_id=value.db_id)
 
     @property
@@ -21,4 +28,3 @@ class OverlayMixin(BaseMixin):
         self._table.update(self._db_id, overlay_id=value)
 
 
-from .. import image as _image  # NOQA

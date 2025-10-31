@@ -12,6 +12,9 @@ class ProjectsTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield Project(self, db_id, db_id)
 
+    def get_object_count(self, project_id) -> int:
+        return self.select('object_count', id=project_id)[0][0]
+
     def insert(self, name: str, description: str, creator: str) -> "Project":
 
         db_id = PJTTableBase.insert(self, name=name, description=description, creator=creator)
@@ -45,3 +48,4 @@ class Project(PJTEntryBase):
     @creator.setter
     def creator(self, value: str):
         self._table.update(self._db_id, creator=value)
+

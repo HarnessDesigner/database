@@ -47,7 +47,7 @@ class PJTBundle(PJTEntryBase):
         self._table.update(self._db_id, stop_coord_id=value)
 
     @property
-    def part(self) -> "_bundle.BundleCover":
+    def part(self) -> "_bundle_cover.BundleCover":
         part_id = self.part_id
         if part_id is None:
             return None
@@ -65,4 +65,4 @@ class PJTBundle(PJTEntryBase):
 
 from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
 
-from ..global_db.protection import bundle as _bundle  # NOQA
+from ..global_db import bundle_cover as _bundle_cover  # NOQA

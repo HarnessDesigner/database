@@ -2,7 +2,7 @@ from typing import Iterable as _Iterable
 
 from . import EntryBase, TableBase
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
-                     SeriesMixin, ImageMixin, DatasheetMixin, CADMixin, TemperatureMixin,
+                     SeriesMixin, ResourceMixin, TemperatureMixin,
                      ColorMixin, DimensionMixin)
 
 
@@ -29,7 +29,7 @@ class TPALocksTable(TableBase):
 
 
 class TPALock(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
-              SeriesMixin, ImageMixin, DatasheetMixin, CADMixin, TemperatureMixin,
+              SeriesMixin, ResourceMixin, TemperatureMixin,
               ColorMixin, DimensionMixin):
 
     _table: TPALocksTable = None
