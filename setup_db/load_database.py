@@ -101,7 +101,6 @@ def load_accessories(con, cur):
     con.commit()
 
 
-
 def resources(con, cur):
     cur.execute('INSERT INTO resources (id, path) VALUES(0, "NOT SET");')
     con.commit()
@@ -241,6 +240,7 @@ def ip_solids(con, cur):
     cur.executemany('INSERT INTO ip_solids (id, name, short_desc, description, icon_data) VALUES (?, ?, ?, ?, ?);', data)
     con.commit()
 
+
 def ip_supps(con, cur):
     data = (
         ('D', 'Wire'),
@@ -326,7 +326,6 @@ def cpa_locks(con, cur):
                     (part_number, mfg_id, family_id, series_id, image_id, cad_id, min_temp_id,
                      max_temp_id, pins, color_id, length, width, height, terminal_size))
         con.commit()
-
 
 
 def tpa_locks(con, cur):
@@ -689,7 +688,7 @@ def shapes(con, cur):
 
 def transition_series(con, cur):
 
-    '''
+    """
         cur.execute('CREATE TABLE transition_branches('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'transition_id INTEGER NOT NULL, '
@@ -705,7 +704,7 @@ def transition_series(con, cur):
                 'flange_width REAL DEFAULT "0.0" NOT NULL, '
                 'FOREIGN KEY (transition_id) REFERENCES transitions(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
-    '''
+    """
     data = (
         (0, 'NA', 'Not applicable', 0, 0, 0, 0, 0, 0, 0, 0),
         (1, '301A', '301A Series', 1, 3, 1, 1, 6, 51, 1, 10),
@@ -1269,6 +1268,7 @@ def load_tpa_locks(con, cur):
                      max_temp_id, pins, color_id, length, width, height, terminal_size))
         con.commit()
 
+
 def set_image_data(con, cur, data):
     if not data:
         return 1
@@ -1415,7 +1415,6 @@ def load_cavity_maps(con, cur):
                         'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);',
                         (cavity_map_id, idx, name, size, x, y, width, height, rgb))
             con.commit()
-
 
 
 if __name__ == '__main__':

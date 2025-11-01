@@ -22,8 +22,8 @@ class CavitiesTable(TableBase):
                point_3d: _point.Point, x_angle: _decimal, y_angle: _decimal, z_angle: _decimal) -> "Cavity":
 
         db_id = TableBase.insert(self, housing_id=housing_id, idx=idx, name=name, size=size,
-                                 point_2d=str(list(point_2d.as_float()[:-1])),
-                                 point_3d=str(list(point_3d.as_float())),
+                                 point_2d=str(list(point_2d.as_float[:-1])),
+                                 point_3d=str(list(point_3d.as_float)),
                                  rotation_3d=str([float(x_angle), float(y_angle), float(z_angle)]))
 
         return Cavity(self, db_id)

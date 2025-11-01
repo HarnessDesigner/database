@@ -29,7 +29,6 @@ class PJTHousingsTable(PJTTableBase):
 class PJTHousing(PJTEntryBase):
     _table: PJTHousingsTable = None
 
-
     @property
     def cavities(self) -> list["_pjt_cavity.PJTCavity"]:
         cavities = [None] * self.part.count

@@ -235,7 +235,7 @@ def terminals():
         f.write(json.dumps(out_data, indent=4))
 
 
-import json
+import json  # NOQA
 
 
 def housings():
@@ -383,8 +383,6 @@ def housings():
 
     with open('housings.json', 'w') as f:
         f.write(json.dumps(out_data, indent=4))
-
-
 
 
 if __name__ == '__main__':

@@ -33,4 +33,4 @@ class PJTWire2DLayout(PJTEntryBase):
         self._table.update(self._db_id, coord_id=value)
 
 
-from . import pjt_coordinate_2d as _pjt_coordinate_2d
+from . import pjt_coordinate_2d as _pjt_coordinate_2d  # NOQA

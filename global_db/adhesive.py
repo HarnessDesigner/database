@@ -46,5 +46,5 @@ class Adhesive(EntryBase, DescriptionMixin):
         self._table.update(self._db_id, accessory_part_nums=str(part_numbers))
 
 
-from . import accessory as _accessory
+from . import accessory as _accessory  # NOQA
 

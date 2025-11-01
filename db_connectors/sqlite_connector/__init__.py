@@ -70,7 +70,7 @@ class SQLConnector(ConnectorBase):
                 return self._cursor.execute(operation)
             else:
                 return self._cursor.execute(operation, params)
-        except:
+        except:  # NOQA
             print(operation)
             raise
 

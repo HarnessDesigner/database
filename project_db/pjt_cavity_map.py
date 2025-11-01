@@ -20,7 +20,6 @@ class PJTCavityMapsTable(PJTTableBase):
 class PJTCavityMap(PJTEntryBase):
     _table: PJTCavityMapsTable = None
 
-
     @property
     def housing(self) -> "_pjt_housing.PJTHousing":
         housing_id = self.housing_id

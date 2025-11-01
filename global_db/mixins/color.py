@@ -31,7 +31,6 @@ class ColorMixin(BaseMixin):
         self._table.update(self._db_id, color_id=value)
 
 
-
 class ColorControl(wx.BoxSizer):
 
     def __init__(self, parent, db_obj: ColorMixin):

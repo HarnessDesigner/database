@@ -41,8 +41,8 @@ class BootsTable(TableBase):
         pass
 
 
-from ...widgets import auto_complete as _auto_complete
-from ...dialogs import remove_db_record as _remove_db_record
+from ...widgets import auto_complete as _auto_complete  # NOQA
+from ...dialogs import remove_db_record as _remove_db_record  # NOQA
 
 
 class BootChoiceControl(wx.StaticBox):
@@ -189,7 +189,6 @@ class BootChoiceControl(wx.StaticBox):
 
     def on_pn_remove(self, evt):
         evt.Skip()
-
 
 
 class AddBootDialog(wx.Dialog):
