@@ -11,6 +11,18 @@ class ColorsTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Color(self, db_id)
 
+    def __getitem__(self, item) -> "Color":
+        if isinstance(item, int):
+            if item in self:
+                return Color(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', name=item)
+        if db_id:
+            return Color(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, name: str, rgb: int) -> "Color":
         db_id = TableBase.insert(self, name=name, rgb=rgb)
         return Color(self, db_id)

@@ -14,6 +14,18 @@ class TPALocksTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield TPALock(self, db_id)
 
+    def __getitem__(self, item) -> "TPALock":
+        if isinstance(item, int):
+            if item in self:
+                return TPALock(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return TPALock(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int,
                series_id: int, image_id: int, datasheet_id: int, cad_id: int, min_temp_id: int,
                max_temp_id: int, pins: str, color_id: int, length: float, width: float,

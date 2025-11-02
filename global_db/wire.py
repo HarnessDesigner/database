@@ -18,6 +18,18 @@ class WiresTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Wire(self, db_id)
 
+    def __getitem__(self, item) -> "Wire":
+        if isinstance(item, int):
+            if item in self:
+                return Wire(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return Wire(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int, series_id: int,
                image_id: int, datasheet_id: int, cad_id: int, color_id: int, addl_color_ids: list,
                material_id: int, num_conductors: int, shielded: bool, tpi: int, conductor_dia_mm: float,

@@ -11,6 +11,14 @@ class ProjectsTable(PJTTableBase):
 
         for db_id in PJTTableBase.__iter__(self):
             yield Project(self, db_id, db_id)
+            
+    def __getitem__(self, item) -> "Project":
+        if isinstance(item, int):
+            if item in self:
+                return Project(self, item, None)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
 
     def get_object_count(self, project_id) -> int:
         return self.select('object_count', id=project_id)[0][0]

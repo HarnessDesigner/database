@@ -19,6 +19,18 @@ class TransitionsTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Transition(self, db_id)
 
+    def __getitem__(self, item) -> "Transition":
+        if isinstance(item, int):
+            if item in self:
+                return Transition(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return Transition(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int,
                series_id: int, color_id: int, material_id: int, branch_count: int,
                shape_id: int, protection_ids: list[int], adhesive_ids: list[int],

@@ -66,7 +66,7 @@ class Cavity(EntryBase, NameMixin):
 
     @point_2d.setter
     def point_2d(self, value: _point.Point):
-        self._table.update(self._db_id, point_2d=str(list(value.as_float()[:-1])))
+        self._table.update(self._db_id, point_2d=str(list(value.as_float[:-1])))
 
     @property
     def point_3d(self) -> _point.Point:
@@ -75,7 +75,7 @@ class Cavity(EntryBase, NameMixin):
 
     @point_3d.setter
     def point_3d(self, value: _point.Point):
-        self._table.update(self._db_id, point_3d=str(list(value.as_float())))
+        self._table.update(self._db_id, point_3d=str(list(value.as_float)))
 
     @property
     def rotation_3d(self) -> tuple[_decimal, _decimal, _decimal]:

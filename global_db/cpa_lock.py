@@ -15,6 +15,18 @@ class CPALocksTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield CPALock(self, db_id)
 
+    def __getitem__(self, item) -> "CPALock":
+        if isinstance(item, int):
+            if item in self:
+                return CPALock(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return CPALock(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int,
                series_id: int, image_id: int, datasheet_id: int, cad_id: int, min_temp_id: int,
                max_temp_id: int, pins: str, color_id: int, length: float, width: float,

@@ -12,6 +12,18 @@ class SealsTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Seal(self, db_id)
 
+    def __getitem__(self, item) -> "Seal":
+        if isinstance(item, int):
+            if item in self:
+                return Seal(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return Seal(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, part_number: str, mfg_id: int, description: str, series_id: int, type: str, hardness: int,  # NOQA
                color_id: int, lubricant: str, min_temp_id: int, max_temp_id: int, length: float, o_dia: float,
                i_dia: float, wire_dia_min: float, wire_dia_max: float, image_id: int, datasheet_id: int,

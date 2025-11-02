@@ -11,6 +11,18 @@ class ProtectionsTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Protection(self, db_id)
 
+    def __getitem__(self, item) -> "Protection":
+        if isinstance(item, int):
+            if item in self:
+                return Protection(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', name=item)
+        if db_id:
+            return Protection(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, name: str) -> "Protection":
         db_id = TableBase.insert(self, name=name)
         return Protection(self, db_id)

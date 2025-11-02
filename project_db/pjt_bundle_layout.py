@@ -10,6 +10,14 @@ class PJTBundleLayoutsTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield PJTBundleLayout(self, db_id, self.project_id)
 
+    def __getitem__(self, item) -> "PJTBundleLayout":
+        if isinstance(item, int):
+            if item in self:
+                return PJTBundleLayout(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, coord_id: int) -> "PJTBundleLayout":
         db_id = PJTTableBase.insert(self, coord_id=coord_id)
 

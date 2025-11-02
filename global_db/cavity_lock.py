@@ -12,6 +12,18 @@ class CavityLocksTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield CavityLock(self, db_id)
 
+    def __getitem__(self, item) -> "CavityLock":
+        if isinstance(item, int):
+            if item in self:
+                return CavityLock(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return CavityLock(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, name: str, description: str) -> "CavityLock":
         db_id = TableBase.insert(self, name=name, description=description)
         return CavityLock(self, db_id)

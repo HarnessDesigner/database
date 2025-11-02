@@ -13,6 +13,18 @@ class ManufacturersTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Manufacturer(self, db_id)
 
+    def __getitem__(self, item) -> "Manufacturer":
+        if isinstance(item, int):
+            if item in self:
+                return Manufacturer(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', name=item)
+        if db_id:
+            return Manufacturer(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, name: str, description: str, address: str, contact_person: str,
                phone: str, ext: str, email: str, website: str) -> "Manufacturer":
 

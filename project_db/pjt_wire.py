@@ -11,6 +11,14 @@ class PJTWiresTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield PJTWire(self, db_id, self.project_id)
 
+    def __getitem__(self, item) -> "PJTWire":
+        if isinstance(item, int):
+            if item in self:
+                return PJTWire(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, part_id: int, circuit_id: int, start_coord3d_id: int | None, stop_coord3d_id: int | None,
                start_coord2d_id: int | None, stop_coord2d_id: int | None, is_visible: bool) -> "PJTWire":
 

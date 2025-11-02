@@ -10,6 +10,14 @@ class PJTBundlesTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield PJTBundle(self, db_id, self.project_id)
 
+    def __getitem__(self, item) -> "PJTBundle":
+        if isinstance(item, int):
+            if item in self:
+                return PJTBundle(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, part_id: int, start_coord_id: int, stop_coord_id: int) -> "PJTBundle":
         db_id = PJTTableBase.insert(self, part_id=part_id, start_coord_id=start_coord_id,
                                     stop_coord_id=stop_coord_id)

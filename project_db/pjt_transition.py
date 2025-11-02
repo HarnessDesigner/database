@@ -13,6 +13,14 @@ class PJTTransitionsTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield PJTTransition(self, db_id, self.project_id)
 
+    def __getitem__(self, item) -> "PJTTransition":
+        if isinstance(item, int):
+            if item in self:
+                return PJTTransition(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, part_id: int, branch1_coord_id: int, branch2_coord_id: int, branch3_coord_id: int,
                branch4_coord_id: int | None, branch5_coord_id: int | None, branch6_coord_id: int | None,
                x_angle: _decimal, y_angle: _decimal, z_angle: _decimal, name: str) -> "PJTTransition":

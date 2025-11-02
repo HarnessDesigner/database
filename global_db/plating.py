@@ -12,6 +12,18 @@ class PlatingsTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Plating(self, db_id)
 
+    def __getitem__(self, item) -> "Plating":
+        if isinstance(item, int):
+            if item in self:
+                return Plating(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', symbol=item)
+        if db_id:
+            return Plating(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, symbol: str, description: str) -> "Plating":
         db_id = TableBase.insert(self, symbol=symbol, description=description)
         return Plating(self, db_id)

@@ -1,4 +1,4 @@
-from typing import Iterable as _Iterable
+from typing import Iterable as _Iterable, TYPE_CHECKING
 
 from . import EntryBase, TableBase
 from . import terminal as _terminal
@@ -14,6 +14,9 @@ from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, Famil
                      SeriesMixin, GenderMixin, ResourceMixin, WeightMixin, CavityLockMixin,
                      TemperatureMixin, DirectionMixin, DimensionMixin, ColorMixin)
 
+if TYPE_CHECKING:
+    from . import cavity as _cavity
+
 
 class HousingsTable(TableBase):
     __table_name__ = 'housings'
@@ -22,6 +25,18 @@ class HousingsTable(TableBase):
 
         for db_id in TableBase.__iter__(self):
             yield Housing(self, db_id)
+
+    def __getitem__(self, item) -> "Housing":
+        if isinstance(item, int):
+            if item in self:
+                return Housing(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return Housing(self, db_id[0][0])
+
+        raise KeyError(item)
 
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int, series_id: int,
                gender_id: int, ip_rating_id: int, image_id: int, datasheet_id: int, cad_id: int,
@@ -214,3 +229,14 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
     @num_pins.setter
     def num_pins(self, value: int):
         self._table.update(self._db_id, num_pins=value)
+
+    @property
+    def cavities(self) -> list["_cavity.Cavity"]:
+        res = [None] * self.num_pins
+
+        response = self._table.db.cavities_table.select("id", "idx",
+                                                        housing_id=self._db_id)
+        for db_id, idx in response:
+            res[idx] = self._table.db.cavities_table[db_id]
+        return res
+

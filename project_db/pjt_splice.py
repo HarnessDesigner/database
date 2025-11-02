@@ -11,6 +11,14 @@ class PJTSplicesTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield PJTSplice(self, db_id, self.project_id)
 
+    def __getitem__(self, item) -> "PJTSplice":
+        if isinstance(item, int):
+            if item in self:
+                return PJTSplice(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, part_id: int, circuit_id: int, coord3d_id: int, coord2d_id: int) -> "PJTSplice":
         db_id = PJTTableBase.insert(self, part_id=part_id, circuit_id=circuit_id,
                                     coord3d_id=coord3d_id, coord2d_id=coord2d_id)

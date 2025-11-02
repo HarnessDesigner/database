@@ -1,7 +1,11 @@
 
-from typing import Iterable as _Iterable
+from typing import Iterable as _Iterable, TYPE_CHECKING
 
 from . import PJTEntryBase, PJTTableBase
+
+if TYPE_CHECKING:
+    from . import pjt_housing as _pjt_housing
+    from . import pjt_terminal as _pjt_terminal
 
 
 class PJTCavitiesTable(PJTTableBase):
@@ -11,6 +15,14 @@ class PJTCavitiesTable(PJTTableBase):
 
         for db_id in PJTTableBase.__iter__(self):
             yield PJTCavity(self, db_id, self.project_id)
+
+    def __getitem__(self, item) -> "PJTCavity":
+        if isinstance(item, int):
+            if item in self:
+                return PJTCavity(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
 
     def insert(self, part_id: int, cavity_map_id: int, terminal_id: int, name: str) -> "PJTCavity":
         db_id = PJTTableBase.insert(self, part_id=part_id, cavity_map_id=cavity_map_id,
@@ -31,28 +43,23 @@ class PJTCavity(PJTEntryBase):
         self._table.update(self._db_id, name=value)
 
     @property
-    def cavity_map(self) -> "_pjt_cavity_map.PJTCavityMap":
-        cavity_map_id = self.cavity_map_id
-        return self._table.db.pjt_cavity_maps_table[cavity_map_id]
+    def housing(self) -> "_pjt_housing.PJTHousing":
+        housing_id = self.housing_id
+        return self._table.db.pjt_housings_table[housing_id]
 
     @property
-    def cavity_map_id(self) -> int:
-        return self._table.select('cavity_map_id', id=self._db_id)[0][0]
+    def housing_id(self) -> int:
+        return self._table.select('housing_id', id=self._db_id)[0][0]
 
-    @cavity_map_id.setter
-    def cavity_map_id(self, value: int):
-        self._table.update(self._db_id, cavity_map_id=value)
+    @housing_id.setter
+    def housing_id(self, value: int):
+        self._table.update(self._db_id, housing_id=value)
 
     @property
-    def cavities(self) -> "_pjt_terminal.PJTTerminal":
-
+    def terminal(self) -> "_pjt_terminal.PJTTerminal":
         terminal_ids = self._table.db.pjt_terminals_table.select('id', cavity_id=self._db_id)
         if terminal_ids:
-            terminal_id = terminal_ids[0][0]
-            terminal = _pjt_terminal.PJTTerminal(
-                self._table.db.pjt_terminals_table, terminal_id, self.project_id)
-
-            return terminal
+            return self._table.db.pjt_terminals_table[terminal_ids[0][0]]
 
     @property
     def part(self) -> "_cavity.Cavity":
@@ -70,8 +77,5 @@ class PJTCavity(PJTEntryBase):
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
 
-
-from . import pjt_cavity_map as _pjt_cavity_map  # NOQA
-from . import pjt_terminal as _pjt_terminal  # NOQA
 
 from ..global_db import cavity as _cavity  # NOQA

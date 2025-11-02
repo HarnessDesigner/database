@@ -11,6 +11,14 @@ class PJTHousingsTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield PJTHousing(self, db_id, self.project_id)
 
+    def __getitem__(self, item) -> "PJTHousing":
+        if isinstance(item, int):
+            if item in self:
+                return PJTHousing(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, part_id: int, name: str, coord3d_id: int, coord2d_id: int,
                x_angle_3d: _decimal, y_angle_3d: _decimal, z_angle_3d: _decimal, angle_2d: _decimal,
                seal_ids: list[int], cpa_lock_ids: list[int], tpa_lock_ids: list[int],

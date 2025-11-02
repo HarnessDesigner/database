@@ -7,9 +7,16 @@ class PJTTerminalsTable(PJTTableBase):
     __table_name__ = 'pjt_terminals'
 
     def __iter__(self) -> _Iterable["PJTTerminal"]:
-
         for db_id in PJTTableBase.__iter__(self):
             yield PJTTerminal(self, db_id, self.project_id)
+
+    def __getitem__(self, item) -> "PJTTerminal":
+        if isinstance(item, int):
+            if item in self:
+                return PJTTerminal(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
 
     def insert(self, part_id: int, cavity_id: int, seal_id: int, circuit_id: int,
                coord3d_id: int, coord2d_id: int) -> "PJTTerminal":

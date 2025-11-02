@@ -18,6 +18,18 @@ class BundleCoversTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield BundleCover(self, db_id)
 
+    def __getitem__(self, item) -> "BundleCover":
+        if isinstance(item, int):
+            if item in self:
+                return BundleCover(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return BundleCover(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, part_number: str, mfg_id: int, description: str, series_id: int, image_id: int,
                datasheet_id: int, cad_id: int, min_temp_id: int, max_temp_id: int, color_id: int,
                min_size: float, max_size: float, wall: str, shrink_ratio: str, resistance_values: int,

@@ -11,6 +11,18 @@ class TemperaturesTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Temperature(self, db_id)
 
+    def __getitem__(self, item) -> "Temperature":
+        if isinstance(item, int):
+            if item in self:
+                return Temperature(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', name=item)
+        if db_id:
+            return Temperature(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, name: str) -> "Temperature":
         db_id = TableBase.insert(self, name=name)
         return Temperature(self, db_id)

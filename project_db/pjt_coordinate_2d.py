@@ -20,6 +20,14 @@ class PJTCoordinates2DTable(PJTTableBase):
                 self.__points__[db_id] = point
                 yield point
 
+    def __getitem__(self, item) -> "PJTCoordinate2D":
+        if isinstance(item, int):
+            if item in self:
+                return PJTCoordinate2D(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def delete(self, db_id: int):
         if db_id in self.__points__:
             del self.__points__[db_id]

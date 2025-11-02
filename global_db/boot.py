@@ -16,11 +16,17 @@ class BootsTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Boot(self, db_id)
 
-    def __getitem__(self, db_id) -> "Boot":
-        if db_id in self:
-            return Boot(self, db_id)
+    def __getitem__(self, item) -> "Boot":
+        if isinstance(item, int):
+            if item in self:
+                return Boot(self, item)
+            raise IndexError(str(item))
 
-        raise IndexError(str(db_id))
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return Boot(self, db_id[0][0])
+
+        raise KeyError(item)
 
     def get(self, part_number) -> _Union["Boot", None]:
         self._cur.execute(f'SELECT id from {self.__table_name__} WHERE part_number = "{part_number}";')

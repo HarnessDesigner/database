@@ -11,6 +11,18 @@ class AdhesivesTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Adhesive(self, db_id)
 
+    def __getitem__(self, item) -> "Adhesive":
+        if isinstance(item, int):
+            if item in self:
+                return Adhesive(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', name=item)
+        if db_id:
+            return Adhesive(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, code: str, description: str) -> "Adhesive":
         db_id = TableBase.insert(self, code=code, description=description)
         return Adhesive(self, db_id)

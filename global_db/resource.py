@@ -14,6 +14,14 @@ class ResourcesTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Resource(self, db_id)
 
+    def __getitem__(self, item) -> "Resource":
+        if isinstance(item, int):
+            if item in self:
+                return Resource(self, item)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def __getitem__(self, item: int) -> "Resource":
         if isinstance(item, int):
             if item in self:

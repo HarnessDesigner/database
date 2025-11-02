@@ -11,6 +11,14 @@ class PJTWire2DLayoutsTable(PJTTableBase):
         for db_id in PJTTableBase.__iter__(self):
             yield PJTWire2DLayout(self, db_id, self.project_id)
 
+    def __getitem__(self, item) -> "PJTWire2DLayout":
+        if isinstance(item, int):
+            if item in self:
+                return PJTWire2DLayout(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, coord_id: int) -> "PJTWire2DLayout":
         db_id = PJTTableBase.insert(self, coord_id=coord_id)
         return PJTWire2DLayout(self, db_id, self.project_id)

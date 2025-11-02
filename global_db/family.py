@@ -11,6 +11,18 @@ class FamiliesTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Family(self, db_id)
 
+    def __getitem__(self, item) -> "Family":
+        if isinstance(item, int):
+            if item in self:
+                return Family(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', name=item)
+        if db_id:
+            return Family(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, name: str, mfg_id: int, description: str) -> "Family":
         db_id = TableBase.insert(self, name=name, mfg_id=mfg_id, description=description)
         return Family(self, db_id)

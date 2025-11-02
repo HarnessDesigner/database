@@ -11,6 +11,18 @@ class GendersTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Gender(self, db_id)
 
+    def __getitem__(self, item) -> "Gender":
+        if isinstance(item, int):
+            if item in self:
+                return Gender(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', name=item)
+        if db_id:
+            return Gender(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, name: str) -> "Gender":
         db_id = TableBase.insert(self, name=name)
         return Gender(self, db_id)

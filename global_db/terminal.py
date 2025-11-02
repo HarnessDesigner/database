@@ -16,6 +16,18 @@ class TerminalsTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield Terminal(self, db_id)
 
+    def __getitem__(self, item) -> "Terminal":
+        if isinstance(item, int):
+            if item in self:
+                return Terminal(self, item)
+            raise IndexError(str(item))
+
+        db_id = self.select('id', part_number=item)
+        if db_id:
+            return Terminal(self, db_id[0][0])
+
+        raise KeyError(item)
+
     def insert(self, part_number: str, mfg_id: int, description: str, gender_id: int,
                series_id: int, family_id: int, sealing: bool, cavity_lock_id: int,
                image_id: int, datasheet_id: int, cad_id: int, material_id: int,

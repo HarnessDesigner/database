@@ -17,6 +17,14 @@ class TransitionBranchesTable(TableBase):
         for db_id in TableBase.__iter__(self):
             yield TransitionBranch(self, db_id)
 
+    def __getitem__(self, item) -> "TransitionBranch":
+        if isinstance(item, int):
+            if item in self:
+                return TransitionBranch(self, item)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
     def insert(self, transition_id: int, idx: int, name: int, bulb_offset: _point.Point | None,
                bulb_length: _decimal | None, min_dia: _decimal, max_dia: _decimal, length: _decimal,
                angle: _decimal, offset: _point.Point | None, flange_height: _decimal | None,
