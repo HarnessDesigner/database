@@ -11,7 +11,7 @@ class ProjectsTable(PJTTableBase):
 
         for db_id in PJTTableBase.__iter__(self):
             yield Project(self, db_id, db_id)
-            
+
     def __getitem__(self, item) -> "Project":
         if isinstance(item, int):
             if item in self:
