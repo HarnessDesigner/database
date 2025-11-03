@@ -8,6 +8,7 @@ from ...geometry import point as _point
 
 if TYPE_CHECKING:
     from . import transition as _transition
+    from . import bundle_cover as _bundle_cover
 
 
 class TransitionBranchesTable(TableBase):
@@ -102,6 +103,19 @@ class TransitionBranch(EntryBase, NameMixin):
     @bulb_length.setter
     def bulb_length(self, value: _decimal):
         self._table.update(self._db_id, bulb_length=float(value))
+
+    @property
+    def compat_bundle_covers(self) -> list["_bundle_cover.BundleCover"]:
+        min_dia = self.min_dia
+        max_dia = self.max_dia
+
+        res = []
+
+        for bundle_cover in self._table.db.bundle_covers_table:
+            if bundle_cover.min_size < max_dia and bundle_cover.max_size > min_dia:
+                res.append(bundle_cover)
+
+        return res
 
     @property
     def min_dia(self) -> _decimal:

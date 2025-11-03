@@ -71,9 +71,10 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         compat_covers = eval(self._table.select('compat_covers', id=self._db_id)[0][0])
         res = []
         for part_number in compat_covers:
-            db_id = self._table.db.covers_table.select('id', part_number=part_number)
-            if db_id:
-                res.append(_cover.Cover(self._table.db.covers_table, db_id[0][0]))
+            try:
+                res.append(self._table.db.covers_table[part_number])
+            except KeyError:
+                pass
         return res
 
     @compat_covers.setter
@@ -86,9 +87,10 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         compat_cpas = eval(self._table.select('compat_cpas', id=self._db_id)[0][0])
         res = []
         for part_number in compat_cpas:
-            db_id = self._table.db.cpa_locks_table.select('id', part_number=part_number)
-            if db_id:
-                res.append(_cpa_lock.CPALock(self._table.db.cpa_locks_table, db_id[0][0]))
+            try:
+                res.append(self._table.db.cpa_locks_table[part_number])
+            except KeyError:
+                pass
         return res
 
     @compat_cpas.setter
@@ -101,9 +103,10 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         compat_tpas = eval(self._table.select('compat_tpas', id=self._db_id)[0][0])
         res = []
         for part_number in compat_tpas:
-            db_id = self._table.db.tpa_locks_table.select('id', part_number=part_number)
-            if db_id:
-                res.append(_tpa_lock.TPALock(self._table.db.tpa_locks_table, db_id[0][0]))
+            try:
+                res.append(self._table.db.tpa_locks_table[part_number])
+            except KeyError:
+                pass
         return res
 
     @compat_tpas.setter
@@ -116,9 +119,10 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         compat_terminals = eval(self._table.select('compat_terminals', id=self._db_id)[0][0])
         res = []
         for part_number in compat_terminals:
-            db_id = self._table.db.terminals_table.select('id', part_number=part_number)
-            if db_id:
-                res.append(_terminal.Terminal(self._table.db.terminals_table, db_id[0][0]))
+            try:
+                res.append(self._table.db.terminals_table[part_number])
+            except KeyError:
+                pass
         return res
 
     @compat_terminals.setter
@@ -131,9 +135,10 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         compat_seals = eval(self._table.select('compat_seals', id=self._db_id)[0][0])
         res = []
         for part_number in compat_seals:
-            db_id = self._table.db.seals_table.select('id', part_number=part_number)
-            if db_id:
-                res.append(_seal.Seal(self._table.db.seals_table, db_id[0][0]))
+            try:
+                res.append(self._table.db.seals_table[part_number])
+            except KeyError:
+                pass
         return res
 
     @compat_seals.setter
@@ -146,9 +151,10 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         housings = eval(self._table.select('mates_to', id=self._db_id)[0][0])
         res = []
         for part_number in housings:
-            db_id = self._table.db.housings_table.select('id', part_number=part_number)
-            if db_id:
-                res.append(Housing(self._table.db.housings_table, db_id[0][0]))
+            try:
+                res.append(self._table.db.housings_table[part_number])
+            except KeyError:
+                pass
         return res
 
     @mates_to.setter

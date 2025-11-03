@@ -18,8 +18,8 @@ class PJTBundleLayoutsTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, coord_id: int) -> "PJTBundleLayout":
-        db_id = PJTTableBase.insert(self, coord_id=coord_id)
+    def insert(self, coord_id: int, diameter: _decimal) -> "PJTBundleLayout":
+        db_id = PJTTableBase.insert(self, coord_id=coord_id, diameter=float(diameter))
 
         return PJTBundleLayout(self, db_id, self.project_id)
 
@@ -39,6 +39,15 @@ class PJTBundleLayout(PJTEntryBase):
     @coord_id.setter
     def coord_id(self, value: int):
         self._table.update(self._db_id, coord_id=value)
+
+    @property
+    def diameter(self) -> _decimal:
+        diameter = self._table.select('diameter', id=self._db_id)[0][0]
+        return _decimal(diameter)
+
+    @diameter.setter
+    def diameter(self, value: _decimal):
+        self._table.update(self._db_id, diameter=float(value))
 
 
 from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA

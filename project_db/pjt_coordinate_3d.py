@@ -68,9 +68,9 @@ class PJTCoordinate3D(PJTEntryBase):
 
     @property
     def point(self) -> _point.Point:
-        point = _point.Point(self.x, self.y, project_id=self._table.project_id, point_id=self._db_id)
-        point.Bind(self.__on_update)
+        point = _point.Point(self.x, self.y, self.z, db_obj=self)
+        point.Bind(self)
         return point
 
-    def __on_update(self, point: _point.Point) -> None:
+    def __call__(self, point: _point.Point) -> None:
         self._table.update(self.db_id, x=float(point.x), y=float(point.y), z=float(point.z))
