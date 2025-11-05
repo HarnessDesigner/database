@@ -21,14 +21,14 @@ class PJTTransitionsTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, part_id: int, branch1_coord_id: int, branch2_coord_id: int, branch3_coord_id: int,
-               branch4_coord_id: int | None, branch5_coord_id: int | None, branch6_coord_id: int | None,
+    def insert(self, part_id: int, center_id: int, branch1_id: int, branch2_id: int, branch3_id: int,
+               branch4_id: int | None, branch5_id: int | None, branch6_id: int | None,
                x_angle: _decimal, y_angle: _decimal, z_angle: _decimal, name: str) -> "PJTTransition":
 
-        db_id = PJTTableBase.insert(self, part_id=part_id, name=name,
-                                    branch1_coord_id=branch1_coord_id, branch2_coord_id=branch2_coord_id,
-                                    branch3_coord_id=branch3_coord_id, branch4_coord_id=branch4_coord_id,
-                                    branch5_coord_id=branch5_coord_id, branch6_coord_id=branch6_coord_id,
+        db_id = PJTTableBase.insert(self, part_id=part_id, name=name, center_id=center_id,
+                                    branch1_id=branch1_id, branch2_id=branch2_id,
+                                    branch3_id=branch3_id, branch4_id=branch4_id,
+                                    branch5_id=branch5_id, branch6_id=branch6_id,
                                     x_angle=float(x_angle), y_angle=float(y_angle), z_angle=float(z_angle))
 
         return PJTTransition(self, db_id, self.project_id)
@@ -38,91 +38,104 @@ class PJTTransition(PJTEntryBase):
     _table: PJTTransitionsTable = None
 
     @property
-    def branch1_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
-        coord_id = self.branch1_coord_id
+    def center(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+        center_id = self.center_id
+        return self._table.db.pjt_coordinates_3d_table[center_id]
+
+    @property
+    def center_id(self) -> int:
+        return self._table.select('center_id', id=self._db_id)[0][0]
+
+    @center_id.setter
+    def center_id(self, value: int):
+        self._table.update(self._db_id, center_id=value)
+
+    @property
+    def branch1(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+        coord_id = self.branch1_id
         return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
-    def branch1_coord_id(self) -> int:
-        return self._table.select('branch1_coord_id', id=self._db_id)[0][0]
+    def branch1_id(self) -> int:
+        return self._table.select('branch1_id', id=self._db_id)[0][0]
 
-    @branch1_coord_id.setter
-    def branch1_coord_id(self, value: int):
-        self._table.update(self._db_id, branch1_coord_id=value)
+    @branch1_id.setter
+    def branch1_id(self, value: int):
+        self._table.update(self._db_id, branch1_id=value)
 
     @property
-    def branch2_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
-        coord_id = self.branch2_coord_id
+    def branch2(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+        coord_id = self.branch2_id
         return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
-    def branch2_coord_id(self) -> int:
-        return self._table.select('branch2_coord_id', id=self._db_id)[0][0]
+    def branch2_id(self) -> int:
+        return self._table.select('branch2_id', id=self._db_id)[0][0]
 
-    @branch2_coord_id.setter
-    def branch2_coord_id(self, value: int):
-        self._table.update(self._db_id, branch2_coord_id=value)
+    @branch2_id.setter
+    def branch2_id(self, value: int):
+        self._table.update(self._db_id, branch2_id=value)
     
     @property
-    def branch3_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
-        coord_id = self.branch3_coord_id
+    def branch3(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+        coord_id = self.branch3_id
         return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
-    def branch3_coord_id(self) -> int:
-        return self._table.select('branch3_coord_id', id=self._db_id)[0][0]
+    def branch3_id(self) -> int:
+        return self._table.select('branch3_id', id=self._db_id)[0][0]
 
-    @branch3_coord_id.setter
-    def branch3_coord_id(self, value: int):
-        self._table.update(self._db_id, branch3_coord_id=value)
+    @branch3_id.setter
+    def branch3_id(self, value: int):
+        self._table.update(self._db_id, branch3_id=value)
 
     @property
-    def branch4_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
-        coord_id = self.branch4_coord_id
+    def branch4(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+        coord_id = self.branch4_id
         if coord_id is None:
             return None
 
         return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
-    def branch4_coord_id(self) -> int:
-        return self._table.select('branch4_coord_id', id=self._db_id)[0][0]
+    def branch4_id(self) -> int:
+        return self._table.select('branch4_id', id=self._db_id)[0][0]
 
-    @branch4_coord_id.setter
-    def branch4_coord_id(self, value: int):
+    @branch4_id.setter
+    def branch4_id(self, value: int):
         self._table.update(self._db_id, branch4_coord_id=value)
         
     @property
-    def branch5_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
-        coord_id = self.branch5_coord_id
+    def branch5(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+        coord_id = self.branch5_id
         if coord_id is None:
             return None
 
         return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
-    def branch5_coord_id(self) -> int:
-        return self._table.select('branch5_coord_id', id=self._db_id)[0][0]
+    def branch5_id(self) -> int:
+        return self._table.select('branch5_id', id=self._db_id)[0][0]
 
-    @branch5_coord_id.setter
-    def branch5_coord_id(self, value: int):
-        self._table.update(self._db_id, branch5_coord_id=value)
+    @branch5_id.setter
+    def branch5_id(self, value: int):
+        self._table.update(self._db_id, branch5_id=value)
 
     @property
-    def branch6_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
-        coord_id = self.branch6_coord_id
+    def branch6(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+        coord_id = self.branch6_id
         if coord_id is None:
             return None
 
         return self._table.db.pjt_coordinates_3d_table[coord_id]
 
     @property
-    def branch6_coord_id(self) -> int:
-        return self._table.select('branch6_coord_id', id=self._db_id)[0][0]
+    def branch6_id(self) -> int:
+        return self._table.select('branch6_id', id=self._db_id)[0][0]
 
-    @branch6_coord_id.setter
-    def branch6_coord_id(self, value: int):
-        self._table.update(self._db_id, branch6_coord_id=value)
+    @branch6_id.setter
+    def branch6_id(self, value: int):
+        self._table.update(self._db_id, branch6_id=value)
 
     @property
     def name(self) -> str:
