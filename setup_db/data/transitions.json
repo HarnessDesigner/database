@@ -1388,10 +1388,10 @@
                 "min": 6.3,
                 "max": 26.0,
                 "length": 54.0,
-                "bulb_length": 38.0,
+                "bulb_length": 30.0,
                 "bulb_offset": "[9.0, 0.0]",
                 "angle": -180.0,
-                "flange_height": 5.5,
+                "flange_height": 3.0,
                 "flange_width": 5.0
             },
             {
