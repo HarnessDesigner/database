@@ -4,23 +4,21 @@ from .base import BaseMixin
 
 import wx
 
-
 if TYPE_CHECKING:
-    from .. import color as _color  # NOQA
+    from .. import color as _color
 
 
 class ColorMixin(BaseMixin):
 
     @property
     def color(self) -> "_color.Color":
-        from .. import color as _color  # NOQA
-
         color_id = self._table.select('color_id', id=self._db_id)
-        return _color.Color(self._table.db.colors_table, color_id[0][0])
+        color = self._table.db.colors_table[color_id[0][0]]
+        return color
 
     @color.setter
-    def color(self, value: "_color.Color"):
-        self._table.update(self._db_id, color_id=value.db_id)
+    def color(self, value: "_color.Color") -> None:
+        self.color_id = value.db_id
 
     @property
     def color_id(self) -> int:

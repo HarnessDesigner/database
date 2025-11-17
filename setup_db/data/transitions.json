@@ -1065,11 +1065,11 @@
         },
         "branches": [
             {
-                "min": 13.6,
+                "min": 16.3,
                 "max": 29.5,
                 "length": 56.6,
-                "bulb_length": 44.7,
-                "bulb_offset": "[14.0, 0.0]",
+                "bulb_length": 38.7,
+                "bulb_offset": "[10.0, 0.0]",
                 "angle": -180.0
             },
             {
@@ -1080,10 +1080,10 @@
                 "angle": 0.0
             },
             {
-                "min": 13.6,
+                "min": 16.3,
                 "max": 29.5,
                 "length": 56.6,
-                "bulb_length": 30.7,
+                "bulb_length": 28.7,
                 "angle": 90.0
             }
         ],
@@ -1284,6 +1284,7 @@
                 "max": 30.5,
                 "length": 47.5,
                 "bulb_length": 23.8,
+                "bulb_offset": "[0.01, 0.0]",
                 "angle": -180.0
             },
             {
@@ -1557,21 +1558,21 @@
                 "min": 13.5,
                 "max": 28.4,
                 "length": 70.1,
-                "bulb_length": 52.6,
+                "bulb_length": 42.6,
                 "angle": -180.0
             },
             {
                 "min": 13.5,
-                "max": 26.9,
+                "max": 28.4,
                 "length": 80.0,
-                "bulb_length": 60.0,
+                "bulb_length": 50.0,
                 "angle": 0.0
             },
             {
                 "min": 13.5,
                 "max": 26.9,
                 "length": 80.3,
-                "bulb_length": 60.2,
+                "bulb_length": 50.2,
                 "angle": 45.0
             }
         ],
@@ -1612,21 +1613,21 @@
                 "min": 6.9,
                 "max": 17.0,
                 "length": 22.9,
-                "bulb_length": 9.2,
+                "bulb_length": 7.2,
                 "angle": -180.0
             },
             {
                 "min": 6.9,
                 "max": 17.0,
                 "length": 26.4,
-                "bulb_length": 15.8,
+                "bulb_length": 10.7,
                 "angle": 0.0
             },
             {
                 "min": 3.6,
                 "max": 7.0,
                 "length": 23.4,
-                "bulb_length": 18.7,
+                "bulb_length": 14.7,
                 "angle": 45.0
             }
         ],
@@ -2318,31 +2319,31 @@
         "branches": [
             {
                 "min": 6.6,
-                "max": 20.0,
+                "max": 13.2,
                 "length": 20.8,
-                "bulb_length": 15.9,
-                "bulb_offset": "[9.7, 0.0]",
+                "bulb_length": 12.9,
+                "bulb_offset": "[4.7, 0.0]",
                 "angle": -180.0
             },
             {
                 "min": 3.6,
-                "max": 10.0,
+                "max": 6.6,
                 "length": 25.4,
-                "bulb_length": 18.0,
+                "bulb_length": 16.0,
                 "angle": -30.0
             },
             {
                 "min": 3.6,
-                "max": 10.0,
+                "max": 6.6,
                 "length": 25.4,
-                "bulb_length": 18.0,
+                "bulb_length": 16.0,
                 "angle": 0.0
             },
             {
                 "min": 3.6,
-                "max": 10.0,
+                "max": 6.6,
                 "length": 25.4,
-                "bulb_length": 18.0,
+                "bulb_length": 16.0,
                 "angle": 30.0
             }
         ],
@@ -2438,7 +2439,7 @@
                 "min": 6.1,
                 "max": 13.2,
                 "length": 22.9,
-                "bulb_length": 11.7,
+                "bulb_length": 13.7,
                 "bulb_offset": "[7.7, 0.0]",
                 "angle": -180.0
             },
@@ -2763,20 +2764,21 @@
                 "max": 18.7,
                 "length": 82.5,
                 "bulb_length": 54.5,
+                "bulb_offset": "[0.001, 0.0]",
                 "angle": -180.0
             },
             {
                 "min": 5.6,
                 "max": 10.6,
                 "length": 63.5,
-                "bulb_length": 31.8,
+                "bulb_length": 41.8,
                 "angle": -45.0
             },
             {
                 "min": 5.6,
                 "max": 10.6,
                 "length": 63.5,
-                "bulb_length": 31.8,
+                "bulb_length": 41.8,
                 "angle": 45.0
             }
         ],
@@ -2868,22 +2870,22 @@
                 "min": 15.7,
                 "max": 30.5,
                 "length": 31.8,
-                "bulb_length": 0.0,
+                "bulb_length": 25.4,
+                "bulb_offset": "[22.4, 0.0]",
                 "angle": -180.0
             },
             {
                 "min": 15.7,
                 "max": 30.5,
                 "length": 50.8,
-                "bulb_length": 25.4,
-                "bulb_offset": "[-0.1, 0.0]",
+                "bulb_length": 0.0,
                 "angle": 0.0
             },
             {
                 "min": 10.7,
                 "max": 20.0,
                 "length": 50.8,
-                "bulb_length": 33.5,
+                "bulb_length": 30.5,
                 "angle": 30.0
             }
         ],
@@ -3252,8 +3254,8 @@
                 "min": 6.1,
                 "max": 13.2,
                 "length": 22.4,
-                "bulb_length": 8.22,
-                "bulb_offset": "[1.5, 0.0]",
+                "bulb_length": 12.22,
+                "bulb_offset": "[3.5, 0.0]",
                 "angle": -180.0
             },
             {
@@ -4110,8 +4112,8 @@
                 "min": 6.6,
                 "max": 13.2,
                 "length": 20.8,
-                "bulb_length": 14.8,
-                "bulb_offset": "[9.7, 0.0]",
+                "bulb_length": 12.8,
+                "bulb_offset": "[7.7, 0.0]",
                 "angle": -180.0
             },
             {
@@ -4970,31 +4972,31 @@
         "branches": [
             {
                 "min": 15.2,
-                "max": 30.5,
+                "max": 25.5,
                 "length": 44.5,
-                "bulb_length": 25.4,
+                "bulb_length": 20.4,
                 "angle": -180.0
             },
             {
                 "min": 6.3,
                 "max": 12.7,
                 "length": 50.8,
-                "bulb_length": 45.0,
-                "angle": -30.0,
-                "offset": "[-25.4, 0.0]"
+                "bulb_length": 38.0,
+                "angle": -30.0
             },
             {
                 "min": 6.3,
                 "max": 12.7,
                 "length": 50.8,
-                "bulb_length": 45.0,
+                "bulb_length": 38.0,
+                "offset": "[-25.4, 0.0]",
                 "angle": -30.0
             },
             {
                 "min": 15.2,
-                "max": 30.5,
+                "max": 25.5,
                 "length": 44.5,
-                "bulb_length": 25.4,
+                "bulb_length": 20.4,
                 "angle": 0.0
             }
         ],
@@ -5213,8 +5215,8 @@
                 "min": 6.9,
                 "max": 13.2,
                 "length": 38.4,
-                "bulb_length": 20.9,
-                "Bulb_offset": "[5.5, 0.0]",
+                "bulb_length": 22.9,
+                "bulb_offset": "[1.5, 0.0]",
                 "angle": -180.0
             },
             {

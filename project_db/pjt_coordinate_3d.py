@@ -66,11 +66,17 @@ class PJTCoordinate3D(PJTEntryBase):
     def z(self, value: _decimal):
         self._table.update(self._db_id, z=float(value))
 
+    _saved_point: _point.Point = None
+
     @property
     def point(self) -> _point.Point:
-        point = _point.Point(self.x, self.y, self.z, db_obj=self)
-        point.Bind(self)
-        return point
+        if self._saved_point is not None:
+            return self._saved_point
 
-    def __call__(self, point: _point.Point) -> None:
+        self._saved_point = _point.Point(self.x, self.y, self.z, db_obj=self)
+        self._saved_point.Bind(self._update_point)
+
+        return self._saved_point
+
+    def _update_point(self, point: _point.Point) -> None:
         self._table.update(self.db_id, x=float(point.x), y=float(point.y), z=float(point.z))

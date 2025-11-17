@@ -1,8 +1,10 @@
 from typing import Iterable as _Iterable
+import weakref
 
 from . import EntryBase, TableBase
 from .mixins import NameMixin
 
+from ...wrappers import color as _color
 
 class ColorsTable(TableBase):
     __table_name__ = 'colors'
@@ -29,7 +31,34 @@ class ColorsTable(TableBase):
 
 
 class Color(EntryBase, NameMixin):
+    _color_instances = {}
+
     _table: ColorsTable = None
+
+    @classmethod
+    def _remove_ref(cls, ref):
+        for key, value in list(cls._color_instances.items()):
+            if value != ref:
+                continue
+
+            del cls._color_instances[key]
+            break
+
+    def _update_color(self, c: _color.Color) -> None:
+        self.rgba = (c.GetRed(), c.GetGreen(), c.GetBlue)
+
+    @property
+    def ui(self) -> _color.Color:
+        if self.db_id in self._color_instances:
+            ref = self._color_instances[self.db_id]
+            color = ref()
+            if color is not None:
+                return color
+
+        color = _color.Color(*self.rgb)
+        color.Bind(self._update_color)
+        self._color_instances[self.db_id] = weakref.ref(color, Color._remove_ref)
+        return color
 
     @property
     def rgb(self) -> tuple[int, int, int, int]:
