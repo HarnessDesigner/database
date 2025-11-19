@@ -22,19 +22,6 @@ class ResourcesTable(TableBase):
 
         raise KeyError(item)
 
-    def __getitem__(self, item: int) -> "Resource":
-        if isinstance(item, int):
-            if item in self:
-                return Resource(self, item)
-
-            raise IndexError(str(item))
-
-        db_id = self.select('id', path=item)
-        if db_id:
-            return Resource(self, db_id[0][0])
-
-        raise KeyError(item)
-
     def insert(self, path: str, data: bytes | None, type: str) -> "Resource":
         db_id = TableBase.insert(self, path=path, data=data)
         return Resource(self, db_id)

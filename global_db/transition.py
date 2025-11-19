@@ -93,4 +93,3 @@ class Transition(EntryBase, PartNumberMixin, SeriesMixin, MaterialMixin, FamilyM
     @shape_id.setter
     def shape_id(self, value: int):
         self._table.update(self._db_id, shape_id=value)
-

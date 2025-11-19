@@ -147,6 +147,8 @@ from .transition_branch import TransitionBranchesTable  # NOQA
 from .adhesive import AdhesivesTable  # NOQA
 from .protection import ProtectionsTable  # NOQA
 from .transition import TransitionsTable  # NOQA
+from .splice import SplicesTable  # NOQA
+from .model3d import Models3DTable  # NOQA
 
 
 class GLBTables:
@@ -192,6 +194,8 @@ class GLBTables:
         self._shapes_table = ShapesTable(self)
         self._transitions_table = TransitionsTable(self)
         self._accessories_table = AccessoriesTable(self)
+        self._splices_table = SplicesTable(self)
+        self._models3d_table = Models3DTable(self)
 
     @property
     def accessories_table(self) -> AccessoriesTable:
@@ -321,6 +325,14 @@ class GLBTables:
     def transitions_table(self) -> TransitionsTable:
         return self._transitions_table
 
+    @property
+    def splices_table(self) -> SplicesTable:
+        return self._splices_table
+
+    @property
+    def models3d_table(self) -> Models3DTable:
+        return self._models3d_table
+
     def _setup_new_db(self):
         self.connector.execute('PRAGMA foreign_keys = ON;')
         self.connector.commit()
@@ -360,6 +372,8 @@ class GLBTables:
             create_tables.housings,
             create_tables.cavities,
             create_tables.projects,
+            create_tables.splices,
+            create_tables.models3d,
             create_tables.pjt_coordinates_3d,
             create_tables.pjt_coordinates_2d,
             create_tables.pjt_circuits,

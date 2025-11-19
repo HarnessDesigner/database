@@ -1,7 +1,21 @@
-from typing import Iterable as _Iterable
+from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
 from ...wrappers.decimal import Decimal as _decimal
+from ...geometry import angle as _angle
+
+if TYPE_CHECKING:
+    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+    from . import pjt_coordinate_2d as _pjt_coordinate_2d
+    from . import pjt_cavity as _pjt_cavity
+
+    from ..global_db import housing as _housing
+    from ..global_db import cover as _cover
+    from ..global_db import tpa_lock as _tpa_lock
+    from ..global_db import cpa_lock as _cpa_lock
+    from ..global_db import seal as _seal
+    from ..global_db import boot as _boot
+    from ..global_db import accessory as _accessory
 
 
 class PJTHousingsTable(PJTTableBase):
@@ -20,13 +34,12 @@ class PJTHousingsTable(PJTTableBase):
         raise KeyError(item)
 
     def insert(self, part_id: int, name: str, coord3d_id: int, coord2d_id: int,
-               x_angle_3d: _decimal, y_angle_3d: _decimal, z_angle_3d: _decimal, angle_2d: _decimal,
-               seal_ids: list[int], cpa_lock_ids: list[int], tpa_lock_ids: list[int],
-               cover_id: int | None, boot_id: int | None, accessory_ids: list[int]) -> "PJTHousing":
+               angle_3d: _angle.Angle, angle_2d: _decimal, seal_ids: list[int],
+               cpa_lock_ids: list[int], tpa_lock_ids: list[int], cover_id: int | None,
+               boot_id: int | None, accessory_ids: list[int]) -> "PJTHousing":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, name=name, coord3d_id=coord3d_id,
-                                    coord2d_id=coord2d_id, x_angle_3d=float(x_angle_3d),
-                                    y_angle_3d=float(y_angle_3d), z_angle_3d=float(z_angle_3d),
+                                    coord2d_id=coord2d_id, angle_3d=str(list(angle_3d.as_float)),
                                     angle_2d=float(angle_2d), seal_ids=seal_ids, cpa_lock_ids=cpa_lock_ids,
                                     tpa_lock_ids=tpa_lock_ids, cover_id=cover_id, boot_id=boot_id,
                                     accessory_ids=accessory_ids)
@@ -39,7 +52,7 @@ class PJTHousing(PJTEntryBase):
 
     @property
     def cavities(self) -> list["_pjt_cavity.PJTCavity"]:
-        cavities = [None] * self.part.count
+        cavities = [None] * self.part.num_pins
 
         cavity_ids = self._table.db.pjt_cavities_table.select(
             'id', cavity_map_id=self._db_id)
@@ -85,28 +98,12 @@ class PJTHousing(PJTEntryBase):
         self._table.update(self._db_id, coord3d_id=value)
 
     @property
-    def x_angle_3d(self) -> _decimal:
-        return _decimal(self._table.select('x_angle_3d', id=self._db_id)[0][0])
+    def angle_3d(self) -> _angle.Angle:
+        return _angle.Angle(*eval(self._table.select('angle_3d', id=self._db_id)[0][0]))
 
-    @x_angle_3d.setter
-    def x_angle_3d(self, value: _decimal):
-        self._table.update(self._db_id, x_angle_3d=float(value))
-
-    @property
-    def y_angle_3d(self) -> _decimal:
-        return _decimal(self._table.select('y_angle_3d', id=self._db_id)[0][0])
-
-    @y_angle_3d.setter
-    def y_angle_3d(self, value: _decimal):
-        self._table.update(self._db_id, y_angle_3d=float(value))
-
-    @property
-    def z_angle_3d(self) -> _decimal:
-        return _decimal(self._table.select('z_angle_3d', id=self._db_id)[0][0])
-
-    @z_angle_3d.setter
-    def z_angle_3d(self, value: _decimal):
-        self._table.update(self._db_id, z_angle_3d=float(value))
+    @angle_3d.setter
+    def angle_3d(self, value: _angle.Angle):
+        self._table.update(self._db_id, angle_3d=str(list(value.as_float)))
 
     @property
     def angle_2d(self) -> _decimal:
@@ -264,20 +261,3 @@ class PJTHousing(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
-
-
-from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
-from . import pjt_coordinate_2d as _pjt_coordinate_2d  # NOQA
-from . import pjt_cavity as _pjt_cavity  # NOQA
-
-
-from ..global_db import housing as _housing  # NOQA
-from ..global_db import cover as _cover  # NOQA
-from ..global_db import tpa_lock as _tpa_lock  # NOQA
-from ..global_db import cpa_lock as _cpa_lock  # NOQA
-from ..global_db import seal as _seal  # NOQA
-from ..global_db import boot as _boot  # NOQA
-from ..global_db import accessory as _accessory  # NOQA
-
-
-

@@ -6,7 +6,7 @@ import wx
 from . import EntryBase, TableBase
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, ColorMixin,
-                     FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin)
+                     FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin, Model3DMixin)
 
 
 class BootsTable(TableBase):
@@ -205,5 +205,6 @@ class AddBootDialog(wx.Dialog):
 
 
 class Boot(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
-           SeriesMixin, ResourceMixin, WeightMixin, ColorMixin):
+           SeriesMixin, ResourceMixin, WeightMixin, ColorMixin, Model3DMixin):
     _table: BootsTable = None
+

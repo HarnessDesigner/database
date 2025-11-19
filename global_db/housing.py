@@ -12,7 +12,7 @@ from . import cavity_lock as _cavity_lock
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin, 
                      SeriesMixin, GenderMixin, ResourceMixin, WeightMixin, CavityLockMixin,
-                     TemperatureMixin, DirectionMixin, DimensionMixin, ColorMixin)
+                     TemperatureMixin, DirectionMixin, DimensionMixin, ColorMixin, Model3DMixin)
 
 if TYPE_CHECKING:
     from . import cavity as _cavity
@@ -63,7 +63,7 @@ class HousingsTable(TableBase):
 
 class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin, 
               SeriesMixin, ColorMixin, TemperatureMixin, ResourceMixin, GenderMixin,
-              DirectionMixin, DimensionMixin, WeightMixin, CavityLockMixin):
+              DirectionMixin, DimensionMixin, WeightMixin, CavityLockMixin, Model3DMixin):
 
     _table: HousingsTable = None
 

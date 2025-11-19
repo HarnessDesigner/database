@@ -118,27 +118,3 @@ class ResourceMixin(BaseMixin):
     @datasheet_id.setter
     def datasheet_id(self, value: int):
         self._table.update(self._db_id, datasheet_id=value)
-
-    @property
-    def model3d(self) -> bytes | None:
-        return self.__get_resource(self.model3d_id)
-
-    @model3d.setter
-    def model3d(self, value: bytes | str | None):
-        self.model3d_id = self.__set_resource(self.model3d_id, value)
-
-    @property
-    def model3d_type(self) -> str:
-        return self.__get_resource_type(self.model3d_id)
-
-    @model3d_type.setter
-    def model3d_type(self, value: str):
-        self.model3d_id = self.__set_resource_type(self.model3d_id, value)
-
-    @property
-    def model3d_id(self) -> int:
-        return self._table.select('model3d_id', id=self._db_id)[0][0]
-
-    @model3d_id.setter
-    def model3d_id(self, value: int):
-        self._table.update(self._db_id, model3d_id=value)

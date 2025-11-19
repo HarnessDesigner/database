@@ -2,7 +2,7 @@ from typing import Iterable as _Iterable
 
 from . import EntryBase, TableBase
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
-                     ColorMixin, TemperatureMixin, ResourceMixin, WeightMixin)
+                     ColorMixin, TemperatureMixin, ResourceMixin, WeightMixin, Model3DMixin)
 
 
 class SealsTable(TableBase):
@@ -39,7 +39,7 @@ class SealsTable(TableBase):
 
 
 class Seal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
-           ColorMixin, TemperatureMixin, ResourceMixin, WeightMixin):
+           ColorMixin, TemperatureMixin, ResourceMixin, WeightMixin, Model3DMixin):
 
     _table: SealsTable = None
 

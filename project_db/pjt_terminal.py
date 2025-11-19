@@ -1,6 +1,15 @@
-from typing import Iterable as _Iterable
+from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
+
+if TYPE_CHECKING:
+    from . import pjt_cavity as _pjt_cavity
+    from . import pjt_circuit as _pjt_circuit
+    from . import pjt_coordinate_2d as _pjt_coordinate_2d
+    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+
+    from ..global_db import terminal as _terminal
+    from ..global_db import seal as _seal
 
 
 class PJTTerminalsTable(PJTTableBase):
@@ -114,13 +123,3 @@ class PJTTerminal(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
-
-
-from . import pjt_cavity as _pjt_cavity  # NOQA
-from . import pjt_circuit as _pjt_circuit  # NOQA
-from . import pjt_wire as _pjt_wire  # NOQA
-from . import pjt_coordinate_2d as _pjt_coordinate_2d  # NOQA
-from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
-
-from ..global_db import terminal as _terminal  # NOQA
-from ..global_db import seal as _seal  # NOQA

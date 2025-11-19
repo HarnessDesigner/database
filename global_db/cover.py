@@ -4,7 +4,7 @@ from . import EntryBase, TableBase
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, DirectionMixin,
                      FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin,
-                     TemperatureMixin, ColorMixin, DimensionMixin)
+                     TemperatureMixin, ColorMixin, DimensionMixin, Model3DMixin)
 
 
 class CoversTable(TableBase):
@@ -42,7 +42,7 @@ class CoversTable(TableBase):
 
 class Cover(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, DirectionMixin,
             FamilyMixin, SeriesMixin, ResourceMixin, TemperatureMixin,
-            ColorMixin, DimensionMixin, WeightMixin):
+            ColorMixin, DimensionMixin, WeightMixin, Model3DMixin):
 
     _table: CoversTable = None
 

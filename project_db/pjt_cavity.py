@@ -7,6 +7,8 @@ if TYPE_CHECKING:
     from . import pjt_housing as _pjt_housing
     from . import pjt_terminal as _pjt_terminal
 
+    from ..global_db import cavity as _cavity
+
 
 class PJTCavitiesTable(PJTTableBase):
     __table_name__ = 'pjt_cavities'
@@ -76,6 +78,3 @@ class PJTCavity(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
-
-
-from ..global_db import cavity as _cavity  # NOQA

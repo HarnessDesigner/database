@@ -941,6 +941,14 @@ def pjt_wires(con, cur):
     con.commit()
 
 
+def splices(con, cur):
+    pass
+
+
+def models3d(con, cur):
+    pass
+
+
 if __name__ == '__main__':
     import sqlite3
     con_ = sqlite3.connect('test.db')

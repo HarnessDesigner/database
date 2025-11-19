@@ -1,7 +1,14 @@
 
-from typing import Iterable as _Iterable
+from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
+
+if TYPE_CHECKING:
+    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+    from . import pjt_coordinate_2d as _pjt_coordinate_2d
+    from . import pjt_circuit as _pjt_circuit
+
+    from ..global_db import wire as _wire
 
 
 class PJTWiresTable(PJTTableBase):
@@ -133,10 +140,3 @@ class PJTWire(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
-
-
-from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
-from . import pjt_coordinate_2d as _pjt_coordinate_2d  # NOQA
-from . import pjt_circuit as _pjt_circuit  # NOQA
-
-from ..global_db import wire as _wire  # NOQA

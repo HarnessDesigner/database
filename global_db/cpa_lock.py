@@ -4,7 +4,7 @@ from . import EntryBase, TableBase
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
                      SeriesMixin, ResourceMixin, TemperatureMixin, WeightMixin,
-                     ColorMixin, DimensionMixin)
+                     ColorMixin, DimensionMixin, Model3DMixin)
 
 
 class CPALocksTable(TableBase):
@@ -43,7 +43,7 @@ class CPALocksTable(TableBase):
 
 class CPALock(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
               SeriesMixin, ResourceMixin, TemperatureMixin, WeightMixin,
-              ColorMixin, DimensionMixin):
+              ColorMixin, DimensionMixin, Model3DMixin):
 
     _table: CPALocksTable = None
 

@@ -5,7 +5,6 @@ from . import EntryBase, TableBase
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
                      ResourceMixin, WeightMixin, ColorMixin, FamilyMixin, MaterialMixin)
 
-from . import material as _material
 from . import color as _color
 from . import temperature as _temperature
 

@@ -1,6 +1,10 @@
-from typing import Iterable as _Iterable
+from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
+from ...wrappers.decimal import Decimal as _decimal
+
+if TYPE_CHECKING:
+    from . import pjt_coordinate_3d as _pjt_coordinate_3d
 
 
 class PJTBundleLayoutsTable(PJTTableBase):
@@ -48,6 +52,3 @@ class PJTBundleLayout(PJTEntryBase):
     @diameter.setter
     def diameter(self, value: _decimal):
         self._table.update(self._db_id, diameter=float(value))
-
-
-from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA

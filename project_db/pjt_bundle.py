@@ -1,6 +1,11 @@
-from typing import Iterable as _Iterable
+from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
+
+if TYPE_CHECKING:
+    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+
+    from ..global_db import bundle_cover as _bundle_cover
 
 
 class PJTBundlesTable(PJTTableBase):
@@ -69,8 +74,3 @@ class PJTBundle(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
-
-
-from . import pjt_coordinate_3d as _pjt_coordinate_3d  # NOQA
-
-from ..global_db import bundle_cover as _bundle_cover  # NOQA

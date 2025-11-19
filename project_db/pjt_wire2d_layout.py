@@ -1,7 +1,10 @@
 
-from typing import Iterable as _Iterable
+from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
+
+if TYPE_CHECKING:
+    from . import pjt_coordinate_2d as _pjt_coordinate_2d
 
 
 class PJTWire2DLayoutsTable(PJTTableBase):
@@ -39,6 +42,3 @@ class PJTWire2DLayout(PJTEntryBase):
     @coord_id.setter
     def coord_id(self, value: int):
         self._table.update(self._db_id, coord_id=value)
-
-
-from . import pjt_coordinate_2d as _pjt_coordinate_2d  # NOQA

@@ -19,6 +19,7 @@ from . import wire_size as _wire_size  # NOQA
 from . import protection as _protection
 from . import weight as _weight
 from . import cavity_lock as _cavity_lock
+from . import model3d as _model3d
 
 
 ColorMixin = _color.ColorMixin
@@ -41,6 +42,8 @@ AdhesiveMixin = _adhesive.AdhesiveMixin
 ProtectionMixin = _protection.ProtectionMixin
 WeightMixin = _weight.WeightMixin
 CavityLockMixin = _cavity_lock.CavityLockMixin
+Model3DMixin = _model3d.Model3DMixin
+
 
 del _adhesive
 del _color
@@ -62,3 +65,4 @@ del _wire_size
 del _protection
 del _weight
 del _cavity_lock
+del _model3d

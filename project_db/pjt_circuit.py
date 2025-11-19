@@ -3,7 +3,6 @@ from typing import Iterable as _Iterable, TYPE_CHECKING
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
-
     from . import pjt_wire as _pjt_wire
     from . import pjt_splice as _pjt_splice
     from . import pjt_terminal as _pjt_terminal

@@ -60,7 +60,7 @@ class PJTCoordinate2D(PJTEntryBase):
 
     @property
     def point(self) -> _point.Point:
-        point = _point.Point(self.x, self.y, project_id=self._table.project_id, point_id=self._db_id)
+        point = _point.Point(self.x, self.y, db_obj=self)
         point.Bind(self.__on_update)
         return point
 
