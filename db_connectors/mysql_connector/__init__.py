@@ -1,12 +1,7 @@
 from typing import (
-    Dict as _Dict,
     Optional as _Optional,
-    Sequence as _Sequence,
     Union as _Union,
     Generator as _Generator,
-    List as _List,
-    Tuple as _Tuple,
-    Set as _Set
 )
 
 import wx
@@ -38,12 +33,12 @@ _ToMysqlInputTypes = _Optional[_Union[int, float, _Decimal, _StrOrBytes, bool,
                                       _datetime, _date, _time, _struct_time, _timedelta]]
 
 _ToPythonOutputTypes = _Optional[_Union[float, int, _Decimal, _StrOrBytes, _date,
-                                        _timedelta, _datetime, _Set[str]]]
-_ParamsSequenceType = _Sequence[_ToMysqlInputTypes]
-_ParamsDictType = _Dict[str, _ToMysqlInputTypes]
+                                        _timedelta, _datetime, set[str]]]
+_ParamsSequenceType = list[_ToMysqlInputTypes] | tuple[_ToMysqlInputTypes]
+_ParamsDictType = dict[str, _ToMysqlInputTypes]
 _ParamsSequenceOrDictType = _Union[_ParamsDictType, _ParamsSequenceType]
 
-_RowType = _Tuple[_ToPythonOutputTypes, ...]
+_RowType = tuple[_ToPythonOutputTypes, ...]
 
 
 class Config(metaclass=_Config):
@@ -221,7 +216,7 @@ class SQLConnector(ConnectorBase):
         self._cursor.execute(operation, params, multi)
 
     def executemany(
-        self, operation: str, seq_params: _Sequence[_ParamsSequenceOrDictType]
+        self, operation: str, seq_params: list[_ParamsSequenceOrDictType] | tuple[_ParamsSequenceOrDictType]
     ) -> _Optional[_Generator[_MySQLCursor, None, None]]:
 
         self._cursor.executemany(operation, seq_params)
@@ -233,10 +228,10 @@ class SQLConnector(ConnectorBase):
     def fetchone(self) -> _Optional[_RowType]:
         return self._cursor.fetchone()
 
-    def fetchmany(self, size: _Optional[int] = None) -> _List[_RowType]:
+    def fetchmany(self, size: _Optional[int] = None) -> list[_RowType]:
         return self._cursor.fetchmany(size)
 
-    def fetchall(self) -> _List[_RowType]:
+    def fetchall(self) -> list[_RowType]:
         return self._cursor.fetchall()
 
     def commit(self):

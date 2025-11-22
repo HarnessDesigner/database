@@ -37,6 +37,86 @@ class SealsTable(TableBase):
                                  cad_id=cad_id, weight=weight)
         return Seal(self, db_id)
 
+    def parts_list(self):
+        cmd = (
+            'SELECT seal.id, seal.part_number, seal.description, manufacturer.name,',
+            'series.name, seal.weight, mintemp.name, maxtemp.name, seal.o_dia,',
+            'seal.i_dia, seal.type, seal.wire_dia_min, seal.wire_dia_max FROM seals seal',
+            'INNER JOIN manufacturers manufacturer ON seal.mfg_id = manufacturer.id',
+            'INNER JOIN temperatures mintemp ON seal.min_temp_id = mintemp.id',
+            'INNER JOIN temperatures maxtemp ON seal.max_temp_id = maxtemp.id',
+            'INNER JOIN series series ON seal.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Outside Diameter': dict(),
+            'Inside Diameter': dict(),
+            'Type': dict(),
+            'Min Wire Diameter': dict(),
+            'Max Wire Diameter': dict(),
+            'Series': dict(),
+            'Min Temp': dict(),
+            'Max Temp': dict()
+        }
+
+        res = {}
+
+        for (id, part_number, description, mfg, series, weight, mintemp, maxtemp,
+             o_dia, i_dia, type, wire_dia_min, wire_dia_max) in data:
+
+            res[part_number] = (id, description, mfg, series, weight, mintemp,
+                                maxtemp, o_dia, i_dia, type, wire_dia_min, wire_dia_max)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+
+            if o_dia not in commons['Outside Diameter']:
+                commons['Outside Diameter'][o_dia] = []
+
+            commons['Outside Diameter'][o_dia].append(part_number)
+
+            if i_dia not in commons['Inside Diameter']:
+                commons['Inside Diameter'][i_dia] = []
+
+            commons['Inside Diameter'][i_dia].append(part_number)
+
+            if type not in commons['Type']:
+                commons['Type'][type] = []
+
+            commons['Type'][type].append(part_number)
+
+            if wire_dia_min not in commons['Min Wire Diameter']:
+                commons['Min Wire Diameter'][wire_dia_min] = []
+
+            commons['Min Wire Diameter'][wire_dia_min].append(part_number)
+
+            if wire_dia_max not in commons['Max Wire Diameter']:
+                commons['Max Wire Diameter'][wire_dia_max] = []
+
+            commons['Max Wire Diameter'][wire_dia_max].append(part_number)
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Series'][series].append(part_number)
+
+            if mintemp not in commons['Min Temp']:
+                commons['Min Temp'][mintemp] = []
+
+            commons['Min Temp'][mintemp].append(part_number)
+
+            if maxtemp not in commons['Max Temp']:
+                commons['Max Temp'][maxtemp] = []
+
+            commons['Max Temp'][maxtemp].append(part_number)
+
+        return res, commons
+
 
 class Seal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
            ColorMixin, TemperatureMixin, ResourceMixin, WeightMixin, Model3DMixin):

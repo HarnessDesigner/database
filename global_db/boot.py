@@ -43,8 +43,42 @@ class BootsTable(TableBase):
 
         return Boot(self, db_id)
 
-    def get_control(self, parent):
-        pass
+    def parts_list(self):
+        cmd = (
+            'SELECT boot.id, boot.part_number, boot.description, manufacturer.name,',
+            'family.name, series.name, boot.weight FROM boots boot',
+            'INNER JOIN manufacturers manufacturer ON boot.mfg_id = manufacturer.id',
+            'INNER JOIN families family ON boot.family_id = family.id',
+            'INNER JOIN series series ON boot.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Family': dict(),
+            'Series': dict()
+        }
+
+        res = {}
+
+        for id, part_number, description, mfg, family, series, weight in data:
+            res[part_number] = (id, description, mfg, family, series, weight)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            if family not in commons['Family']:
+                commons['Family'][family] = []
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+            commons['Family'][family].append(part_number)
+            commons['Series'][series].append(part_number)
+
+        return res, commons
 
 
 from ...widgets import auto_complete as _auto_complete  # NOQA

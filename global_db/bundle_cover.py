@@ -46,6 +46,110 @@ class BundleCoversTable(TableBase):
 
         return BundleCover(self, db_id)
 
+    def parts_list(self):
+        cmd = (
+            'SELECT bundle_cover.id, bundle_cover.part_number, bundle_cover.description,',
+            'manufacturer.name, material.name, series.name, bundle_cover.weight,',
+            'mintemp.name, maxtemp.name, adhesive.name, protection.name, bundle_cover.rigidity,',
+            'shrinktemp.name, bundle_cover.shrink_ratio, bundle_cover.wall, bundle_cover.min_size,',
+            'bundle_cover.max_size FROM bundle_covers bundle_cover',
+            'INNER JOIN manufacturers manufacturer ON bundle_cover.mfg_id = manufacturer.id',
+            'INNER JOIN materials material ON bundle_cover.material_id = material.id',
+            'INNER JOIN temperatures mintemp ON bundle_cover.min_temp_id = mintemp.id',
+            'INNER JOIN temperatures maxtemp ON bundle_cover.max_temp_id = maxtemp.id',
+            'INNER JOIN adhesives adhesive ON bundle_cover.adhesive_id = ashesive.id',
+            'INNER JOIN protections protection ON bundle_cover.protection_id = protection.id',
+            'INNER JOIN temperatures shrinktemp ON bundle_cover.shrink_temp_id = shrinktemp.id',
+            'INNER JOIN series series ON bundle_cover.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Rigidity': dict(),
+            'Shrink Ratio': dict(),
+            'Wall Type': dict(),
+            'Min Diameter': dict(),
+            'Nax Diameter': dict(),
+            'Material': dict(),
+            'Series': dict(),
+            'Min Temp': dict(),
+            'Max Temp': dict(),
+            'Adhesive': dict(),
+            'Protections': dict()
+        }
+
+        res = {}
+
+        for (id, part_number, description, mfg, material, series, weight, mintemp, maxtemp,
+             adhesive, protection, rigidity, shrinktemp, shrink_ratio, wall, min_size,max_size) in data:
+
+            res[part_number] = (id, description, mfg, material, series, weight, mintemp, maxtemp, adhesive,
+                                protection, rigidity, shrinktemp, shrink_ratio, wall, min_size, max_size)
+
+            if rigidity not in commons['Rigidity']:
+                commons['Rigidity'][rigidity] = []
+
+            commons['Rigidity'][rigidity].append(part_number)
+
+            if shrink_ratio not in commons['Shrink Ratio']:
+                commons['Shrink Ratio'][shrink_ratio] = []
+
+            commons['Shrink Ratio'][shrink_ratio].append(part_number)
+
+            if wall not in commons['Wall Type']:
+                commons['Wall Type'][wall] = []
+
+            commons['Wall Type'][wall].append(part_number)
+
+            if min_size not in commons['Min Diameter']:
+                commons['Min Diameter'][min_size] = []
+
+            commons['Min Diameter'][min_size].append(part_number)
+
+            if max_size not in commons['Max Diameter']:
+                commons['Nax Diameter'][max_size] = []
+
+            commons['Max Diameter'][max_size].append(part_number)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+
+            if material not in commons['Material']:
+                commons['Material'][material] = []
+
+            commons['Material'][material].append(part_number)
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Series'][series].append(part_number)
+
+            if mintemp not in commons['Min Temp']:
+                commons['Min Temp'][mintemp] = []
+
+            commons['Min Temp'][mintemp].append(part_number)
+
+            if maxtemp not in commons['Max Temp']:
+                commons['Max Temp'][maxtemp] = []
+
+            commons['Max Temp'][maxtemp].append(part_number)
+
+            if adhesive not in commons['Adhesive']:
+                commons['Adhesive'][adhesive] = []
+
+            commons['Adhesive'][adhesive].append(part_number)
+
+            if protection not in commons['Protections']:
+                commons['Protections'][protection] = []
+
+            commons['Protections'][protection].append(part_number)
+
+        return res, commons
+
 
 class BundleCover(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, 
                   ResourceMixin, TemperatureMixin, ColorMixin, SeriesMixin,

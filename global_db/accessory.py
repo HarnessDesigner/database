@@ -27,6 +27,49 @@ class AccessoriesTable(TableBase):
         db_id = TableBase.insert(self, code=code, description=description)
         return Accessory(self, db_id)
 
+    def parts_list(self):
+        cmd = (
+         'SELECT accessory.id, accessory.part_number, accessory.description, manufacturer.name,',
+         'family.name, series.name, material.name FROM accessories accessory',
+         'INNER JOIN manufacturers manufacturer ON accessory.mfg_id = manufacturer.id',
+         'INNER JOIN families family ON accessory.family_id = family.id',
+         'INNER JOIN series series ON accessory.series_id = series.id',
+         'INNER JOIN materials material ON accessory.material_id = material.id'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Family': dict(),
+            'Series': dict(),
+            'Material': dict()
+        }
+
+        res = {}
+
+        for id, part_number, description, mfg, family, series, material in data:
+            res[part_number] = (id, description, mfg, family, series, material)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            if family not in commons['Family']:
+                commons['Family'][family] = []
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            if material not in commons['Material']:
+                commons['Material'][material] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+            commons['Family'][family].append(part_number)
+            commons['Series'][series].append(part_number)
+            commons['Material'][material].append(part_number)
+
+        return res, commons
+
 
 class Accessory(EntryBase, PartNumberMixin, DescriptionMixin, ManufacturerMixin, FamilyMixin, SeriesMixin, ColorMixin, MaterialMixin):
     _table: AccessoriesTable = None

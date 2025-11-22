@@ -44,6 +44,99 @@ class WiresTable(TableBase):
 
         return Wire(self, db_id)
 
+    def parts_list(self):
+        cmd = (
+            'SELECT wire.id, wire.part_number, wire.description,',
+            'manufacturer.name, series.name, wire.weight, material.name,',
+            'wire.od_mm, wire.shielded, wire.tpi, wire.conductor_dia_mm,',
+            'wire.num_conductors, wire.size_mm2, wire.size_awg, maxtemp.name,',
+            'family.name FROM wires wire',
+            'INNER JOIN manufacturers manufacturer ON transition.mfg_id = manufacturer.id',
+            'INNER JOIN families family ON wire.family_id = family.id',
+            'INNER JOIN materials material ON wire.material_id = material.id',
+            'INNER JOIN temperatures maxtemp ON wire.max_temp_id = maxtemp.id',
+            'INNER JOIN series series ON wire.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Material': dict(),
+            'Outside Diameter': dict(),
+            'Shielded': dict(),
+            'TPI': dict(),
+            'Conductor Count': dict(),
+            'Size (mm2)': dict(),
+            'Size (AWG)': dict(),
+            'Series': dict(),
+            'Family': dict()
+        }
+
+        res = {}
+
+        for (id, part_number, description, mfg, series, weight, material, od_mm,
+             shielded, tpi, conductor_dia_mm, num_conductors, size_mm2, size_awg,
+             maxtemp, family) in data:
+
+            res[part_number] = (id, description, mfg, series, weight, material,
+                                od_mm, shielded, tpi, conductor_dia_mm, num_conductors,
+                                size_mm2, size_awg, maxtemp, family)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+
+            if material not in commons['Material']:
+                commons['Material'][material] = []
+
+            commons['Material'][material].append(part_number)
+
+            if od_mm not in commons['Outside Diameter']:
+                commons['Outside Diameter'][od_mm] = []
+
+            commons['Outside Diameter'][od_mm].append(part_number)
+
+            shielded = 'Yes' if shielded else 'No'
+
+            if shielded not in commons['Shielded']:
+                commons['Shielded'][shielded] = []
+
+            commons['Shielded'][shielded].append(part_number)
+
+            if tpi not in commons['TPI']:
+                commons['TPI'][tpi] = []
+
+            commons['TPI'][tpi].append(part_number)
+
+            if size_mm2 not in commons['Size (mm2)']:
+                commons['Size (mm2)'][size_mm2] = []
+
+            commons['Size (mm2)'][size_mm2].append(part_number)
+
+            if size_awg not in commons['Size (AWG)']:
+                commons['Size (AWG)'][size_awg] = []
+
+            commons['Size (AWG)'][size_awg].append(part_number)
+
+            if num_conductors not in commons['Conductor Count']:
+                commons['Conductor Count'][num_conductors] = []
+
+            commons['Conductor Count'][num_conductors].append(part_number)
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Series'][series].append(part_number)
+
+            if family not in commons['Family']:
+                commons['Family'][family] = []
+
+            commons['Family'][family].append(part_number)
+
+        return res, commons
+
 
 class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
            FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin, ColorMixin, MaterialMixin):

@@ -39,6 +39,61 @@ class CoversTable(TableBase):
 
         return Cover(self, db_id)
 
+    def parts_list(self):
+        cmd = (
+            'SELECT cover.id, cover.part_number, cover.description, manufacturer.name,',
+            'series.name, cover.weight, mintemp.name, maxtemp.name, family.name FROM covers cover',
+            'INNER JOIN manufacturers manufacturer ON cover.mfg_id = manufacturer.id',
+            'INNER JOIN materials material ON cover.material_id = material.id',
+            'INNER JOIN temperatures mintemp ON cover.min_temp_id = mintemp.id',
+            'INNER JOIN temperatures maxtemp ON cover.max_temp_id = maxtemp.id',
+            'INNER JOIN families family ON cover.family_id = family.id',
+            'INNER JOIN series series ON cover.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Family': dict(),
+            'Series': dict(),
+            'Min Temp': dict(),
+            'Max Temp': dict()
+        }
+
+        res = {}
+
+        for (id, part_number, description, mfg, series, weight, mintemp, maxtemp, family) in data:
+
+            res[part_number] = (id, description, mfg, series, weight, mintemp, maxtemp, family)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+
+            if family not in commons['Family']:
+                commons['Family'][family] = []
+
+            commons['Family'][family].append(part_number)
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Series'][series].append(part_number)
+
+            if mintemp not in commons['Min Temp']:
+                commons['Min Temp'][mintemp] = []
+
+            commons['Min Temp'][mintemp].append(part_number)
+
+            if maxtemp not in commons['Max Temp']:
+                commons['Max Temp'][maxtemp] = []
+
+            commons['Max Temp'][maxtemp].append(part_number)
+
+        return res, commons
+
 
 class Cover(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, DirectionMixin,
             FamilyMixin, SeriesMixin, ResourceMixin, TemperatureMixin,

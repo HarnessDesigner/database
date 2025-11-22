@@ -50,6 +50,125 @@ class TerminalsTable(TableBase):
                                  plating_id=plating_id, weight=weight)
         return Terminal(self, db_id)
 
+    def parts_list(self):
+        cmd = (
+            'SELECT terminal.id, terminal.part_number, terminal.description,',
+            'manufacturer.name, series.name, terminal.weight, terminal.sealing,',
+            'terminal.blade_size, terminal.max_current_ma, gender.name,',
+            'plating.symbol, terminal.min_wire_cross, terminal.max_wire_cross,',
+            'terminal.wire_size_min_awg, terminal.wire_size_max_awg, terminal.wire_dia_min,',
+            'terminal.wire_dia_max, family.name FROM terminals terminal',
+            'INNER JOIN manufacturers manufacturer ON terminal.mfg_id = manufacturer.id',
+            'INNER JOIN families family ON terminal.family_id = family.id',
+            'INNER JOIN genders gender ON terminal.gender_id = gender.id',
+            'INNER JOIN platings plating ON terminal.plating_id = plating.id',
+            'INNER JOIN series series ON terminal.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Sealing': dict(),
+            'Blade Size': dict(),
+            'Max Current (ma)': dict(),
+            'Gender': dict(),
+            'Plating': dict(),
+            'Min Wire Size (mm2)': dict(),
+            'Max Wire Size (mm2)': dict(),
+            'Min Wire Size (AWG)': dict(),
+            'Max Wire Size (AWG)': dict(),
+            'Min Wire Size (mm)': dict(),
+            'Max Wire Size (mm)': dict(),
+            'Series': dict(),
+            'Family': dict()
+        }
+
+        res = {}
+
+        for (id, part_number, description, mfg, series,
+             weight, sealing, blade_size, max_current_ma, gender,
+             plating, min_wire_cross, max_wire_cross, wire_size_min_awg,
+             wire_size_max_awg, wire_dia_min, wire_dia_max, family) in data:
+
+            res[part_number] = (id, description, mfg, series, weight, sealing, blade_size,
+                                max_current_ma, gender, plating, min_wire_cross, max_wire_cross,
+                                wire_size_min_awg, wire_size_max_awg, wire_dia_min, wire_dia_max, family)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+
+            sealing = 'Yes' if sealing else 'No'
+
+            if sealing not in commons['Sealing']:
+                commons['Sealing'][sealing] = []
+
+            commons['Sealing'][sealing].append(part_number)
+
+            if blade_size not in commons['Blade Size']:
+                commons['Blade Size'][blade_size] = []
+
+            commons['Blade Size'][blade_size].append(part_number)
+
+            if max_current_ma not in commons['Max Current (ma)']:
+                commons['Max Current (ma)'][max_current_ma] = []
+
+            commons['Max Current (ma)'][max_current_ma].append(part_number)
+
+            if gender not in commons['Gender']:
+                commons['Gender'][gender] = []
+
+            commons['Gender'][gender].append(part_number)
+
+            if plating not in commons['Plating']:
+                commons['Plating'][plating] = []
+
+            commons['Plating'][plating].append(part_number)
+
+            if min_wire_cross not in commons['Min Wire Size (mm2)']:
+                commons['Min Wire Size (mm2)'][min_wire_cross] = []
+
+            commons['Min Wire Size (mm2)'][min_wire_cross].append(part_number)
+
+            if max_wire_cross not in commons['Max Wire Size (mm2)']:
+                commons['Max Wire Size (mm2)'][max_wire_cross] = []
+
+            commons['Max Wire Size (mm2)'][max_wire_cross].append(part_number)
+
+            if wire_size_min_awg not in commons['Min Wire Size (AWG)']:
+                commons['Min Wire Size (AWG)'][wire_size_min_awg] = []
+
+            commons['Min Wire Size (AWG)'][wire_size_min_awg].append(part_number)
+
+            if wire_size_max_awg not in commons['Max Wire Size (AWG)']:
+                commons['Max Wire Size (AWG)'][wire_size_max_awg] = []
+
+            commons['Max Wire Size (AWG)'][wire_size_max_awg].append(part_number)
+
+            if wire_dia_min not in commons['Min Wire Size (mm)']:
+                commons['Min Wire Size (mm)'][wire_dia_min] = []
+
+            commons['Min Wire Size (mm)'][wire_dia_min].append(part_number)
+
+            if wire_dia_max not in commons['Max Wire Size (mm)']:
+                commons['Max Wire Size (mm)'][wire_dia_max] = []
+
+            commons['Max Wire Size (mm)'][wire_dia_max].append(part_number)
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Series'][series].append(part_number)
+
+            if family not in commons['Family']:
+                commons['Family'][family] = []
+
+            commons['Family'][family].append(part_number)
+
+        return res, commons
+
 
 class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
                SeriesMixin, FamilyMixin, ResourceMixin, WeightMixin, CavityLockMixin, Model3DMixin):

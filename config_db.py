@@ -3,6 +3,12 @@ import sqlite3
 
 
 class ConfigTable:
+    """
+    This class represents a table in the sqlite database.
+
+    This class mimicks some of the features of a dictionary so the saved
+    entries are able to be accessed by using the attaribute name as a key.
+    """
 
     def __init__(self, con, cur, name):
         self._con = con
@@ -36,6 +42,14 @@ class ConfigTable:
 
 
 class ConfigDB:
+    """
+    This class handles the actual connection to the sqlite database.
+
+    Handles what table in the database is to be accessed. The tables are
+    not cached because most of the information that is stored only gets loaded
+    when the application starts and data gets saved to the database if a value
+    gets modified and also when the application exits.
+    """
 
     def __init__(self, app_data):
         config_db_file = os.path.join(app_data, 'config.db')

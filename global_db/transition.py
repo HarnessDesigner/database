@@ -46,6 +46,88 @@ class TransitionsTable(TableBase):
 
         return Transition(self, db_id)
 
+    def parts_list(self):
+        cmd = (
+            'SELECT transition.id, transition.part_number, transition.description,',
+            'manufacturer.name, series.name, transition.weight, material.name,',
+            'transition.branch_count, protection.name, adhesive.name, shape.name,',
+            'mintemp.name, maxtemp.name, family.name FROM transitions transition',
+            'INNER JOIN manufacturers manufacturer ON transition.mfg_id = manufacturer.id',
+            'INNER JOIN families family ON transition.family_id = family.id',
+            'INNER JOIN materials material ON transition.material_id = material.id',
+            'INNER JOIN adhesives adhesive ON transition.adhesive_id = adhesive.id',
+            'INNER JOIN protections adhesive ON transition.protection_id = protection.id',
+            'INNER JOIN shapes shape ON transition.shape_id = shape.id',
+            'INNER JOIN temperatures mintemp ON transition.min_temp_id = mintemp.id',
+            'INNER JOIN temperatures maxtemp ON transition.max_temp_id = maxtemp.id',
+            'INNER JOIN series series ON transition.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Material': dict(),
+            'Branch Count': dict(),
+            'Protection': dict(),
+            'Adhesive': dict(),
+            'Shape': dict(),
+            'Series': dict(),
+            'Family': dict()
+        }
+
+        res = {}
+
+        for (id, part_number, description, mfg, series, weight, material, branch_count,
+             protection, adhesive, shape, mintemp, maxtemp, family) in data:
+
+            res[part_number] = (id, description, mfg, series, weight, material,
+                                branch_count, protection, adhesive, shape, mintemp,
+                                maxtemp, family)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+
+            if material not in commons['Material']:
+                commons['Material'][material] = []
+
+            commons['Material'][material].append(part_number)
+
+            if branch_count not in commons['Branch Count']:
+                commons['Branch Count'][branch_count] = []
+
+            commons['Branch Count'][branch_count].append(part_number)
+
+            if protection not in commons['Protection']:
+                commons['Protection'][protection] = []
+
+            commons['Protection'][protection].append(part_number)
+
+            if adhesive not in commons['Adhesive']:
+                commons['Adhesive'][adhesive] = []
+
+            commons['Adhesive'][adhesive].append(part_number)
+
+            if shape not in commons['Shape']:
+                commons['Shape'][shape] = []
+
+            commons['Shape'][shape].append(part_number)
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Series'][series].append(part_number)
+
+            if family not in commons['Family']:
+                commons['Family'][family] = []
+
+            commons['Family'][family].append(part_number)
+
+        return res, commons
+
+
 
 class Transition(EntryBase, PartNumberMixin, SeriesMixin, MaterialMixin, FamilyMixin,
                  ManufacturerMixin, DescriptionMixin, ColorMixin, ProtectionMixin, AdhesiveMixin,
