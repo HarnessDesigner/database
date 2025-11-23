@@ -60,6 +60,129 @@ class HousingsTable(TableBase):
 
         return Housing(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Series',
+            'Family',
+            'Gender',
+            'Num Pins',
+            'Rows',
+            'Sealed',
+            'Terminal Sizes',
+            'IP Rating',
+            'Cavity Lock',
+            'Centerline',
+            'Min Temp',
+            'Max Temp',
+            'Weight'
+        ]
+
+    def parts_list(self):
+        cmd = (
+            'SELECT housing.id, housing.part_number, housing.description,',
+            'manufacturer.name, series.name, housing.weight, gender.name,',
+            'ip_rating.name, cavity_lock.name, housing.terminal_sizes,',
+            'housing.sealed, housing.centerline, housing.rows, housing.num_pins,',
+            'mintemp.name, maxtemp.name, family.name FROM housings housing',
+            'INNER JOIN manufacturers manufacturer ON housing.mfg_id = manufacturer.id',
+            'INNER JOIN families family ON housing.family_id = family.id',
+            'INNER JOIN cavity_locks cavity_lock ON housing.cavity_lock_id = cavity_lock.id',
+            'INNER JOIN ip_ratings ip_rating ON housing.ip_rating_id = ip_rating.id',
+            'INNER JOIN genders gender ON housing.gender_id = gender.id',
+            'INNER JOIN temperatures mintemp ON housing.min_temp_id = maxtemp.id',
+            'INNER JOIN temperatures maxtemp ON housing.max_temp_id = maxtemp.id',
+            'INNER JOIN series series ON housing.series_id = series.id;'
+        )
+        cmd = ' '.join(cmd)
+        data = self.execute(cmd)
+
+        commons = {
+            'Manufacturer': dict(),
+            'Series': dict(),
+            'Family': dict(),
+            'Gender': dict(),
+            'Num Pins': dict(),
+            'Rows': dict(),
+            'Sealed': dict(),
+            'Terminal Sizes': dict(),
+            'IP Rating': dict(),
+            'Cavity Lock': dict(),
+            'Centerline': dict()
+        }
+
+        res = {}
+
+        for (id, part_number, description, mfg, series, weight, gender, ip_rating,
+             cavity_lock, terminal_sizes, sealed, centerline, rows, num_pins,
+             mintemp, maxtemp, family) in data:
+
+            res[part_number] = (mfg, description, series, family, gender, num_pins,
+                                rows, sealed, terminal_sizes, ip_rating, cavity_lock,
+                                centerline, mintemp, maxtemp, weight, id)
+
+            if mfg not in commons['Manufacturer']:
+                commons['Manufacturer'][mfg] = []
+
+            commons['Manufacturer'][mfg].append(part_number)
+
+            if series not in commons['Series']:
+                commons['Series'][series] = []
+
+            commons['Series'][series].append(part_number)
+
+            if family not in commons['Family']:
+                commons['Family'][family] = []
+
+            commons['Family'][family].append(part_number)
+
+            if gender not in commons['Gender']:
+                commons['Gender'][gender] = []
+
+            commons['Gender'][gender].append(part_number)
+
+            if num_pins not in commons['Num Pins']:
+                commons['Num Pins'][num_pins] = []
+
+            commons['Num Pins'][num_pins].append(part_number)
+
+            if rows not in commons['Rows']:
+                commons['Rows'][rows] = []
+
+            commons['Rows'][rows].append(part_number)
+
+            sealed = 'Yes' if sealed else 'No'
+
+            if sealed not in commons['Sealed']:
+                commons['Sealed'][sealed] = []
+
+            commons['Sealed'][sealed].append(part_number)
+
+            if terminal_sizes not in commons['Terminal Sizes']:
+                commons['Terminal Sizes'][terminal_sizes] = []
+
+            commons['Terminal Sizes'][terminal_sizes].append(part_number)
+
+            if ip_rating not in commons['IP Rating']:
+                commons['IP Rating'][ip_rating] = []
+
+            commons['IP Rating'][ip_rating].append(part_number)
+
+            if cavity_lock not in commons['Cavity Lock']:
+                commons['Cavity Lock'][cavity_lock] = []
+
+            commons['Cavity Lock'][cavity_lock].append(part_number)
+
+            if centerline not in commons['Centerline']:
+                commons['Centerline'][centerline] = []
+
+            commons['Centerline'][centerline].append(part_number)
+
+        return res, commons
+
 
 class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin, 
               SeriesMixin, ColorMixin, TemperatureMixin, ResourceMixin, GenderMixin,
@@ -266,5 +389,3 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
     @dxf_id.setter
     def dxf_id(self, value: int):
         self._table.update(self._db_id, dxf_id=value)
-
-

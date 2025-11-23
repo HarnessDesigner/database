@@ -39,6 +39,19 @@ class TPALocksTable(TableBase):
 
         return TPALock(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Series',
+            'Family',
+            'Weight',
+            'Min Temp',
+            'Max Temp'
+        ]
+
     def parts_list(self):
         cmd = (
             'SELECT tpa_lock.id, tpa_lock.part_number, tpa_lock.description,',
@@ -65,7 +78,7 @@ class TPALocksTable(TableBase):
 
         for (id, part_number, description, mfg, series, weight, mintemp, maxtemp, family) in data:
 
-            res[part_number] = (id, description, mfg, series, weight, mintemp, maxtemp, family)
+            res[part_number] = (mfg, description, series, family, weight, mintemp, maxtemp, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []

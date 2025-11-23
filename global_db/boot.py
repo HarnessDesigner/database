@@ -43,6 +43,17 @@ class BootsTable(TableBase):
 
         return Boot(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Series',
+            'Family',
+            'Weight'
+        ]
+
     def parts_list(self):
         cmd = (
             'SELECT boot.id, boot.part_number, boot.description, manufacturer.name,',
@@ -63,7 +74,7 @@ class BootsTable(TableBase):
         res = {}
 
         for id, part_number, description, mfg, family, series, weight in data:
-            res[part_number] = (id, description, mfg, family, series, weight)
+            res[part_number] = (mfg, description, series, family, weight, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []

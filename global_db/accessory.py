@@ -27,6 +27,17 @@ class AccessoriesTable(TableBase):
         db_id = TableBase.insert(self, code=code, description=description)
         return Accessory(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Series',
+            'Family',
+            'Material'
+        ]
+
     def parts_list(self):
         cmd = (
          'SELECT accessory.id, accessory.part_number, accessory.description, manufacturer.name,',
@@ -49,7 +60,7 @@ class AccessoriesTable(TableBase):
         res = {}
 
         for id, part_number, description, mfg, family, series, material in data:
-            res[part_number] = (id, description, mfg, family, series, material)
+            res[part_number] = (mfg, description, series, family, material, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []

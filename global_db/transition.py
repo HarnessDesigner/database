@@ -46,6 +46,24 @@ class TransitionsTable(TableBase):
 
         return Transition(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Branch Count',
+            'Shape',
+            'Series',
+            'Family',
+            'Material',
+            'Weight',
+            'Protection',
+            'Adhesive',
+            'Min Temp',
+            'Max Temp'
+        ]
+
     def parts_list(self):
         cmd = (
             'SELECT transition.id, transition.part_number, transition.description,',
@@ -81,9 +99,9 @@ class TransitionsTable(TableBase):
         for (id, part_number, description, mfg, series, weight, material, branch_count,
              protection, adhesive, shape, mintemp, maxtemp, family) in data:
 
-            res[part_number] = (id, description, mfg, series, weight, material,
-                                branch_count, protection, adhesive, shape, mintemp,
-                                maxtemp, family)
+            res[part_number] = (mfg, description, branch_count, shape, series,
+                                family, material, weight, protection, adhesive,
+                                mintemp, maxtemp, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []
@@ -126,7 +144,6 @@ class TransitionsTable(TableBase):
             commons['Family'][family].append(part_number)
 
         return res, commons
-
 
 
 class Transition(EntryBase, PartNumberMixin, SeriesMixin, MaterialMixin, FamilyMixin,

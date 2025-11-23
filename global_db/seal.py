@@ -37,6 +37,23 @@ class SealsTable(TableBase):
                                  cad_id=cad_id, weight=weight)
         return Seal(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Series',
+            'Type',
+            'Min Wire Dia',
+            'Max Wire Dia',
+            'Outside Dia',
+            'Inside Dia',
+            'Weight',
+            'Min Temp',
+            'Max Temp'
+        ]
+
     def parts_list(self):
         cmd = (
             'SELECT seal.id, seal.part_number, seal.description, manufacturer.name,',
@@ -67,8 +84,9 @@ class SealsTable(TableBase):
         for (id, part_number, description, mfg, series, weight, mintemp, maxtemp,
              o_dia, i_dia, type, wire_dia_min, wire_dia_max) in data:
 
-            res[part_number] = (id, description, mfg, series, weight, mintemp,
-                                maxtemp, o_dia, i_dia, type, wire_dia_min, wire_dia_max)
+            res[part_number] = (mfg, description, series, type, wire_dia_min,
+                                wire_dia_max, o_dia, i_dia, weight, mintemp,
+                                maxtemp, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []

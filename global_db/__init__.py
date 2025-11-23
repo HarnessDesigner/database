@@ -114,6 +114,13 @@ class TableBase:
     def fetchall(self):
         return self._con.fetchall()
 
+    @property
+    def headers(self) -> list[str]:
+        return []
+
+    def parts_list(self) -> tuple[dict, dict]:
+        return {}, {}
+
 
 from .accessory import AccessoriesTable  # NOQA
 from .boot import BootsTable  # NOQA

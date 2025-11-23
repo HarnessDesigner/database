@@ -44,6 +44,26 @@ class WiresTable(TableBase):
 
         return Wire(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Size (mm2)',
+            'Size (AWG)',
+            'Conductor Count',
+            'Series',
+            'Family',
+            'Material',
+            'Outside Diameter',
+            'Shielded',
+            'TPI',
+            'Weight',
+            'Max Temperature',
+            'Conductor Diameter'
+        ]
+
     def parts_list(self):
         cmd = (
             'SELECT wire.id, wire.part_number, wire.description,',
@@ -79,9 +99,9 @@ class WiresTable(TableBase):
              shielded, tpi, conductor_dia_mm, num_conductors, size_mm2, size_awg,
              maxtemp, family) in data:
 
-            res[part_number] = (id, description, mfg, series, weight, material,
-                                od_mm, shielded, tpi, conductor_dia_mm, num_conductors,
-                                size_mm2, size_awg, maxtemp, family)
+            res[part_number] = (mfg, description, size_mm2, size_awg, num_conductors,
+                                series, family, material, od_mm, shielded, tpi, weight,
+                                maxtemp, conductor_dia_mm, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []

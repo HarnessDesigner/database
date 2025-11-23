@@ -46,6 +46,27 @@ class BundleCoversTable(TableBase):
 
         return BundleCover(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Series',
+            'Min Dia',
+            'Max Dia',
+            'Material',
+            'Wall',
+            'Shrink Ratio',
+            'Adhesive',
+            'Protection',
+            'Rigidity',
+            'Shrink Temp',
+            'Weight',
+            'Min Temp',
+            'Max Temp'
+        ]
+
     def parts_list(self):
         cmd = (
             'SELECT bundle_cover.id, bundle_cover.part_number, bundle_cover.description,',
@@ -85,8 +106,9 @@ class BundleCoversTable(TableBase):
         for (id, part_number, description, mfg, material, series, weight, mintemp, maxtemp,
              adhesive, protection, rigidity, shrinktemp, shrink_ratio, wall, min_size,max_size) in data:
 
-            res[part_number] = (id, description, mfg, material, series, weight, mintemp, maxtemp, adhesive,
-                                protection, rigidity, shrinktemp, shrink_ratio, wall, min_size, max_size)
+            res[part_number] = (mfg, description, series, min_size, max_size,
+                                material, wall, shrink_ratio, adhesive, protection,
+                                rigidity, shrinktemp, weight, mintemp, maxtemp, id)
 
             if rigidity not in commons['Rigidity']:
                 commons['Rigidity'][rigidity] = []

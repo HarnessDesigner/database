@@ -50,6 +50,28 @@ class TerminalsTable(TableBase):
                                  plating_id=plating_id, weight=weight)
         return Terminal(self, db_id)
 
+    @property
+    def headers(self):
+        return [
+            'Part Number',
+            'Manufacturer',
+            'Description',
+            'Series',
+            'Family',
+            'Gender',
+            'Blade Size',
+            'Sealing',
+            'Max Current (ma)',
+            'Plating',
+            'Min Wire Size (mm2)',
+            'Max Wire Size (mm2)',
+            'Min Wire Size (AWG)',
+            'Max Wire Size (AWG)',
+            'Min Wire Size (mm)',
+            'Max Wire Size (mm)',
+            'Weight'
+        ]
+
     def parts_list(self):
         cmd = (
             'SELECT terminal.id, terminal.part_number, terminal.description,',
@@ -91,9 +113,10 @@ class TerminalsTable(TableBase):
              plating, min_wire_cross, max_wire_cross, wire_size_min_awg,
              wire_size_max_awg, wire_dia_min, wire_dia_max, family) in data:
 
-            res[part_number] = (id, description, mfg, series, weight, sealing, blade_size,
-                                max_current_ma, gender, plating, min_wire_cross, max_wire_cross,
-                                wire_size_min_awg, wire_size_max_awg, wire_dia_min, wire_dia_max, family)
+            res[part_number] = (mfg, description, series, family, gender, blade_size,
+                                sealing, max_current_ma, plating, min_wire_cross,
+                                max_wire_cross, wire_size_min_awg, wire_size_max_awg,
+                                wire_dia_min, wire_dia_max, weight, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []
