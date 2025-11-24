@@ -23,6 +23,10 @@ class FamiliesTable(TableBase):
 
         raise KeyError(item)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
     def insert(self, name: str, mfg_id: int, description: str) -> "Family":
         db_id = TableBase.insert(self, name=name, mfg_id=mfg_id, description=description)
         return Family(self, db_id)

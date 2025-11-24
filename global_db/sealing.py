@@ -28,6 +28,10 @@ class SealingsTable(TableBase):
         db_id = TableBase.insert(self, name=name)
         return Sealing(self, db_id)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
 
 class Sealing(EntryBase, NameMixin):
     _table: SealingsTable = None

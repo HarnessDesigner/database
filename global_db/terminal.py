@@ -1,7 +1,7 @@
 from typing import Iterable as _Iterable, TYPE_CHECKING
 
 from . import EntryBase, TableBase
-
+from ...wrappers.decimal import Decimal as _decimal
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
                      SeriesMixin, FamilyMixin, ResourceMixin, WeightMixin, CavityLockMixin,
                      Model3DMixin)
@@ -32,22 +32,22 @@ class TerminalsTable(TableBase):
     def insert(self, part_number: str, mfg_id: int, description: str, gender_id: int,
                series_id: int, family_id: int, sealing: bool, cavity_lock_id: int,
                image_id: int, datasheet_id: int, cad_id: int, material_id: int,
-               blade_size: float, resistance_mohms: float, mating_cycles: int,
+               blade_size: _decimal, resistance_mohms: int, mating_cycles: int,
                max_vibration_g: int, max_current_ma: int, wire_size_min_awg: int,
-               wire_size_max_awg: int, wire_dia_min: float, wire_dia_max: float,
-               min_wire_cross: float, max_wire_cross: float, plating_id: int,
-               weight: float) -> "Terminal":
+               wire_size_max_awg: int, wire_dia_min: _decimal, wire_dia_max: _decimal,
+               min_wire_cross: _decimal, max_wire_cross: _decimal, plating_id: int,
+               weight: _decimal) -> "Terminal":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
                                  gender_id=gender_id, series_id=series_id, family_id=family_id, sealing=int(sealing),
                                  cavity_lock_id=cavity_lock_id, image_id=image_id, datasheet_id=datasheet_id,
-                                 cad_id=cad_id, material_id=material_id, blade_size=blade_size,
+                                 cad_id=cad_id, material_id=material_id, blade_size=float(blade_size),
                                  resistance_mohms=resistance_mohms, mating_cycles=mating_cycles,
                                  max_vibration_g=max_vibration_g, max_current_ma=max_current_ma,
                                  wire_size_min_awg=wire_size_min_awg, wire_size_max_awg=wire_size_max_awg,
-                                 wire_dia_min=wire_dia_min, wire_dia_max=wire_dia_max,
-                                 min_wire_cross=min_wire_cross, max_wire_cross=max_wire_cross,
-                                 plating_id=plating_id, weight=weight)
+                                 wire_dia_min=float(wire_dia_min), wire_dia_max=float(wire_dia_max),
+                                 min_wire_cross=float(min_wire_cross), max_wire_cross=float(max_wire_cross),
+                                 plating_id=plating_id, weight=float(weight))
         return Terminal(self, db_id)
 
     @property
@@ -207,12 +207,12 @@ class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, 
         self._table.update(self._db_id, size=int(value))
 
     @property
-    def blade_size(self) -> float:
-        return self._table.select('blade_size', id=self._db_id)[0][0]
+    def blade_size(self) -> _decimal:
+        return _decimal(self._table.select('blade_size', id=self._db_id)[0][0])
 
     @blade_size.setter
-    def blade_size(self, value: float):
-        self._table.update(self._db_id, blade_size=value)
+    def blade_size(self, value: _decimal):
+        self._table.update(self._db_id, blade_size=float(value))
 
     @property
     def resistance_mohms(self) -> int:
@@ -263,36 +263,36 @@ class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, 
         self._table.update(self._db_id, wire_size_max_awg=value)
 
     @property
-    def wire_dia_min(self) -> float:
-        return self._table.select('wire_dia_min', id=self._db_id)[0][0]
+    def wire_dia_min(self) -> _decimal:
+        return _decimal(self._table.select('wire_dia_min', id=self._db_id)[0][0])
 
     @wire_dia_min.setter
-    def wire_dia_min(self, value: float):
-        self._table.update(self._db_id, wire_dia_min=value)
+    def wire_dia_min(self, value: _decimal):
+        self._table.update(self._db_id, wire_dia_min=float(value))
 
     @property
-    def wire_dia_max(self) -> float:
-        return self._table.select('wire_dia_max', id=self._db_id)[0][0]
+    def wire_dia_max(self) -> _decimal:
+        return _decimal(self._table.select('wire_dia_max', id=self._db_id)[0][0])
 
     @wire_dia_max.setter
-    def wire_dia_max(self, value: float):
-        self._table.update(self._db_id, wire_dia_max=value)
+    def wire_dia_max(self, value: _decimal):
+        self._table.update(self._db_id, wire_dia_max=float(value))
 
     @property
-    def min_wire_cross(self) -> float:
-        return self._table.select('min_wire_cross', id=self._db_id)[0][0]
+    def min_wire_cross(self) -> _decimal:
+        return _decimal(self._table.select('min_wire_cross', id=self._db_id)[0][0])
 
     @min_wire_cross.setter
-    def min_wire_cross(self, value: float):
-        self._table.update(self._db_id, min_wire_cross=value)
+    def min_wire_cross(self, value: _decimal):
+        self._table.update(self._db_id, min_wire_cross=float(value))
 
     @property
-    def max_wire_cross(self) -> float:
-        return self._table.select('max_wire_cross', id=self._db_id)[0][0]
+    def max_wire_cross(self) -> _decimal:
+        return _decimal(self._table.select('max_wire_cross', id=self._db_id)[0][0])
 
     @max_wire_cross.setter
-    def max_wire_cross(self, value: float):
-        self._table.update(self._db_id, max_wire_cross=value)
+    def max_wire_cross(self, value: _decimal):
+        self._table.update(self._db_id, max_wire_cross=float(value))
 
     @property
     def plating(self) -> "_plating.Plating":

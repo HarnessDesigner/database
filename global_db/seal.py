@@ -1,6 +1,7 @@
 from typing import Iterable as _Iterable
 
 from . import EntryBase, TableBase
+from ...wrappers.decimal import Decimal as _decimal
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
                      ColorMixin, TemperatureMixin, ResourceMixin, WeightMixin, Model3DMixin)
 
@@ -25,16 +26,16 @@ class SealsTable(TableBase):
         raise KeyError(item)
 
     def insert(self, part_number: str, mfg_id: int, description: str, series_id: int, type: str, hardness: int,  # NOQA
-               color_id: int, lubricant: str, min_temp_id: int, max_temp_id: int, length: float, o_dia: float,
-               i_dia: float, wire_dia_min: float, wire_dia_max: float, image_id: int, datasheet_id: int,
-               cad_id: int, weight: float) -> "Seal":
+               color_id: int, lubricant: str, min_temp_id: int, max_temp_id: int, length: _decimal, o_dia: _decimal,
+               i_dia: _decimal, wire_dia_min: _decimal, wire_dia_max: _decimal, image_id: int, datasheet_id: int,
+               cad_id: int, weight: _decimal) -> "Seal":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
                                  series_id=series_id, type=type, hardness=hardness, color_id=color_id,
                                  lubricant=lubricant, min_temp_id=min_temp_id, max_temp_id=max_temp_id,
-                                 length=length, o_dia=o_dia, i_dia=i_dia, wire_dia_min=wire_dia_min,
-                                 wire_dia_max=wire_dia_max, image_id=image_id, datasheet_id=datasheet_id,
-                                 cad_id=cad_id, weight=weight)
+                                 length=float(length), o_dia=float(o_dia), i_dia=float(i_dia), wire_dia_min=float(wire_dia_min),
+                                 wire_dia_max=float(wire_dia_max), image_id=image_id, datasheet_id=datasheet_id,
+                                 cad_id=cad_id, weight=float(weight))
         return Seal(self, db_id)
 
     @property
@@ -142,20 +143,20 @@ class Seal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, Seri
     _table: SealsTable = None
 
     @property
-    def o_dia(self) -> float:
-        return self._table.select('o_dia', id=self._db_id)[0][0]
+    def o_dia(self) -> _decimal:
+        return _decimal(self._table.select('o_dia', id=self._db_id)[0][0])
 
     @o_dia.setter
-    def o_dia(self, value: float):
-        self._table.update(self._db_id, o_dia=value)
+    def o_dia(self, value: _decimal):
+        self._table.update(self._db_id, o_dia=float(value))
 
     @property
-    def i_dia(self) -> float:
-        return self._table.select('i_dia', id=self._db_id)[0][0]
+    def i_dia(self) -> _decimal:
+        return _decimal(self._table.select('i_dia', id=self._db_id)[0][0])
 
     @i_dia.setter
-    def i_dia(self, value: float):
-        self._table.update(self._db_id, i_dia=value)
+    def i_dia(self, value: _decimal):
+        self._table.update(self._db_id, i_dia=float(value))
 
     @property
     def type(self) -> str:
@@ -182,25 +183,25 @@ class Seal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, Seri
         self._table.update(self._db_id, lubricant=value)
 
     @property
-    def length(self) -> float:
-        return self._table.select('length', id=self._db_id)[0][0]
+    def length(self) -> _decimal:
+        return _decimal(self._table.select('length', id=self._db_id)[0][0])
 
     @length.setter
-    def length(self, value: float):
-        self._table.update(self._db_id, length=value)
+    def length(self, value: _decimal):
+        self._table.update(self._db_id, length=float(value))
 
     @property
-    def wire_dia_min(self) -> float:
-        return self._table.select('wire_dia_min', id=self._db_id)[0][0]
+    def wire_dia_min(self) -> _decimal:
+        return _decimal(self._table.select('wire_dia_min', id=self._db_id)[0][0])
 
     @wire_dia_min.setter
-    def wire_dia_min(self, value: float):
-        self._table.update(self._db_id, wire_dia_min=value)
+    def wire_dia_min(self, value: _decimal):
+        self._table.update(self._db_id, wire_dia_min=float(value))
 
     @property
-    def wire_dia_max(self) -> float:
-        return self._table.select('wire_dia_max', id=self._db_id)[0][0]
+    def wire_dia_max(self) -> _decimal:
+        return _decimal(self._table.select('wire_dia_max', id=self._db_id)[0][0])
 
     @wire_dia_max.setter
-    def wire_dia_max(self, value: float):
-        self._table.update(self._db_id, wire_dia_max=value)
+    def wire_dia_max(self, value: _decimal):
+        self._table.update(self._db_id, wire_dia_max=float(value))

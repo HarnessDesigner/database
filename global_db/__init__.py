@@ -121,6 +121,10 @@ class TableBase:
     def parts_list(self) -> tuple[dict, dict]:
         return {}, {}
 
+    @property
+    def choices(self) -> list[str]:
+        return []
+
 
 from .accessory import AccessoriesTable  # NOQA
 from .boot import BootsTable  # NOQA

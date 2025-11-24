@@ -27,6 +27,11 @@ class SeriesTable(TableBase):
         db_id = TableBase.insert(self, name=name, mfg_id=mfg_id, description=description)
         return Series(self, db_id)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
 
 class Series(EntryBase, NameMixin, DescriptionMixin, ManufacturerMixin):
     _table: SeriesTable = None
+

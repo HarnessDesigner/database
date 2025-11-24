@@ -6,6 +6,7 @@ from .mixins import NameMixin
 
 from ...wrappers import color as _color
 
+
 class ColorsTable(TableBase):
     __table_name__ = 'colors'
 
@@ -70,7 +71,7 @@ class Color(EntryBase, NameMixin):
         return r, g, b, 255
 
     @rgb.setter
-    def rgb(self, value: tuple[int, int, int]):
+    def rgb(self, value: tuple[int, int, int, int]):
         r, g, b = value[:3]
 
         rgb = r << 16 | b << 8 | b

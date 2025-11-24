@@ -337,12 +337,12 @@ class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         self._table.update(self._db_id, sealed=int(value))
 
     @property
-    def centerline(self) -> float:
-        return self._table.select('centerline', id=self._db_id)[0][0]
+    def centerline(self) -> _decimal:
+        return _decimal(self._table.select('centerline', id=self._db_id)[0][0])
 
     @centerline.setter
-    def centerline(self, value: float):
-        self._table.update(self._db_id, centerline=value)
+    def centerline(self, value: _decimal):
+        self._table.update(self._db_id, centerline=float(value))
 
     @property
     def rows(self) -> int:

@@ -24,6 +24,10 @@ class ShapesTable(TableBase):
 
         raise KeyError(item)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
     def insert(self, name: str) -> "Shape":
         db_id = TableBase.insert(self, name=name)
         return Shape(self, db_id)

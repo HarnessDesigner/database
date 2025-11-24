@@ -28,6 +28,10 @@ class PlatingsTable(TableBase):
         db_id = TableBase.insert(self, symbol=symbol, description=description)
         return Plating(self, db_id)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT symbol FROM {self.__table_name__};')]
+
 
 class Plating(EntryBase, DescriptionMixin):
     _table: PlatingsTable = None

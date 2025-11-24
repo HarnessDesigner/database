@@ -17,7 +17,7 @@ class AdhesivesTable(TableBase):
                 return Adhesive(self, item)
             raise IndexError(str(item))
 
-        db_id = self.select('id', name=item)
+        db_id = self.select('id', code=item)
         if db_id:
             return Adhesive(self, db_id[0][0])
 
@@ -26,6 +26,10 @@ class AdhesivesTable(TableBase):
     def insert(self, code: str, description: str) -> "Adhesive":
         db_id = TableBase.insert(self, code=code, description=description)
         return Adhesive(self, db_id)
+
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT code FROM {self.__table_name__};')]
 
 
 class Adhesive(EntryBase, DescriptionMixin):
@@ -52,11 +56,10 @@ class Adhesive(EntryBase, DescriptionMixin):
         return res
 
     @accessories.setter
-    def accessories(self, value: list["_accessory.Accessory"]):
-        part_numbers = [accessory.part_number for accessory in value]
+    def accessories(self, value: list["_accessory.Accessory"] | list[str]):
+        part_numbers = [accessory if isinstance(accessory, str) else accessory.part_number for accessory in value]
 
         self._table.update(self._db_id, accessory_part_nums=str(part_numbers))
 
 
 from . import accessory as _accessory  # NOQA
-

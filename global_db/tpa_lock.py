@@ -1,9 +1,10 @@
 from typing import Iterable as _Iterable
 
 from . import EntryBase, TableBase
+from ...wrappers.decimal import Decimal as _decimal
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
                      SeriesMixin, ResourceMixin, TemperatureMixin, Model3DMixin,
-                     ColorMixin, DimensionMixin)
+                     ColorMixin, DimensionMixin, WeightMixin)
 
 
 class TPALocksTable(TableBase):
@@ -28,14 +29,15 @@ class TPALocksTable(TableBase):
 
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int,
                series_id: int, image_id: int, datasheet_id: int, cad_id: int, min_temp_id: int,
-               max_temp_id: int, pins: str, color_id: int, length: float, width: float,
-               height: float, terminal_size: float) -> "TPALock":
+               max_temp_id: int, pins: str, color_id: int, length: _decimal, width: _decimal,
+               height: _decimal, terminal_size: _decimal, weight: _decimal) -> "TPALock":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
                                  family_id=family_id, series_id=series_id, image_id=image_id,
                                  datasheet_id=datasheet_id, cad_id=cad_id, min_temp_id=min_temp_id,
-                                 max_temp_id=max_temp_id, pins=pins, color_id=color_id, length=length,
-                                 width=width, height=height, terminal_size=terminal_size)
+                                 max_temp_id=max_temp_id, pins=pins, color_id=color_id, length=float(length),
+                                 width=float(width), height=float(height), terminal_size=float(terminal_size),
+                                 weight=float(weight))
 
         return TPALock(self, db_id)
 
@@ -110,7 +112,7 @@ class TPALocksTable(TableBase):
 
 class TPALock(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
               SeriesMixin, ResourceMixin, TemperatureMixin, Model3DMixin,
-              ColorMixin, DimensionMixin):
+              ColorMixin, DimensionMixin, WeightMixin):
 
     _table: TPALocksTable = None
 
@@ -123,9 +125,9 @@ class TPALock(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, F
         self._table.update(self._db_id, pins=value)
 
     @property
-    def terminal_size(self) -> float:
-        return self._table.select('terminal_size', id=self._db_id)[0][0]
+    def terminal_size(self) -> _decimal:
+        return _decimal(self._table.select('terminal_size', id=self._db_id)[0][0])
 
     @terminal_size.setter
-    def terminal_size(self, value: float):
-        self._table.update(self._db_id, terminal_size=value)
+    def terminal_size(self, value: _decimal):
+        self._table.update(self._db_id, terminal_size=float(value))

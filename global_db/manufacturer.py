@@ -34,6 +34,10 @@ class ManufacturersTable(TableBase):
 
         return Manufacturer(self, db_id)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
 
 class Manufacturer(EntryBase, NameMixin, DescriptionMixin):
     _table: ManufacturersTable = None
@@ -85,5 +89,3 @@ class Manufacturer(EntryBase, NameMixin, DescriptionMixin):
     @website.setter
     def website(self, value: str):
         self._table.update(self._db_id, website=value)
-
-

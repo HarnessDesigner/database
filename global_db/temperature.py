@@ -27,6 +27,10 @@ class TemperaturesTable(TableBase):
         db_id = TableBase.insert(self, name=name)
         return Temperature(self, db_id)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
 
 class Temperature(EntryBase, NameMixin):
     _table: TemperaturesTable = None

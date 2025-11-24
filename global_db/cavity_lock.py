@@ -18,7 +18,7 @@ class CavityLocksTable(TableBase):
                 return CavityLock(self, item)
             raise IndexError(str(item))
 
-        db_id = self.select('id', part_number=item)
+        db_id = self.select('id', name=item)
         if db_id:
             return CavityLock(self, db_id[0][0])
 
@@ -27,6 +27,10 @@ class CavityLocksTable(TableBase):
     def insert(self, name: str, description: str) -> "CavityLock":
         db_id = TableBase.insert(self, name=name, description=description)
         return CavityLock(self, db_id)
+
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
 
 
 class CavityLock(EntryBase, NameMixin, DescriptionMixin):

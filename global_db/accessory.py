@@ -23,8 +23,13 @@ class AccessoriesTable(TableBase):
 
         raise KeyError(item)
 
-    def insert(self, code: str, description: str) -> "Accessory":
-        db_id = TableBase.insert(self, code=code, description=description)
+    def insert(self, part_number: str, description: str, mfg_id: int, family_id: int,
+               series_id: int, material_id: int, color_id: int) -> "Accessory":
+
+        db_id = TableBase.insert(self, part_number=part_number, description=description,
+                                 mfg_id=mfg_id, family_id=family_id, series_id=series_id,
+                                 material_id=material_id, color_id=color_id)
+
         return Accessory(self, db_id)
 
     @property
@@ -84,3 +89,5 @@ class AccessoriesTable(TableBase):
 
 class Accessory(EntryBase, PartNumberMixin, DescriptionMixin, ManufacturerMixin, FamilyMixin, SeriesMixin, ColorMixin, MaterialMixin):
     _table: AccessoriesTable = None
+
+

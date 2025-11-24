@@ -29,6 +29,10 @@ class DirectionsTable(TableBase):
         db_id = TableBase.insert(self, name=name)
         return Direction(self, db_id)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
 
 class Direction(EntryBase, NameMixin):
     _table: DirectionsTable = None

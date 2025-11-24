@@ -28,6 +28,10 @@ class MaterialsTable(TableBase):
         db_id = TableBase.insert(self, name=name, description=description)
         return Material(self, db_id)
 
+    @property
+    def choices(self) -> list[str]:
+        return [row[0] for row in self.execute(f'SELECT DISTINCT name FROM {self.__table_name__};')]
+
 
 class Material(EntryBase, NameMixin, DescriptionMixin):
     _table: MaterialsTable = None
