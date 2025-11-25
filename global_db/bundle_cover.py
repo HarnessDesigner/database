@@ -3,9 +3,11 @@
 from typing import Iterable as _Iterable, TYPE_CHECKING
 
 from . import EntryBase, TableBase
+from ...wrappers.decimal import Decimal as _decimal
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin,
                      ResourceMixin, TemperatureMixin, ColorMixin, SeriesMixin,
                      MaterialMixin, ProtectionMixin, AdhesiveMixin, WeightMixin)
+
 
 if TYPE_CHECKING:
     from . import temperature as _temperature
@@ -32,17 +34,17 @@ class BundleCoversTable(TableBase):
 
     def insert(self, part_number: str, mfg_id: int, description: str, series_id: int, image_id: int,
                datasheet_id: int, cad_id: int, min_temp_id: int, max_temp_id: int, color_id: int,
-               min_size: float, max_size: float, wall: str, shrink_ratio: str, resistance_values: int,
-               material_id: int, rigidity_id: int, shrink_temp_id: int, adhesive_ids: list[int],
-               weight: float) -> "BundleCover":
+               min_size: _decimal, max_size: _decimal, wall: str, shrink_ratio: str, protections: str,
+               material_id: int, rigidity: str, shrink_temp_id: int, adhesives: list[str],
+               weight: _decimal) -> "BundleCover":
         
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description, 
                                  series_id=series_id, image_id=image_id, datasheet_id=datasheet_id, 
                                  cad_id=cad_id, min_temp_id=min_temp_id, max_temp_id=max_temp_id,
-                                 color_id=color_id, min_size=min_size, max_size=max_size, wall=wall,
-                                 shrink_ratio=shrink_ratio, resistance_values=resistance_values,
-                                 material_id=material_id, rigidity_id=rigidity_id, shrink_temp_id=shrink_temp_id,
-                                 adhesive_ids=str(adhesive_ids), weight=weight)
+                                 color_id=color_id, min_size=float(min_size), max_size=float(max_size), wall=wall,
+                                 shrink_ratio=shrink_ratio, protections=protections,
+                                 material_id=material_id, rigidity=rigidity, shrink_temp_id=shrink_temp_id,
+                                 adhesives=f"[{', '.join(adhesives)}]", weight=float(weight))
 
         return BundleCover(self, db_id)
 

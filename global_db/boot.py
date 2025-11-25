@@ -6,7 +6,8 @@ import wx
 from . import EntryBase, TableBase
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, ColorMixin,
-                     FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin, Model3DMixin)
+                     FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin, TemperatureMixin,
+                     Model3DMixin)
 
 
 class BootsTable(TableBase):
@@ -29,11 +30,12 @@ class BootsTable(TableBase):
         raise KeyError(item)
 
     def insert(self, part_number: str, mfg_id: int, description: str, family_id: int,
-               series_id: int, image_id: int, datasheet_id: int, cad_id: int, color_id: int, weight: float) -> "Boot":
+               series_id: int, min_temp_id: int, max_temp_id: int, image_id: int,
+               datasheet_id: int, cad_id: int, color_id: int, weight: _decimal) -> "Boot":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
-                                 family_id=family_id, series_id=series_id, image_id=image_id,
-                                 datasheet_id=datasheet_id, cad_id=cad_id, color_id=color_id, weight=weight)
+                                 family_id=family_id, series_id=series_id, min_temp_id=min_temp_id, max_temp_id=max_temp_id, image_id=image_id,
+                                 datasheet_id=datasheet_id, cad_id=cad_id, color_id=color_id, weight=float(weight))
 
         return Boot(self, db_id)
 
@@ -45,15 +47,19 @@ class BootsTable(TableBase):
             'Description',
             'Series',
             'Family',
+            'Min Temp',
+            'Max Temp',
             'Weight'
         ]
 
     def parts_list(self):
         cmd = (
             'SELECT boot.id, boot.part_number, boot.description, manufacturer.name,',
-            'family.name, series.name, boot.weight FROM boots boot',
+            'family.name, series.name, mintemp.name, maxtemp.name, boot.weight FROM boots boot',
             'INNER JOIN manufacturers manufacturer ON boot.mfg_id = manufacturer.id',
             'INNER JOIN families family ON boot.family_id = family.id',
+            'INNER JOIN temperatures mintemp family ON boot.min_temp_id = mintemp.id',
+            'INNER JOIN temperatures maxtemp ON boot.max_temp_id = maxtemp.id',
             'INNER JOIN series series ON boot.series_id = series.id;'
         )
         cmd = ' '.join(cmd)
@@ -67,8 +73,8 @@ class BootsTable(TableBase):
 
         res = {}
 
-        for id, part_number, description, mfg, family, series, weight in data:
-            res[part_number] = (mfg, description, series, family, weight, id)
+        for id, part_number, description, mfg, family, series, mintemp, maxtemp, weight in data:
+            res[part_number] = (mfg, description, series, family, mintemp, maxtemp, weight, id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []
@@ -87,5 +93,5 @@ class BootsTable(TableBase):
 
 
 class Boot(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,
-           SeriesMixin, ResourceMixin, WeightMixin, ColorMixin, Model3DMixin):
+           SeriesMixin, ResourceMixin, WeightMixin, ColorMixin, TemperatureMixin, Model3DMixin):
     _table: BootsTable = None
