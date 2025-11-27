@@ -208,7 +208,7 @@ def transitions(con, cur):
                 'material_id INTEGER DEFAULT 0 NOT NULL, '
                 'branch_count INTEGER DEFAULT 0 NOT NULL, '
                 'shape_id INTEGER DEFAULT 0 NOT NULL, '
-                'protection_ids TEXT DEFAULT "[]" NOT NULL, '
+                'protection_id INTEGER DEFAULT 0 NOT NULL, '
                 'adhesive_ids TEXT DEFAULT "[]" NOT NULL, '
                 'cad_id INTEGER DEFAULT 0 NOT NULL, '
                 'datasheet_id INTEGER DEFAULT 0 NOT NULL, '
@@ -226,6 +226,7 @@ def transitions(con, cur):
                 'FOREIGN KEY (shape_id) REFERENCES shapes(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (datasheet_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (protection_id) REFERENCES protections(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (image_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -264,12 +265,14 @@ def boots(con, cur):
                 'datasheet_id INTEGER DEFAULT 0 NOT NULL, '
                 'cad_id INTEGER DEFAULT 0 NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
+                'model3d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (image_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (datasheet_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (model3d_id) REFERENCES models3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -282,6 +285,7 @@ def bundle_covers(con, cur):
                 'mfg_id INTEGER DEFAULT 0 NOT NULL, '
                 'description TEXT DEFAULT "" NOT NULL, '
                 'series_id INTEGER DEFAULT 0 NOT NULL, '
+                'family_id INTEGER DEFAULT 0 NOT NULL, '
                 'material_id INTEGER DEFAULT 0 NOT NULL, '
                 'color_id INTEGER DEFAULT 0 NOT NULL, '
                 'rigidity TEXT DEFAULT "NOT SET" NOT NULL, '
@@ -295,11 +299,12 @@ def bundle_covers(con, cur):
                 'max_dia INTEGER DEFAULT 0 NOT NULL, '
                 'wall TEXT DEFAULT "Single" NOT NULL, '
                 'shrink_ratio TEXT DEFAULT "" NOT NULL, '
-                'protection_ids TEXT DEFAULT "[]" NOT NULL, '
+                'protection_id TEXT DEFAULT 0 NOT NULL, '
                 'adhesive_ids TEXT DEFAULT "[]" NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (image_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (datasheet_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -307,6 +312,7 @@ def bundle_covers(con, cur):
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (material_id) REFERENCES materials(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (protection_id) REFERENCES potections(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (shrink_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -332,6 +338,7 @@ def covers(con, cur):
                 'height REAL DEFAULT "0.0" NOT NULL, '
                 'pins TEXT DEFAULT "" NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
+                'model3d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -341,6 +348,7 @@ def covers(con, cur):
                 'FOREIGN KEY (direction_id) REFERENCES directions(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (min_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (model3d_id) REFERENCES models3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -366,6 +374,7 @@ def cpa_locks(con, cur):
                 'height REAL DEFAULT "0.0" NOT NULL, '
                 'terminal_size REAL DEFAULT "0.0" NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
+                'model3d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -374,6 +383,7 @@ def cpa_locks(con, cur):
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (min_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (model3d_id) REFERENCES models3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -399,6 +409,7 @@ def tpa_locks(con, cur):
                 'height REAL DEFAULT "0.0" NOT NULL, '
                 'terminal_size REAL DEFAULT "0.0" NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
+                'model3d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -407,6 +418,7 @@ def tpa_locks(con, cur):
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (min_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (model3d_id) REFERENCES models3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -434,12 +446,14 @@ def seals(con, cur):
                 'wire_dia_min REAL DEFAULT "0.0" NOT NULL, '
                 'wire_dia_max REAL DEFAULT "0.0" NOT NULL, '   
                 'weight REAL DEFAULT "0.0" NOT NULL, '
+                'model3d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (image_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (datasheet_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '    
-                'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                
+                'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '    
+                'FOREIGN KEY (model3d_id) REFERENCES models3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                
                 'FOREIGN KEY (min_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'                
                 ');')
@@ -459,7 +473,7 @@ def wires(con, cur):
                 'image_id INTEGER DEFAULT 0 NOT NULL, '
                 'datasheet_id INTEGER DEFAULT 0 NOT NULL, '
                 'cad_id INTEGER DEFAULT 0 NOT NULL, '
-                'addl_color_ids TEXT DEFAULT "[]" NOT NULL, '
+                'stripe_color_id INTEGER DEFAULT 0 NOT NULL, '
                 'material_id INTEGER DEFAULT 0 NOT NULL, '
                 'num_conductors INTEGER DEFAULT 1 NOT NULL, '
                 'shielded INTEGER DEFAULT 0 NOT NULL, '
@@ -469,6 +483,8 @@ def wires(con, cur):
                 'size_awg INTEGER DEFAULT 0 NOT NULL, '
                 'od_mm REAL DEFAULT "0.0" NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
+                'plating_id INTEGER DEFAULT 0 NOT NULL, '
+                'FOREIGN KEY (plating_id) REFERENCES platings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                               
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -477,6 +493,7 @@ def wires(con, cur):
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (material_id) REFERENCES materials(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (stripe_color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -509,6 +526,7 @@ def terminals(con, cur):
                 'min_wire_cross REAL DEFAULT "0.0" NOT NULL, '
                 'max_wire_cross REAL DEFAULT "0.0" NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
+                'model3d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (gender_id) REFERENCES genders(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -517,8 +535,56 @@ def terminals(con, cur):
                 'FOREIGN KEY (image_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (datasheet_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cad_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '   
+                'FOREIGN KEY (model3d_id) REFERENCES models3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '   
                 'FOREIGN KEY (plating_id) REFERENCES platings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'                               
                 ');')
+    con.commit()
+
+
+def splice_types(con, cur):
+    cur.execute('CREATE TABLE splice_types('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'name TEXT UNIQUE NOT NULL'
+                ');')
+    con.commit()
+
+
+def splices(con, cur):
+    cur.execute('CREATE TABLE splices('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'part_number TEXT NOT NULL, '
+                'description TEXT DEFAULT "" NOT NULL, '
+                'mfg_id INTEGER DEFAULT 0 NOT NULL, '
+                'family_id INTEGER DEFAULT 0 NOT NULL, '
+                'series_id INTEGER DEFAULT 0 NOT NULL, '
+                'material_id INTEGER DEFAULT 0 NOT NULL, '
+                'plating_id INTEGER DEFAULT 0 NOT NULL, '
+                'type_id INTEGER DEFAULT 0 NOT NULL, '
+                'color_id INTEGER DEFAULT 0 NOT NULL, '
+                'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (material_id) REFERENCES materials(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (plating_id) REFERENCES platings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (type_id) REFERENCES splice_types(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    
+    con.commit()
+
+
+def models3d(con, cur):
+    cur.execute('CREATE TABLE models3d('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'path TEXT DEFAULT NULL, '
+                'data BLOB DEFAULT NULL, '
+                'type TEXT DEFAULT "" NOT NULL, '
+                'offset TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, '
+                'quat TEXT DEFAULT "[0.0, 0.0, 0.0, 0.0]" NOT NULL, '
+                'angle_reference DEFAULT "[0.0, 0.0, 10.0]" NOT NULL, '
+                'idx INTEGER DEFAULT 0 NOT NULL'
+                ');')
+    
     con.commit()
 
 
@@ -558,8 +624,7 @@ def housings(con, cur):
                 'cavitymap_id INTEGER DEFAULT 0 NOT NULL, '               
                 'cavitymap_overlay_id INTEGER DEFAULT 0 NOT NULL, '
                 'footprint_id INTEGER DEFAULT 0 NOT NULL, '
-                'model_2d_id INTEGER DEFAULT 0 NOT NULL, '
-                'model_3d_id INTEGER DEFAULT 0 NOT NULL, '
+                'model3d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -574,8 +639,7 @@ def housings(con, cur):
                 'FOREIGN KEY (direction_id) REFERENCES directions(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, ' 
                 'FOREIGN KEY (cavitymap_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cavitymap_overlay_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, ' 
-                'FOREIGN KEY (model_2d_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (model_3d_id) REFERENCES resources(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'  
+                'FOREIGN KEY (model3d_id) REFERENCES models3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'  
                 ');')
     con.commit()
 
@@ -586,10 +650,15 @@ def cavities(con, cur):
                 'housing_id INTEGER NOT NULL, '
                 'idx INTEGER NOT NULL, '
                 'name TEXT DEFAULT "" NOT NULL, '
-                'size REAL DEFAULT "0.0" NOT NULL, '
-                'point_2d TEXT DEFAULT "[0.0, 0.0]" NOT NULL, '
-                'point_3d TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, '
-                'rotation_3d TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, ' 
+                'start_point2d TEXT DEFAULT "[0.0, 0.0]" NOT NULL, '
+                'end_point2d TEXT DEFAULT "[0.0, 1.0]" NOT NULL, '
+                'width2d REAL DEFAULT "0.5" NOT NULL, '
+                'start_point3d TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, '
+                'end_point3d TEXT DEFAULT "[0.0, 0.0, 1.0]" NOT NULL, '
+                'length3d REAL DEFAULT NULL, '
+                'width3d REAL DEFAULT NULL, '
+                'height3d REAL DEFAULT NULL, '
+                'diameter3d REAL DEFAULT NULL, '
                 'FOREIGN KEY (housing_id) REFERENCES housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -724,8 +793,8 @@ def projects(con, cur):
     con.commit()
 
 
-def pjt_coordinates_3d(con, cur):
-    cur.execute('CREATE TABLE pjt_coordinates_3d('
+def pjt_points_3d(con, cur):
+    cur.execute('CREATE TABLE pjt_points_3d('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'x REAL DEFAULT "0.0" NOT NULL, '
@@ -736,8 +805,8 @@ def pjt_coordinates_3d(con, cur):
     con.commit()
 
 
-def pjt_coordinates_2d(con, cur):
-    cur.execute('CREATE TABLE pjt_coordinates_2d('
+def pjt_points_2d(con, cur):
+    cur.execute('CREATE TABLE pjt_points_2d('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'x REAL DEFAULT "0.0" NOT NULL, '
@@ -763,9 +832,9 @@ def pjt_bundle_layouts(con, cur):
     cur.execute('CREATE TABLE pjt_bundle_layouts('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
-                'coord_id INTEGER DEFAULT NULL, '
+                'point_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -774,9 +843,9 @@ def pjt_wire3d_layouts(con, cur):
     cur.execute('CREATE TABLE pjt_wire3d_layouts('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
-                'coord_id INTEGER DEFAULT NULL, '
+                'point_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -785,9 +854,9 @@ def pjt_wire2d_layouts(con, cur):
     cur.execute('CREATE TABLE pjt_wire2d_layouts('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
-                'coord_id INTEGER DEFAULT NULL, '
+                'point_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point_id) REFERENCES pjt_points_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -797,12 +866,51 @@ def pjt_bundles(con, cur):
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
-                'start_coord_id INTEGER DEFAULT NULL, '
-                'stop_coord_id INTEGER DEFAULT NULL, '
+                'start_point_id INTEGER DEFAULT NULL, '
+                'stop_point_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES bundle_covers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (start_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (stop_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (start_point_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_point_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+
+def pjt_seals(con, cur):
+    cur.execute('CREATE TABLE pjt_seals('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'terminal_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES seals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (terminal_id) REFERENCES pjt_terminals(id) ON DELETE CASCADE ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+
+def pjt_cpa_locks(con, cur):
+    cur.execute('CREATE TABLE pjt_cpa_locks('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'housing_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES cpa_locks(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
+                ');')
+    con.commit()
+
+
+def pjt_tpa_locks(con, cur):
+    cur.execute('CREATE TABLE pjt_tpa_locks('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'project_id INTEGER NOT NULL, '
+                'part_id INTEGER DEFAULT NULL, '
+                'housing_id INTEGER DEFAULT NULL, '
+                'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (part_id) REFERENCES tpa_locks(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -813,12 +921,12 @@ def pjt_splices(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
                 'circuit_id INTEGER DEFAULT NULL, '
-                'coord3d_id INTEGER DEFAULT NULL, '
-                'coord2d_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER DEFAULT NULL, '
+                'point2d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES splices(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord3d_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord2d_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point2d_id) REFERENCES pjt_points_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -829,24 +937,15 @@ def pjt_housings(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
                 'name TEXT DEFAULT "" NOT NULL, '
-                'coord3d_id INTEGER DEFAULT NULL, '
-                'coord2d_id INTEGER DEFAULT NULL, '
-                'x_angle_3d REAL DEFAULT "0.0" NOT NULL, '
-                'y_angle_3d REAL DEFAULT "0.0" NOT NULL, '
-                'z_angle_3d REAL DEFAULT "0.0" NOT NULL, '
-                'angle_2d REAL DEFAULT "0.0" NOT NULL, '
-                'seal_ids TEXT DEFAULT "[]" NOT NULL, '
-                'cpa_lock_ids TEXT DEFAULT "[]" NOT NULL, '
-                'tpa_lock_ids TEXT DEFAULT "[]" NOT NULL, '
-                'cover_id INTEGER DEFAULT NULL, '
-                'boot_id INTEGER DEFAULT NULL, '
-                'accessory_ids TEXT DEFAULT "[]" NOT NULL, '
+                'point3d_id INTEGER DEFAULT NULL, '
+                'point2d_id INTEGER DEFAULT NULL, '
+                'quat TEXT DEFAULT "[0.0, 0.0, 0.0, 0.0]" NOT NULL, '
+                'angle REAL DEFAULT "0.0" NOT NULL, '
+                'angle_reference TEXT DEFAULT "[0.0, 0.0, 10.0]" NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES housings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord2d_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (cover_id) REFERENCES covers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (boot_id) REFERENCES boots(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point2d_id) REFERENCES pjt_points_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -858,9 +957,21 @@ def pjt_cavities(con, cur):
                 'part_id INTEGER DEFAULT NULL, '
                 'housing_id INTEGER NOT NULL, '
                 'name TEXT DEFAULT "" NOT NULL, '
-                'coord2d_id INTEGER DEFAULT NULL, '
+                'start_point2d_id INTEGER DEFAULT NULL, '
+                'end_point2d_id INTEGER DEFAULT NULL, '
+                'width2d REAL DEFAULT NULL, '
+                'start_point3d_id INTEGER DEFAULT NULL, '
+                'end_point3d_id INTEGER DEFAULT NULL, '
+                'length3d REAL DEFAULT NULL, '
+                'width3d REAL DEFAULT NULL, '
+                'height3d REAL DEFAULT NULL, '
+                'diameter3d REAL DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES cavities(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_point2d_id) REFERENCES pjt_points_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (end_point2d_id) REFERENCES pjt_points_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (end_point3d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -872,17 +983,15 @@ def pjt_terminals(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
                 'cavity_id INTEGER NOT NULL, '
-                'seal_id INTEGER DEFAULT NULL, '
                 'circuit_id INTEGER DEFAULT NULL, '
-                'coord3d_id INTEGER DEFAULT NULL, '
-                'coord2d_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER DEFAULT NULL, '
+                'point2d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cavity_id) REFERENCES pjt_cavities(id) ON DELETE CASCADE ON UPDATE CASCADE, '
-                'FOREIGN KEY (seal_id) REFERENCES seals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (circuit_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (coord2d_id) REFERENCES pjt_coordinates_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point2d_id) REFERENCES pjt_points_2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -894,6 +1003,8 @@ def pjt_transitions(con, cur):
                 'part_id INTEGER DEFAULT NULL, '
                 'name TEXT DEFAULT "" NOT NULL, '
                 'center_id INTEGER NOT NULL, '
+                'quat TEXT DEFAULT "[0.0, 0.0, 0.0, 0.0]" NOT NULL, '
+                'angle_reference TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, '
                 'branch1_id INTEGER DEFAULT NULL, '
                 'branch2_id INTEGER DEFAULT NULL, '
                 'branch3_id INTEGER DEFAULT NULL, '
@@ -906,16 +1017,15 @@ def pjt_transitions(con, cur):
                 'branch4dia REAL DEFAULT NULL, '
                 'branch5dia REAL DEFAULT NULL, '
                 'branch6dia REAL DEFAULT NULL, '
-                'angle TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (center_id) REFERENCES pjt_coordinates_3d(id) ON DELETE CASCADE DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (branch1_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (branch2_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (branch3_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (branch4_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (branch5_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (branch6_coord_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (center_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch1_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch2_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch3_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch4_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch5_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch6_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -926,27 +1036,20 @@ def pjt_wires(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
                 'circuit_id INTEGER DEFAULT NULL, '
-                'start_coord3d_id INTEGER DEFAULT NULL, '
-                'stop_coord3d_id INTEGER DEFAULT NULL, '
-                'start_coord2d_id INTEGER DEFAULT NULL, '
-                'stop_coord2d_id INTEGER DEFAULT NULL, '
+                'start_point3d_id INTEGER DEFAULT NULL, '
+                'stop_point3d_id INTEGER DEFAULT NULL, '
+                'start_point2d_id INTEGER DEFAULT NULL, '
+                'stop_point2d_id INTEGER DEFAULT NULL, '
                 'is_visible INTEGER DEFAULT 1, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (circuit_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (start_coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (stop_coord3d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (start_coord2d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (stop_coord2d_id) REFERENCES pjt_coordinates_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'                ');')
+                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_point2d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_point2d_id) REFERENCES pjt_points_3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                ');')
     con.commit()
-
-
-def splices(con, cur):
-    pass
-
-
-def models3d(con, cur):
-    pass
 
 
 if __name__ == '__main__':
@@ -984,6 +1087,9 @@ if __name__ == '__main__':
         seals,
         wires,
         terminals,
+        splice_types,
+        splices,
+        models3d,
         housings,
         cavities,
         housing_crossref,
@@ -994,13 +1100,16 @@ if __name__ == '__main__':
         tpa_lock_crossref,
         cpa_lock_crossref,
         projects,
-        pjt_coordinates_3d,
-        pjt_coordinates_2d,
+        pjt_points_3d,
+        pjt_points_2d,
         pjt_circuits,
         pjt_bundle_layouts,
         pjt_wire3d_layouts,
         pjt_wire2d_layouts,
         pjt_bundles,
+        pjt_seals,
+        pjt_cpa_locks,
+        pjt_tpa_locks,
         pjt_splices,
         pjt_housings,
         pjt_cavities,
@@ -1014,287 +1123,3 @@ if __name__ == '__main__':
 
     cur_.close()
     con_.close()
-
-'''
-
-for feature in data['features']:
-    if feature['code'] == '911841':
-        for value in feature['values']:
-            if value == '25':
-
-'905343' - branch count
-
-'904325' - shape, y, etc...
-
-
-'901781' temperature range
-
-
-{
-        "part_number": "416486-000",
-        "images": [
-            "https://www.te.com/catalog/common/images/PartImages/pr3j4-79tran.jpg"
-        ],
-        "datasheets": [
-            [
-                "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1-1773853-4_moldedparts&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=416486-000",
-                "pdf"
-            ],
-            [
-                "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=2392785-1_vg-products&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=416486-000",
-                "pdf"
-            ]
-        ],
-        "cads": [],
-        "models3d": [],
-        "models2d": [],
-        "features": [
-            {
-                "code": "911841",
-                "label": "Material Systems Code",
-                "values": [
-                    "25"
-                ],
-                "uom": null
-            },
-            {
-                "code": "904325",
-                "label": "Molded Part Shape",
-                "values": [
-                    "Y Shape"
-                ],
-                "uom": null
-            },
-            {
-                "code": "905343",
-                "label": "Number of Branches & Legs",
-                "values": [
-                    "3"
-                ],
-                "uom": null
-            },
-            {
-                "code": "905410",
-                "label": "Material Code",
-                "values": [
-                    "25"
-                ],
-                "uom": null
-            },
-            {
-                "code": "901781",
-                "label": "Operating Temperature Range",
-                "values": [
-                    "-75 \u2013 150"
-                ],
-                "uom": "\u00b0C"
-            },
-            {
-                "code": "911839",
-                "label": "Adhesive Requirement",
-                "values": [
-                    "Adhesive Precoat"
-                ],
-                "uom": null
-            },
-            
-            904428   Resistance Protection
-            905381   Adhesive Code
-            911839  Adhesive Requirement
-            
-            {
-                "code": "904428",
-                "label": "Resistance Protection",
-                "values": [
-                    "Long-Term Fluid Exposure at High Temperatures"
-                ],
-                "uom": null
-            },
-            {
-                "code": "905381",
-                "label": "Adhesive Code",
-                "values": [
-                    "225"
-                ],
-                "uom": null
-            }
-        ],
-        "feature_groups": [
-        
-        904325   Shape
-        905343  Branches
-        911839  Adhesive Requirement
-        
-        911841  series
-        
-        
-            {
-                "code": "904325",
-                "label": "Molded Part Shape",
-                "values": [
-                    "Y Shape"
-                ],
-                "uom": null
-            },
-            {
-                "code": "905343",
-                "label": "Number of Branches & Legs",
-                "values": [
-                    "3"
-                ],
-                "uom": null
-            },
-            {
-                "code": "911839",
-                "label": "Adhesive Requirement",
-                "values": [
-                    "Adhesive Precoat"
-                ],
-                "uom": null
-            },
-            {
-                "code": "911841",
-                "label": "Material Systems Code",
-                "values": [
-                    "25"
-                ],
-                "uom": null
-            },
-            
-            908582  material
-            
-            {
-                "code": "908582",
-                "label": "Primary Product Material",
-                "values": [
-                    "Fluid Resistant Modified Elastomer"
-                ],
-                "uom": null
-            },
-            {
-                "code": "905410",
-                "label": "Material Code",
-                "values": [
-                    "25"
-                ],
-                "uom": null
-            },
-            
-            904711 branch 1 diameter range
-            904713 branch 2 diameter range
-            904715 branch 3 diameter range
-            904717 branch 4 diameter range
-            904719 branch 5 diameter range
-            
-            
-            {
-                "code": "904711",
-                "label": "Inside Diameter Range (Body)",
-                "values": [
-                    "12.7 \u2013 26.9"
-                ],
-                "uom": "mm"
-            },
-            {
-                "code": "904713",
-                "label": "Inside Diameter Range (Leg 1)",
-                "values": [
-                    "12.7 \u2013 26.9"
-                ],
-                "uom": "mm"
-            },
-            {
-                "code": "904715",
-                "label": "Inside Diameter Range (Leg 2)",
-                "values": [
-                    "3.6 \u2013 6.6"
-                ],
-                "uom": "mm"
-            },
-            {
-                "code": "911840",
-                "label": "Flammability Performance",
-                "values": [
-                    "Flame-Retardant",
-                    "Low Fire Hazard"
-                ],
-                "uom": null
-            },
-            
-            901781   temp range
-            
-            
-            
-            {
-                "code": "901781",
-                "label": "Operating Temperature Range",
-                "values": [
-                    "-75 \u2013 150"
-                ],
-                "uom": "\u00b0C"
-            },
-            {
-                "code": "904428",
-                "label": "Resistance Protection",
-                "values": [
-                    "Long-Term Fluid Exposure at High Temperatures"
-                ],
-                "uom": null
-            },
-            
-            904428  Resistance Protection
-            
-            904911  mechanical resistance
-            {
-                "code": "904911",
-                "label": "Mechanical Resistance",
-                "values": [
-                    "Fluids",
-                    "Mechanical Damage"
-                ],
-                "uom": null
-            },
-            {
-                "code": "908180",
-                "label": "Size Code",
-                "values": [
-                    "024"
-                ],
-                "uom": null
-            },
-            
-            
-            908179  series
-            
-            
-            {
-                "code": "908179",
-                "label": "Molded Part Shape Code",
-                "values": [
-                    "342A"
-                ],
-                "uom": null
-            },
-            {
-                "code": "905381",
-                "label": "Adhesive Code",
-                "values": [
-                    "225"
-                ],
-                "uom": null
-            }
-        ],
-        "description1": "Y Shape Cable Transistion, 3 Branches , 25 Material Code, 25 Material Systems Code, -75 \u2013 150 \u00b0C [-103 \u2013 302 \u00b0F], 225 Adhesive Code",
-        "description2": "342A024-25/225-0",
-        "compat_parts": [
-            {
-                "part_number": "9-120035-5",
-                "features": []
-            },
-            {
-                "part_number": "9-120035-6",
-                "features": []
-            }
-        ]
-    },
-'''
