@@ -4,7 +4,7 @@ from . import PJTEntryBase, PJTTableBase
 from ...wrappers.decimal import Decimal as _decimal
 
 if TYPE_CHECKING:
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+    from . import pjt_point_3d as _pjt_point_3d
 
 
 class PJTBundleLayoutsTable(PJTTableBase):
@@ -32,9 +32,9 @@ class PJTBundleLayout(PJTEntryBase):
     _table: PJTBundleLayoutsTable = None
 
     @property
-    def point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def point(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.coord_id
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def coord_id(self) -> int:

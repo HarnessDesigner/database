@@ -5,8 +5,8 @@ from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import angle as _angle
 
 if TYPE_CHECKING:
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
-    from . import pjt_coordinate_2d as _pjt_coordinate_2d
+    from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_cavity as _pjt_cavity
 
     from ..global_db import housing as _housing
@@ -82,12 +82,12 @@ class PJTHousing(PJTEntryBase):
         return cavity
 
     @property
-    def point3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def point3d(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.coord3d_id
         if coord_id is None:
             return None
 
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def coord3d_id(self) -> int:
@@ -114,12 +114,12 @@ class PJTHousing(PJTEntryBase):
         self._table.update(self._db_id, angle_2d=float(value))
 
     @property
-    def point2d(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
+    def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
         coord_id = self.coord2d_id
         if coord_id is None:
             return None
 
-        return self._table.db.pjt_coordinates_2d_table[coord_id]
+        return self._table.db.pjt_points_2d_table[coord_id]
 
     @property
     def coord2d_id(self) -> int:

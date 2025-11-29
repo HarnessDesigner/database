@@ -4,8 +4,8 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
-    from . import pjt_coordinate_2d as _pjt_coordinate_2d
+    from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_circuit as _pjt_circuit
 
     from ..global_db import wire as _wire
@@ -41,12 +41,12 @@ class PJTWire(PJTEntryBase):
     _table: PJTWiresTable = None
 
     @property
-    def start_point3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.start_coord3d_id
         if coord_id is None:
             return None
 
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def start_coord3d_id(self) -> int:
@@ -57,12 +57,12 @@ class PJTWire(PJTEntryBase):
         self._table.update(self._db_id, start_coord3d_id=value)
 
     @property
-    def stop_point3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def stop_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.stop_coord3d_id
         if coord_id is None:
             return None
 
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def stop_coord3d_id(self) -> int:
@@ -73,12 +73,12 @@ class PJTWire(PJTEntryBase):
         self._table.update(self._db_id, stop_coord3d_id=value)
     
     @property
-    def start_point2d(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
+    def start_point2d(self) -> "_pjt_point_2d.PJTPoint2D":
         coord_id = self.start_coord2d_id
         if coord_id is None:
             return None
 
-        return self._table.db.pjt_coordinates_2d_table[coord_id]
+        return self._table.db.pjt_points_2d_table[coord_id]
 
     @property
     def start_coord2d_id(self) -> int:
@@ -89,12 +89,12 @@ class PJTWire(PJTEntryBase):
         self._table.update(self._db_id, start_coord2d_id=value)
 
     @property
-    def stop_point2d(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
+    def stop_point2d(self) -> "_pjt_point_2d.PJTPoint2D":
         coord_id = self.stop_coord2d_id
         if coord_id is None:
             return None
 
-        return self._table.db.pjt_coordinates_2d_table[coord_id]
+        return self._table.db.pjt_points_2d_table[coord_id]
 
     @property
     def stop_coord2d_id(self) -> int:

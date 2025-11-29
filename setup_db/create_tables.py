@@ -473,7 +473,7 @@ def wires(con, cur):
                 'image_id INTEGER DEFAULT 0 NOT NULL, '
                 'datasheet_id INTEGER DEFAULT 0 NOT NULL, '
                 'cad_id INTEGER DEFAULT 0 NOT NULL, '
-                'stripe_color_id INTEGER DEFAULT 0 NOT NULL, '
+                'stripe_color_id INTEGER DEFAULT NULL, '
                 'material_id INTEGER DEFAULT 0 NOT NULL, '
                 'num_conductors INTEGER DEFAULT 1 NOT NULL, '
                 'shielded INTEGER DEFAULT 0 NOT NULL, '
@@ -483,8 +483,7 @@ def wires(con, cur):
                 'size_awg INTEGER DEFAULT 0 NOT NULL, '
                 'od_mm REAL DEFAULT "0.0" NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
-                'plating_id INTEGER DEFAULT 0 NOT NULL, '
-                'FOREIGN KEY (plating_id) REFERENCES platings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '                               
+                'core_material_id INTEGER DEFAULT 0 NOT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -494,6 +493,7 @@ def wires(con, cur):
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (material_id) REFERENCES materials(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (stripe_color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (core_material_id) REFERENCES platings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (max_temp_id) REFERENCES temperatures(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()

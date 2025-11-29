@@ -4,8 +4,8 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
-    from . import pjt_coordinate_2d as _pjt_coordinate_2d
+    from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_circuit as _pjt_circuit
 
     from ..global_db import splice as _splice
@@ -37,9 +37,9 @@ class PJTSplice(PJTEntryBase):
     _table: PJTSplicesTable = None
 
     @property
-    def point3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def point3d(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.coord3d_id
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def coord3d_id(self) -> int:
@@ -50,9 +50,9 @@ class PJTSplice(PJTEntryBase):
         self._table.update(self._db_id, coord3d_id=value)
 
     @property
-    def point2d(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
+    def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
         coord_id = self.coord2d_id
-        return self._table.db.pjt_coordinates_2d_table[coord_id]
+        return self._table.db.pjt_points_2d_table[coord_id]
 
     @property
     def coord2d_id(self) -> int:

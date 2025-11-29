@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+    from . import pjt_point_3d as _pjt_point_3d
 
     from ..global_db import bundle_cover as _bundle_cover
 
@@ -34,9 +34,9 @@ class PJTBundle(PJTEntryBase):
     _table: PJTBundlesTable = None
 
     @property
-    def start_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def start_point(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.start_coord_id
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def start_coord_id(self) -> int:
@@ -47,9 +47,9 @@ class PJTBundle(PJTEntryBase):
         self._table.update(self._db_id, start_coord_id=value)
 
     @property
-    def stop_point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def stop_point(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.stop_coord_id
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def stop_coord_id(self) -> int:

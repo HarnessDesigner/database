@@ -1652,62 +1652,6 @@
             "type": "JPG"
         },
         "datasheet": {
-            "path": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1-1773853-4_moldedparts&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=146873-000",
-            "type": "pdf"
-        },
-        "cad": {
-            "path": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=342A012-X-G05&DocType=Customer%20Drawing&DocLang=English&DocFormat=pdf&PartCntxt=146873-000",
-            "type": "pdf"
-        },
-        "branches": [
-            {
-                "min": 6.9,
-                "max": 17.0,
-                "length": 22.9,
-                "bulb_length": 11.45,
-                "angle": -180.0
-            },
-            {
-                "min": 6.9,
-                "max": 17.0,
-                "length": 26.4,
-                "bulb_length": 15.8,
-                "angle": 0.0
-            },
-            {
-                "min": 3.6,
-                "max": 7.0,
-                "length": 23.4,
-                "bulb_length": 18.7,
-                "angle": 45.0
-            }
-        ],
-        "branch_count": 3,
-        "adhesive": [
-            "225"
-        ],
-        "resistances": [
-            "Long-Term Fluid Exposure at High Temperatures"
-        ],
-        "min_temp": "-75\u00b0C",
-        "max_temp": "+150\u00b0C",
-        "shape": "Y Shape",
-        "material": "Fluid Resistant Modified Elastomer",
-        "series": "342A0",
-        "part_number": "342A012-25-G05/225-0",
-        "description": "Y Shape Cable Transistion, 3 Branches , 25 Material Code, 25 Material Systems Code, -75 \u2013 150 \u00b0C [-103 \u2013 302 \u00b0F], 225 Adhesive Code"
-    },
-
-
-
-
-
-    {
-        "image": {
-            "path": "https://www.te.com/catalog/common/images/PartImages/pr3j4-79tran.jpg",
-            "type": "JPG"
-        },
-        "datasheet": {
             "path": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1-1773853-4_moldedparts&DocType=Data%20Sheet&DocLang=English&DocFormat=pdf&PartCntxt=878518-000",
             "type": "pdf"
         },

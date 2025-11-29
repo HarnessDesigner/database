@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+    from . import pjt_point_3d as _pjt_point_3d
 
 
 class PJTWire3DLayoutsTable(PJTTableBase):
@@ -31,9 +31,9 @@ class PJTWire3DLayout(PJTEntryBase):
     _table: PJTWire3DLayoutsTable = None
 
     @property
-    def point(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def point(self) -> "_pjt_point_3d.PJTPoint3D":
         coord_id = self.coord_id
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def coord_id(self) -> int:

@@ -6,24 +6,24 @@ from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import point as _point
 
 
-class PJTCoordinates2DTable(PJTTableBase):
-    __table_name__ = 'pjt_coordinates_2d'
+class PJTPoints2DTable(PJTTableBase):
+    __table_name__ = 'pjt_points_2d'
     __points__ = {}
 
-    def __iter__(self) -> _Iterable["PJTCoordinate2D"]:
+    def __iter__(self) -> _Iterable["PJTPoint2D"]:
 
         for db_id in PJTTableBase.__iter__(self):
             if db_id in self.__points__:
                 yield self.__points__[db_id]
             else:
-                point = PJTCoordinate2D(self, db_id, self.project_id)
+                point = PJTPoint2D(self, db_id, self.project_id)
                 self.__points__[db_id] = point
                 yield point
 
-    def __getitem__(self, item) -> "PJTCoordinate2D":
+    def __getitem__(self, item) -> "PJTPoint2D":
         if isinstance(item, int):
             if item in self:
-                return PJTCoordinate2D(self, item, self.project_id)
+                return PJTPoint2D(self, item, self.project_id)
             raise IndexError(str(item))
 
         raise KeyError(item)
@@ -34,13 +34,13 @@ class PJTCoordinates2DTable(PJTTableBase):
 
         PJTTableBase.delete(self, db_id)
 
-    def insert(self, x: float, y: float) -> "PJTCoordinate2D":
+    def insert(self, x: float, y: float) -> "PJTPoint2D":
         db_id = PJTTableBase.insert(self, x=x, y=y)
-        return PJTCoordinate2D(self, db_id, self.project_id)
+        return PJTPoint2D(self, db_id, self.project_id)
 
 
-class PJTCoordinate2D(PJTEntryBase):
-    _table: PJTCoordinates2DTable = None
+class PJTPoint2D(PJTEntryBase):
+    _table: PJTPoints2DTable = None
 
     @property
     def x(self) -> _decimal:

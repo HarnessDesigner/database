@@ -7,7 +7,7 @@ from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import angle as _angle
 
 if TYPE_CHECKING:
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+    from . import pjt_point_3d as _pjt_point_3d
     from ..global_db import transition as _transition
 
 
@@ -67,21 +67,21 @@ class PJTTransitionsTable(PJTTableBase):
 class PJTTransition(PJTEntryBase):
     _table: PJTTransitionsTable = None
 
-    _center: "_pjt_coordinate_3d.PJTCoordinate3D" = None
-    _branch1: "_pjt_coordinate_3d.PJTCoordinate3D" = None
-    _branch2: "_pjt_coordinate_3d.PJTCoordinate3D" = None
-    _branch3: "_pjt_coordinate_3d.PJTCoordinate3D" = None
-    _branch4: "_pjt_coordinate_3d.PJTCoordinate3D" = None
-    _branch5: "_pjt_coordinate_3d.PJTCoordinate3D" = None
-    _branch6: "_pjt_coordinate_3d.PJTCoordinate3D" = None
+    _center: "_pjt_point_3d.PJTPoint3D" = None
+    _branch1: "_pjt_point_3d.PJTPoint3D" = None
+    _branch2: "_pjt_point_3d.PJTPoint3D" = None
+    _branch3: "_pjt_point_3d.PJTPoint3D" = None
+    _branch4: "_pjt_point_3d.PJTPoint3D" = None
+    _branch5: "_pjt_point_3d.PJTPoint3D" = None
+    _branch6: "_pjt_point_3d.PJTPoint3D" = None
 
     @property
-    def center(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def center(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._center is not None:
             return self._center
 
         center_id = self.center_id
-        self._center = self._table.db.pjt_coordinates_3d_table[center_id]
+        self._center = self._table.db.pjt_points_3d_table[center_id]
         return self._center
 
     @property
@@ -93,12 +93,12 @@ class PJTTransition(PJTEntryBase):
         self._table.update(self._db_id, center_id=value)
 
     @property
-    def branch1(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def branch1(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._branch1 is not None:
             return self._branch1
 
         coord_id = self.branch1_id
-        return self._table.db.pjt_coordinates_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[coord_id]
 
     @property
     def branch1_id(self) -> int:
@@ -109,12 +109,12 @@ class PJTTransition(PJTEntryBase):
         self._table.update(self._db_id, branch1_id=value)
 
     @property
-    def branch2(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def branch2(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._branch2 is not None:
             return self._branch2
 
         coord_id = self.branch2_id
-        self._branch2 = self._table.db.pjt_coordinates_3d_table[coord_id]
+        self._branch2 = self._table.db.pjt_points_3d_table[coord_id]
         return self._branch2
 
     @property
@@ -126,12 +126,12 @@ class PJTTransition(PJTEntryBase):
         self._table.update(self._db_id, branch2_id=value)
     
     @property
-    def branch3(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def branch3(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._branch3 is not None:
             return self._branch3
 
         coord_id = self.branch3_id
-        self._branch3 = self._table.db.pjt_coordinates_3d_table[coord_id]
+        self._branch3 = self._table.db.pjt_points_3d_table[coord_id]
         return self._branch3
 
     @property
@@ -143,7 +143,7 @@ class PJTTransition(PJTEntryBase):
         self._table.update(self._db_id, branch3_id=value)
 
     @property
-    def branch4(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def branch4(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._branch4 is not None:
             return self._branch4
 
@@ -151,7 +151,7 @@ class PJTTransition(PJTEntryBase):
         if coord_id is None:
             return None
 
-        self._branch4 = self._table.db.pjt_coordinates_3d_table[coord_id]
+        self._branch4 = self._table.db.pjt_points_3d_table[coord_id]
         return self._branch4
 
     @property
@@ -163,7 +163,7 @@ class PJTTransition(PJTEntryBase):
         self._table.update(self._db_id, branch4_id=value)
         
     @property
-    def branch5(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def branch5(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._branch5 is not None:
             return self._branch5
 
@@ -171,7 +171,7 @@ class PJTTransition(PJTEntryBase):
         if coord_id is None:
             return None
 
-        self._branch5 = self._table.db.pjt_coordinates_3d_table[coord_id]
+        self._branch5 = self._table.db.pjt_points_3d_table[coord_id]
         return self._branch5
 
     @property
@@ -183,7 +183,7 @@ class PJTTransition(PJTEntryBase):
         self._table.update(self._db_id, branch5_id=value)
 
     @property
-    def branch6(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def branch6(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._branch6 is not None:
             return self._branch6
 
@@ -191,7 +191,7 @@ class PJTTransition(PJTEntryBase):
         if coord_id is None:
             return None
 
-        self._branch6 = self._table.db.pjt_coordinates_3d_table[coord_id]
+        self._branch6 = self._table.db.pjt_points_3d_table[coord_id]
         return self._branch6
 
     @property

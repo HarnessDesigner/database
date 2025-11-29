@@ -5,8 +5,8 @@ from . import PJTEntryBase, PJTTableBase
 if TYPE_CHECKING:
     from . import pjt_cavity as _pjt_cavity
     from . import pjt_circuit as _pjt_circuit
-    from . import pjt_coordinate_2d as _pjt_coordinate_2d
-    from . import pjt_coordinate_3d as _pjt_coordinate_3d
+    from . import pjt_point_2d as _pjt_point_2d
+    from . import pjt_point_3d as _pjt_point_3d
 
     from ..global_db import terminal as _terminal
     from ..global_db import seal as _seal
@@ -54,9 +54,9 @@ class PJTTerminal(PJTEntryBase):
         self._table.update(self._db_id, cavity_id=value)
 
     @property
-    def point3d(self) -> "_pjt_coordinate_3d.PJTCoordinate3D":
+    def point3d(self) -> "_pjt_point_3d.PJTPoint3D":
         coord3d_id = self.coord3d_id
-        return self._table.db.pjt_coordinates_3d_table[coord3d_id]
+        return self._table.db.pjt_points_3d_table[coord3d_id]
 
     @property
     def coord3d_id(self) -> int:
@@ -67,9 +67,9 @@ class PJTTerminal(PJTEntryBase):
         self._table.update(self._db_id, coord3d_id=value)
 
     @property
-    def point2d(self) -> "_pjt_coordinate_2d.PJTCoordinate2D":
+    def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
         coord2d_id = self.coord2d_id
-        return self._table.db.pjt_coordinates_2d_table[coord2d_id]
+        return self._table.db.pjt_points_2d_table[coord2d_id]
 
     @property
     def coord2d_id(self) -> int:

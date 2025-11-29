@@ -351,7 +351,6 @@ class GLBTables:
         from ..setup_db import create_tables
 
         funcs = (
-            create_tables.accessories,
             create_tables.resources,
             create_tables.manufacturers,
             create_tables.temperatures,
@@ -370,6 +369,7 @@ class GLBTables:
             create_tables.series,
             create_tables.families,
             create_tables.ip_ratings,
+            create_tables.accessories,
             create_tables.transitions,
             create_tables.transition_branches,
             create_tables.boots,
@@ -380,18 +380,29 @@ class GLBTables:
             create_tables.seals,
             create_tables.wires,
             create_tables.terminals,
-            create_tables.housings,
-            create_tables.cavities,
-            create_tables.projects,
+            create_tables.splice_types,
             create_tables.splices,
             create_tables.models3d,
-            create_tables.pjt_coordinates_3d,
-            create_tables.pjt_coordinates_2d,
+            create_tables.housings,
+            create_tables.cavities,
+            create_tables.housing_crossref,
+            create_tables.terminal_crossref,
+            create_tables.seal_crossref,
+            create_tables.cover_crossref,
+            create_tables.boot_crossref,
+            create_tables.tpa_lock_crossref,
+            create_tables.cpa_lock_crossref,
+            create_tables.projects,
+            create_tables.pjt_points_3d,
+            create_tables.pjt_points_2d,
             create_tables.pjt_circuits,
             create_tables.pjt_bundle_layouts,
             create_tables.pjt_wire3d_layouts,
             create_tables.pjt_wire2d_layouts,
             create_tables.pjt_bundles,
+            create_tables.pjt_seals,
+            create_tables.pjt_cpa_locks,
+            create_tables.pjt_tpa_locks,
             create_tables.pjt_splices,
             create_tables.pjt_housings,
             create_tables.pjt_cavities,
@@ -403,13 +414,24 @@ class GLBTables:
         for func in funcs:
             func(self.connector, self.connector)
 
-        # create_db.preload_database(self.connector)
-        # create_db.load_tpa_locks(self.connector)
-        # create_db.load_cpa_locks(self.connector)
-        # create_db.load_covers(self.connector)
-        # create_db.load_seals(self.connector)
-        # create_db.load_terminals(self.connector)
-        # create_db.load_housings(self.connector)
-        # create_db.load_cavity_maps(self.connector)
-        # create_db.load_transitions(self.connector)
-        # create_db.load_shrink_tube(self.connector)
+        from ..setup_db import load_database
+
+        funcs = [
+            load_database.tpa_locks,
+            load_database.cpa_locks,
+            load_database.boots,
+            load_database.terminals,
+            load_database.covers,
+            load_database.seals,
+            load_database.transitions,
+            load_database.bundle_covers,
+            load_database.housings,
+            load_database.splices,
+            load_database.wires
+        ]
+
+        for func in funcs:
+            try:
+                func(self.connector, self.connector)
+            except FileNotFoundError:
+                continue

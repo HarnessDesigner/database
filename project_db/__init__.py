@@ -130,8 +130,8 @@ class PJTTableBase:
 from .pjt_bundle import PJTBundlesTable  # NOQA
 from .pjt_bundle_layout import PJTBundleLayoutsTable  # NOQA
 from .pjt_circuit import PJTCircuitsTable  # NOQA
-from .pjt_coordinate_2d import PJTCoordinates2DTable  # NOQA
-from .pjt_coordinate_3d import PJTCoordinates3DTable  # NOQA
+from .pjt_point_2d import PJTPoints2DTable  # NOQA
+from .pjt_point_3d import PJTPoints3DTable  # NOQA
 from .pjt_housing import PJTHousingsTable  # NOQA
 from .pjt_splice import PJTSplicesTable  # NOQA
 from .pjt_transition import PJTTransitionsTable  # NOQA
@@ -156,8 +156,8 @@ class PJTTables:
         self._pjt_bundles_table = None
         self._pjt_bundle_layouts_table = None
         self._pjt_circuits_table = None
-        self._pjt_coordinates_2d_table = None
-        self._pjt_coordinates_3d_table = None
+        self._pjt_points_2d_table = None
+        self._pjt_points_3d_table = None
         self._pjt_housings_table = None
         self._pjt_splices_table = None
         self._pjt_transitions_table = None
@@ -179,8 +179,8 @@ class PJTTables:
         self._pjt_bundles_table = PJTBundlesTable(self, project_id)
         self._pjt_bundle_layouts_table = PJTBundleLayoutsTable(self, project_id)
         self._pjt_circuits_table = PJTCircuitsTable(self, project_id)
-        self._pjt_coordinates_2d_table = PJTCoordinates2DTable(self, project_id)
-        self._pjt_coordinates_3d_table = PJTCoordinates3DTable(self, project_id)
+        self._pjt_points_2d_table = PJTPoints2DTable(self, project_id)
+        self._pjt_points_3d_table = PJTPoints3DTable(self, project_id)
         self._pjt_housings_table = PJTHousingsTable(self, project_id)
         self._pjt_splices_table = PJTSplicesTable(self, project_id)
         self._pjt_transitions_table = PJTTransitionsTable(self, project_id)
@@ -209,8 +209,8 @@ class PJTTables:
         # takes place. I am able to adjust the coordinates of our object from events
         # that occur in the matplot lib objects.
 
-        self._points_2d = [point.point for point in self._pjt_coordinates_2d_table]
-        self._points_3d = [point.point for point in self._pjt_coordinates_3d_table]
+        self._points_2d = [point.point for point in self._pjt_points_2d_table]
+        self._points_3d = [point.point for point in self._pjt_points_3d_table]
 
         # the loading occurs using multiple threads to speed things up.
         # The plan is to have a thread running that creates multiple SQL
@@ -235,12 +235,12 @@ class PJTTables:
         return self._pjt_circuits_table
 
     @property
-    def pjt_coordinates_2d_table(self) -> PJTCoordinates2DTable:
-        return self._pjt_coordinates_2d_table
+    def pjt_points_2d_table(self) -> PJTPoints2DTable:
+        return self._pjt_points_2d_table
 
     @property
-    def pjt_coordinates_3d_table(self) -> PJTCoordinates3DTable:
-        return self._pjt_coordinates_3d_table
+    def pjt_points_3d_table(self) -> PJTPoints3DTable:
+        return self._pjt_points_3d_table
 
     @property
     def pjt_housings_table(self) -> PJTHousingsTable:
