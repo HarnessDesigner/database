@@ -37,12 +37,17 @@ class PJTCavity(PJTEntryBase):
     _table: PJTCavitiesTable = None
 
     @property
+    def table(self) -> PJTCavitiesTable:
+        return self._table
+
+    @property
     def name(self) -> str:
         return self._table.select('name', id=self._db_id)[0][0]
 
     @name.setter
     def name(self, value: str):
         self._table.update(self._db_id, name=value)
+        self._process_callbacks()
 
     @property
     def housing(self) -> "_pjt_housing.PJTHousing":
@@ -56,6 +61,7 @@ class PJTCavity(PJTEntryBase):
     @housing_id.setter
     def housing_id(self, value: int):
         self._table.update(self._db_id, housing_id=value)
+        self._process_callbacks()
 
     @property
     def terminal(self) -> "_pjt_terminal.PJTTerminal":
@@ -78,3 +84,4 @@ class PJTCavity(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
+        self._process_callbacks()

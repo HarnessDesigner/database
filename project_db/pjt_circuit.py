@@ -36,12 +36,17 @@ class PJTCircuit(PJTEntryBase):
     _table: PJTCircuitsTable = None
 
     @property
+    def table(self) -> PJTCircuitsTable:
+        return self._table
+
+    @property
     def circuit_num(self) -> int:
         return self._table.select('circuit_num', id=self._db_id)[0][0]
 
     @circuit_num.setter
     def circuit_num(self, value: int):
         self._table.update(self._db_id, circuit_num=value)
+        self._process_callbacks()
 
     @property
     def name(self) -> str:
@@ -50,6 +55,7 @@ class PJTCircuit(PJTEntryBase):
     @name.setter
     def name(self, value: str):
         self._table.update(self._db_id, name=value)
+        self._process_callbacks()
 
     @property
     def description(self) -> str:
@@ -58,6 +64,7 @@ class PJTCircuit(PJTEntryBase):
     @description.setter
     def description(self, value: str):
         self._table.update(self._db_id, description=value)
+        self._process_callbacks()
 
     @property
     def wires(self) -> list["_pjt_wire.PJTWire"]:

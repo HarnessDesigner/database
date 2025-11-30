@@ -1,8 +1,29 @@
 
 from typing import Iterable as _Iterable, TYPE_CHECKING
 
+import weakref
+
 if TYPE_CHECKING:
     from ... import ui as _ui
+
+
+class PJTEntryMeta(type):
+
+    def __init__(cls, name, bases, dct):
+        super().__init__(name, bases, dct)
+
+        cls._instances = {}
+
+    def __call__(cls, table, db_id, project_id):
+        if db_id not in cls._instances:
+            cls._instances[db_id] = super().__call__(table, db_id, project_id)
+
+        instance = cls._instances[db_id]
+
+        return instance
+
+    def unload(cls):
+        cls._instances.clear()
 
 
 class PJTEntryBase:
@@ -11,13 +32,79 @@ class PJTEntryBase:
         self._table = table
         self._db_id = db_id
         self.project_id = project_id
+        self.__callbacks = []
+        self.__stop_callbacks = 0
+
+    def __enter__(self):
+        self.__stop_callbacks += 1
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.__stop_callbacks -= 1
+        self._process_callbacks()
+
+    def __remove_ref(self, ref):
+        try:
+            self.__callbacks.remove(ref)
+        except ValueError:
+            pass
+
+    def Bind(self, callback):
+        for ref in self.__callbacks[:]:
+            cb = ref()
+            if cb is None:
+                try:
+                    self.__callbacks.remove(ref)
+                except ValueError:
+                    pass
+
+            elif cb == callback:
+                return
+        else:
+            self.__callbacks.append(weakref.ref(callback, self.__remove_ref))
+
+    def Unbind(self, callback):
+        for ref in self.__callbacks[:]:
+            cb = ref()
+            if cb is None:
+                try:
+                    self.__callbacks.remove(ref)
+                except ValueError:
+                    pass
+            elif cb == callback:
+                self.__callbacks.remove(ref)
+                return
+
+    def _process_callbacks(self):
+        if self.__stop_callbacks > 0:
+            return
+
+        for ref in self.__callbacks[:]:
+            cb = ref()
+            if cb is None:
+                try:
+                    self.__callbacks.remove(ref)
+                except ValueError:
+                    pass
+
+                continue
+
+            cb(self)
 
     @property
-    def db_id(self):
+    def db_id(self) -> int:
         return self._db_id
+
+    @property
+    def table(self):
+        return self._table
 
     def delete(self) -> None:
         self._table.delete(self.db_id)
+
+        del self.__class__._instances[self.db_id]  # NOQA
+
+        self._process_callbacks()
 
 
 class PJTTableBase:
@@ -141,6 +228,13 @@ from .pjt_wire3d_layout import PJTWire3DLayoutsTable  # NOQA
 from .pjt_cavity import PJTCavitiesTable  # NOQA
 from .pjt_terminal import PJTTerminalsTable  # NOQA
 
+from .pjt_seal import PJTSealsTable  # NOQA
+from .pjt_cover import PJTCoversTable  # NOQA
+from .pjt_boot import PJTBootsTable  # NOQA
+from .pjt_cpa_lock import PJTCPALocksTable  # NOQA
+from .pjt_tpa_lock import PJTTPALocksTable  # NOQA
+
+
 from .project import ProjectsTable  # NOQA
 
 
@@ -166,6 +260,12 @@ class PJTTables:
         self._pjt_wire_3d_layouts_table = None
         self._pjt_cavities_table = None
         self._pjt_terminals_table = None
+        self._pjt_seals_table = None
+        self._pjt_covers_table = None
+        self._pjt_boots_table = None
+        self._pjt_cpa_locks_table = None
+        self._pjt_tpa_locks_table = None
+
         self._points_2d = []
         self._points_3d = []
 
@@ -189,6 +289,11 @@ class PJTTables:
         self._pjt_wire_3d_layouts_table = PJTWire3DLayoutsTable(self, project_id)
         self._pjt_cavities_table = PJTCavitiesTable(self, project_id)
         self._pjt_terminals_table = PJTTerminalsTable(self, project_id)
+        self._pjt_seals_table = PJTSealsTable(self, project_id)
+        self._pjt_covers_table = PJTCoversTable(self, project_id)
+        self._pjt_boots_table = PJTBootsTable(self, project_id)
+        self._pjt_cpa_locks_table = PJTCPALocksTable(self, project_id)
+        self._pjt_tpa_locks_table = PJTTPALocksTable(self, project_id)
 
         # the points are how we initially identify thing. It links together
         # the various objects. As an example say I have a wire and in the
@@ -277,3 +382,23 @@ class PJTTables:
     @property
     def pjt_terminals_table(self) -> PJTTerminalsTable:
         return self._pjt_terminals_table
+
+    @property
+    def pjt_seals_table(self) -> PJTSealsTable:
+        return self._pjt_seals_table
+
+    @property
+    def pjt_covers_table(self) -> PJTCoversTable:
+        return self._pjt_covers_table
+
+    @property
+    def pjt_boots_table(self) -> PJTBootsTable:
+        return self._pjt_boots_table
+
+    @property
+    def pjt_cpa_locks_table(self) -> PJTCPALocksTable:
+        return self._pjt_cpa_locks_table
+
+    @property
+    def pjt_tpa_locks_table(self) -> PJTTPALocksTable:
+        return self._pjt_tpa_locks_table

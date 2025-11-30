@@ -34,6 +34,10 @@ class Project(PJTEntryBase):
     _table: ProjectsTable = None
 
     @property
+    def table(self) -> ProjectsTable:
+        return self._table
+
+    @property
     def name(self) -> str:
         return self._table.select('name', id=self._db_id)[0][0]
 

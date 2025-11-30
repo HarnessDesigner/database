@@ -76,6 +76,10 @@ class PJTTransition(PJTEntryBase):
     _branch6: "_pjt_point_3d.PJTPoint3D" = None
 
     @property
+    def table(self) -> PJTTransitionsTable:
+        return self._table
+
+    @property
     def center(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._center is not None:
             return self._center
@@ -91,6 +95,7 @@ class PJTTransition(PJTEntryBase):
     @center_id.setter
     def center_id(self, value: int):
         self._table.update(self._db_id, center_id=value)
+        self._process_callbacks()
 
     @property
     def branch1(self) -> "_pjt_point_3d.PJTPoint3D":
@@ -107,6 +112,7 @@ class PJTTransition(PJTEntryBase):
     @branch1_id.setter
     def branch1_id(self, value: int):
         self._table.update(self._db_id, branch1_id=value)
+        self._process_callbacks()
 
     @property
     def branch2(self) -> "_pjt_point_3d.PJTPoint3D":
@@ -124,7 +130,8 @@ class PJTTransition(PJTEntryBase):
     @branch2_id.setter
     def branch2_id(self, value: int):
         self._table.update(self._db_id, branch2_id=value)
-    
+        self._process_callbacks()
+
     @property
     def branch3(self) -> "_pjt_point_3d.PJTPoint3D":
         if self._branch3 is not None:
@@ -141,6 +148,7 @@ class PJTTransition(PJTEntryBase):
     @branch3_id.setter
     def branch3_id(self, value: int):
         self._table.update(self._db_id, branch3_id=value)
+        self._process_callbacks()
 
     @property
     def branch4(self) -> "_pjt_point_3d.PJTPoint3D":
@@ -161,6 +169,7 @@ class PJTTransition(PJTEntryBase):
     @branch4_id.setter
     def branch4_id(self, value: int):
         self._table.update(self._db_id, branch4_id=value)
+        self._process_callbacks()
         
     @property
     def branch5(self) -> "_pjt_point_3d.PJTPoint3D":
@@ -181,6 +190,7 @@ class PJTTransition(PJTEntryBase):
     @branch5_id.setter
     def branch5_id(self, value: int):
         self._table.update(self._db_id, branch5_id=value)
+        self._process_callbacks()
 
     @property
     def branch6(self) -> "_pjt_point_3d.PJTPoint3D":
@@ -201,6 +211,7 @@ class PJTTransition(PJTEntryBase):
     @branch6_id.setter
     def branch6_id(self, value: int):
         self._table.update(self._db_id, branch6_id=value)
+        self._process_callbacks()
 
     @property
     def name(self) -> str:
@@ -209,6 +220,7 @@ class PJTTransition(PJTEntryBase):
     @name.setter
     def name(self, value: str):
         self._table.update(self._db_id, name=value)
+        self._process_callbacks()
 
     def _update_angle(self, a: _angle.Angle) -> None:
         self._table.update(self._db_id, x_angle=str(list(a.as_float)))
@@ -242,6 +254,7 @@ class PJTTransition(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
+        self._process_callbacks()
 
     @property
     def branch1dia(self) -> _decimal:
@@ -250,6 +263,7 @@ class PJTTransition(PJTEntryBase):
     @branch1dia.setter
     def branch1dia(self, value: _decimal):
         self._table.update(self._db_id, branch1dia=float(value))
+        self._process_callbacks()
 
     @property
     def branch2dia(self) -> _decimal:
@@ -258,6 +272,7 @@ class PJTTransition(PJTEntryBase):
     @branch2dia.setter
     def branch2dia(self, value: _decimal):
         self._table.update(self._db_id, branch2dia=float(value))
+        self._process_callbacks()
 
     @property
     def branch3dia(self) -> _decimal:
@@ -266,6 +281,7 @@ class PJTTransition(PJTEntryBase):
     @branch3dia.setter
     def branch3dia(self, value: _decimal):
         self._table.update(self._db_id, branch3dia=float(value))
+        self._process_callbacks()
 
     @property
     def branch4dia(self) -> _decimal:
@@ -274,6 +290,7 @@ class PJTTransition(PJTEntryBase):
     @branch4dia.setter
     def branch4dia(self, value: _decimal):
         self._table.update(self._db_id, branch4dia=float(value))
+        self._process_callbacks()
 
     @property
     def branch5dia(self) -> _decimal:
@@ -282,6 +299,7 @@ class PJTTransition(PJTEntryBase):
     @branch5dia.setter
     def branch5dia(self, value: _decimal):
         self._table.update(self._db_id, branch5dia=float(value))
+        self._process_callbacks()
 
     @property
     def branch6dia(self) -> _decimal:
@@ -290,3 +308,4 @@ class PJTTransition(PJTEntryBase):
     @branch6dia.setter
     def branch6dia(self, value: _decimal):
         self._table.update(self._db_id, branch6dia=float(value))
+        self._process_callbacks()

@@ -26,12 +26,12 @@ class PJTWiresTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, part_id: int, circuit_id: int, start_coord3d_id: int | None, stop_coord3d_id: int | None,
-               start_coord2d_id: int | None, stop_coord2d_id: int | None, is_visible: bool) -> "PJTWire":
+    def insert(self, part_id: int, circuit_id: int, start_point3d_id: int | None, stop_point3d_id: int | None,
+               start_point2d_id: int | None, stop_point2d_id: int | None, is_visible: bool) -> "PJTWire":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, circuit_id=circuit_id,
-                                    start_coord3d_id=start_coord3d_id, stop_coord3d_id=stop_coord3d_id,
-                                    start_coord2d_id=start_coord2d_id, stop_coord2d_id=stop_coord2d_id,
+                                    start_point3d_id=start_point3d_id, stop_point3d_id=stop_point3d_id,
+                                    start_point2d_id=start_point2d_id, stop_point2d_id=stop_point2d_id,
                                     is_visible=int(is_visible))
 
         return PJTWire(self, db_id, self.project_id)
@@ -41,68 +41,76 @@ class PJTWire(PJTEntryBase):
     _table: PJTWiresTable = None
 
     @property
-    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
-        coord_id = self.start_coord3d_id
-        if coord_id is None:
-            return None
-
-        return self._table.db.pjt_points_3d_table[coord_id]
+    def table(self) -> PJTWiresTable:
+        return self._table
 
     @property
-    def start_coord3d_id(self) -> int:
-        return self._table.select('start_coord3d_id', id=self._db_id)[0][0]
+    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.start_point3d_id
+        if point_id is None:
+            return None
 
-    @start_coord3d_id.setter
-    def start_coord3d_id(self, value: int):
-        self._table.update(self._db_id, start_coord3d_id=value)
+        return self._table.db.pjt_points_3d_table[point_id]
+
+    @property
+    def start_point3d_id(self) -> int:
+        return self._table.select('start_point3d_id', id=self._db_id)[0][0]
+
+    @start_point3d_id.setter
+    def start_point3d_id(self, value: int):
+        self._table.update(self._db_id, start_point3d_id=value)
+        self._process_callbacks()
 
     @property
     def stop_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
-        coord_id = self.stop_coord3d_id
-        if coord_id is None:
+        point_id = self.stop_point3d_id
+        if point_id is None:
             return None
 
-        return self._table.db.pjt_points_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[point_id]
 
     @property
-    def stop_coord3d_id(self) -> int:
-        return self._table.select('stop_coord3d_id', id=self._db_id)[0][0]
+    def stop_point3d_id(self) -> int:
+        return self._table.select('stop_point3d_id', id=self._db_id)[0][0]
 
-    @stop_coord3d_id.setter
-    def stop_coord3d_id(self, value: int):
-        self._table.update(self._db_id, stop_coord3d_id=value)
+    @stop_point3d_id.setter
+    def stop_point3d_id(self, value: int):
+        self._table.update(self._db_id, stop_point3d_id=value)
+        self._process_callbacks()
     
     @property
     def start_point2d(self) -> "_pjt_point_2d.PJTPoint2D":
-        coord_id = self.start_coord2d_id
-        if coord_id is None:
+        point_id = self.start_point2d_id
+        if point_id is None:
             return None
 
-        return self._table.db.pjt_points_2d_table[coord_id]
+        return self._table.db.pjt_points_2d_table[point_id]
 
     @property
-    def start_coord2d_id(self) -> int:
-        return self._table.select('start_coord2d_id', id=self._db_id)[0][0]
+    def start_point2d_id(self) -> int:
+        return self._table.select('start_point2d_id', id=self._db_id)[0][0]
 
-    @start_coord2d_id.setter
-    def start_coord2d_id(self, value: int):
-        self._table.update(self._db_id, start_coord2d_id=value)
+    @start_point2d_id.setter
+    def start_point2d_id(self, value: int):
+        self._table.update(self._db_id, start_point2d_id=value)
+        self._process_callbacks()
 
     @property
     def stop_point2d(self) -> "_pjt_point_2d.PJTPoint2D":
-        coord_id = self.stop_coord2d_id
-        if coord_id is None:
+        point_id = self.stop_point2d_id
+        if point_id is None:
             return None
 
-        return self._table.db.pjt_points_2d_table[coord_id]
+        return self._table.db.pjt_points_2d_table[point_id]
 
     @property
-    def stop_coord2d_id(self) -> int:
-        return self._table.select('stop_coord2d_id', id=self._db_id)[0][0]
+    def stop_point2d_id(self) -> int:
+        return self._table.select('stop_point2d_id', id=self._db_id)[0][0]
 
-    @stop_coord2d_id.setter
-    def stop_coord2d_id(self, value: int):
-        self._table.update(self._db_id, stop_coord2d_id=value)
+    @stop_point2d_id.setter
+    def stop_point2d_id(self, value: int):
+        self._table.update(self._db_id, stop_point2d_id=value)
+        self._process_callbacks()
         
     @property
     def circuit(self) -> "_pjt_circuit.PJTCircuit":
@@ -116,6 +124,7 @@ class PJTWire(PJTEntryBase):
     @circuit_id.setter
     def circuit_id(self, value: int):
         self._table.update(self._db_id, circuit_id=value)
+        self._process_callbacks()
 
     @property
     def is_visible(self) -> bool:
@@ -124,6 +133,7 @@ class PJTWire(PJTEntryBase):
     @is_visible.setter
     def is_visible(self, value: bool):
         self._table.update(self._db_id, is_visible=int(value))
+        self._process_callbacks()
 
     @property
     def part(self) -> "_wire.Wire":
@@ -140,3 +150,4 @@ class PJTWire(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
+        self._process_callbacks()

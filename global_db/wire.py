@@ -220,16 +220,24 @@ class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
         self._table.update(self._db_id, size_awg=value)
 
     @property
-    def addl_colors(self) -> list[_color.Color]:
-        addl_color_ids = self._table.select('addl_color_ids', id=self._db_id)[0][0]
-        addl_color_ids = eval(addl_color_ids)
+    def stripe_color(self) -> _color.Color:
+        stripe_color_id = self.stripe_color_id
+        if stripe_color_id is None:
+            return None
 
-        return [_color.Color(self._table.db.colors_table, db_id) for db_id in addl_color_ids]
+        return _color.Color(self, stripe_color_id)
 
-    @addl_colors.setter
-    def addl_colors(self, value: list[_color.Color]):
-        addl_color_ids = [color.db_id for color in value]
-        self._table.update(self._db_id, addl_color_ids=addl_color_ids)
+    @stripe_color.setter
+    def stripe_color(self, value: _temperature.Temperature):
+        self._table.update(self._db_id, stripe_color_id=value.db_id)
+
+    @property
+    def stripe_color_id(self) -> int | None:
+        return self._table.select('stripe_color_id', id=self._db_id)[0][0]
+
+    @stripe_color_id.setter
+    def stripe_color_id(self, value: int | None):
+        self._table.update(self._db_id, stripe_color_id=value)
 
     @property
     def max_temp(self) -> _temperature.Temperature:

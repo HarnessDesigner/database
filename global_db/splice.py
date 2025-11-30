@@ -32,7 +32,7 @@ class SplicesTable(TableBase):
 
 
 class Splice(EntryBase, PartNumberMixin, ManufacturerMixin, ResourceMixin,
-             DescriptionMixin, ResourceMixin, Model3DMixin):
+             DescriptionMixin, Model3DMixin):
     _table: SplicesTable = None
 
     @property

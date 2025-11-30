@@ -43,12 +43,17 @@ class PJTPoint3D(PJTEntryBase):
     _table: PJTPoints3DTable = None
 
     @property
+    def table(self) -> PJTPoints3DTable:
+        return self._table
+
+    @property
     def x(self) -> _decimal:
         return _decimal(self._table.select('x', id=self._db_id)[0][0])
 
     @x.setter
     def x(self, value: _decimal):
         self._table.update(self._db_id, x=float(value))
+        self._process_callbacks()
 
     @property
     def y(self) -> _decimal:
@@ -57,6 +62,7 @@ class PJTPoint3D(PJTEntryBase):
     @y.setter
     def y(self, value: _decimal):
         self._table.update(self._db_id, y=float(value))
+        self._process_callbacks()
 
     @property
     def z(self) -> _decimal:
@@ -65,6 +71,7 @@ class PJTPoint3D(PJTEntryBase):
     @z.setter
     def z(self, value: _decimal):
         self._table.update(self._db_id, z=float(value))
+        self._process_callbacks()
 
     _saved_point: _point.Point = None
 

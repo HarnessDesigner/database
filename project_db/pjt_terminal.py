@@ -7,9 +7,9 @@ if TYPE_CHECKING:
     from . import pjt_circuit as _pjt_circuit
     from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_seal as _pjt_seal
 
     from ..global_db import terminal as _terminal
-    from ..global_db import seal as _seal
 
 
 class PJTTerminalsTable(PJTTableBase):
@@ -27,18 +27,22 @@ class PJTTerminalsTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, part_id: int, cavity_id: int, seal_id: int, circuit_id: int,
-               coord3d_id: int, coord2d_id: int) -> "PJTTerminal":
+    def insert(self, part_id: int, cavity_id: int, circuit_id: int,
+               point3d_id: int, point2d_id: int) -> "PJTTerminal":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, cavity_id=cavity_id,
-                                    seal_id=seal_id, circuit_id=circuit_id,
-                                    coord3d_id=coord3d_id, coord2d_id=coord2d_id)
+                                    circuit_id=circuit_id, point3d_id=point3d_id,
+                                    point2d_id=point2d_id)
 
         return PJTTerminal(self, db_id, self.project_id)
 
 
 class PJTTerminal(PJTEntryBase):
     _table: PJTTerminalsTable = None
+
+    @property
+    def table(self) -> PJTTerminalsTable:
+        return self._table
 
     @property
     def cavity(self) -> "_pjt_cavity.PJTCavity":
@@ -52,32 +56,35 @@ class PJTTerminal(PJTEntryBase):
     @cavity_id.setter
     def cavity_id(self, value: int):
         self._table.update(self._db_id, cavity_id=value)
+        self._process_callbacks()
 
     @property
     def point3d(self) -> "_pjt_point_3d.PJTPoint3D":
-        coord3d_id = self.coord3d_id
-        return self._table.db.pjt_points_3d_table[coord3d_id]
+        point3d_id = self.point3d_id
+        return self._table.db.pjt_points_3d_table[point3d_id]
 
     @property
-    def coord3d_id(self) -> int:
-        return self._table.select('coord3d_id', id=self._db_id)[0][0]
+    def point3d_id(self) -> int:
+        return self._table.select('point3d_id', id=self._db_id)[0][0]
 
-    @coord3d_id.setter
-    def coord3d_id(self, value: int):
-        self._table.update(self._db_id, coord3d_id=value)
+    @point3d_id.setter
+    def point3d_id(self, value: int):
+        self._table.update(self._db_id, point3d_id=value)
+        self._process_callbacks()
 
     @property
     def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
-        coord2d_id = self.coord2d_id
-        return self._table.db.pjt_points_2d_table[coord2d_id]
+        point2d_id = self.point2d_id
+        return self._table.db.pjt_points_2d_table[point2d_id]
 
     @property
-    def coord2d_id(self) -> int:
-        return self._table.select('coord2d_id', id=self._db_id)[0][0]
+    def point2d_id(self) -> int:
+        return self._table.select('point2d_id', id=self._db_id)[0][0]
 
-    @coord2d_id.setter
-    def coord2d_id(self, value: int):
-        self._table.update(self._db_id, coord2d_id=value)
+    @point2d_id.setter
+    def point2d_id(self, value: int):
+        self._table.update(self._db_id, point2d_id=value)
+        self._process_callbacks()
 
     @property
     def circuit(self) -> "_pjt_circuit.PJTCircuit":
@@ -91,23 +98,20 @@ class PJTTerminal(PJTEntryBase):
     @circuit_id.setter
     def circuit_id(self, value: int):
         self._table.update(self._db_id, circuit_id=value)
+        self._process_callbacks()
 
     @property
-    def seal(self) -> "_seal.Seal":
-        seal_id = self.seal_id
-        if seal_id is None:
-            return None
+    def seal(self) -> "_pjt_seal.PJTSeal":
+        db_ids = self._table.db.pjt_seals_table.select('id', terminal_id=self.db_id)
 
-        return self._table.db.global_db.seals_table[seal_id]
+        for db_id in db_ids:
+            try:
+                seal = self._table.db.pjt_seals_table[db_id[0]]
+            except IndexError:
+                continue
 
-    @property
-    def seal_id(self) -> int:
-        return self._table.select('seal_id', id=self._db_id)[0][0]
+            return seal
 
-    @seal_id.setter
-    def seal_id(self, value: int):
-        self._table.update(self._db_id, seal_id=value)
-    
     @property
     def part(self) -> "_terminal.Terminal":
         part_id = self.part_id
@@ -123,3 +127,4 @@ class PJTTerminal(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
+        self._process_callbacks()

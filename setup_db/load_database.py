@@ -1135,6 +1135,21 @@ def get_gender_id(con, cur, name):
         return res[0][0]
 
 
+def get_transition_series_id(con, cur, name):
+    if not name:
+        return 0
+
+    res = cur.execute(f'SELECT id FROM transition_series WHERE name="{name}";').fetchall()
+
+    if not res:
+        cur.execute('INSERT INTO transition_series (name) VALUES (?);', (name,))
+
+        con.commit()
+        return cur.lastrowid
+    else:
+        return res[0][0]
+
+
 def get_protection_id(con, cur, name):
     if not name:
         return 0
@@ -1539,7 +1554,9 @@ def add_transition(con, cur, part_number, description, series, material, shape,
                    cad, datasheet, image):
 
     mfg_id = 1
-    series_id = get_series_id(con, cur, series, mfg_id)
+
+    series_id = get_series_id(con, cur, 'DR-25', mfg_id)
+    transition_series_id = get_transition_series_id(con, cur, series)
     family_id = get_family_id(con, cur, 'RayChem', mfg_id)
     color_id = get_color_id(con, cur, 'Black')
     material_id = get_material_id(con, cur, material)
@@ -1570,11 +1587,11 @@ def add_transition(con, cur, part_number, description, series, material, shape,
     try:
         cur.execute('INSERT INTO transitions (part_number, mfg_id, description, family_id, series_id, '
                         'color_id, material_id, branch_count, shape_id, protection_id, adhesive_ids, '
-                        'cad_id, datasheet_id, image_id, min_temp_id, max_temp_id) '
-                        'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                        'cad_id, datasheet_id, image_id, min_temp_id, max_temp_id, transition_series_id) '
+                        'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
                         (part_number, mfg_id, description, family_id, series_id, color_id,
                          material_id, branch_count, shape_id, protection_id, adhesive_ids,
-                         cad_id, datasheet_id, image_id, min_temp_id, max_temp_id))
+                         cad_id, datasheet_id, image_id, min_temp_id, max_temp_id, transition_series_id))
     except:
         print('ERROR:', part_number)
         raise
@@ -1717,20 +1734,12 @@ def add_temperatures(con, cur):
 
 
 def add_materials(con, cur):
-    res = cur.execute('SELECT name FROM materials WHERE id=0;').fetchall()
+    res = cur.execute('SELECT * FROM materials;').fetchall()
 
     if res:
         return
 
-    res = cur.execute('SELECT * FROM materials;').fetchall()
-    print('ERROR:', res)
-
-    print('ADD MATERIALS:', res)
-
-    data = (
-        (0, 'N/A'),
-        (1, 'Fluid Resistant Modified Elastomer')
-    )
+    data = ((0, 'N/A'),)
 
     try:
         cur.executemany('INSERT INTO materials (id, name) VALUES(?, ?);', data)
@@ -1940,6 +1949,14 @@ def add_shapes(con, cur):
     con.commit()
 
 
+def add_transition_series(con, cur):
+    res = cur.execute('SELECT id FROM transition_series WHERE id=0;')
+    if res.fetchall():
+        return
+
+    data = ((0, 'N/A'),)
+    cur.executemany('INSERT INTO transition_series (id, name) VALUES (?, ?);', data)
+    con.commit()
 
 
 def cpa_locks(con, cur):
@@ -2046,6 +2063,8 @@ def covers(con, cur):
         add_cover(con, cur, **item)
 
 
+
+
 def transitions(con, cur):
     add_manufacturers(con, cur)
     add_resources(con, cur)
@@ -2057,6 +2076,7 @@ def transitions(con, cur):
     add_cavity_locks(con, cur)
     add_materials(con, cur)
     add_models3d(con, cur)
+    add_transition_series(con, cur)
 
     json_path = os.path.join(DATA_PATH, 'transitions.json')
 

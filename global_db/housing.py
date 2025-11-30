@@ -9,6 +9,7 @@ from . import cover as _cover
 from . import ip as _ip
 from . import cavity_lock as _cavity_lock
 
+from ...wrappers.decimal import Decimal as _decimal
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin, 
                      SeriesMixin, GenderMixin, ResourceMixin, WeightMixin, CavityLockMixin,

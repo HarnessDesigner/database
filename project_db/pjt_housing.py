@@ -8,14 +8,14 @@ if TYPE_CHECKING:
     from . import pjt_point_3d as _pjt_point_3d
     from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_cavity as _pjt_cavity
+    from . import pjt_cover as _pjt_cover
+    from . import pjt_tpa_lock as _pjt_tpa_lock
+    from . import pjt_cpa_lock as _pjt_cpa_lock
+    from . import pjt_seal as _pjt_seal
+    from . import pjt_boot as _pjt_boot
+    from . import pjt_accessory as _pjt_accessory
 
     from ..global_db import housing as _housing
-    from ..global_db import cover as _cover
-    from ..global_db import tpa_lock as _tpa_lock
-    from ..global_db import cpa_lock as _cpa_lock
-    from ..global_db import seal as _seal
-    from ..global_db import boot as _boot
-    from ..global_db import accessory as _accessory
 
 
 class PJTHousingsTable(PJTTableBase):
@@ -33,22 +33,22 @@ class PJTHousingsTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, part_id: int, name: str, coord3d_id: int, coord2d_id: int,
-               angle_3d: _angle.Angle, angle_2d: _decimal, seal_ids: list[int],
-               cpa_lock_ids: list[int], tpa_lock_ids: list[int], cover_id: int | None,
-               boot_id: int | None, accessory_ids: list[int]) -> "PJTHousing":
+    def insert(self, part_id: int, name: str, point3d_id: int, point2d_id: int,
+               angle_3d: _angle.Angle, angle_2d: _decimal) -> "PJTHousing":
 
-        db_id = PJTTableBase.insert(self, part_id=part_id, name=name, coord3d_id=coord3d_id,
-                                    coord2d_id=coord2d_id, angle_3d=str(list(angle_3d.as_float)),
-                                    angle_2d=float(angle_2d), seal_ids=seal_ids, cpa_lock_ids=cpa_lock_ids,
-                                    tpa_lock_ids=tpa_lock_ids, cover_id=cover_id, boot_id=boot_id,
-                                    accessory_ids=accessory_ids)
+        db_id = PJTTableBase.insert(self, part_id=part_id, name=name, point3d_id=point3d_id,
+                                    point2d_id=point2d_id, angle_3d=str(list(angle_3d.as_float)),
+                                    angle_2d=float(angle_2d))
 
         return PJTHousing(self, db_id, self.project_id)
 
 
 class PJTHousing(PJTEntryBase):
     _table: PJTHousingsTable = None
+
+    @property
+    def table(self) -> PJTHousingsTable:
+        return self._table
 
     @property
     def cavities(self) -> list["_pjt_cavity.PJTCavity"]:
@@ -79,23 +79,25 @@ class PJTHousing(PJTEntryBase):
             part_id=cavity_part.db_id, cavity_map_id=self._db_id,
             name=name, terminal_id=None)
 
+        self._process_callbacks()
         return cavity
 
     @property
     def point3d(self) -> "_pjt_point_3d.PJTPoint3D":
-        coord_id = self.coord3d_id
-        if coord_id is None:
+        point_id = self.point3d_id
+        if point_id is None:
             return None
 
-        return self._table.db.pjt_points_3d_table[coord_id]
+        return self._table.db.pjt_points_3d_table[point_id]
 
     @property
-    def coord3d_id(self) -> int:
-        return self._table.select('coord3d_id', id=self._db_id)[0][0]
+    def point3d_id(self) -> int:
+        return self._table.select('point3d_id', id=self._db_id)[0][0]
 
-    @coord3d_id.setter
-    def coord3d_id(self, value: int):
-        self._table.update(self._db_id, coord3d_id=value)
+    @point3d_id.setter
+    def point3d_id(self, value: int):
+        self._table.update(self._db_id, point3d_id=value)
+        self._process_callbacks()
 
     @property
     def angle_3d(self) -> _angle.Angle:
@@ -104,6 +106,7 @@ class PJTHousing(PJTEntryBase):
     @angle_3d.setter
     def angle_3d(self, value: _angle.Angle):
         self._table.update(self._db_id, angle_3d=str(list(value.as_float)))
+        self._process_callbacks()
 
     @property
     def angle_2d(self) -> _decimal:
@@ -112,131 +115,100 @@ class PJTHousing(PJTEntryBase):
     @angle_2d.setter
     def angle_2d(self, value: _decimal):
         self._table.update(self._db_id, angle_2d=float(value))
+        self._process_callbacks()
 
     @property
     def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
-        coord_id = self.coord2d_id
-        if coord_id is None:
+        point_id = self.point2d_id
+        if point_id is None:
             return None
 
-        return self._table.db.pjt_points_2d_table[coord_id]
+        return self._table.db.pjt_points_2d_table[point_id]
 
     @property
-    def coord2d_id(self) -> int:
-        return self._table.select('coord2d_id', id=self._db_id)[0][0]
+    def point2d_id(self) -> int:
+        return self._table.select('point2d_id', id=self._db_id)[0][0]
 
-    @coord2d_id.setter
-    def coord2d_id(self, value: int):
-        self._table.update(self._db_id, coord2d_id=value)
+    @point2d_id.setter
+    def point2d_id(self, value: int):
+        self._table.update(self._db_id, point2d_id=value)
+        self._process_callbacks()
 
     @property
-    def seals(self) -> list["_seal.Seal"]:
-        seal_ids = self.seal_ids
-
+    def seals(self) -> list["_pjt_seal.PJTSeal"]:
         res = []
-        for seal_id in seal_ids:
-            seal = self._table.db.global_db.seals_table[seal_id]
-            if seal is not None:
-                res.append(seal)
-        return res
+        db_ids = self._table.db.pjt_seals_table.select('id', housing_id=self.db_id)
+        for db_id in db_ids:
+            try:
+                seal = self._table.db.pjt_seals_table[db_id[0]]
+            except IndexError:
+                continue
 
-    @property
-    def seal_ids(self) -> list[int]:
-        return eval(self._table.select('seal_ids', id=self._db_id)[0][0])
-
-    @seal_ids.setter
-    def seal_ids(self, value: list[int]):
-        self._table.update(self._db_id, seal_ids=str(value))
-
-    @property
-    def cpa_locks(self) -> list["_cpa_lock.CPALock"]:
-        cpa_lock_ids = self.cpa_lock_ids
-
-        res = []
-        for cpa_lock_id in cpa_lock_ids:
-            cpa_lock = self._table.db.global_db.cpa_locks_table[cpa_lock_id]
-            if cpa_lock is not None:
-                res.append(cpa_lock)
-        return res
-
-    @property
-    def cpa_lock_ids(self) -> list[int]:
-        return eval(self._table.select('cpa_lock_ids', id=self._db_id)[0][0])
-
-    @cpa_lock_ids.setter
-    def cpa_lock_ids(self, value: list[int]):
-        self._table.update(self._db_id, cpa_lock_ids=str(value))
-
-    @property
-    def tpa_locks(self) -> list["_tpa_lock.TPALock"]:
-        tpa_lock_ids = self.tpa_lock_ids
-
-        res = []
-        for tpa_lock_id in tpa_lock_ids:
-            tpa_lock = self._table.db.global_db.tpa_locks_table[tpa_lock_id]
-            if tpa_lock is not None:
-                res.append(tpa_lock)
-        return res
-
-    @property
-    def tpa_lock_ids(self) -> list[int]:
-        return eval(self._table.select('tpa_lock_ids', id=self._db_id)[0][0])
-
-    @tpa_lock_ids.setter
-    def tpa_lock_ids(self, value: list[int]):
-        self._table.update(self._db_id, tpa_lock_ids=str(value))
-
-    @property
-    def cover(self) -> "_cover.Cover":
-        cover_id = self.cover_id
-        if cover_id is None:
-            return None
-
-        return self._table.db.global_db.covers_table[cover_id]
-
-    @property
-    def cover_id(self) -> int:
-        return self._table.select('cover_id', id=self._db_id)[0][0]
-
-    @cover_id.setter
-    def cover_id(self, value: int):
-        self._table.update(self._db_id, cover_id=value)
-
-    @property
-    def boot(self) -> "_boot.Boot":
-        boot_id = self.boot_id
-        if boot_id is None:
-            return None
-
-        return self._table.db.global_db.boots_table[boot_id]
-
-    @property
-    def boot_id(self) -> int:
-        return self._table.select('boot_id', id=self._db_id)[0][0]
-
-    @boot_id.setter
-    def boot_id(self, value: int):
-        self._table.update(self._db_id, boot_id=value)
-
-    @property
-    def accessories(self) -> list["_accessory.Accessory"]:
-        accessory_ids = self.accessory_ids
-
-        res = []
-        for accessory_id in accessory_ids:
-            accessory = self._table.db.global_db.accessories_table[accessory_id]
-            if accessory is not None:
-                res.append(accessory)
+            res.append(seal)
 
         return res
 
     @property
-    def accessory_ids(self) -> list[int]:
-        return eval(self._table.select('accessory_ids', id=self._db_id)[0][0])
+    def cpa_locks(self) -> list["_pjt_cpa_lock.PJTCPALock"]:
+        res = []
+        db_ids = self._table.db.pjt_cpa_locks_table.select('id', housing_id=self.db_id)
+        for db_id in db_ids:
+            try:
+                cpa_lock = self._table.db.pjt_cpa_locks_table[db_id[0]]
+            except IndexError:
+                continue
 
-    @accessory_ids.setter
-    def accessory_ids(self, value: list[int]):
-        self._table.update(self._db_id, accessory_ids=str(value))
+            res.append(cpa_lock)
+
+        return res
+
+    @property
+    def tpa_locks(self) -> list["_pjt_tpa_lock.PJTTPALock"]:
+        res = []
+        db_ids = self._table.db.pjt_tpa_locks_table.select('id', housing_id=self.db_id)
+        for db_id in db_ids:
+            try:
+                tpa_lock = self._table.db.pjt_tpa_locks_table[db_id[0]]
+            except IndexError:
+                continue
+
+            res.append(tpa_lock)
+        return res
+
+    @property
+    def cover(self) -> "_pjt_cover.PJTCover":
+        db_ids = self._table.db.pjt_covers_table.select('id', housing_id=self.db_id)
+        for db_id in db_ids:
+            try:
+                cover = self._table.db.pjt_covers_table[db_id[0]]
+            except IndexError:
+                continue
+
+            return cover
+
+    @property
+    def boot(self) -> "_pjt_boot.PJTBoot":
+        db_ids = self._table.db.pjt_boots_table.select('id', housing_id=self.db_id)
+        for db_id in db_ids:
+            try:
+                boot = self._table.db.pjt_boots_table[db_id[0]]
+            except IndexError:
+                continue
+
+            return boot
+
+    @property
+    def accessories(self) -> list["_pjt_accessory.PJTAccessory"]:
+        res = []
+        db_ids = self._table.db.pjt_accessories_table.select('id', housing_id=self.db_id)
+        for db_id in db_ids:
+            try:
+                accessory = self._table.db.pjt_accessories_table[db_id]
+            except IndexError:
+                continue
+
+            res.append(accessory)
+        return res
 
     @property
     def name(self) -> str:

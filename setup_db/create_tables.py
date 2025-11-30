@@ -196,6 +196,14 @@ def accessories(con, cur):
     con.commit()
 
 
+def transition_series(con, cur):
+    cur.execute('CREATE TABLE transition_series('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'name TEXT UNIQUE NOT NULL'
+                ');')
+    con.commit()
+
+
 def transitions(con, cur):
     cur.execute('CREATE TABLE transitions('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
@@ -204,6 +212,7 @@ def transitions(con, cur):
                 'description TEXT DEFAULT "" NOT NULL, '
                 'family_id INTEGER DEFAULT 0 NOT NULL, '
                 'series_id INTEGER DEFAULT 0 NOT NULL, '
+                'transition_series_id INTEGER DEFAULT 0 NOT NULL, '
                 'color_id INTEGER DEFAULT 0 NOT NULL, '
                 'material_id INTEGER DEFAULT 0 NOT NULL, '
                 'branch_count INTEGER DEFAULT 0 NOT NULL, '
@@ -217,7 +226,8 @@ def transitions(con, cur):
                 'max_temp_id INTEGER DEFAULT 0 NOT NULL, '
                 'weight REAL DEFAULT "0.0" NOT NULL, '
                 'FOREIGN KEY (mfg_id) REFERENCES manufacturers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (series_id) REFERENCES transition_series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (transition_series_id) REFERENCES transition_series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (series_id) REFERENCES series(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (family_id) REFERENCES families(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (color_id) REFERENCES colors(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (material_id) REFERENCES materials(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
@@ -1057,6 +1067,9 @@ if __name__ == '__main__':
     con_ = sqlite3.connect('test.db')
     cur_ = con_.cursor()
 
+    cur_.execute('PRAGMA foreign_keys = ON;')
+    con_.commit()
+
     funcs = (
         resources,
         manufacturers,
@@ -1077,6 +1090,7 @@ if __name__ == '__main__':
         families,
         ip_ratings,
         accessories,
+        transition_series,
         transitions,
         transition_branches,
         boots,

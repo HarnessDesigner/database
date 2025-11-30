@@ -34,30 +34,36 @@ class PJTBundle(PJTEntryBase):
     _table: PJTBundlesTable = None
 
     @property
-    def start_point(self) -> "_pjt_point_3d.PJTPoint3D":
-        coord_id = self.start_coord_id
-        return self._table.db.pjt_points_3d_table[coord_id]
+    def table(self) -> PJTBundlesTable:
+        return self._table
 
     @property
-    def start_coord_id(self) -> int:
-        return self._table.select('start_coord_id', id=self._db_id)[0][0]
+    def start_point(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.start_point_id
+        return self._table.db.pjt_points_3d_table[point_id]
 
-    @start_coord_id.setter
-    def start_coord_id(self, value: int):
-        self._table.update(self._db_id, start_coord_id=value)
+    @property
+    def start_point_id(self) -> int:
+        return self._table.select('start_point_id', id=self._db_id)[0][0]
+
+    @start_point_id.setter
+    def start_point_id(self, value: int):
+        self._table.update(self._db_id, start_point_id=value)
+        self._process_callbacks()
 
     @property
     def stop_point(self) -> "_pjt_point_3d.PJTPoint3D":
-        coord_id = self.stop_coord_id
-        return self._table.db.pjt_points_3d_table[coord_id]
+        point_id = self.stop_point_id
+        return self._table.db.pjt_points_3d_table[point_id]
 
     @property
-    def stop_coord_id(self) -> int:
-        return self._table.select('stop_coord_id', id=self._db_id)[0][0]
+    def stop_point_id(self) -> int:
+        return self._table.select('stop_point_id', id=self._db_id)[0][0]
 
-    @stop_coord_id.setter
-    def stop_coord_id(self, value: int):
-        self._table.update(self._db_id, stop_coord_id=value)
+    @stop_point_id.setter
+    def stop_point_id(self, value: int):
+        self._table.update(self._db_id, stop_point_id=value)
+        self._process_callbacks()
 
     @property
     def part(self) -> "_bundle_cover.BundleCover":
@@ -74,3 +80,5 @@ class PJTBundle(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
+        self._process_callbacks()
+

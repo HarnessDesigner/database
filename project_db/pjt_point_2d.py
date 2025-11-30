@@ -43,12 +43,17 @@ class PJTPoint2D(PJTEntryBase):
     _table: PJTPoints2DTable = None
 
     @property
+    def table(self) -> PJTPoints2DTable:
+        return self._table
+
+    @property
     def x(self) -> _decimal:
         return _decimal(self._table.select('x', id=self._db_id)[0][0])
 
     @x.setter
     def x(self, value: _decimal):
         self._table.update(self._db_id, x=float(value))
+        self._process_callbacks()
 
     @property
     def y(self) -> _decimal:
@@ -57,6 +62,7 @@ class PJTPoint2D(PJTEntryBase):
     @y.setter
     def y(self, value: _decimal):
         self._table.update(self._db_id, y=float(value))
+        self._process_callbacks()
 
     @property
     def point(self) -> _point.Point:

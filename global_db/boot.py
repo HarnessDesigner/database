@@ -4,6 +4,7 @@ import wx
 
 
 from . import EntryBase, TableBase
+from ...wrappers.decimal import Decimal as _decimal
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, ColorMixin,
                      FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin, TemperatureMixin,

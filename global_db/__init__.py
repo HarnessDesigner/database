@@ -345,8 +345,8 @@ class GLBTables:
         return self._models3d_table
 
     def _setup_new_db(self):
-        self.connector.execute('PRAGMA foreign_keys = ON;')
-        self.connector.commit()
+        # self.connector.execute('PRAGMA foreign_keys = ON;')
+        # self.connector.commit()
 
         from ..setup_db import create_tables
 
@@ -370,6 +370,7 @@ class GLBTables:
             create_tables.families,
             create_tables.ip_ratings,
             create_tables.accessories,
+            create_tables.transition_series,
             create_tables.transitions,
             create_tables.transition_branches,
             create_tables.boots,
@@ -435,3 +436,6 @@ class GLBTables:
                 func(self.connector, self.connector)
             except FileNotFoundError:
                 continue
+            except:
+                print(func)
+                raise

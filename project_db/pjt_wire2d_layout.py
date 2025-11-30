@@ -22,8 +22,8 @@ class PJTWire2DLayoutsTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, coord_id: int) -> "PJTWire2DLayout":
-        db_id = PJTTableBase.insert(self, coord_id=coord_id)
+    def insert(self, point_id: int) -> "PJTWire2DLayout":
+        db_id = PJTTableBase.insert(self, point_id=point_id)
         return PJTWire2DLayout(self, db_id, self.project_id)
 
 
@@ -31,14 +31,19 @@ class PJTWire2DLayout(PJTEntryBase):
     _table: PJTWire2DLayoutsTable = None
 
     @property
-    def point(self) -> "_pjt_point_2d.PJTPoint2D":
-        coord_id = self.coord_id
-        return self._table.db.pjt_points_2d_table[coord_id]
+    def table(self) -> PJTWire2DLayoutsTable:
+        return self._table
 
     @property
-    def coord_id(self) -> int:
-        return self._table.select('coord_id', id=self._db_id)[0][0]
+    def point(self) -> "_pjt_point_2d.PJTPoint2D":
+        point_id = self.point_id
+        return self._table.db.pjt_points_2d_table[point_id]
 
-    @coord_id.setter
-    def coord_id(self, value: int):
-        self._table.update(self._db_id, coord_id=value)
+    @property
+    def point_id(self) -> int:
+        return self._table.select('point_id', id=self._db_id)[0][0]
+
+    @point_id.setter
+    def point_id(self, value: int):
+        self._table.update(self._db_id, point_id=value)
+        self._process_callbacks()

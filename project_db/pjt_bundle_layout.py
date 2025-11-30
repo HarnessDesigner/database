@@ -32,17 +32,22 @@ class PJTBundleLayout(PJTEntryBase):
     _table: PJTBundleLayoutsTable = None
 
     @property
-    def point(self) -> "_pjt_point_3d.PJTPoint3D":
-        coord_id = self.coord_id
-        return self._table.db.pjt_points_3d_table[coord_id]
+    def table(self) -> PJTBundleLayoutsTable:
+        return self._table
 
     @property
-    def coord_id(self) -> int:
-        return self._table.select('coord_id', id=self._db_id)[0][0]
+    def point(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.point_id
+        return self._table.db.pjt_points_3d_table[point_id]
 
-    @coord_id.setter
-    def coord_id(self, value: int):
-        self._table.update(self._db_id, coord_id=value)
+    @property
+    def point_id(self) -> int:
+        return self._table.select('point_id', id=self._db_id)[0][0]
+
+    @point_id.setter
+    def point_id(self, value: int):
+        self._table.update(self._db_id, point_id=value)
+        self._process_callbacks()
 
     @property
     def diameter(self) -> _decimal:
@@ -52,3 +57,4 @@ class PJTBundleLayout(PJTEntryBase):
     @diameter.setter
     def diameter(self, value: _decimal):
         self._table.update(self._db_id, diameter=float(value))
+        self._process_callbacks()

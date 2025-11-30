@@ -24,7 +24,10 @@ class ConfigTable:
     def __getitem__(self, item):
         self._cur.execute(f'SELECT value FROM {self.name} WHERE key = "{item}";')
         value = self._cur.fetchall()[0][0]
-        return eval(value)
+        try:
+            return eval(value)
+        except:  # NOQA
+            return value
 
     def __setitem__(self, key, value):
         value = str(value)
