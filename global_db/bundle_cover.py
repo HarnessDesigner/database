@@ -106,7 +106,7 @@ class BundleCoversTable(TableBase):
         res = {}
 
         for (id, part_number, description, mfg, material, series, weight, mintemp, maxtemp,
-             adhesive, protection, rigidity, shrinktemp, shrink_ratio, wall, min_size,max_size) in data:
+             adhesive, protection, rigidity, shrinktemp, shrink_ratio, wall, min_size, max_size) in data:
 
             res[part_number] = (mfg, description, series, min_size, max_size,
                                 material, wall, shrink_ratio, adhesive, protection,
