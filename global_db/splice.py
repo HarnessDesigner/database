@@ -3,7 +3,9 @@
 from typing import Iterable as _Iterable
 
 from .import EntryBase, TableBase
-from .mixins import PartNumberMixin, ManufacturerMixin, ResourceMixin, DescriptionMixin, Model3DMixin
+from .mixins import (PartNumberMixin, ManufacturerMixin, ResourceMixin,
+                     DescriptionMixin, Model3DMixin, WeightMixin)
+
 from ...wrappers.decimal import Decimal as _decimal
 
 
@@ -32,7 +34,7 @@ class SplicesTable(TableBase):
 
 
 class Splice(EntryBase, PartNumberMixin, ManufacturerMixin, ResourceMixin,
-             DescriptionMixin, Model3DMixin):
+             DescriptionMixin, Model3DMixin, WeightMixin):
     _table: SplicesTable = None
 
     @property

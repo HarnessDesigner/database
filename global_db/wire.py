@@ -1,12 +1,16 @@
-from typing import Iterable as _Iterable
+from typing import Iterable as _Iterable, TYPE_CHECKING
+import math
 
 from . import EntryBase, TableBase
 
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
-                     ResourceMixin, WeightMixin, ColorMixin, FamilyMixin, MaterialMixin)
+                     ResourceMixin, ColorMixin, FamilyMixin, MaterialMixin, TemperatureMixin)
 
-from . import color as _color
-from . import temperature as _temperature
+from ...wrappers.decimal import Decimal as _decimal
+
+if TYPE_CHECKING:
+    from . import color as _color
+    from . import plating as _plating
 
 
 class WiresTable(TableBase):
@@ -95,13 +99,13 @@ class WiresTable(TableBase):
 
         res = {}
 
-        for (id, part_number, description, mfg, series, weight, material, od_mm,
+        for (db_id, part_number, description, mfg, series, weight, material, od_mm,
              shielded, tpi, conductor_dia_mm, num_conductors, size_mm2, size_awg,
              maxtemp, family) in data:
 
             res[part_number] = (mfg, description, size_mm2, size_awg, num_conductors,
                                 series, family, material, od_mm, shielded, tpi, weight,
-                                maxtemp, conductor_dia_mm, id)
+                                maxtemp, conductor_dia_mm, db_id)
 
             if mfg not in commons['Manufacturer']:
                 commons['Manufacturer'][mfg] = []
@@ -159,9 +163,94 @@ class WiresTable(TableBase):
 
 
 class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
-           FamilyMixin, SeriesMixin, ResourceMixin, WeightMixin, ColorMixin, MaterialMixin):
+           FamilyMixin, SeriesMixin, ResourceMixin, ColorMixin, MaterialMixin,
+           TemperatureMixin):
 
     _table: WiresTable = None
+
+    @property
+    def resistance_1km(self) -> _decimal:
+        resistance = _decimal(self._table.select('resistance_1km', id=self._db_id)[0][0])
+        return resistance
+
+    @resistance_1km.setter
+    def resistance_1km(self, value: _decimal):
+        self._table.update(self._db_id, resistance_1km=float(value))
+
+    @property
+    def resistance_1kft(self) -> _decimal:
+        return self.resistance_ft * _decimal(1000)
+
+    @resistance_1kft.setter
+    def resistance_1kft(self, value: _decimal):
+        self.resistance_ft = value / _decimal(1000)
+
+    @property
+    def resistance_m(self) -> _decimal:
+        resistance = self.resistance_1km
+        return resistance / _decimal(1000)
+
+    @resistance_m.setter
+    def resistance_m(self, value: _decimal):
+        value *= _decimal(1000)
+        self.resistance_1km = value
+
+    @property
+    def resistance_ft(self) -> _decimal:
+        resistance = self.resistance_m
+        return resistance * _decimal(3.28084)
+
+    @resistance_ft.setter
+    def resistance_ft(self, value: _decimal):
+        value /= _decimal(3.28084)
+        self.resistance_m = value
+
+    @property
+    def weight_1km(self) -> _decimal:
+        weight = _decimal(self._table.select('weight_1km', id=self._db_id)[0][0])
+        return weight
+
+    @weight_1km.setter
+    def weight_1km(self, value: _decimal):
+        self._table.update(self._db_id, weight_1km=float(value))
+
+    @property
+    def weight_1kft(self) -> _decimal:
+        return self.weight_lb_ft * _decimal(1000)
+
+    @weight_1kft.setter
+    def weight_1kft(self, value: _decimal):
+        self.weight_lb_ft = value / _decimal(1000)
+
+    @property
+    def weight_g_m(self) -> _decimal:
+        weight = self.weight_1km
+        return weight / _decimal(1000)
+
+    @weight_g_m.setter
+    def weight_g_m(self, value: _decimal):
+        value *= _decimal(1000)
+        self.weight_1km = value
+
+    @property
+    def weight_g_ft(self) -> _decimal:
+        weight = self.weight_g_m
+        return weight * _decimal(3.28084)
+
+    @weight_g_ft.setter
+    def weight_g_ft(self, value: _decimal):
+        value /= _decimal(3.28084)
+        self.weight_g_m = value
+
+    @property
+    def weight_lb_ft(self) -> _decimal:
+        weight = self.weight_g_ft
+        return weight / _decimal(453.592)
+
+    @weight_lb_ft.setter
+    def weight_lb_ft(self, value: _decimal):
+        value *= _decimal(453.592)
+        self.weight_g_ft = value
 
     @property
     def od_mm(self) -> float:
@@ -188,14 +277,6 @@ class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
         self._table.update(self._db_id, tpi=value)
 
     @property
-    def conductor_dia_mm(self) -> float:
-        return self._table.select('conductor_dia_mm', id=self._db_id)[0][0]
-
-    @conductor_dia_mm.setter
-    def conductor_dia_mm(self, value: float):
-        self._table.update(self._db_id, conductor_dia_mm=value)
-
-    @property
     def num_conductors(self) -> int:
         return self._table.select('num_conductors', id=self._db_id)[0][0]
 
@@ -204,31 +285,141 @@ class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
         self._table.update(self._db_id, num_conductors=value)
 
     @property
-    def size_mm2(self) -> float:
-        return self._table.select('size_mm2', id=self._db_id)[0][0]
+    def core_material(self) -> "_plating.Plating":
+        db_id = self.core_material_id
+        return self._table.db.platings_table[db_id]
+
+    @core_material.setter
+    def core_material(self, value: "_plating.Plating"):
+        self.core_material_id = value.db_id
+
+    @property
+    def core_material_id(self) -> int:
+        return self._table.select('core_material_id', id=self._db_id)[0][0]
+
+    @core_material_id.setter
+    def core_material_id(self, value: int):
+        self._table.update(self._db_id, core_material_id=value)
+
+    @property
+    def conductor_dia_mm(self) -> _decimal:
+        d_mm = self._table.select('conductor_dia_mm', id=self._db_id)[0][0]
+
+        if d_mm is None:
+            d_mm = round(self.conductor_dia_in * _decimal(25.4), 4)
+        else:
+            d_mm = _decimal(d_mm)
+
+        return d_mm
+
+    @conductor_dia_mm.setter
+    def conductor_dia_mm(self, value: _decimal):
+        self._table.update(self._db_id, conductor_dia_mm=float(value))
+
+    @property
+    def conductor_dia_in(self) -> _decimal:
+        d_in = _decimal(0.005) * (_decimal(92) ** ((_decimal(36) - _decimal(self.size_awg)) / _decimal(39)))
+        return round(d_in, 4)
+
+    @conductor_dia_in.setter
+    def conductor_dia_in(self, value: _decimal):
+        self.conductor_dia_mm = value * _decimal(25.4)
+
+    @property
+    def size_mm2(self) -> _decimal:
+        mm2 = self._table.select('size_mm2', id=self._db_id)[0][0]
+
+        if mm2 is None:
+            awg = self.size_awg
+
+            if awg is None:
+                d_mm = self.conductor_dia_mm
+
+                if d_mm is None:
+                    raise RuntimeError('sanity check')
+
+                return self.__mm_to_mm2(d_mm)
+
+            return self.__awg_to_mm2(awg)
+
+        return _decimal(mm2)
 
     @size_mm2.setter
-    def size_mm2(self, value: float):
-        self._table.update(self._db_id, size_mm2=value)
+    def size_mm2(self, value: _decimal):
+        self._table.update(self._db_id, size_mm2=float(value))
 
     @property
     def size_awg(self) -> int:
-        return self._table.select('size_awg', id=self._db_id)[0][0]
+        awg = self._table.select('size_awg', id=self._db_id)[0][0]
+
+        if awg is None:
+            mm2 = self.size_mm2
+
+            if mm2 is None:
+                dia_mm = self.conductor_dia_mm
+
+                if dia_mm is None:
+                    raise RuntimeError('sanity check')
+
+                return self.__mm_to_awg(dia_mm)
+
+            return self.__mm2_to_awg(mm2)
+
+        return awg
 
     @size_awg.setter
     def size_awg(self, value: int):
         self._table.update(self._db_id, size_awg=value)
 
-    @property
-    def stripe_color(self) -> _color.Color:
-        stripe_color_id = self.stripe_color_id
-        if stripe_color_id is None:
-            return None
+    @staticmethod
+    def __awg_to_mm2(awg: int) -> _decimal:
+        d_in = _decimal(0.005) * (_decimal(92) ** ((_decimal(36) - _decimal(awg)) / _decimal(39)))
+        d_mm = d_in * _decimal(25.4)
+        area_mm2 = (_decimal(math.pi) / _decimal(4)) * (d_mm ** _decimal(2))
+        return round(area_mm2, 4)
 
-        return _color.Color(self, stripe_color_id)
+    @staticmethod
+    def __mm_to_mm2(d_mm: _decimal) -> _decimal:
+        area_mm2 = (_decimal(math.pi) / _decimal(4)) * (d_mm ** _decimal(2))
+        return float(round(area_mm2, 4))
+
+    @classmethod
+    def __mm_to_awg(cls, d_mm: _decimal) -> int:
+        area_mm2 = (_decimal(math.pi) / _decimal(4)) * (d_mm ** _decimal(2))
+        return cls.__mm2_to_awg(area_mm2)
+
+    @staticmethod
+    def __mm2_to_awg(mm2: _decimal) -> int:
+        d_mm = _decimal(2) * _decimal(math.sqrt(mm2 / _decimal(math.pi)))
+        d_in = d_mm / _decimal(25.4)
+        awg = _decimal(36) - _decimal(39) * _decimal(math.log(float(d_in / _decimal(0.005)), 92))
+        return int(round(awg))
+
+    @property
+    def size_in2(self) -> _decimal:
+        area_mm2 = self.size_mm2
+        area_in2 = area_mm2 / _decimal(25.4) / _decimal(25.4)
+        return round(area_in2, 4)
+
+    @size_in2.setter
+    def size_in2(self, value: _decimal):
+        self.size_mm2 = value * _decimal(25.4) * _decimal(25.4)
+
+    @property
+    def in2_symbol(self) -> str:
+        return 'in²'
+
+    @property
+    def mm2_symbol(self) -> str:
+        return 'mm²'
+
+    @property
+    def stripe_color(self) -> "_color.Color":
+        db_id = self.stripe_color_id
+        return self._table.db.colors_table[db_id]
 
     @stripe_color.setter
-    def stripe_color(self, value: _temperature.Temperature):
+    def stripe_color(self, value: "_color.Color"):
         self._table.update(self._db_id, stripe_color_id=value.db_id)
 
     @property
@@ -239,19 +430,3 @@ class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
     def stripe_color_id(self, value: int | None):
         self._table.update(self._db_id, stripe_color_id=value)
 
-    @property
-    def max_temp(self) -> _temperature.Temperature:
-        max_temp_id = self._table.select('max_temp_id', id=self._db_id)
-        return _temperature.Temperature(self, max_temp_id[0][0])
-
-    @max_temp.setter
-    def max_temp(self, value: _temperature.Temperature):
-        self._table.update(self._db_id, max_temp_id=value.db_id)
-
-    @property
-    def max_temp_id(self) -> int:
-        return self._table.select('max_temp_id', id=self._db_id)[0][0]
-
-    @max_temp_id.setter
-    def max_temp_id(self, value: int):
-        self._table.update(self._db_id, max_temp_id=value)

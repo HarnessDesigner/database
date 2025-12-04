@@ -3,6 +3,9 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
 
+from ...wrappers.decimal import Decimal as _decimal
+from ...geometry import line as _line
+
 if TYPE_CHECKING:
     from . import pjt_point_3d as _pjt_point_3d
     from . import pjt_point_2d as _pjt_point_2d
@@ -39,6 +42,26 @@ class PJTWiresTable(PJTTableBase):
 
 class PJTWire(PJTEntryBase):
     _table: PJTWiresTable = None
+
+    @property
+    def length_mm(self) -> _decimal:
+        return _line.Line(self.start_point3d, self.stop_point3d).length()
+
+    @property
+    def length_m(self) -> _decimal:
+        return self.length_mm / _decimal(1000.0)
+
+    @property
+    def length_ft(self) -> _decimal:
+        return self.length_m * _decimal(3.28084)
+
+    @property
+    def weight_g(self) -> _decimal:
+        return self.part.weight_g_m * self.length_m
+
+    @property
+    def weight_lb(self) -> _decimal:
+        return self.part.weight_lb_ft * self.length_ft
 
     @property
     def table(self) -> PJTWiresTable:
