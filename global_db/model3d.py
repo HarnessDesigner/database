@@ -3,11 +3,56 @@ from typing import Iterable as _Iterable
 import io
 import requests
 import zipfile
+import numpy as np
+import tempfile
+import os
+import build123d
+
 
 from . import EntryBase, TableBase
 from ...geometry import angle as _angle
 from ...geometry import point as _point
 from ...wrappers.decimal import Decimal as _decimal
+
+
+def _read_step(data):
+    temp_dir = tempfile.gettempdir()
+    tmp_file_path = os.path.join(temp_dir, 'harness_designer_tmp.stp')
+    with open(tmp_file_path, 'wb') as f:
+        f.write(data)
+
+    model = build123d.import_step(tmp_file_path)
+
+    bb = model.bounding_box()
+    corner1 = _point.Point(*[_decimal(float(item)) for item in bb.min])
+    corner2 = _point.Point(*[_decimal(float(item)) for item in bb.max])
+
+    try:
+        os.remove(tmp_file_path)
+    except OSError:
+        pass
+
+    return model, (corner1, corner2)
+
+
+def _read_stl(data: bytes):
+    temp_dir = tempfile.gettempdir()
+    tmp_file_path = os.path.join(temp_dir, 'harness_designer_tmp.stl')
+    with open(tmp_file_path, 'wb') as f:
+        f.write(data)
+
+    model = build123d.import_stl(tmp_file_path)
+
+    bb = model.bounding_box()
+    corner1 = _point.Point(*[_decimal(float(item)) for item in bb.min])
+    corner2 = _point.Point(*[_decimal(float(item)) for item in bb.max])
+
+    try:
+        os.remove(tmp_file_path)
+    except OSError:
+        pass
+
+    return model, (corner1, corner2)
 
 
 class Models3DTable(TableBase):
@@ -26,7 +71,7 @@ class Models3DTable(TableBase):
         raise KeyError(item)
 
     def insert(self, angle: _angle.Angle, idx: int, offset: _point.Point, data: bytes | None) -> "Model3D":
-        db_id = TableBase.insert(self, angle=str(list(angle.as_float)), idx=idx,
+        db_id = TableBase.insert(self, angle=str(angle.quat), idx=idx,
                                  offset=str(list(offset.as_float)), data=data)
 
         return Model3D(self, db_id)
@@ -38,12 +83,11 @@ class Model3D(EntryBase):
     @property
     def angle(self) -> _angle.Angle:
         value = eval(self._table.select('angle', id=self._db_id)[0][0])
-
-        return _angle.Angle(*[_decimal(item) for item in value])
+        return _angle.Angle(q=np.array(value, dtype=np.dtypes.Float64DType))
 
     @angle.setter
     def angle(self, value: _angle.Angle):
-        self._table.update(self._db_id, angle=str(list(value.as_float)))
+        self._table.update(self._db_id, angle=str(value.quat))
 
     @property
     def offset(self) -> _point.Point:
@@ -113,10 +157,12 @@ class Model3D(EntryBase):
             for fn, file_data in files.items():
                 if len(fn) < 5:
                     continue
-                if (
-                    fn[-4:] not in ('zip', '.stl', '.stp') and
-                    not fn.endswith('.step')
-                ):
+
+                if fn.endswith('.zip'):
+                    ret.extend(_read_zip_file(file_data))
+                    continue
+
+                if fn[-4:] not in ('.stl', '.stp', 'step'):
                     continue
 
                 f_type_ = fn.rsplit('.', 1)[-1]
@@ -155,7 +201,7 @@ class Model3D(EntryBase):
 
                 res = _read_zip_file(data)
 
-        elif data[-4:] in (b'.stl', b'.stp') or data.endswith(b'.step'):
+        elif data[-4:] in (b'.stl', b'.stp', b'step'):
             f_type = data.rsplit(b'.', 1)[-1].decode('utf-8')
 
             try:
@@ -169,6 +215,20 @@ class Model3D(EntryBase):
             res = _read_zip_file(data)
 
         return res
+
+    @property
+    def model(self) -> tuple[build123d.Shape, tuple[_point.Point, _point.Point]] | tuple[None, None]:
+        if self.type == 'stl':
+            data = self.data
+            if data is not None:
+                return _read_stl(data)
+
+        elif self.type in ('step', 'stp'):
+            data = self.data
+            if data is not None:
+                return _read_step(data)
+
+        return None, None
 
     @property
     def data(self) -> bytes | None:

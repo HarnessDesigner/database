@@ -1,6 +1,10 @@
 from typing import TYPE_CHECKING, Iterable as _Iterable
 
+import numpy as np
+
 from . import PJTEntryBase, PJTTableBase
+
+from ...wrappers.decimal import Decimal as _decimal
 
 if TYPE_CHECKING:
     from . import pjt_cavity as _pjt_cavity
@@ -28,17 +32,38 @@ class PJTTerminalsTable(PJTTableBase):
         raise KeyError(item)
 
     def insert(self, part_id: int, cavity_id: int, circuit_id: int,
-               point3d_id: int, point2d_id: int) -> "PJTTerminal":
+               point3d_id: int, point2d_id: int, angle: _decimal,
+               quat: np.ndarray) -> "PJTTerminal":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, cavity_id=cavity_id,
                                     circuit_id=circuit_id, point3d_id=point3d_id,
-                                    point2d_id=point2d_id)
+                                    point2d_id=point2d_id, angle=float(angle),
+                                    quat=str(quat.tolist()))
 
         return PJTTerminal(self, db_id, self.project_id)
 
 
 class PJTTerminal(PJTEntryBase):
     _table: PJTTerminalsTable = None
+
+    @property
+    def quat(self) -> np.ndarray:
+        return np.array(eval(self._table.select('quat', id=self._db_id)[0][0]), dtype=np.dtypes.Float64DType)
+
+    @quat.setter
+    def quat(self, value: np.ndarray):
+        value = str(value.tolist())
+        self._table.update(self._db_id, quat=value)
+        self._process_callbacks()
+
+    @property
+    def angle(self) -> _decimal:
+        return _decimal(self._table.select('cavity_id', id=self._db_id)[0][0])
+
+    @angle.setter
+    def angle(self, value: _decimal):
+        self._table.update(self._db_id, angle=float(value))
+        self._process_callbacks()
 
     @property
     def table(self) -> PJTTerminalsTable:

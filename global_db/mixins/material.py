@@ -4,21 +4,19 @@ from .base import BaseMixin
 
 
 if TYPE_CHECKING:
-    from .. import material as _material  # NOQA
+    from .. import material as _material
 
 
 class MaterialMixin(BaseMixin):
 
     @property
     def material(self) -> "_material.Material":
-        from .. import material as _material  # NOQA
-
         material_id = self._table.select('material_id', id=self._db_id)
-        return _material.Material(self._table.db.materials_table, material_id[0][0])
+        return self._table.db.materials_table[material_id[0][0]]
 
     @material.setter
     def material(self, value: "_material.Material"):
-        self._table.update(self._db_id, material_id=value.db_id)
+        self.material_id = value.db_id
 
     @property
     def material_id(self) -> int:

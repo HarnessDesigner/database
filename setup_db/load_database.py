@@ -326,7 +326,7 @@ def _build_colors():
         (315, 'Glaucous', 0x6082B6FF),
         (316, 'Glossy Grape', 0xAB92B3FF),
         (317, 'Gold Fusion', 0x85754EFF),
-        (318, 'Gold1', 0xFFD700FF),
+        (318, 'Gold', 0xFFD700FF),
         (319, 'Gold2', 0xEEC900FF),
         (320, 'Gold3', 0xCDAD00FF),
         (321, 'Gold4', 0x8B7500FF),
@@ -392,7 +392,7 @@ def _build_colors():
         (381, 'Gray54', 0x8A8A8AFF),
         (382, 'Gray55', 0x8C8C8CFF),
         (383, 'Gray56', 0x8F8F8FFF),
-        (384, 'Gray57', 0x919191FF),
+        (384, 'Tin', 0x919191FF),
         (385, 'Gray58', 0x949494FF),
         (386, 'Gray59', 0x969696FF),
         (387, 'Gray6', 0x0F0F0FFF),
@@ -1024,8 +1024,11 @@ def _build_colors():
         (1013, 'Dark Purple', 0x301934FF),
         (1014, 'Silver', 0xC0C0C0FF),
         (1015, 'Red Brown', 0x942222FF),
-        (1016, 'Multiple Colors', 0x000000FF),
-        (1017, 'Transparent', 0xFFFFFFFF)
+        (1016, 'Aluminum', 0xC6C7C7),
+        (1017, 'Titanium', 0x878681),
+        (1018, 'Zinc', 0xBAC4C8),
+        (1019, 'Multiple Colors', 0x000000FF),
+        (1020, 'Transparent', 0xFFFFFFFF)
     )
 
 

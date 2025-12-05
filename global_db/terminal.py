@@ -4,7 +4,7 @@ from . import EntryBase, TableBase
 from ...wrappers.decimal import Decimal as _decimal
 from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
                      SeriesMixin, FamilyMixin, ResourceMixin, WeightMixin, CavityLockMixin,
-                     Model3DMixin)
+                     Model3DMixin, DimensionMixin)
 
 if TYPE_CHECKING:
     from . import plating as _plating
@@ -36,7 +36,7 @@ class TerminalsTable(TableBase):
                max_vibration_g: int, max_current_ma: int, wire_size_min_awg: int,
                wire_size_max_awg: int, wire_dia_min: _decimal, wire_dia_max: _decimal,
                min_wire_cross: _decimal, max_wire_cross: _decimal, plating_id: int,
-               weight: _decimal) -> "Terminal":
+               weight: _decimal, length: _decimal, width, _decimal, height: _decimal) -> "Terminal":
 
         db_id = TableBase.insert(self, part_number=part_number, mfg_id=mfg_id, description=description,
                                  gender_id=gender_id, series_id=series_id, family_id=family_id, sealing=int(sealing),
@@ -47,7 +47,9 @@ class TerminalsTable(TableBase):
                                  wire_size_min_awg=wire_size_min_awg, wire_size_max_awg=wire_size_max_awg,
                                  wire_dia_min=float(wire_dia_min), wire_dia_max=float(wire_dia_max),
                                  min_wire_cross=float(min_wire_cross), max_wire_cross=float(max_wire_cross),
-                                 plating_id=plating_id, weight=float(weight))
+                                 plating_id=plating_id, weight=float(weight), length=float(length), width=float(width),
+                                 height=float(height))
+
         return Terminal(self, db_id)
 
     @property
@@ -193,8 +195,9 @@ class TerminalsTable(TableBase):
         return res, commons
 
 
-class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, GenderMixin,
-               SeriesMixin, FamilyMixin, ResourceMixin, WeightMixin, CavityLockMixin, Model3DMixin):
+class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
+               GenderMixin, DimensionMixin, SeriesMixin, FamilyMixin, ResourceMixin,
+               WeightMixin, CavityLockMixin, Model3DMixin):
 
     _table: TerminalsTable = None
 
