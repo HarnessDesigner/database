@@ -1,0 +1,171 @@
+
+from typing import TYPE_CHECKING, Iterable as _Iterable
+
+import math
+import numpy as np
+
+from . import PJTEntryBase, PJTTableBase
+
+from ...wrappers.decimal import Decimal as _decimal
+from ...geometry import line as _line
+from ...geometry import angle as _angle
+
+if TYPE_CHECKING:
+    from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_circuit as _pjt_circuit
+
+    from ..global_db import wire as _wire
+
+
+class PJTWireServiceLoopsTable(PJTTableBase):
+    __table_name__ = 'pjt_wire_service_loops'
+
+    def __iter__(self) -> _Iterable["PJTWireServiceLoop"]:
+        for db_id in PJTTableBase.__iter__(self):
+            yield PJTWireServiceLoop(self, db_id, self.project_id)
+
+    def __getitem__(self, item) -> "PJTWireServiceLoop":
+        if isinstance(item, int):
+            if item in self:
+                return PJTWireServiceLoop(self, item, self.project_id)
+            raise IndexError(str(item))
+
+        raise KeyError(item)
+
+    def insert(self, part_id: int, circuit_id: int, start_point3d_id: int | None,
+               stop_point3d_id: int | None, is_visible: bool) -> "PJTWireServiceLoop":
+
+        db_id = PJTTableBase.insert(self, part_id=part_id, circuit_id=circuit_id,
+                                    start_point3d_id=start_point3d_id,
+                                    stop_point3d_id=stop_point3d_id,
+                                    is_visible=int(is_visible))
+
+        return PJTWireServiceLoop(self, db_id, self.project_id)
+
+
+class PJTWireServiceLoop(PJTEntryBase):
+    _table: PJTWireServiceLoopsTable = None
+    _r_angle: _angle.Angle = None
+
+    @property
+    def length_mm(self) -> _decimal:
+        od_mm = self.part.od_mm
+        length = od_mm * 2
+        length += _decimal(2.0) * _decimal(math.pi) * od_mm / _decimal(2.0)
+
+        return length
+
+    @property
+    def length_m(self) -> _decimal:
+        return self.length_mm / _decimal(1000.0)
+
+    @property
+    def length_ft(self) -> _decimal:
+        return self.length_m * _decimal(3.28084)
+
+    @property
+    def weight_g(self) -> _decimal:
+        return self.part.weight_g_m * self.length_m
+
+    @property
+    def weight_lb(self) -> _decimal:
+        return self.part.weight_lb_ft * self.length_ft
+
+    @property
+    def table(self) -> PJTWireServiceLoopsTable:
+        return self._table
+
+    @property
+    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.start_point3d_id
+
+        if point_id is None:
+            return None
+
+        return self._table.db.pjt_points_3d_table[point_id]
+
+    @property
+    def start_point3d_id(self) -> int:
+        return self._table.select('start_point3d_id', id=self._db_id)[0][0]
+
+    @start_point3d_id.setter
+    def start_point3d_id(self, value: int):
+        self._table.update(self._db_id, start_point3d_id=value)
+        self._process_callbacks()
+
+    @property
+    def stop_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.stop_point3d_id
+
+        if point_id is None:
+            return None
+
+        return self._table.db.pjt_points_3d_table[point_id]
+
+    @property
+    def stop_point3d_id(self) -> int:
+        return self._table.select('stop_point3d_id', id=self._db_id)[0][0]
+
+    @stop_point3d_id.setter
+    def stop_point3d_id(self, value: int):
+        self._table.update(self._db_id, stop_point3d_id=value)
+        self._process_callbacks()
+
+    @property
+    def circuit(self) -> "_pjt_circuit.PJTCircuit":
+        circuit_id = self.circuit_id
+        return self._table.db.pjt_circuits_table[circuit_id]
+
+    @property
+    def circuit_id(self) -> int:
+        return self._table.select('circuit_id', id=self._db_id)[0][0]
+
+    @circuit_id.setter
+    def circuit_id(self, value: int):
+        self._table.update(self._db_id, circuit_id=value)
+        self._process_callbacks()
+
+    @property
+    def is_visible(self) -> bool:
+        return bool(self._table.select('is_visible', id=self._db_id)[0][0])
+
+    @is_visible.setter
+    def is_visible(self, value: bool):
+        self._table.update(self._db_id, is_visible=int(value))
+        self._process_callbacks()
+
+    @property
+    def part(self) -> "_wire.Wire":
+        part_id = self.part_id
+
+        if part_id is None:
+            return None
+
+        return self._table.db.global_db.wires_table[part_id]
+
+    @property
+    def quat(self) -> np.ndarray:
+        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
+        return np.array(quat, dtype=np.dtypes.Float64DType)
+
+    def __update_angle(self, angle):
+        quat = angle.as_quat.tolist()
+        self._table.update(self._db_id, quat=str(quat))
+        self._process_callbacks()
+
+    @property
+    def angle(self) -> _angle.Angle:
+        if self._r_angle is None:
+            self._r_angle = _angle.Angle.from_quat(self.quat)
+            self._r_angle.Bind(self.__update_angle)
+
+        return self._r_angle
+
+    @property
+    def part_id(self) -> int:
+        return self._table.select('part_id', id=self._db_id)[0][0]
+
+    @part_id.setter
+    def part_id(self, value: int):
+        self._table.update(self._db_id, part_id=value)
+        self._process_callbacks()

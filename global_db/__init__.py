@@ -160,6 +160,7 @@ from .protection import ProtectionsTable  # NOQA
 from .transition import TransitionsTable  # NOQA
 from .splice import SplicesTable  # NOQA
 from .model3d import Models3DTable  # NOQA
+from .wire_marker import WireMarkersTable  # NOQA
 
 
 class GLBTables:
@@ -207,6 +208,7 @@ class GLBTables:
         self._accessories_table = AccessoriesTable(self)
         self._splices_table = SplicesTable(self)
         self._models3d_table = Models3DTable(self)
+        self._wire_markers_table = WireMarkersTable(self)
 
     @property
     def accessories_table(self) -> AccessoriesTable:
@@ -344,6 +346,10 @@ class GLBTables:
     def models3d_table(self) -> Models3DTable:
         return self._models3d_table
 
+    @property
+    def wire_markers_table(self) -> WireMarkersTable:
+        return self._wire_markers_table
+
     def _setup_new_db(self):
         # self.connector.execute('PRAGMA foreign_keys = ON;')
         # self.connector.commit()
@@ -370,6 +376,7 @@ class GLBTables:
             create_tables.families,
             create_tables.ip_ratings,
             create_tables.accessories,
+            create_tables.wire_markers,
             create_tables.transition_series,
             create_tables.transitions,
             create_tables.transition_branches,
@@ -428,6 +435,7 @@ class GLBTables:
             load_database.bundle_covers,
             load_database.housings,
             load_database.splices,
+            load_database.wire_markers,
             load_database.wires
         ]
 

@@ -4,6 +4,7 @@ from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
     from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_bundle_layer as _pjt_bundle_layer
 
     from ..global_db import bundle_cover as _bundle_cover
 
@@ -36,6 +37,21 @@ class PJTBundle(PJTEntryBase):
     @property
     def table(self) -> PJTBundlesTable:
         return self._table
+
+    @property
+    def layers(self) -> list["_pjt_bundle_layer.PJTBundleLayer"]:
+        db_ids = self._table.db.pjt_bundle_layers_table.select('id', bundle_id=self.db_id)
+        res = []
+        for db_id in db_ids:
+            layer = self._table.db.pjt_bundle_layers_table[db_id[0]]
+            layer_id = layer.layer_id
+
+            while layer_id <= len(res):
+                res.append(None)
+
+            res[layer_id] = layer
+
+        return res
 
     @property
     def start_point(self) -> "_pjt_point_3d.PJTPoint3D":

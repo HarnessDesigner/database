@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from . import pjt_point_3d as _pjt_point_3d
     from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_circuit as _pjt_circuit
+    from . import pjt_wire_marker as _pjt_wire_marker
 
     from ..global_db import wire as _wire
 
@@ -30,18 +31,61 @@ class PJTWiresTable(PJTTableBase):
         raise KeyError(item)
 
     def insert(self, part_id: int, circuit_id: int, start_point3d_id: int | None, stop_point3d_id: int | None,
-               start_point2d_id: int | None, stop_point2d_id: int | None, is_visible: bool) -> "PJTWire":
+               start_point2d_id: int | None, stop_point2d_id: int | None, is_visible: bool,
+               layer_view_point_id: int | None, layer_id: int | None, is_filler_wire: bool) -> "PJTWire":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, circuit_id=circuit_id,
                                     start_point3d_id=start_point3d_id, stop_point3d_id=stop_point3d_id,
                                     start_point2d_id=start_point2d_id, stop_point2d_id=stop_point2d_id,
-                                    is_visible=int(is_visible))
+                                    is_visible=int(is_visible), layer_view_point_id=layer_view_point_id,
+                                    layer_id=layer_id, is_filler_wire=int(is_filler_wire))
 
         return PJTWire(self, db_id, self.project_id)
 
 
 class PJTWire(PJTEntryBase):
     _table: PJTWiresTable = None
+
+    @property
+    def wire_markers(self) -> list["_pjt_wire_marker.PJTWireMarker"]:
+        db_ids = self._table.db.pjt_wire_markers_table.select('id', wire_id=self.db_id)
+        res = []
+        for db_id in db_ids:
+            res.append(self._table.db.pjt_wire_markers_table[db_id[0]])
+
+        return res
+
+    @property
+    def layer_view_point(self) -> "_pjt_point_2d.PJTPoint2D":
+        point_id = self.layer_view_point_id
+        return self._table.db.pjt_points_2d_table[point_id]
+
+    @property
+    def layer_view_point_id(self) -> int:
+        return self._table.select('layer_view_point_id', id=self._db_id)[0][0]
+
+    @layer_view_point_id.setter
+    def layer_view_point_id(self, value: int):
+        self._table.update(self._db_id, layer_view_point_id=value)
+        self._process_callbacks()
+
+    @property
+    def layer_id(self) -> int | None:
+        return self._table.select('layer_id', id=self._db_id)[0][0]
+
+    @layer_id.setter
+    def layer_id(self, value: int | None):
+        self._table.update(self._db_id, layer_id=value)
+        self._process_callbacks()
+
+    @property
+    def is_filler_wire(self) -> bool:
+        return bool(self._table.select('is_filler_wire', id=self._db_id)[0][0])
+
+    @is_filler_wire.setter
+    def is_filler_wire(self, value: bool):
+        self._table.update(self._db_id, is_filler_wire=int(value))
+        self._process_callbacks()
 
     @property
     def length_mm(self) -> _decimal:

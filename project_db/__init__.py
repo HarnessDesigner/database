@@ -49,6 +49,17 @@ class PJTEntryBase:
         except ValueError:
             pass
 
+    _selected: bool = False
+
+    @property
+    def selected(self) -> bool:
+        return self._selected
+
+    @selected.setter
+    def selected(self, flag: bool):
+        self._selected = flag
+        self._process_callbacks()
+
     def Bind(self, callback):
         for ref in self.__callbacks[:]:
             cb = ref()
@@ -216,6 +227,7 @@ class PJTTableBase:
 
 from .pjt_bundle import PJTBundlesTable  # NOQA
 from .pjt_bundle_layout import PJTBundleLayoutsTable  # NOQA
+from .pjt_bundle_layer import PJTBundleLayersTable  # NOQA
 from .pjt_circuit import PJTCircuitsTable  # NOQA
 from .pjt_point_2d import PJTPoints2DTable  # NOQA
 from .pjt_point_3d import PJTPoints3DTable  # NOQA
@@ -227,7 +239,7 @@ from .pjt_wire2d_layout import PJTWire2DLayoutsTable  # NOQA
 from .pjt_wire3d_layout import PJTWire3DLayoutsTable  # NOQA
 from .pjt_cavity import PJTCavitiesTable  # NOQA
 from .pjt_terminal import PJTTerminalsTable  # NOQA
-
+from .pjt_wire_marker import PJTWireMarkersTable  # NOQA
 from .pjt_seal import PJTSealsTable  # NOQA
 from .pjt_cover import PJTCoversTable  # NOQA
 from .pjt_boot import PJTBootsTable  # NOQA
@@ -249,6 +261,7 @@ class PJTTables:
 
         self._pjt_bundles_table = None
         self._pjt_bundle_layouts_table = None
+        self._pjt_bundle_layers_table = None
         self._pjt_circuits_table = None
         self._pjt_points_2d_table = None
         self._pjt_points_3d_table = None
@@ -265,6 +278,7 @@ class PJTTables:
         self._pjt_boots_table = None
         self._pjt_cpa_locks_table = None
         self._pjt_tpa_locks_table = None
+        self._pjt_wire_markers_table = None
 
         self._points_2d = []
         self._points_3d = []
@@ -278,6 +292,7 @@ class PJTTables:
 
         self._pjt_bundles_table = PJTBundlesTable(self, project_id)
         self._pjt_bundle_layouts_table = PJTBundleLayoutsTable(self, project_id)
+        self._pjt_bundle_layers_table = PJTBundleLayersTable(self, project_id)
         self._pjt_circuits_table = PJTCircuitsTable(self, project_id)
         self._pjt_points_2d_table = PJTPoints2DTable(self, project_id)
         self._pjt_points_3d_table = PJTPoints3DTable(self, project_id)
@@ -294,6 +309,7 @@ class PJTTables:
         self._pjt_boots_table = PJTBootsTable(self, project_id)
         self._pjt_cpa_locks_table = PJTCPALocksTable(self, project_id)
         self._pjt_tpa_locks_table = PJTTPALocksTable(self, project_id)
+        self._pjt_wire_markers_table = PJTWireMarkersTable(self, project_id)
 
         # the points are how we initially identify thing. It links together
         # the various objects. As an example say I have a wire and in the
@@ -334,6 +350,10 @@ class PJTTables:
     @property
     def pjt_bundle_layouts_table(self) -> PJTBundleLayoutsTable:
         return self._pjt_bundle_layouts_table
+
+    @property
+    def pjt_bundle_layers_table(self) -> PJTBundleLayersTable:
+        return self._pjt_bundle_layers_table
 
     @property
     def pjt_circuits_table(self) -> PJTCircuitsTable:
@@ -402,3 +422,7 @@ class PJTTables:
     @property
     def pjt_tpa_locks_table(self) -> PJTTPALocksTable:
         return self._pjt_tpa_locks_table
+
+    @property
+    def pjt_wire_markers_table(self) -> PJTWireMarkersTable:
+        return self._pjt_wire_markers_table
