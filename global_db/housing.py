@@ -62,6 +62,122 @@ class HousingsTable(TableBase):
         return Housing(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        series = self.get_unique('series_id', 'series')
+        families = self.get_unique('family_id', 'families')
+        colors = self.get_unique('color_id', 'colors')
+        min_temps = self.get_unique('min_temp_id', 'temperatures')
+        max_temps = self.get_unique('max_temp_id', 'temperatures')
+        genders = self.get_unique('gender_id', 'genders')
+        directions = self.get_unique('direction_id', 'directions')
+        lengths = self.get_unique('length')
+        widths = self.get_unique('width')
+        heights = self.get_unique('height')
+        weights = self.get_unique('weight')
+        cavity_locks = self.get_unique('cavity_lock_id', 'cavity_locks')
+        sealings = self.get_unique('sealing')
+        rowss = self.get_unique('rows')
+        num_pinss = self.get_unique('num_pins')
+        centerlines = self.get_unique('centerline')
+        ip_ratings = self.get_unique('ip_rating_id', 'ip_ratings')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Family': {
+                'field': 'family_id',
+                'type': 'id',
+                'values': families
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Gender': {
+                'field': 'gender_id',
+                'type': 'id',
+                'values': genders
+            },
+            'Sealing': {
+                'field': 'sealing',
+                'type': 'int',
+                'values': sealings
+            },
+            'Cavity Lock': {
+                'field': 'cavity_lock_id',
+                'type': 'id',
+                'values': cavity_locks
+            },
+            'Min Temp': {
+                'field': 'min_temp_id',
+                'type': 'id',
+                'values': min_temps
+            },
+            'Max Temp': {
+                'field': 'max_temp_id',
+                'type': 'id',
+                'values': max_temps
+            },
+            'Direction': {
+                'field': 'direction_id',
+                'type': 'id',
+                'values': directions
+            },
+            'Row Count': {
+                'field': 'rows',
+                'type': 'int',
+                'values': rowss
+            },
+            'Pin Count': {
+                'field': 'num_pins',
+                'type': 'int',
+                'values': num_pinss
+            },
+            'Pitch': {
+                'field': 'centerline',
+                'type': 'float',
+                'values': centerlines
+            },
+            'IP Rating': {
+                'field': 'ip_rating_id',
+                'type': 'if',
+                'values': ip_ratings
+            },
+            'Weight': {
+                'field': 'weight',
+                'type': 'float',
+                'values': weights
+            },
+            'Length': {
+                'field': 'length',
+                'type': 'float',
+                'values': lengths
+            },
+            'Width': {
+                'field': 'width',
+                'type': 'float',
+                'values': widths
+            },
+            'Height': {
+                'field': 'height',
+                'type': 'float',
+                'values': heights
+            }
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',

@@ -88,7 +88,7 @@ class WiresTable(TableBase):
             },
             'Stripe Color': {
                 'field': 'stripe_color_id',
-                'type': 'is',
+                'type': 'id',
                 'values': stripe_colors
             },
             'Color': {

@@ -42,10 +42,6 @@ class TableBase:
     def table_name(self) -> str:
         return self.__table_name__
 
-    @property
-    def field_mapping(self) -> dict:
-        raise NotImplementedError
-
     def __contains__(self, db_id: int) -> bool:
         self._con.execute(f'SELECT id FROM {self.__table_name__} WHERE id = {db_id};')
 
@@ -119,15 +115,8 @@ class TableBase:
         return self._con.fetchall()
 
     @property
-    def headers(self) -> list[str]:
-        return []
-
-    def parts_list(self) -> tuple[dict, dict]:
-        return {}, {}
-
-    @property
-    def choices(self) -> list[str]:
-        return []
+    def search_items(self) -> dict:
+        raise NotImplementedError
 
     def get_unique(self, field_name, table_name=None, get_field_name='name'):
         if table_name is None:

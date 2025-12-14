@@ -53,6 +53,146 @@ class TerminalsTable(TableBase):
         return Terminal(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        series = self.get_unique('series_id', 'series')
+        families = self.get_unique('family_id', 'families')
+        platings = self.get_unique('plating_id', 'platings', 'symbol')
+        genders = self.get_unique('gender_id', 'genders')
+        sealings = self.get_unique('sealing')
+        cavity_locks = self.get_unique('cavity_lock_id', 'cavity_locks')
+        blade_sizes = self.get_unique('blade_size')
+        resistance_mohmss = self.get_unique('resistance_mohms')
+        mating_cycless = self.get_unique('mating_cycles')
+        max_vibration_gs = self.get_unique('max_vibration_g')
+        max_current_mas = self.get_unique('max_current_ma')
+        wire_size_min_awgs = self.get_unique('wire_size_min_awg')
+        wire_size_max_awgs = self.get_unique('wire_size_max_awg')
+        wire_dia_mins = self.get_unique('wire_dia_min')
+        wire_dia_maxs = self.get_unique('wire_dia_max')
+        min_wire_crosss = self.get_unique('min_wire_cross')
+        max_wire_crosss = self.get_unique('max_wire_cross')
+        weights = self.get_unique('weight')
+        lengths = self.get_unique('length')
+        widths = self.get_unique('width')
+        heights = self.get_unique('height')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Family': {
+                'field': 'family_id',
+                'type': 'id',
+                'values': families
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Plating': {
+                'field': 'plating_id',
+                'type': 'id',
+                'values': platings
+            },
+            'Gender': {
+                'field': 'gender_id',
+                'type': 'id',
+                'values': genders
+            },
+            'Sealing': {
+                'field': 'sealing',
+                'type': 'int',
+                'values': sealings
+            },
+            'Cavity Lock': {
+                'field': 'cavity_lock_id',
+                'type': 'id',
+                'values': cavity_locks
+            },
+            'Blade Size': {
+                'field': 'blade_size',
+                'type': 'float',
+                'values': blade_sizes
+            },
+            'Resistance (mohms)': {
+                'field': 'resistance_mohms',
+                'type': 'float',
+                'values': resistance_mohmss
+            },
+            'Mating Cycles': {
+                'field': 'mating_cycles',
+                'type': 'int',
+                'values': mating_cycless
+            },
+            'Max Vibration (g)': {
+                'field': 'max_vibration_g',
+                'type': 'int',
+                'values': max_vibration_gs
+            },
+            'Max Current (ma)': {
+                'field': 'max_current_ma',
+                'type': 'int',
+                'values': max_current_mas
+            },
+            'Wire Size Min (AWG)': {
+                'field': 'wire_size_min_awg',
+                'type': 'int',
+                'values': wire_size_min_awgs
+            },
+            'Wire Size Max (AWG)': {
+                'field': 'wire_size_max_awg',
+                'type': 'int',
+                'values': wire_size_max_awgs
+            },
+            'Wire Size Min (mm2)': {
+                'field': 'min_wire_cross',
+                'type': 'float',
+                'values': min_wire_crosss
+            },
+            'Wire Size Max (mm2)': {
+                'field': 'max_wire_cross',
+                'type': 'float',
+                'values': max_wire_crosss
+            },
+            'Wire Diameter Min (mm)': {
+                'field': 'wire_dia_min',
+                'type': 'float',
+                'values': wire_dia_mins
+            },
+            'Wire Diameter Max (mm)': {
+                'field': 'wire_dia_max',
+                'type': 'float',
+                'values': wire_dia_maxs
+            },
+            'Weight': {
+                'field': 'weight',
+                'type': 'float',
+                'values': weights
+            },
+            'Length': {
+                'field': 'length',
+                'type': 'float',
+                'values': lengths
+            },
+            'Width': {
+                'field': 'width',
+                'type': 'float',
+                'values': widths
+            },
+            'Height': {
+                'field': 'height',
+                'type': 'float',
+                'values': heights
+            }
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',
