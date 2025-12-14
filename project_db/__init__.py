@@ -175,7 +175,7 @@ class PJTTableBase:
         self._con.commit()
         return self._con.lastrowid
 
-    def select(self, *args, **kwargs):
+    def select(self, *args, OR: bool = False, **kwargs):
         args = ', '.join(args)
 
         values = []
@@ -191,7 +191,11 @@ class PJTTableBase:
 
             values.append(f'{key} = {value}')
 
-        values = ' AND '.join(values)
+        if OR:
+
+            values = ' OR '.join(values)
+        else:
+            values = ' AND '.join(values)
 
         where = f' WHERE {values}'
 

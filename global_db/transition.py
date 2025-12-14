@@ -47,6 +47,87 @@ class TransitionsTable(TableBase):
         return Transition(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        families = self.get_unique('family_id', 'families')
+        series = self.get_unique('series_id', 'series')
+        transition_series = self.get_unique('transition_series_id', 'transition_series')
+        colors = self.get_unique('color_id', 'colors')
+        materials = self.get_unique('material_id', 'materials')
+        branch_counts = self.get_unique('branch_count')
+        shapes = self.get_unique('shape_id', 'shapes')
+        protections = self.get_unique('protection_id', 'protections')
+        min_temps = self.get_unique('min_temp_id', 'temperatures')
+        max_temps = self.get_unique('max_temp_id', 'temperatures')
+        weights = self.get_unique('weight')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Family': {
+                'field': 'family_id',
+                'type': 'id',
+                'values': families
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Transition Series': {
+                'field': 'transition_series_id',
+                'type': 'id',
+                'values': transition_series
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Material': {
+                'field': 'material_id',
+                'type': 'id',
+                'values': materials
+            },
+            'Branch Count': {
+                'field': 'branch_count',
+                'type': 'int',
+                'values': branch_counts
+            },
+            'Shape': {
+                'field': 'shape_id',
+                'type': 'id',
+                'values': shapes
+            },
+            'Protection': {
+                'field': 'protection_id',
+                'type': 'id',
+                'values': protections
+            },
+            'Min Temp': {
+                'field': 'min_temp_id',
+                'type': 'id',
+                'values': min_temps
+            },
+            'Max Temp': {
+                'field': 'max_temp_id',
+                'type': 'id',
+                'values': max_temps
+            },
+            'Weight': {
+                'field': 'weight',
+                'type': 'float',
+                'values': weights
+            }
+        }
+
+        return ret
+
+
+    @property
     def headers(self):
         return [
             'Part Number',

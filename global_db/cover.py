@@ -41,6 +41,80 @@ class CoversTable(TableBase):
         return Cover(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        series = self.get_unique('series_id', 'series')
+        families = self.get_unique('family_id', 'families')
+        colors = self.get_unique('color_id', 'colors')
+        directions = self.get_unique('direction_id', 'directions')
+        min_temps = self.get_unique('min_temp_id', 'temperatures')
+        max_temps = self.get_unique('max_temp_id', 'temperatures')
+        lengths = self.get_unique('length')
+        widths = self.get_unique('width')
+        heights = self.get_unique('height')
+        weights = self.get_unique('weight')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Family': {
+                'field': 'family_id',
+                'type': 'id',
+                'values': families
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Length': {
+                'field': 'length',
+                'type': 'float',
+                'values': lengths
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Direction': {
+                'field': 'direction_id',
+                'type': 'id',
+                'values': directions
+            },
+            'Min Temp': {
+                'field': 'min_temp_id',
+                'type': 'id',
+                'values': min_temps
+            },
+            'Max Temp': {
+                'field': 'max_temp_id',
+                'type': 'id',
+                'values': max_temps
+            },
+            'Weight': {
+                'field': 'weight',
+                'type': 'float',
+                'values': weights
+            },
+            'Width': {
+                'field': 'width',
+                'type': 'float',
+                'values': widths
+            },
+            'Height': {
+                'field': 'height',
+                'type': 'float',
+                'values': heights
+            }
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',

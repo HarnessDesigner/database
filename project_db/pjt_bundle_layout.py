@@ -5,6 +5,7 @@ from ...wrappers.decimal import Decimal as _decimal
 
 if TYPE_CHECKING:
     from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_bundle as _pjt_bundle
 
 
 class PJTBundleLayoutsTable(PJTTableBase):
@@ -30,6 +31,17 @@ class PJTBundleLayoutsTable(PJTTableBase):
 
 class PJTBundleLayout(PJTEntryBase):
     _table: PJTBundleLayoutsTable = None
+
+    @property
+    def attached_objects(self) -> list["_pjt_bundle.PJTBundle"]:
+        res = []
+        point_id = self.point_id
+        db_ids = self._table.db.pjt_bundles_table.select(
+            "id", OR=True, start_point3d_id=point_id, stop_point3d_id=point_id)
+        for db_id in db_ids:
+            res.append(self._table.db.pjt_wires_table[db_id[0]])
+
+        return res
 
     @property
     def table(self) -> PJTBundleLayoutsTable:

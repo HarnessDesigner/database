@@ -39,6 +39,98 @@ class SealsTable(TableBase):
         return Seal(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        series = self.get_unique('series_id', 'series')
+        colors = self.get_unique('color_id', 'colors')
+        min_temps = self.get_unique('min_temp_id', 'temperatures')
+        max_temps = self.get_unique('max_temp_id', 'temperatures')
+        types = self.get_unique('type')
+        hardnesses = self.get_unique('hardness')
+        lubricants = self.get_unique('lubricant')
+        lengths = self.get_unique('length')
+        o_dias = self.get_unique('o_dia')
+        i_dias = self.get_unique('i_dia')
+        wire_dia_mins = self.get_unique('wire_dia_min')
+        wire_dia_maxs = self.get_unique('wire_dia_max')
+        weights = self.get_unique('weight')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Length': {
+                'field': 'length',
+                'type': 'float',
+                'values': lengths
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Type': {
+                'field': 'type',
+                'type': 'str',
+                'values': types
+            },
+            'Min Temp': {
+                'field': 'min_temp_id',
+                'type': 'id',
+                'values': min_temps
+            },
+            'Max Temp': {
+                'field': 'max_temp_id',
+                'type': 'id',
+                'values': max_temps
+            },
+            'Weight': {
+                'field': 'weight',
+                'type': 'float',
+                'values': weights
+            },
+            'Hardness': {
+                'field': 'hardness',
+                'type': 'int',
+                'values': hardnesses
+            },
+            'Lubricant': {
+                'field': 'lubricant',
+                'type': 'str',
+                'values': lubricants
+            },
+            'Outside Diameter': {
+                'field': 'o_dia',
+                'type': 'float',
+                'values': o_dias
+            },
+            'Inside Diameter': {
+                'field': 'i_dia',
+                'type': 'float',
+                'values': i_dias
+            },
+            'Wire Diameter (min)': {
+                'field': 'wire_dia_min',
+                'type': 'float',
+                'values': wire_dia_mins
+            },
+            'Wire Diameter (max)': {
+                'field': 'wire_dia_max',
+                'type': 'float',
+                'values': wire_dia_maxs
+            }
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',

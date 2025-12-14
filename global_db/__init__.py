@@ -42,6 +42,10 @@ class TableBase:
     def table_name(self) -> str:
         return self.__table_name__
 
+    @property
+    def field_mapping(self) -> dict:
+        raise NotImplementedError
+
     def __contains__(self, db_id: int) -> bool:
         self._con.execute(f'SELECT id FROM {self.__table_name__} WHERE id = {db_id};')
 
@@ -107,9 +111,9 @@ class TableBase:
 
     def execute(self, cmd, params=None):
         if params is None:
-            self._con.execute(cmd)
+            return self._con.execute(cmd)
         else:
-            self._con.execute(cmd, params)
+            return self._con.execute(cmd, params)
 
     def fetchall(self):
         return self._con.fetchall()
@@ -124,6 +128,24 @@ class TableBase:
     @property
     def choices(self) -> list[str]:
         return []
+
+    def get_unique(self, field_name, table_name=None, get_field_name='name'):
+        if table_name is None:
+            self.execute(f'SELECT DISTINCT {field_name} FROM {self.__table_name__};')
+            values = [item[0] for item in self._con.fetchall()]
+            return values
+        else:
+            self.execute(f'SELECT DISTINCT {field_name} FROM {self.__table_name__};')
+            ids = self._con.fetchall()
+
+            cmd = [f'id = {id_[0]}' for id_ in ids]
+
+            if cmd:
+                self.execute(f'SELECT id, {get_field_name} FROM {table_name} WHERE {" OR ".join(cmd)};')
+                return self._con.fetchall()
+
+            return []
+
 
 
 from .accessory import AccessoriesTable  # NOQA

@@ -49,6 +49,105 @@ class BundleCoversTable(TableBase):
         return BundleCover(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        series = self.get_unique('series_id', 'series')
+        families = self.get_unique('family_id', 'families')
+        materials = self.get_unique('material_id', 'materials')
+        colors = self.get_unique('color_id', 'colors')
+        rigidities = self.get_unique('rigidity')
+        shrink_temps = self.get_unique('shrink_temp_id', 'temperatures')
+        min_temps = self.get_unique('min_temp_id', 'temperatures')
+        max_temps = self.get_unique('max_temp_id', 'temperatures')
+        min_diameters = self.get_unique('min_dia')
+        max_diameters = self.get_unique('min_dia')
+        walls = self.get_unique('wall')
+        shrink_ratios = self.get_unique('shrink_ratio')
+        protections = self.get_unique('protection_id', 'protections')
+        weights = self.get_unique('weight')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Family': {
+                'field': 'family_id',
+                'type': 'id',
+                'values': families
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Rigidity': {
+                'field': 'rigidity',
+                'type': 'str',
+                'values': rigidities
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Material': {
+                'field': 'material_id',
+                'type': 'id',
+                'values': materials
+            },
+            'Min Temp': {
+                'field': 'min_temp_id',
+                'type': 'id',
+                'values': min_temps
+            },
+            'Max Temp': {
+                'field': 'max_temp_id',
+                'type': 'id',
+                'values': max_temps
+            },
+            'Weight': {
+                'field': 'weight',
+                'type': 'float',
+                'values': weights
+            },
+            'Shrink Temp': {
+                'field': 'shrink_temp_id',
+                'type': 'id',
+                'values': shrink_temps
+            },
+            'Protection': {
+                'field': 'protection_id',
+                'type': 'id',
+                'values': protections
+            },
+            'Min Diameter': {
+                'field': 'min_dia',
+                'type': 'float',
+                'values': min_diameters
+            },
+
+            'Max Diameter': {
+                'field': 'max_dia',
+                'type': 'float',
+                'values': max_diameters
+            },
+            'Wall Type': {
+                'field': 'wall',
+                'type': 'str',
+                'values': walls
+            },
+            'Shrink Ratio': {
+                'field': 'shrink_ratio',
+                'type': 'str',
+                'values': shrink_ratios
+            },
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',

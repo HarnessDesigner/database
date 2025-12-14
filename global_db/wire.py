@@ -49,6 +49,128 @@ class WiresTable(TableBase):
         return Wire(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        series = self.get_unique('series_id', 'series')
+        families = self.get_unique('family_id', 'families')
+        colors = self.get_unique('color_id', 'colors')
+        min_temps = self.get_unique('min_temp_id', 'temperatures')
+        max_temps = self.get_unique('max_temp_id', 'temperatures')
+        stripe_colors = self.get_unique('stripe_color_id', 'colors')
+        materials = self.get_unique('material_id', 'materials')
+        num_conductors = self.get_unique('num_conductors')
+        shieldeds = self.get_unique('shielded')
+        tpis = self.get_unique('tpi')
+        conductor_dia_mms = self.get_unique('conductor_dia_mm')
+        size_mm2s = self.get_unique('size_mm2')
+        size_awgs = self.get_unique('size_awg')
+        od_mms = self.get_unique('od_mm')
+        weight_1kms = self.get_unique('weight_1km')
+        core_materials = self.get_unique('core_material_id', 'platings')
+        resistance_1kms = self.get_unique('resistance_1km')
+        volts = self.get_unique('volts')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Family': {
+                'field': 'family_id',
+                'type': 'id',
+                'values': families
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Stripe Color': {
+                'field': 'stripe_color_id',
+                'type': 'is',
+                'values': stripe_colors
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Material': {
+                'field': 'material_id',
+                'type': 'id',
+                'values': materials
+            },
+            'Min Temp': {
+                'field': 'min_temp_id',
+                'type': 'id',
+                'values': min_temps
+            },
+            'Max Temp': {
+                'field': 'max_temp_id',
+                'type': 'id',
+                'values': max_temps
+            },
+            'Weight (1km)': {
+                'field': 'weight_1km',
+                'type': 'float',
+                'values': weight_1kms
+            },
+            'Core Material': {
+                'field': 'core_material_id',
+                'type': 'id',
+                'values': core_materials
+            },
+            'Size (mm2)': {
+                'field': 'size_mm2',
+                'type': 'float',
+                'values': size_mm2s
+            },
+            'Size (AWG)': {
+                'field': 'size_awg',
+                'type': 'int',
+                'values': size_awgs
+            },
+            'Conductor Count': {
+                'field': 'num_conductors',
+                'type': 'int',
+                'values': num_conductors
+            },
+            'Shielded': {
+                'field': 'shielded',
+                'type': 'int',
+                'values': shieldeds
+            },
+            'Turns Per Inch': {
+                'field': 'tpi',
+                'type': 'int',
+                'values': tpis
+            },
+            'Conductor Diameter': {
+                'field': 'conductor_dia_mm',
+                'type': 'float',
+                'values': conductor_dia_mms
+            },
+            'Outside Diameter': {
+                'field': 'od_mm',
+                'type': 'float',
+                'values': od_mms
+            },
+            'Resistance (1km)': {
+                'field': 'resistance_1km',
+                'type': 'float',
+                'values': resistance_1kms
+            },
+            'Volts': {
+                'field': 'volts',
+                'type': 'float',
+                'values': volts
+            }
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',

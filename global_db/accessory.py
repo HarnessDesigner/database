@@ -33,6 +33,44 @@ class AccessoriesTable(TableBase):
         return Accessory(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        families = self.get_unique('family_id', 'families')
+        series = self.get_unique('series_id', 'series')
+        colors = self.get_unique('color_id', 'colors')
+        materials = self.get_unique('material_id', 'materials')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Family': {
+                'field': 'family_id',
+                'type': 'id',
+                'values': families
+            },
+            'Series': {
+                'field': 'series_id',
+                'type': 'id',
+                'values': series
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Material': {
+                'field': 'material_id',
+                'type': 'id',
+                'values': materials
+                }
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',

@@ -5,6 +5,7 @@ import numpy as np
 from . import PJTEntryBase, PJTTableBase
 
 from ...wrappers.decimal import Decimal as _decimal
+from ...geometry import angle as _angle
 
 if TYPE_CHECKING:
     from . import pjt_cavity as _pjt_cavity
@@ -57,12 +58,21 @@ class PJTTerminal(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def angle(self) -> _decimal:
-        return _decimal(self._table.select('cavity_id', id=self._db_id)[0][0])
+    def angle3d(self) -> _angle.Angle:
+        quat = self.quat
+        return _angle.Angle.from_quat(quat)
 
-    @angle.setter
-    def angle(self, value: _decimal):
-        self._table.update(self._db_id, angle=float(value))
+    @angle3d.setter
+    def angle3d(self, value: _angle.Angle):
+        self.quat = value.as_quat
+
+    @property
+    def angle2d(self) -> _decimal:
+        return _decimal(self._table.select('angle2d', id=self._db_id)[0][0])
+
+    @angle2d.setter
+    def angle2d(self, value: _decimal):
+        self._table.update(self._db_id, angle2d=float(value))
         self._process_callbacks()
 
     @property

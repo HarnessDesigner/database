@@ -5,6 +5,7 @@ from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
     from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_wire as _pjt_wire
 
 
 class PJTWire3DLayoutsTable(PJTTableBase):
@@ -29,6 +30,17 @@ class PJTWire3DLayoutsTable(PJTTableBase):
 
 class PJTWire3DLayout(PJTEntryBase):
     _table: PJTWire3DLayoutsTable = None
+
+    @property
+    def attached_objects(self) -> list["_pjt_wire.PJTWire"]:
+        res = []
+        point_id = self.point_id
+        db_ids = self._table.db.pjt_wires_table.select(
+            "id", OR=True, start_point3d_id=point_id, stop_point3d_id=point_id)
+        for db_id in db_ids:
+            res.append(self._table.db.pjt_wires_table[db_id[0]])
+
+        return res
 
     @property
     def table(self) -> PJTWire3DLayoutsTable:

@@ -45,6 +45,68 @@ class WireMarkersTable(TableBase):
         return WireMarker(self, db_id)
 
     @property
+    def search_items(self) -> dict:
+        mfgs = self.get_unique('mfg_id', 'manufacturers')
+        colors = self.get_unique('color_id', 'colors')
+        min_diameters = self.get_unique('min_diameter')
+        max_diameters = self.get_unique('max_diameter')
+        min_awgs = self.get_unique('min_awg')
+        max_awgs = self.get_unique('max_awg')
+        lengths = self.get_unique('length')
+        weights = self.get_unique('weight')
+        has_labels = self.get_unique('has_label')
+
+        ret = {
+            'Manufacturer': {
+                'field': 'mfg_id',
+                'type': 'id',
+                'values': mfgs
+            },
+            'Length': {
+                'field': 'length',
+                'type': 'float',
+                'values': lengths
+            },
+            'Color': {
+                'field': 'color_id',
+                'type': 'id',
+                'values': colors
+            },
+            'Diameter (min)': {
+                'field': 'min_diameter',
+                'type': 'float',
+                'values': min_diameters
+            },
+            'Diameter (max)': {
+                'field': 'max_diameter',
+                'type': 'float',
+                'values': max_diameters
+            },
+            'AWG (min)': {
+                'field': 'min_awg',
+                'type': 'int',
+                'values': min_awgs
+            },
+            'AWG (max)': {
+                'field': 'max_awg',
+                'type': 'int',
+                'values': max_awgs
+            },
+            'Weight': {
+                'field': 'weight',
+                'type': 'float',
+                'values': weights
+            },
+            'Can Label': {
+                'field': 'has_label',
+                'type': 'int',
+                'values': has_labels
+            }
+        }
+
+        return ret
+
+    @property
     def headers(self):
         return [
             'Part Number',

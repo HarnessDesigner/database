@@ -2,6 +2,9 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
 
+from ...wrappers.decimal import Decimal as _decimal
+
+
 if TYPE_CHECKING:
     from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_point_3d as _pjt_point_3d
@@ -24,8 +27,12 @@ class PJTWireMarkersTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, point_id: int) -> "PJTWireMarker":
-        db_id = PJTTableBase.insert(self, point_id=point_id)
+    def insert(self, point_2d_id: int, point_3d_id: int,
+               wire_id: int, part_id: int, label: str) -> "PJTWireMarker":
+
+        db_id = PJTTableBase.insert(self, point_2d_id=point_2d_id, point_3d_id=point_3d_id,
+                                    wire_id=wire_id, part_id=part_id, label=label)
+
         return PJTWireMarker(self, db_id, self.project_id)
 
 

@@ -4,7 +4,7 @@ from typing import Iterable as _Iterable
 
 from .import EntryBase, TableBase
 from .mixins import (PartNumberMixin, ManufacturerMixin, ResourceMixin,
-                     DescriptionMixin, Model3DMixin, WeightMixin)
+                     DescriptionMixin, Model3DMixin, WeightMixin, ColorMixin)
 
 from ...wrappers.decimal import Decimal as _decimal
 
@@ -34,7 +34,7 @@ class SplicesTable(TableBase):
 
 
 class Splice(EntryBase, PartNumberMixin, ManufacturerMixin, ResourceMixin,
-             DescriptionMixin, Model3DMixin, WeightMixin):
+             DescriptionMixin, Model3DMixin, WeightMixin, ColorMixin):
     _table: SplicesTable = None
 
     @property
@@ -44,3 +44,11 @@ class Splice(EntryBase, PartNumberMixin, ManufacturerMixin, ResourceMixin,
     @diameter.setter
     def diameter(self, value: _decimal):
         self._table.update(self._db_id, diameter=float(value))
+
+    @property
+    def length(self) -> _decimal:
+        return _decimal(self._table.select('length', id=self._db_id)[0][0])
+
+    @length.setter
+    def length(self, value: _decimal):
+        self._table.update(self._db_id, length=float(value))
