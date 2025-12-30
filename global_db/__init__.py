@@ -177,50 +177,117 @@ from .splice_types import SpliceTypesTable  # NOQA
 
 class GLBTables:
 
-    def __init__(self, mainframe: "_ui.MainFrame"):
+    def __init__(self, splash, mainframe: "_ui.MainFrame"):
         self.mainframe = mainframe
 
         self.connector = mainframe.db_connector
 
-        if self.connector.create_tables:
-            self._setup_new_db()
+        from ..setup_db import create_tables
 
+        tables = self.connector.get_tables()
+
+        for table_name, func in create_tables.global_table_mapping():
+            if table_name not in tables:
+                splash.SetText(f'Creating database table {table_name}...')
+                func(self.connector, self.connector)
+
+        from ..setup_db import load_database
+
+        load_database.splash = splash
+
+        funcs = [
+            load_database.tpa_locks,
+            load_database.cpa_locks,
+            load_database.boots,
+            load_database.terminals,
+            load_database.covers,
+            load_database.seals,
+            load_database.transitions,
+            load_database.bundle_covers,
+            load_database.housings,
+            load_database.splices,
+            load_database.wire_markers,
+            load_database.wires
+        ]
+
+        for func in funcs:
+            try:
+                func(self.connector, self.connector)
+            except FileNotFoundError:
+                continue
+            except:
+                print(func)
+                raise
+
+        splash.SetText(f'Loading boots database table...')
         self._boots_table = BootsTable(self)
+        splash.SetText(f'Loading manufacturers database table...')
         self._manufacturers_table = ManufacturersTable(self)
+        splash.SetText(f'Loading TPA locks database table...')
         self._tpa_locks_table = TPALocksTable(self)
+        splash.SetText(f'Loading CPA locks database table...')
         self._cpa_locks_table = CPALocksTable(self)
+        splash.SetText(f'Loading materials database table...')
         self._materials_table = MaterialsTable(self)
+        splash.SetText(f'Loading platings database table...')
         self._platings_table = PlatingsTable(self)
+        splash.SetText(f'Loading covers database table...')
         self._covers_table = CoversTable(self)
+        splash.SetText(f'Loading housings database table...')
         self._housings_table = HousingsTable(self)
+        splash.SetText(f'Loading seals database table...')
         self._seals_table = SealsTable(self)
+        splash.SetText(f'Loading series database table...')
         self._series_table = SeriesTable(self)
+        splash.SetText(f'Loading terminals database table...')
         self._terminals_table = TerminalsTable(self)
+        splash.SetText(f'Loading wires database table...')
         self._wires_table = WiresTable(self)
+        splash.SetText(f'Loading cavity locks database table...')
         self._cavity_locks_table = CavityLocksTable(self)
+        splash.SetText(f'Loading colors database table...')
         self._colors_table = ColorsTable(self)
+        splash.SetText(f'Loading directions database table...')
         self._directions_table = DirectionsTable(self)
+        splash.SetText(f'Loading resources database table...')
         self._resources_table = ResourcesTable(self)
+        splash.SetText(f'Loading families database table...')
         self._families_table = FamiliesTable(self)
+        splash.SetText(f'Loading genders database table...')
         self._genders_table = GendersTable(self)
-        self._sealings_table = SealingsTable(self)
+        splash.SetText(f'Loading temperatures database table...')
         self._temperatures_table = TemperaturesTable(self)
+        splash.SetText(f'Loading IP solids database table...')
         self._ip_solids_table = IPSolidsTable(self)
+        splash.SetText(f'Loading IP fluids database table...')
         self._ip_fluids_table = IPFluidsTable(self)
+        splash.SetText(f'Loading IP supps database table...')
         self._ip_supps_table = IPSuppsTable(self)
+        splash.SetText(f'Loading IP ratings database table...')
         self._ip_ratings_table = IPRatingsTable(self)
+        splash.SetText(f'Loading housing cavities database table...')
         self._cavities_table = CavitiesTable(self)
+        splash.SetText(f'Loading protections database table...')
         self._protections_table = ProtectionsTable(self)
+        splash.SetText(f'Loading bundle covers database table...')
         self._bundle_covers_table = BundleCoversTable(self)
+        splash.SetText(f'Loading transition branches database table...')
         self._transition_branches_table = TransitionBranchesTable(self)
+        splash.SetText(f'Loading adhesives database table...')
         self._adhesives_table = AdhesivesTable(self)
-        self._protections_table = ProtectionsTable(self)
+        splash.SetText(f'Loading shapes database table...')
         self._shapes_table = ShapesTable(self)
+        splash.SetText(f'Loading transitions database table...')
         self._transitions_table = TransitionsTable(self)
+        splash.SetText(f'Loading accessories database table...')
         self._accessories_table = AccessoriesTable(self)
+        splash.SetText(f'Loading splices database table...')
         self._splices_table = SplicesTable(self)
+        splash.SetText(f'Loading 3d models database table...')
         self._models3d_table = Models3DTable(self)
+        splash.SetText(f'Loading wire markers database table...')
         self._wire_markers_table = WireMarkersTable(self)
+        splash.SetText(f'Loading splice types database table...')
         self._splice_types_table = SpliceTypesTable(self)
 
     @property
@@ -367,102 +434,3 @@ class GLBTables:
     def splice_types_table(self) -> SpliceTypesTable:
         return self._splice_types_table
 
-    def _setup_new_db(self):
-        # self.connector.execute('PRAGMA foreign_keys = ON;')
-        # self.connector.commit()
-
-        from ..setup_db import create_tables
-
-        funcs = (
-            create_tables.resources,
-            create_tables.manufacturers,
-            create_tables.temperatures,
-            create_tables.genders,
-            create_tables.protections,
-            create_tables.adhesives,
-            create_tables.cavity_locks,
-            create_tables.colors,
-            create_tables.directions,
-            create_tables.ip_fluids,
-            create_tables.ip_solids,
-            create_tables.ip_supps,
-            create_tables.platings,
-            create_tables.materials,
-            create_tables.shapes,
-            create_tables.series,
-            create_tables.families,
-            create_tables.ip_ratings,
-            create_tables.accessories,
-            create_tables.transition_series,
-            create_tables.transitions,
-            create_tables.transition_branches,
-            create_tables.boots,
-            create_tables.bundle_covers,
-            create_tables.covers,
-            create_tables.cpa_locks,
-            create_tables.tpa_locks,
-            create_tables.seal_types,
-            create_tables.seals,
-            create_tables.wire_markers,
-            create_tables.wires,
-            create_tables.terminals,
-            create_tables.splice_types,
-            create_tables.splices,
-            create_tables.models3d,
-            create_tables.housings,
-            create_tables.cavities,
-            create_tables.housing_crossref,
-            create_tables.terminal_crossref,
-            create_tables.seal_crossref,
-            create_tables.cover_crossref,
-            create_tables.boot_crossref,
-            create_tables.tpa_lock_crossref,
-            create_tables.cpa_lock_crossref,
-            create_tables.projects,
-            create_tables.pjt_points_3d,
-            create_tables.pjt_points_2d,
-            create_tables.pjt_circuits,
-            create_tables.pjt_bundle_layouts,
-            create_tables.pjt_wire3d_layouts,
-            create_tables.pjt_wire2d_layouts,
-            create_tables.pjt_bundles,
-            create_tables.pjt_seals,
-            create_tables.pjt_cpa_locks,
-            create_tables.pjt_tpa_locks,
-            create_tables.pjt_splices,
-            create_tables.pjt_housings,
-            create_tables.pjt_cavities,
-            create_tables.pjt_terminals,
-            create_tables.pjt_transitions,
-            create_tables.pjt_wire_markers,
-            create_tables.pjt_wires
-        )
-
-        for func in funcs:
-            func(self.connector, self.connector)
-
-        from ..setup_db import load_database
-
-        funcs = [
-            load_database.tpa_locks,
-            load_database.cpa_locks,
-            load_database.boots,
-            load_database.terminals,
-            load_database.covers,
-            load_database.seals,
-            load_database.transitions,
-            load_database.bundle_covers,
-            load_database.housings,
-            load_database.splices,
-            load_database.wire_markers,
-            load_database.wires
-        ]
-
-        for func in funcs:
-            try:
-                func(self.connector, self.connector)
-            except FileNotFoundError:
-                continue
-            except:
-                print(func)
-                raise

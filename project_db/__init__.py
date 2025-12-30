@@ -256,10 +256,19 @@ from .project import ProjectsTable  # NOQA
 
 class PJTTables:
 
-    def __init__(self, mainframe: "_ui.MainFrame"):
+    def __init__(self, splash, mainframe: "_ui.MainFrame"):
         self.mainframe = mainframe
         self.global_db = mainframe.global_db
         self.connector = mainframe.db_connector
+
+        from ..setup_db import create_tables
+
+        tables = self.connector.get_tables()
+
+        for table_name, func in create_tables.project_table_mapping():
+            if table_name not in tables:
+                splash.SetText(f'Creating database table {table_name}...')
+                func(self.connector, self.connector)
 
         self._projects_table = ProjectsTable(self)
 

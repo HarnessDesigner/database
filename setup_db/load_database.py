@@ -6,6 +6,9 @@ BASE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 DATA_PATH = os.path.join(os.path.dirname(__file__), 'data')
 
 
+splash = None
+
+
 def _build_colors():
     return (
         (0, 'Black', 0x000000FF),
@@ -2759,7 +2762,6 @@ def get_series_id(con, cur, name, mfg_id):
         return res[0][0]
 
 
-
 def get_seal_type_id(con, cur, name):
     if not name:
         return 0
@@ -2773,8 +2775,6 @@ def get_seal_type_id(con, cur, name):
         return cur.lastrowid
     else:
         return res[0][0]
-
-
 
 
 def get_family_id(con, cur, name, mfg_id):
@@ -3108,7 +3108,7 @@ def add_manufacturers(con, cur):
         return
 
     data = (
-        (0, 'NOT SET', '', '', '', ''),
+        (0, 'Internal Use DO NOT DELETE', '', '', '', ''),
         (1, 'TE', '1-800-522-6752', '', '', 'https://www.te.com/en/home.html'),
         (2, 'Bosch', '+49 304 036 94077',
          'Robert-Bosch-Platz 1\n70839 Gerlingen-Schillerhöhe\nGERMANY\n',
@@ -3122,9 +3122,10 @@ def add_manufacturers(con, cur):
         (7, 'Milspecwiring.com', '', '', '', 'https://www.milspecwiring.com'),
 
     )
-
+    splash.SetText(f'Adding manufacturers to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO manufacturers (id, name, phone, address, email, website) '
                     'VALUES (?, ?, ?, ?, ?, ?);', data)
+    splash.SetText(f'Adding manufacturers to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3134,7 +3135,7 @@ def add_accessories(con, cur):
         return
 
     data = (
-        (0, 'N/A', 'N/A', 0),
+        (0, 'None', 'No Accessories', 0),
         (1, 'S1017-1.0X50', '1" x 50\' Polyamide Adhesive, -20 – 60 °C [-4 – 140 °F], Hot Melt Tape', 1),
         (2, 'S1030', 'Polyolefin Adhesive, -80 – 80 °C [-112 – 176 °F], Hot Melt Tape', 1),
         (3, 'S1030-TAPE-3/4X33FT', '3/4" x 33\' Polyolefin Adhesive, -80 – 80 °C [-112 – 176 °F], Hot Melt Tape', 1),
@@ -3146,7 +3147,9 @@ def add_accessories(con, cur):
         (9, 'S1125-KIT-8', 'Dual Pack, 1 Packaging Quantity, 150 °C Temperature (Max), Epoxy Adhesives', 1),
         (10, 'S1125-APPLICATOR', 'Epoxy Adhesives Dispensing Gun', 1)
     )
+    splash.SetText(f'Adding accessories to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO accessories (id, part_number, description, mfg_id) VALUES(?, ?, ?, ?);', data)
+    splash.SetText(f'Adding accessories to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3155,7 +3158,9 @@ def add_models3d(con, cur):
     if res.fetchall():
         return
 
-    cur.execute('INSERT INTO models3d (id, path) VALUES(0, "NOT SET");')
+    splash.SetText(f'Adding 3d models to db [0 | 1]...')
+    cur.execute('INSERT INTO models3d (id, path) VALUES(0, "None");')
+    splash.SetText(f'Adding 3d models to db [1 | 1]...')
     con.commit()
 
 
@@ -3164,7 +3169,9 @@ def add_resources(con, cur):
     if res.fetchall():
         return
 
-    cur.execute('INSERT INTO resources (id, path) VALUES(0, "NOT SET");')
+    splash.SetText(f'Adding resources to db [0 | 1]...')
+    cur.execute('INSERT INTO resources (id, path) VALUES(0, "None");')
+    splash.SetText(f'Adding temperatures to db [1 | 1]...')
     con.commit()
 
 
@@ -3173,7 +3180,9 @@ def add_series(con, cur):
     if res.fetchall():
         return
 
-    cur.execute('INSERT INTO series (id, name) VALUES(0, "N/A");')
+    splash.SetText(f'Adding series to db [0 | 1]...')
+    cur.execute('INSERT INTO series (id, name) VALUES(0, "No Series");')
+    splash.SetText(f'Adding series to db [1 | 1]...')
     con.commit()
 
 
@@ -3182,8 +3191,11 @@ def add_families(con, cur):
     if res.fetchall():
         return
 
-    data = (0, 'N/A', 0)
+    data = (0, 'No Family', 0)
+
+    splash.SetText(f'Adding families to db [0 | {len(data)}]...')
     cur.execute('INSERT INTO families (id, name, mfg_id) VALUES(?, ?, ?);', data)
+    splash.SetText(f'Adding families to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3193,7 +3205,10 @@ def add_genders(con, cur):
         return
 
     data = ((0, "Unknown"), (1, "Male"), (2, "Female"))
+
+    splash.SetText(f'Adding genders to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO genders (id, name) VALUES(?, ?);', data)
+    splash.SetText(f'Adding genders to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3202,9 +3217,12 @@ def add_directions(con, cur):
     if res.fetchall():
         return
 
-    data = ((0, "N/A"), (1, "Left"), (2, "Right"), (3, "Straight"),
+    data = ((0, "Unknown"), (1, "Left"), (2, "Right"), (3, "Straight"),
             (4, "90°"), (5, "180°"), (6, "270°"))
+
+    splash.SetText(f'Adding directions to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO directions (id, name) VALUES(?, ?);', data)
+    splash.SetText(f'Adding directions to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3213,10 +3231,13 @@ def add_splice_types(con, cur):
     if res.fetchall():
         return
 
-    data = ((0, "N/A"), (1, "Butt"), (2, "Cable"), (3, "Closed End"),
+    data = ((0, "Unknown"), (1, "Butt"), (2, "Cable"), (3, "Closed End"),
             (4, "Parallel"), (5, "Pigtail"), (6, "Tap"),
             (7, "Thru"), (8, "Solder Sleeve"), (9, "Solder Sleeve w/Pigtail"))
+
+    splash.SetText(f'Adding splice types to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO splice_types (id, name) VALUES(?, ?);', data)
+    splash.SetText(f'Adding splice types to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3225,7 +3246,12 @@ def add_temperatures(con, cur):
     if res.fetchall():
         return
 
-    cur.executemany('INSERT INTO temperatures (id, name) VALUES (?, ?);', _build_temps())
+    splash.SetText(f'Building temperatures...')
+    data = _build_temps()
+    splash.SetText(f'Adding temperatures to db [0 | {len(data)}]...')
+    cur.executemany('INSERT INTO temperatures (id, name) VALUES (?, ?);', data)
+    splash.SetText(f'Adding temperatures to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3235,10 +3261,12 @@ def add_materials(con, cur):
     if res:
         return
 
-    data = ((0, 'N/A'),)
+    data = ((0, 'Unknown Material'),)
 
     try:
+        splash.SetText(f'Adding materials to db [0 | {len(data)}]...')
         cur.executemany('INSERT INTO materials (id, name) VALUES(?, ?);', data)
+        splash.SetText(f'Adding materials to db [{len(data)} | {len(data)}]...')
         con.commit()
     except:
         res = cur.execute('SELECT * FROM materials;').fetchall()
@@ -3252,7 +3280,7 @@ def add_platings(con, cur):
         return
 
     data = (
-        (0, 'N/A', 'Unknown'),
+        (0, 'Unknown', 'Unknown Plating'),
         (1, 'Sn', 'Tin'),
         (2, 'Cu', 'Copper'),
         (3, 'Al', 'Aluminum'),
@@ -3270,7 +3298,10 @@ def add_platings(con, cur):
         (15, 'Au/Al', 'Gold-plated Aluminum')
     )
 
+    splash.SetText(f'Adding platings to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO platings (id, symbol, description) VALUES(?, ?, ?);', data)
+    splash.SetText(f'Adding platings to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3280,7 +3311,7 @@ def add_cavity_locks(con, cur):
         return
 
     data = (
-        (0, 'N/A'),
+        (0, 'No Lock'),
         (1, 'Cavity Lock'),
         (2, 'Locking Lance'),
         (3, 'Flex Arm'),
@@ -3290,7 +3321,10 @@ def add_cavity_locks(con, cur):
         (7, 'Press Fit')
     )
 
+    splash.SetText(f'Adding cavity locks to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO cavity_locks (id, name) VALUES (?, ?);', data)
+    splash.SetText(f'Adding cavity locks to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3299,7 +3333,14 @@ def add_colors(con, cur):
     if res.fetchall():
         return
 
-    cur.executemany('INSERT INTO colors (id, name, rgb) VALUES(?, ?, ?);', _build_colors())
+    splash.SetText(f'Building colors...')
+
+    data = _build_colors()
+
+    splash.SetText(f'Adding colors to db [0 | {len(data)}]...')
+    cur.executemany('INSERT INTO colors (id, name, rgb) VALUES(?, ?, ?);', data)
+    splash.SetText(f'Adding colors to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3324,7 +3365,10 @@ def add_ip_fluids(con, cur):
         (12, 'X', 'Unknown', 'No data is available to specify a protection rating about this criterion.', None)
     )
 
+    splash.SetText(f'Adding IP fluids to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO ip_fluids (id, name, short_desc, description, icon_data) VALUES (?, ?, ?, ?, ?);', data)
+    splash.SetText(f'Adding IP fluids to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3344,7 +3388,10 @@ def add_ip_solids(con, cur):
         (7, 'X', 'Unknown', 'No data is available to specify a protection rating about this criterion.', None)
     )
 
+    splash.SetText(f'Adding IP solids to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO ip_solids (id, name, short_desc, description, icon_data) VALUES (?, ?, ?, ?, ?);', data)
+    splash.SetText(f'Adding IP solids to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3362,8 +3409,9 @@ def add_ip_supps(con, cur):
         ('S', 'Stationary during water test'),
         ('W', 'Weather conditions')
     )
-
+    splash.SetText(f'Adding IP suppliments to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO ip_supps (name, description) VALUES (?, ?);', data)
+    splash.SetText(f'Adding IP suppliments to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3406,7 +3454,10 @@ def add_ip_ratings(con, cur):
 
     data = [(i,) + item for i, item in enumerate(data)]
 
+    splash.SetText(f'Adding IP ratings to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO ip_ratings (id, name, solid_id, fluid_id) VALUES (?, ?, ?, ?);', data)
+    splash.SetText(f'Adding IP ratings to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3415,9 +3466,11 @@ def add_protections(con, cur):
     if res.fetchall():
         return
 
-    data = ((0, 'Not applicable'),)
+    data = ((0, 'No Protection'),)
 
+    splash.SetText(f'Adding protections to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO protections (id, name) VALUES (?, ?);', data)
+    splash.SetText(f'Adding protections to db [{len(data)} | {len(data)}]...')
     con.commit()
 
 
@@ -3427,7 +3480,7 @@ def add_adhesives(con, cur):
         return
 
     data = (
-        (0, 'None', 'None', '[]'),
+        (0, 'None', 'No Adhesive', '[]'),
         (1, '225', 'Precoated latent-curing epoxy/polyamide', '[]'),
         (2, '42', 'Hot-melt/polyamide (Thermoplastic)', '[]'),
         (3, '86', 'Hot-melt,high performance (Thermoplastic)', '[]'),
@@ -3438,7 +3491,10 @@ def add_adhesives(con, cur):
         (8, 'S1125', 'Epoxy/polyamide two-part paste (Thermoset)', '["S1125-KIT-1", "S1125-KIT-4", "S1125-KIT-5", "S1125-KIT-8","S1125-APPLICATOR"]')
     )
 
+    splash.SetText(f'Adding adhesives to db [0 | {len(data)}]...')
     cur.executemany('INSERT INTO adhesives (id, code, description, accessory_part_nums) VALUES (?, ?, ?, ?);', data)
+    splash.SetText(f'Adding adhesives to db [{len(data)} | {len(data)}]...')
+
     con.commit()
 
 
@@ -3447,7 +3503,10 @@ def add_shapes(con, cur):
     if res.fetchall():
         return
 
-    data = ((0, 'N/A'),)
+    data = ((0, 'Internal Use DO NOT DELETE'),)
+
+    splash.SetText(f'Adding core CPA lock to db [1 | 1]...')
+
     cur.executemany('INSERT INTO shapes (id, name) VALUES (?, ?);', data)
     con.commit()
 
@@ -3457,12 +3516,17 @@ def add_transition_series(con, cur):
     if res.fetchall():
         return
 
-    data = ((0, 'N/A'),)
+    data = ((0, 'Internal Use DO NOT DELETE'),)
     cur.executemany('INSERT INTO transition_series (id, name) VALUES (?, ?);', data)
     con.commit()
 
 
 def cpa_locks(con, cur):
+    res = cur.execute('SELECT id FROM cpa_locks WHERE id=0;')
+    
+    if res.fetchall():
+        return
+        
     add_manufacturers(con, cur)
     add_resources(con, cur)
     add_series(con, cur)
@@ -3471,19 +3535,37 @@ def cpa_locks(con, cur):
     add_colors(con, cur)
     add_models3d(con, cur)
 
-    json_path = os.path.join(DATA_PATH, 'cpa_locks.json')
+    splash.SetText(f'Adding core CPA lock to db [1 | 1]...')
 
-    cur.execute('INSERT INTO cpa_locks (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO cpa_locks (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'cpa_locks.json')
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading CPA locks file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+            
+        data_len = len(data)
 
-    for item in data:
-        add_cpa_lock(con, cur, **item)
+        splash.SetText(f'Adding CPA locks to db [0 | {data_len}]...')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding CPA locks to db [{i} | {data_len}]...')
+            add_cpa_lock(con, cur, **item)
+     
+        con.commit()
+
 
 
 def tpa_locks(con, cur):
+
+    res = cur.execute('SELECT id FROM tpa_locks WHERE id=0;')
+
+    if res.fetchall():
+        return
+        
     add_manufacturers(con, cur)
     add_resources(con, cur)
     add_series(con, cur)
@@ -3492,16 +3574,28 @@ def tpa_locks(con, cur):
     add_colors(con, cur)
     add_models3d(con, cur)
 
-    json_path = os.path.join(DATA_PATH, 'tpa_locks.json')
+    splash.SetText(f'Adding core TPA lock to db [1 | 1]...')
 
-    cur.execute('INSERT INTO tpa_locks (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO tpa_locks (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'tpa_locks.json')
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading TPA locks file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+            
+        data_len = len(data)
 
-    for item in data:
-        add_tpa_lock(con, cur, **item)
+        splash.SetText(f'Adding TPA locks to db [0 | {data_len}]...')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding TPA locks to db [{i} | {data_len}]...')
+            add_tpa_lock(con, cur, **item)
+     
+        con.commit()
+
 
 
 def add_seal_types(con, cur):
@@ -3509,12 +3603,17 @@ def add_seal_types(con, cur):
     if res.fetchall():
         return
 
-    data = ((0, 'N/A'),)
+    data = ((0, 'Internal Use DO NOT DELETE'),)
     cur.executemany('INSERT INTO seal_types (id, name) VALUES (?, ?);', data)
     con.commit()
 
 
 def seals(con, cur):
+    res = cur.execute('SELECT id FROM seals WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_series(con, cur)
     add_colors(con, cur)
@@ -3522,40 +3621,73 @@ def seals(con, cur):
     add_resources(con, cur)
     add_models3d(con, cur)
     add_seal_types(con, cur)
+    
+    splash.SetText(f'Adding core seal to db [1 | 1]...')
 
-    json_path = os.path.join(DATA_PATH, 'seals.json')
-
-    cur.execute('INSERT INTO seals (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO seals (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'seals.json')
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading seals file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+            
+        data_len = len(data)
 
-    for item in data:
-        add_seal(con, cur, **item)
+        splash.SetText(f'Adding seals to db [0 | {data_len}]...')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding seals to db [{i} | {data_len}]...')
+            add_seal(con, cur, **item)
+     
+        con.commit()
+    
 
 
 def boots(con, cur):
+    res = cur.execute('SELECT id FROM boots WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_series(con, cur)
     add_families(con, cur)
     add_colors(con, cur)
     add_resources(con, cur)
     add_models3d(con, cur)
+    
+    splash.SetText(f'Adding core boot to db [1 | 1]...')
 
-    json_path = os.path.join(DATA_PATH, 'boots.json')
-
-    cur.execute('INSERT INTO boots (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO boots (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'boots.json')
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading boots file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+            
+        data_len = len(data)
 
-    for item in data:
-        add_seal(con, cur, **item)
+        splash.SetText(f'Adding boots to db [0 | {data_len}]...')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding boots to db [{i} | {data_len}]...')
+            add_boot(con, cur, **item)
+     
+        con.commit()
 
 
 def covers(con, cur):
+    res = cur.execute('SELECT id FROM covers WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_resources(con, cur)
     add_series(con, cur)
@@ -3565,19 +3697,35 @@ def covers(con, cur):
     add_directions(con, cur)
     add_models3d(con, cur)
 
-    json_path = os.path.join(DATA_PATH, 'covers.json')
+    splash.SetText(f'Adding core cover to db [1 | 1]...')
 
-    cur.execute('INSERT INTO covers (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO covers (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'covers.json')
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading covers file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+            
+        data_len = len(data)
 
-    for item in data:
-        add_cover(con, cur, **item)
+        splash.SetText(f'Adding covers to db [0 | {data_len}]...')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding covers to db [{i} | {data_len}]...')
+            add_cover(con, cur, **item)
+     
+        con.commit()
 
 
 def transitions(con, cur):
+    res = cur.execute('SELECT id FROM transitions WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_resources(con, cur)
     add_series(con, cur)
@@ -3591,19 +3739,35 @@ def transitions(con, cur):
     add_transition_series(con, cur)
     add_shapes(con, cur)
 
-    json_path = os.path.join(DATA_PATH, 'transitions.json')
+    splash.SetText(f'Adding core transition to db [1 | 1]...')
 
-    cur.execute('INSERT INTO transitions (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO transitions (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'transitions.json')
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading trasitions file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+            
+        data_len = len(data)
 
-    for item in data:
-        add_transition(con, cur, **item)
+        splash.SetText(f'Adding transitions to db [0 | {data_len}]...')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding transitions to db [{i} | {data_len}]...')
+            add_transition(con, cur, **item)
+     
+        con.commit()
 
 
 def terminals(con, cur):
+    res = cur.execute('SELECT id FROM terminals WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_resources(con, cur)
     add_series(con, cur)
@@ -3614,19 +3778,35 @@ def terminals(con, cur):
     add_cavity_locks(con, cur)
     add_models3d(con, cur)
 
-    json_path = os.path.join(DATA_PATH, 'terminals.json')
+    splash.SetText(f'Adding core terminal to db [1 | 1]...')
 
-    cur.execute('INSERT INTO terminals (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO terminals (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'terminals.json')
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading terminals file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+            
+        data_len = len(data)
 
-    for item in data:
-        add_terminal(con, cur, **item)
+        splash.SetText(f'Adding terminals to db [0 | {data_len}]...')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding terminals to db [{i} | {data_len}]...')
+            add_terminal(con, cur, **item)
+
+        con.commit()
 
 
 def wires(con, cur):
+    res = cur.execute('SELECT id FROM wires WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_families(con, cur)
     add_series(con, cur)
@@ -3635,39 +3815,116 @@ def wires(con, cur):
     add_resources(con, cur)
     add_materials(con, cur)
     add_platings(con, cur)
+    
+    splash.SetText(f'Adding core wire to db [1 | 1]...')
+    
+    cur.execute('INSERT INTO wires (id, part_number, mfg_id, description, size_mm2, '
+                'size_awg, od_mm, conductor_dia_mm, weight_1km, resistance_1km, '
+                'core_material_id, min_temp_id, max_temp_id, volts, material_id, '
+                'color_id, stripe_color_id, family_id, series_id) '
+                'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (0, 'N/A', 0, 'Internal Use DO NOT DELETE', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 999999, 999999, 0, 0))
+    con.commit()
+    
+    splash.SetText(f'Building wires...')
 
-    json_path = os.path.join(DATA_PATH, 'wires.json')
+    data = _build_wires(con, cur)
+    
+    data_len = len(data)
+    
+    splash.SetText(f'Adding wires to db [0 | {data_len}]...')
 
     cur.executemany('INSERT INTO wires (part_number, mfg_id, description, size_mm2, '
                     'size_awg, od_mm, conductor_dia_mm, weight_1km, resistance_1km, '
                     'core_material_id, min_temp_id, max_temp_id, volts, material_id, '
                     'color_id, stripe_color_id, family_id, series_id) '
                     'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                    _build_wires(con, cur))
+                    data)
+    
+    splash.SetText(f'Adding wires to db [{data_len} | {data_len}]...')
     con.commit()
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+    json_path = os.path.join(DATA_PATH, 'wires.json')
+    
+    if os.path.exists(json_path):
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
 
-    for item in data:
-        add_wire(con, cur, **item)
+        for item in data:
+            add_wire(con, cur, **item)
+
+        con.commit()
+
+
+def add_wire(con, cur, part_number, mfg, description, size_mm2, size_awg, od_mm, 
+             conductor_dia_mm, weight_1km, resistance_1km, core_material, min_temp, 
+             max_temp, volts, material, color, stripe_color, family, series):
+    
+    mfg_id = get_mfg_id(con, cur, mfg)
+    core_material_id = get_material_id(con, cur, core_material)
+    series_id = get_series_id(con, cur, series, mfg_id)
+    family_id = get_family_id(con, cur, family, mfg_id)
+    color_id = get_color_id(con, cur, color)
+    stripe_color_id = get_color_id(con, cur, stripe_color if stripe_color else 'None')
+    material_id = get_material_id(con, cur, material)
+    min_temp_id = get_temperature_id(con, cur, min_temp)
+    max_temp_id = get_temperature_id(con, cur, max_temp)
+    
+    cur.execute('INSERT INTO wires (part_number, mfg_id, description, size_mm2, '
+                'size_awg, od_mm, conductor_dia_mm, weight_1km, resistance_1km, '
+                'core_material_id, min_temp_id, max_temp_id, volts, material_id, '
+                'color_id, stripe_color_id, family_id, series_id) '
+                'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (part_number, mfg_id, description, size_mm2, size_awg, od_mm, 
+                 conductor_dia_mm, weight_1km, resistance_1km, core_material_id, 
+                 min_temp_id, max_temp_id, volts, material_id, color_id, 
+                 stripe_color_id, family_id, series_id))
+    con.commit()
 
 
 def wire_markers(con, cur):
+    res = cur.execute('SELECT id FROM wire_markers WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_colors(con, cur)
     add_resources(con, cur)
+    
+    splash.SetText(f'Adding core wire marker to db [1 | 1]...')
+
+    cur.execute('INSERT INTO wire_markers (id, part_number, description, mfg_id, color_id, '
+                'min_diameter, max_diameter, min_awg, max_awg, image_id, datasheet_id, cad_id, '
+                'length, weight, has_label) '
+                'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (0, 'N/A', 'Internal Use DO NOT DELETE', 0, 999999, 0, 0, 30, 30, 0, 0, 0, 0, 0, 0))
+    con.commit()
+
+    splash.SetText(f'Building wire markers...')
+
+    data = _build_wire_markers(con, cur)
+
+    data_len = len(data)
+
+    splash.SetText(f'Adding wire markers to db [0 | {data_len}]')
 
     cur.executemany('INSERT INTO wire_markers (part_number, description, mfg_id, color_id, '
                     'min_diameter, max_diameter, min_awg, max_awg, image_id, datasheet_id, cad_id, '
                     'length, weight, has_label) '
                     'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                    _build_wire_markers(con, cur))
-
+                    data)
+    
+    splash.SetText(f'Adding wire markers to db [{data_len} | {data_len}]')
     con.commit()
 
 
 def housings(con, cur):
+    res = cur.execute('SELECT id FROM housings WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_families(con, cur)
     add_series(con, cur)
@@ -3680,19 +3937,35 @@ def housings(con, cur):
     add_ip_ratings(con, cur)
     add_models3d(con, cur)
 
-    json_path = os.path.join(DATA_PATH, 'housings.json')
+    splash.SetText(f'Adding core housing to db [1 | 1]...')
 
-    cur.execute('INSERT INTO housings (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO housings (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'housings.json')
+    
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading housings file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
+        
+        data_len = len(data)
+                
+        splash.SetText(f'Adding housings to db [0 | {data_len}]')      
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding housings to db [{i + 1} | {data_len}]')
+            add_housing(con, cur, **item)
 
-    for item in data:
-        add_housing(con, cur, **item)
+        con.commit()
 
 
 def splices(con, cur):
+    res = cur.execute('SELECT id FROM splices WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_families(con, cur)
     add_series(con, cur)
@@ -3704,19 +3977,37 @@ def splices(con, cur):
     add_resources(con, cur)
     add_models3d(con, cur)
 
-    json_path = os.path.join(DATA_PATH, 'splices.json')
+    splash.SetText(f'Adding core splice to db [1 | 1]...')
 
-    cur.execute('INSERT INTO splices (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
+    cur.execute('INSERT INTO splices (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
     con.commit()
+    
+    json_path = os.path.join(DATA_PATH, 'splices.json')
+    
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading splices file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
 
-    for item in data:
-        add_splice(con, cur, **item)
+        data_len = len(data)
+        
+        splash.SetText(f'Adding splices to db [0 | {data_len}]')      
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding splices to db [{i + 1} | {data_len}]')
+
+            add_splice(con, cur, **item)
+
+        con.commit()
 
 
 def bundle_covers(con, cur):
+    res = cur.execute('SELECT id FROM bundle_covers WHERE id=0;')
+
+    if res.fetchall():
+        return
+    
     add_manufacturers(con, cur)
     add_families(con, cur)
     add_series(con, cur)
@@ -3725,17 +4016,29 @@ def bundle_covers(con, cur):
     add_temperatures(con, cur)
     add_resources(con, cur)
     add_protections(con, cur)
+    
+    splash.SetText(f'Adding core bundle cover to db [1 | 1]...')
 
+    cur.execute('INSERT INTO bundle_covers (id, part_number, description) VALUES(0, "N/A", "Internal Use DO NOT DELETE");')
+    con.commit()
+    
     json_path = os.path.join(DATA_PATH, 'bundle_covers.json')
 
-    cur.execute('INSERT INTO bundle_covers (id, part_number, description) VALUES(0, "N/A", "Unknown/Not Applicable");')
-    con.commit()
+    if os.path.exists(json_path):
+        splash.SetText(f'Loading bundle covers file...')
 
-    with open(json_path, 'r') as f:
-        data = json.loads(f.read())
+        with open(json_path, 'r') as f:
+            data = json.loads(f.read())
 
-    for item in data:
-        add_bundle_cover(con, cur, **item)
+        data_len = len(data)
+
+        splash.SetText(f'Adding bundle covers to db [0 | {data_len}]')
+
+        for i, item in enumerate(data):
+            splash.SetText(f'Adding bundle covers to db [{i + 1} | {data_len}]')
+            add_bundle_cover(con, cur, **item)
+
+        con.commit()
 
 
 if __name__ == '__main__':

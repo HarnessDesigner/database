@@ -16,7 +16,9 @@ class ConnectorBase:
     def __init__(self, mainframe, db_name):
         self.mainframe = mainframe
         self.db_name = db_name
-        self.create_tables = False
+
+    def get_tables(self) -> list[str]:
+        raise NotImplementedError
 
     def connect(self) -> bool:
         raise NotImplementedError

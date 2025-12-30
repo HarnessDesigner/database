@@ -210,6 +210,12 @@ class SQLConnector(ConnectorBase):
         self._cursor = self._connection.cursor()
         return True
 
+    def get_tables(self) -> list[str]:
+        self.execute(f'SELECT table_name FROM information_schema.tables WHERE table_schema = "{self.db_name}";')
+        res = self.fetchall()
+
+        return [item[0] for item in res]
+
     def execute(self, operation: _StrOrBytes,
                 params: _Optional[_ParamsSequenceOrDictType] = None,
                 multi: bool = False) -> _Optional[_Generator[_MySQLCursor, None, None]]:

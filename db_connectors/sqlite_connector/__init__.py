@@ -23,7 +23,7 @@ from .. import ConnectorBase
 
 
 class Config(metaclass=_Config):
-    database_path = os.path.join(utils.get_appdata(), 'harness_maker.db')
+    database_path = os.path.join(utils.get_appdata(), 'harness_designer.db')
 
 
 _StrOrBytes = _Union[str, bytes]
@@ -45,14 +45,17 @@ class SQLConnector(ConnectorBase):
     def __init__(self, mainframe):
         super().__init__(mainframe, Config.database_path)
 
-        if not os.path.exists(Config.database_path):
-            self.create_tables = True
-
         self._connection: sqlite3.Connection = None
         self._cursor: sqlite3.Cursor = None
 
+    def get_tables(self) -> list[str]:
+        self.execute('SELECT name FROM sqlite_master WHERE type="table";')
+        res = self.fetchall()
+
+        return [item[0] for item in res]
+
     def connect(self):
-        self._connection = sqlite3.connect(self.db_name)
+        self._connection = sqlite3.connect(self.db_name, check_same_thread=False)
         self._cursor = self._connection.cursor()
 
     def execute(self, operation: str,

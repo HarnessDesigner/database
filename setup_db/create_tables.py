@@ -1171,6 +1171,92 @@ def pjt_wire_service_loops(con, cur):
     con.commit()
 
 
+def global_table_mapping():
+    mapping = (
+        ('resources', resources),
+        ('manufacturers', manufacturers),
+        ('temperatures', temperatures),
+        ('genders', genders),
+        ('protections', protections),
+        ('adhesives', adhesives),
+        ('cavity_locks', cavity_locks),
+        ('colors', colors),
+        ('directions', directions),
+        ('ip_fluids', ip_fluids),
+        ('ip_solids', ip_solids),
+        ('ip_supps', ip_supps),
+        ('platings', platings),
+        ('materials', materials),
+        ('shapes', shapes),
+        ('series', series),
+        ('families', families),
+        ('ip_ratings', ip_ratings),
+        ('accessories', accessories),
+        ('transition_series', transition_series),
+        ('transitions', transitions),
+        ('transition_branches', transition_branches),
+        ('boots', boots),
+        ('bundle_covers', bundle_covers),
+        ('covers', covers),
+        ('cpa_locks', cpa_locks),
+        ('tpa_locks', tpa_locks),
+        ('seal_types', seal_types),
+        ('seals', seals),
+        ('wire_markers', wire_markers),
+        ('wires', wires),
+        ('terminals', terminals),
+        ('splice_types', splice_types),
+        ('splices', splices),
+        ('models3d', models3d),
+        ('housings', housings),
+        ('cavities', cavities)
+    )
+
+    for name, fnc in mapping:
+        yield name, fnc
+
+
+def crossref_table_mapping():
+    mapping = (
+        ('housing_crossref', housing_crossref),
+        ('terminal_crossref', terminal_crossref),
+        ('seal_crossref', seal_crossref),
+        ('cover_crossref', cover_crossref),
+        ('boot_crossref', boot_crossref),
+        ('tpa_lock_crossref', tpa_lock_crossref),
+        ('cpa_lock_crossref', cpa_lock_crossref)
+    )
+
+    for name, fnc in mapping:
+        yield name, fnc
+
+
+def project_table_mapping():
+    mapping = (
+        ('projects', projects),
+        ('pjt_points_3d', pjt_points_3d),
+        ('pjt_points_2d', pjt_points_2d),
+        ('pjt_circuits', pjt_circuits),
+        ('pjt_bundle_layouts', pjt_bundle_layouts),
+        ('pjt_wire3d_layouts', pjt_wire3d_layouts),
+        ('pjt_wire2d_layouts', pjt_wire2d_layouts),
+        ('pjt_bundles', pjt_bundles),
+        ('pjt_seals', pjt_seals),
+        ('pjt_cpa_locks', pjt_cpa_locks),
+        ('pjt_tpa_locks', pjt_tpa_locks),
+        ('pjt_splices', pjt_splices),
+        ('pjt_housings', pjt_housings),
+        ('pjt_cavities', pjt_cavities),
+        ('pjt_terminals', pjt_terminals),
+        ('pjt_transitions', pjt_transitions),
+        ('pjt_wire_markers', pjt_wire_markers),
+        ('pjt_wires', pjt_wires)
+    )
+
+    for name, fnc in mapping:
+        yield name, fnc
+
+
 if __name__ == '__main__':
     import sqlite3
     con_ = sqlite3.connect('test.db')
