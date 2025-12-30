@@ -282,8 +282,8 @@ class PJTTables:
         self._pjt_splices_table = None
         self._pjt_transitions_table = None
         self._pjt_wires_table = None
-        self._pjt_wire_2d_layouts_table = None
-        self._pjt_wire_3d_layouts_table = None
+        self._pjt_wire2d_layouts_table = None
+        self._pjt_wire3d_layouts_table = None
         self._pjt_cavities_table = None
         self._pjt_terminals_table = None
         self._pjt_seals_table = None
@@ -314,8 +314,8 @@ class PJTTables:
         self._pjt_splices_table = PJTSplicesTable(self, project_id)
         self._pjt_transitions_table = PJTTransitionsTable(self, project_id)
         self._pjt_wires_table = PJTWiresTable(self, project_id)
-        self._pjt_wire_2d_layouts_table = PJTWire2DLayoutsTable(self, project_id)
-        self._pjt_wire_3d_layouts_table = PJTWire3DLayoutsTable(self, project_id)
+        self._pjt_wire2d_layouts_table = PJTWire2DLayoutsTable(self, project_id)
+        self._pjt_wire3d_layouts_table = PJTWire3DLayoutsTable(self, project_id)
         self._pjt_cavities_table = PJTCavitiesTable(self, project_id)
         self._pjt_terminals_table = PJTTerminalsTable(self, project_id)
         self._pjt_seals_table = PJTSealsTable(self, project_id)
@@ -399,12 +399,12 @@ class PJTTables:
         return self._pjt_wires_table
 
     @property
-    def pjt_wire_2d_layouts_table(self) -> PJTWire2DLayoutsTable:
-        return self._pjt_wire_2d_layouts_table
+    def pjt_wire2d_layouts_table(self) -> PJTWire2DLayoutsTable:
+        return self._pjt_wire2d_layouts_table
 
     @property
-    def pjt_wire_3d_layouts_table(self) -> PJTWire3DLayoutsTable:
-        return self._pjt_wire_3d_layouts_table
+    def pjt_wire3d_layouts_table(self) -> PJTWire3DLayoutsTable:
+        return self._pjt_wire3d_layouts_table
 
     @property
     def projects_table(self) -> ProjectsTable:
