@@ -1,25 +1,26 @@
 
 from . import adhesive as _adhesive
-from . import color as _color  # NOQA
-from . import resource as _resource  # NOQA
-from . import description as _description  # NOQA
-from . import dimension as _dimension  # NOQA
-from . import direction as _direction  # NOQA
-from . import family as _family  # NOQA
-from . import gender as _gender  # NOQA
-from . import manufacturer as _manufacturer  # NOQA
-from . import material as _material  # NOQA
-from . import name as _name  # NOQA
-from . import overlay as _overlay  # NOQA
-from . import part_number as _part_number  # NOQA
-from . import sealing as _sealing  # NOQA
-from . import series as _series  # NOQA
-from . import temperature as _temperature  # NOQA
-from . import wire_size as _wire_size  # NOQA
+from . import color as _color
+from . import resource as _resource
+from . import description as _description
+from . import dimension as _dimension
+from . import direction as _direction
+from . import family as _family
+from . import gender as _gender
+from . import manufacturer as _manufacturer
+from . import material as _material
+from . import name as _name
+from . import overlay as _overlay
+from . import part_number as _part_number
+from . import sealing as _sealing
+from . import series as _series
+from . import temperature as _temperature
+from . import wire_size as _wire_size
 from . import protection as _protection
 from . import weight as _weight
 from . import cavity_lock as _cavity_lock
 from . import model3d as _model3d
+from . import plating as _plating
 
 
 ColorMixin = _color.ColorMixin
@@ -43,7 +44,7 @@ ProtectionMixin = _protection.ProtectionMixin
 WeightMixin = _weight.WeightMixin
 CavityLockMixin = _cavity_lock.CavityLockMixin
 Model3DMixin = _model3d.Model3DMixin
-
+PlatingMixin = _plating.PlatingMixin
 
 del _adhesive
 del _color
@@ -66,3 +67,4 @@ del _protection
 del _weight
 del _cavity_lock
 del _model3d
+del _plating

@@ -11,7 +11,6 @@ if TYPE_CHECKING:
     from . import pjt_point_2d as _pjt_point_2d
     from . import pjt_circuit as _pjt_circuit
     from . import pjt_wire_marker as _pjt_wire_marker
-
     from ..global_db import wire as _wire
 
 
@@ -106,6 +105,14 @@ class PJTWire(PJTEntryBase):
     @property
     def weight_lb(self) -> _decimal:
         return self.part.weight_lb_ft * self.length_ft
+
+    @property
+    def resistance(self) -> _decimal:
+        resistance = self.part.resistance_1km
+        # resistance per millimeter
+        resistance /= _decimal(1000000.0)
+        length = _line.Line(self.start_point3d, self.stop_point3d).length()
+        return resistance * length
 
     @property
     def table(self) -> PJTWiresTable:

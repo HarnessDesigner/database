@@ -50,7 +50,7 @@ class TableBase:
 
         return False
 
-    def insert(self, **kwargs) -> int:
+    def insert(self, *_, **kwargs) -> int:
         fields = []
         values = []
         args = []
@@ -172,6 +172,7 @@ from .transition import TransitionsTable  # NOQA
 from .splice import SplicesTable  # NOQA
 from .model3d import Models3DTable  # NOQA
 from .wire_marker import WireMarkersTable  # NOQA
+from .splice_types import SpliceTypesTable  # NOQA
 
 
 class GLBTables:
@@ -220,6 +221,7 @@ class GLBTables:
         self._splices_table = SplicesTable(self)
         self._models3d_table = Models3DTable(self)
         self._wire_markers_table = WireMarkersTable(self)
+        self._splice_types_table = SpliceTypesTable(self)
 
     @property
     def accessories_table(self) -> AccessoriesTable:
@@ -361,6 +363,10 @@ class GLBTables:
     def wire_markers_table(self) -> WireMarkersTable:
         return self._wire_markers_table
 
+    @property
+    def splice_types_table(self) -> SpliceTypesTable:
+        return self._splice_types_table
+
     def _setup_new_db(self):
         # self.connector.execute('PRAGMA foreign_keys = ON;')
         # self.connector.commit()
@@ -387,7 +393,6 @@ class GLBTables:
             create_tables.families,
             create_tables.ip_ratings,
             create_tables.accessories,
-            create_tables.wire_markers,
             create_tables.transition_series,
             create_tables.transitions,
             create_tables.transition_branches,
@@ -396,7 +401,9 @@ class GLBTables:
             create_tables.covers,
             create_tables.cpa_locks,
             create_tables.tpa_locks,
+            create_tables.seal_types,
             create_tables.seals,
+            create_tables.wire_markers,
             create_tables.wires,
             create_tables.terminals,
             create_tables.splice_types,
@@ -427,6 +434,7 @@ class GLBTables:
             create_tables.pjt_cavities,
             create_tables.pjt_terminals,
             create_tables.pjt_transitions,
+            create_tables.pjt_wire_markers,
             create_tables.pjt_wires
         )
 

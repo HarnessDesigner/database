@@ -7,7 +7,6 @@ import numpy as np
 from . import PJTEntryBase, PJTTableBase
 
 from ...wrappers.decimal import Decimal as _decimal
-from ...geometry import line as _line
 from ...geometry import angle as _angle
 
 if TYPE_CHECKING:
@@ -49,9 +48,12 @@ class PJTWireServiceLoop(PJTEntryBase):
 
     @property
     def length_mm(self) -> _decimal:
-        od_mm = self.part.od_mm
-        length = od_mm * 2
-        length += _decimal(2.0) * _decimal(math.pi) * od_mm / _decimal(2.0)
+        diameter = self.part.od_mm
+        pitch = diameter + diameter * _decimal(0.15)
+        height = diameter + diameter * _decimal(0.15)
+
+        length = (height / pitch) * _decimal(math.sqrt(math.pow(math.pi * diameter, _decimal(2.0)) + math.pow(pitch, _decimal(2.0))))
+        length += diameter
 
         return length
 
@@ -70,6 +72,15 @@ class PJTWireServiceLoop(PJTEntryBase):
     @property
     def weight_lb(self) -> _decimal:
         return self.part.weight_lb_ft * self.length_ft
+
+    @property
+    def resistance(self) -> _decimal:
+        resistance = self.part.resistance_1km
+
+        # resistance per millimeter
+        resistance /= _decimal(1000000.0)
+
+        return resistance * self.length_mm
 
     @property
     def table(self) -> PJTWireServiceLoopsTable:

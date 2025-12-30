@@ -249,7 +249,7 @@ from .pjt_cover import PJTCoversTable  # NOQA
 from .pjt_boot import PJTBootsTable  # NOQA
 from .pjt_cpa_lock import PJTCPALocksTable  # NOQA
 from .pjt_tpa_lock import PJTTPALocksTable  # NOQA
-
+from .pjt_wire_service_loop import PJTWireServiceLoopsTable  # NOQA
 
 from .project import ProjectsTable  # NOQA
 
@@ -283,6 +283,7 @@ class PJTTables:
         self._pjt_cpa_locks_table = None
         self._pjt_tpa_locks_table = None
         self._pjt_wire_markers_table = None
+        self._pjt_wire_service_loops_table = None
 
         self._points_2d = []
         self._points_3d = []
@@ -314,6 +315,7 @@ class PJTTables:
         self._pjt_cpa_locks_table = PJTCPALocksTable(self, project_id)
         self._pjt_tpa_locks_table = PJTTPALocksTable(self, project_id)
         self._pjt_wire_markers_table = PJTWireMarkersTable(self, project_id)
+        self._pjt_wire_service_loops_table = PJTWireServiceLoopsTable(self, project_id)
 
         # the points are how we initially identify thing. It links together
         # the various objects. As an example say I have a wire and in the
@@ -430,3 +432,7 @@ class PJTTables:
     @property
     def pjt_wire_markers_table(self) -> PJTWireMarkersTable:
         return self._pjt_wire_markers_table
+
+    @property
+    def pjt_wire_service_loops_table(self) -> PJTWireServiceLoopsTable:
+        return self._pjt_wire_service_loops_table

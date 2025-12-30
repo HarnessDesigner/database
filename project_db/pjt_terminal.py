@@ -34,18 +34,105 @@ class PJTTerminalsTable(PJTTableBase):
 
     def insert(self, part_id: int, cavity_id: int, circuit_id: int,
                point3d_id: int, point2d_id: int, angle: _decimal,
-               quat: np.ndarray) -> "PJTTerminal":
+               quat: np.ndarray, is_start: bool, volts: _decimal,
+               load: _decimal, resistance: _decimal, voltage_drop: _decimal) -> "PJTTerminal":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, cavity_id=cavity_id,
                                     circuit_id=circuit_id, point3d_id=point3d_id,
                                     point2d_id=point2d_id, angle=float(angle),
-                                    quat=str(quat.tolist()))
+                                    quat=str(quat.tolist()), is_start=int(is_start),
+                                    volts=float(volts), load=float(load),
+                                    resistance=float(resistance), voltage_drop=float(voltage_drop))
 
         return PJTTerminal(self, db_id, self.project_id)
 
 
 class PJTTerminal(PJTEntryBase):
     _table: PJTTerminalsTable = None
+
+    @property
+    def is_start(self) -> bool:
+        value = bool(self._table.select('is_start', id=self._db_id)[0][0])
+        if value and self.load:
+            print('You cannot have a load set for the start terminal of a circuit')
+
+            value = False
+            self.is_start = False
+
+        return value
+
+    @is_start.setter
+    def is_start(self, value: bool):
+        if value and self.load:
+            raise RuntimeError('You cannot have a load for '
+                               'the start terminal of a circuit')
+
+        if value:
+            self.__check_for_other_starts()
+
+        self._table.update(self._db_id, is_start=int(value))
+        self._process_callbacks()
+
+    def __check_for_other_starts(self):
+        db_ids = self._table.select('db_id', circuit_id=self.circuit_id, is_start=1)
+        for db_id in db_ids:
+            if db_id[0] != self.db_id:
+                print('A circuit cannot have multiple start points. setting '
+                      'other terminal so it is not a start point')
+
+                self._table.update(db_id[0], is_start=0)
+
+    @property
+    def voltage_drop(self) -> _decimal:
+        if self.is_start:
+            return _decimal(0.0)
+
+        return _decimal(self._table.select('voltage_drop', id=self._db_id)[0][0])
+
+    @voltage_drop.setter
+    def voltage_drop(self, value: _decimal):
+        if self.is_start:
+            raise RuntimeError('voltage from can only be applied '
+                               'to the end terminal of a circuit')
+
+        self._table.update(self._db_id, voltage_drop=float(value))
+        self._process_callbacks()
+
+    @property
+    def resistance(self) -> _decimal:
+        return self.part.resistance
+
+    @property
+    def volts(self) -> _decimal:
+        if not self.is_start:
+            return _decimal(0.0)
+
+        return _decimal(self._table.select('volts', id=self._db_id)[0][0])
+
+    @volts.setter
+    def volts(self, value: _decimal):
+        if self.is_start:
+            raise RuntimeError('volts can only be applied to the start terminal '
+                               'not the end terminals of a circuit')
+
+        self._table.update(self._db_id, volts=float(value))
+        self._process_callbacks()
+
+    @property
+    def load(self) -> _decimal:
+        if self.is_start:
+            return _decimal(0.0)
+
+        return _decimal(self._table.select('load', id=self._db_id)[0][0])
+
+    @load.setter
+    def load(self, value: _decimal):
+        if self.is_start:
+            raise RuntimeError('loads can only be applied to the end terminals '
+                               'not the start terminals of a circuit')
+
+        self._table.update(self._db_id, load=float(value))
+        self._process_callbacks()
 
     @property
     def quat(self) -> np.ndarray:

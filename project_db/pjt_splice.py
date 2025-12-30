@@ -2,6 +2,7 @@
 from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
+from ...wrappers.decimal import Decimal as _decimal
 
 if TYPE_CHECKING:
     from . import pjt_point_3d as _pjt_point_3d
@@ -27,9 +28,12 @@ class PJTSplicesTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, part_id: int, circuit_id: int, point3d_id: int, point2d_id: int) -> "PJTSplice":
+    def insert(self, part_id: int, circuit_id: int, start_point3d_id: int, stop_point3d_id: int,
+               branch_point3d_id: int, point2d_id: int) -> "PJTSplice":
+
         db_id = PJTTableBase.insert(self, part_id=part_id, circuit_id=circuit_id,
-                                    point3d_id=point3d_id, point2d_id=point2d_id)
+                                    start_point3d_id=start_point3d_id, stop_point3d_id=stop_point3d_id,
+                                    branch_point3d_id=branch_point3d_id, point2d_id=point2d_id)
 
         return PJTSplice(self, db_id, self.project_id)
 
@@ -43,16 +47,15 @@ class PJTSplice(PJTEntryBase):
 
     @property
     def wire(self) -> "_pjt_wire.PJTWire":
-        db_ids = self._table.db.pjt_wires_table.select(
-            'id', OR=True, start_point3d_id=self.point1_3d_id, stop_point3d_id=self.point1_3d_id)
+        db_ids = self._table.db.pjt_wires_table.select('id', stop_point3d_id=self.start_point3d_id)
+
         for db_id in db_ids:
             return self._table.db.pjt_wires_table[db_id[0]]
 
     @property
     def attached_wires(self) -> list["_pjt_wire.PJTWire"]:
         res = []
-        db_ids = self._table.db.pjt_wires_table.select(
-            'id', OR=True, start_point3d_id=self.point2_3d_id, stop_point3d_id=self.point2_3d_id)
+        db_ids = self._table.db.pjt_wires_table.select('id', start_point3d_id=self.branch_point3d_id)
 
         for db_id in db_ids:
             res.append(self._table.db.pjt_wires_table[db_id[0]])
@@ -60,44 +63,44 @@ class PJTSplice(PJTEntryBase):
         return res
 
     @property
-    def point1_3d(self) -> "_pjt_point_3d.PJTPoint3D":
-        point_id = self.point1_3d_id
+    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.start_point3d_id
         return self._table.db.pjt_points_3d_table[point_id]
 
     @property
-    def point1_3d_id(self) -> int:
-        return self._table.select('point1_3d_id', id=self._db_id)[0][0]
+    def start_point3d_id(self) -> int:
+        return self._table.select('start_point3d_id', id=self._db_id)[0][0]
 
-    @point1_3d_id.setter
-    def point1_3d_id(self, value: int):
-        self._table.update(self._db_id, point1_3d_id=value)
+    @start_point3d_id.setter
+    def start_point3d_id(self, value: int):
+        self._table.update(self._db_id, start_point3d_id=value)
         self._process_callbacks()
 
     @property
-    def point2_3d(self) -> "_pjt_point_3d.PJTPoint3D":
-        point_id = self.point2_3d_id
+    def stop_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.stop_point3d_id
         return self._table.db.pjt_points_3d_table[point_id]
 
     @property
-    def point2_3d_id(self) -> int:
-        return self._table.select('point2_3d_id', id=self._db_id)[0][0]
+    def stop_point3d_id(self) -> int:
+        return self._table.select('stop_point3d_id', id=self._db_id)[0][0]
 
-    @point2_3d_id.setter
-    def point2_3d_id(self, value: int):
-        self._table.update(self._db_id, point2_3d_id=value)
+    @stop_point3d_id.setter
+    def stop_point3d_id(self, value: int):
+        self._table.update(self._db_id, stop_point3d_id=value)
         self._process_callbacks()
 
     @property
-    def point3_3d(self) -> "_pjt_point_3d.PJTPoint3D":
-        point_id = self.point3_3d_id
+    def branch_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+        point_id = self.branch_point3d_id
         return self._table.db.pjt_points_3d_table[point_id]
 
     @property
-    def point3_3d_id(self) -> int:
-        return self._table.select('point3_3d_id', id=self._db_id)[0][0]
+    def branch_point3d_id(self) -> int:
+        return self._table.select('branch_point3d_id', id=self._db_id)[0][0]
 
-    @point3_3d_id.setter
-    def point3_3d_id(self, value: int):
+    @branch_point3d_id.setter
+    def branch_point3d_id(self, value: int):
         self._table.update(self._db_id, point3_3d_id=value)
         self._process_callbacks()
 
@@ -128,6 +131,10 @@ class PJTSplice(PJTEntryBase):
     def circuit_id(self, value: int):
         self._table.update(self._db_id, circuit_id=value)
         self._process_callbacks()
+
+    @property
+    def resistance(self) -> _decimal:
+        return self.part.resistance
 
     @property
     def part(self) -> "_splice.Splice":

@@ -1028,7 +1028,8 @@ def _build_colors():
         (1017, 'Titanium', 0x878681),
         (1018, 'Zinc', 0xBAC4C8),
         (1019, 'Multiple Colors', 0x000000FF),
-        (1020, 'Transparent', 0xFFFFFFFF)
+        (1020, 'Transparent', 0xFFFFFF00),
+        (999999, 'None', 0x00000000)
     )
 
 
@@ -1100,8 +1101,9 @@ def _build_wire_markers(con, cur):
 
             image_id = get_resource_id(con, cur, image_url, type='jpg')
 
-            res.append((part_number, mfg_id, description, min_awg, max_awg, min_diameter,
-                        max_diameter, has_label, length, weight, image_id, datasheet_id, cad_id))
+            res.append((part_number, description, mfg_id, color_id, min_diameter,
+                        max_diameter, min_awg, max_awg, image_id, datasheet_id, cad_id,
+                        length, weight, has_label))
 
     data = {
         'SH CT 3/32K': {
@@ -1212,11 +1214,12 @@ def _build_wire_markers(con, cur):
 
         image_id = get_resource_id(con, cur, image_url, type='jpg')
 
-        res.append((part_number, mfg_id, description, min_awg, max_awg, min_diameter,
-                    max_diameter, has_label, length, weight, image_id, datasheet_id, cad_id))
+        res.append((part_number, description, mfg_id, 1020, min_diameter,
+                    max_diameter, min_awg, max_awg, image_id, datasheet_id, cad_id,
+                    length, weight, has_label))
+    print(res)
 
     return res
-
 
 
 def _build_wires(con, cur):
@@ -2549,7 +2552,7 @@ def _build_wires(con, cur):
                 part_number = pn_template.format(series=series, awg=awg, primary=p_id, secondary='')
                 description = f'{awg}AWG ({mm_2}mm²) {color_mapping[p_id]} Tefzel milspec single conductor wire'
 
-                values.append((part_number, 2, description, str(mm_2), awg, od_mm, dia, weight, resistance, plating_id, min_temp_id, max_temp_id, volts, material_id, p_id, None, family_id, series_id))
+                values.append((part_number, 2, description, str(mm_2), awg, od_mm, dia, weight, resistance, plating_id, min_temp_id, max_temp_id, volts, material_id, p_id, 999999, family_id, series_id))
                 for s_id in range(10):
                     if p_id == s_id:
                         continue
@@ -2756,6 +2759,24 @@ def get_series_id(con, cur, name, mfg_id):
         return res[0][0]
 
 
+
+def get_seal_type_id(con, cur, name):
+    if not name:
+        return 0
+
+    res = cur.execute(f'SELECT id FROM seal_types WHERE name="{name}";').fetchall()
+
+    if not res:
+        cur.execute('INSERT INTO seal_types (name) VALUES (?);', (name,))
+
+        con.commit()
+        return cur.lastrowid
+    else:
+        return res[0][0]
+
+
+
+
 def get_family_id(con, cur, name, mfg_id):
     if not name:
         return 0
@@ -2904,6 +2925,8 @@ def add_seal(con, cur, part_number, mfg, series, type, length, o_dia, i_dia, col
     image_id = get_resource_id(con, cur, image)
     cad_id = get_resource_id(con, cur, cad)
 
+    type_id = get_seal_type_id(con, cur, type)
+
     if min_temp > 0:
         min_temp = '+' + str(min_temp) + '°C'
     else:
@@ -2917,11 +2940,11 @@ def add_seal(con, cur, part_number, mfg, series, type, length, o_dia, i_dia, col
     min_temp_id = get_temperature_id(con, cur, min_temp)
     max_temp_id = get_temperature_id(con, cur, max_temp)
 
-    cur.execute('INSERT INTO seals (part_number, mfg_id, series_id, type, '
+    cur.execute('INSERT INTO seals (part_number, mfg_id, series_id, type_id, '
                 'color_id, image_id, cad_id, lubricant, min_temp_id, max_temp_id, '
                 'length, o_dia, i_dia, hardness, wire_dia_min, wire_dia_max) '
                 'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                (part_number, mfg_id, series_id, type, color_id, image_id,
+                (part_number, mfg_id, series_id, type_id, color_id, image_id,
                  cad_id, lubricant, min_temp_id, max_temp_id, length, o_dia,
                  i_dia, hardness, wire_dia_min, wire_dia_max))
 
@@ -3353,7 +3376,8 @@ def add_ip_ratings(con, cur):
     add_ip_solids(con, cur)
     add_ip_fluids(con, cur)
 
-    data = (('IPXX', 7, 12), ('IP01', 0, 1), ('IP02', 0, 2), ('IP03', 0, 3),
+    data = (('IPOO', 0, 0), ('IPXX', 7, 12), ('IP01', 0, 1), ('IP02', 0, 2),
+            ('IP03', 0, 3),
             ('IP04', 0, 4), ('IP05', 0, 5), ('IP06', 0, 6), ('IP07', 0, 7),
             ('IP08', 0, 8), ('IP09', 0, 9), ('IP06K', 0, 10), ('IP09K', 0, 11),
             ('IP0X', 0, 12), ('IP10', 1, 0), ('IP11', 1, 1), ('IP12', 1, 2),
@@ -3380,7 +3404,9 @@ def add_ip_ratings(con, cur):
             ('IPX5', 7, 5), ('IPX6', 7, 6), ('IPX7', 7, 7), ('IPX8', 7, 8),
             ('IPX9', 7, 9), ('IPX6K', 7, 10), ('IPX9K', 7, 11))
 
-    cur.executemany('INSERT INTO ip_ratings (name, solid_id, fluid_id) VALUES (?, ?, ?);', data)
+    data = [(i,) + item for i, item in enumerate(data)]
+
+    cur.executemany('INSERT INTO ip_ratings (id, name, solid_id, fluid_id) VALUES (?, ?, ?, ?);', data)
     con.commit()
 
 
@@ -3478,6 +3504,16 @@ def tpa_locks(con, cur):
         add_tpa_lock(con, cur, **item)
 
 
+def add_seal_types(con, cur):
+    res = cur.execute('SELECT id FROM seal_types WHERE id=0;')
+    if res.fetchall():
+        return
+
+    data = ((0, 'N/A'),)
+    cur.executemany('INSERT INTO seal_types (id, name) VALUES (?, ?);', data)
+    con.commit()
+
+
 def seals(con, cur):
     add_manufacturers(con, cur)
     add_series(con, cur)
@@ -3485,6 +3521,7 @@ def seals(con, cur):
     add_temperatures(con, cur)
     add_resources(con, cur)
     add_models3d(con, cur)
+    add_seal_types(con, cur)
 
     json_path = os.path.join(DATA_PATH, 'seals.json')
 
@@ -3552,6 +3589,7 @@ def transitions(con, cur):
     add_materials(con, cur)
     add_models3d(con, cur)
     add_transition_series(con, cur)
+    add_shapes(con, cur)
 
     json_path = os.path.join(DATA_PATH, 'transitions.json')
 
@@ -3620,11 +3658,13 @@ def wire_markers(con, cur):
     add_colors(con, cur)
     add_resources(con, cur)
 
-    cur.executemany('INSERT INTO wires (part_number, mfg_id, description, min_awg, '
-                    'max_awg, min_diameter, max_diameter, has_label, length, weight, '
-                    'image_id, datasheet_id, cad_id) '
-                    'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+    cur.executemany('INSERT INTO wire_markers (part_number, description, mfg_id, color_id, '
+                    'min_diameter, max_diameter, min_awg, max_awg, image_id, datasheet_id, cad_id, '
+                    'length, weight, has_label) '
+                    'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
                     _build_wire_markers(con, cur))
+
+    con.commit()
 
 
 def housings(con, cur):
@@ -3715,7 +3755,8 @@ if __name__ == '__main__':
         bundle_covers,
         housings,
         splices,
-        wires
+        wires,
+        wire_markers
     ]
 
     for func in funcs:
