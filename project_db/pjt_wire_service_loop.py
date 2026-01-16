@@ -10,7 +10,7 @@ from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import angle as _angle
 
 if TYPE_CHECKING:
-    from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_point3d as _pjt_point3d
     from . import pjt_circuit as _pjt_circuit
 
     from ..global_db import wire as _wire
@@ -31,12 +31,13 @@ class PJTWireServiceLoopsTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def insert(self, part_id: int, circuit_id: int, start_point3d_id: int | None,
-               stop_point3d_id: int | None, is_visible: bool) -> "PJTWireServiceLoop":
+    def insert(self, start_point3d_id: int, stop_point3d_id: int, part_id: int,
+               circuit_id: int, is_visible: bool, quat: np.ndarray) -> "PJTWireServiceLoop":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, circuit_id=circuit_id,
                                     start_point3d_id=start_point3d_id,
                                     stop_point3d_id=stop_point3d_id,
+                                    quat=str(quat.tolist()),
                                     is_visible=int(is_visible))
 
         return PJTWireServiceLoop(self, db_id, self.project_id)
@@ -87,13 +88,13 @@ class PJTWireServiceLoop(PJTEntryBase):
         return self._table
 
     @property
-    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def start_point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.start_point3d_id
 
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def start_point3d_id(self) -> int:
@@ -105,13 +106,13 @@ class PJTWireServiceLoop(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def stop_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def stop_point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.stop_point3d_id
 
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def stop_point3d_id(self) -> int:

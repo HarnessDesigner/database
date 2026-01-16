@@ -173,6 +173,8 @@ from .splice import SplicesTable  # NOQA
 from .model3d import Models3DTable  # NOQA
 from .wire_marker import WireMarkersTable  # NOQA
 from .splice_types import SpliceTypesTable  # NOQA
+from .cavity_point2d import CavityPoints2DTable  # NOQA
+from .cavity_point3d import CavityPoints3DTable  # NOQA
 
 
 class GLBTables:
@@ -289,6 +291,10 @@ class GLBTables:
         self._wire_markers_table = WireMarkersTable(self)
         splash.SetText(f'Loading splice types database table...')
         self._splice_types_table = SpliceTypesTable(self)
+        splash.SetText(f'Loading cavity points 2d database table...')
+        self._cavity_points2d_table = CavityPoints2DTable(self)
+        splash.SetText(f'Loading cavity points 3d database table...')
+        self._cavity_points3d_table = CavityPoints3DTable(self)
 
     @property
     def accessories_table(self) -> AccessoriesTable:
@@ -434,3 +440,10 @@ class GLBTables:
     def splice_types_table(self) -> SpliceTypesTable:
         return self._splice_types_table
 
+    @property
+    def cavity_points2d_table(self) -> CavityPoints2DTable:
+        return self._cavity_points2d_table
+
+    @property
+    def cavity_points3d_table(self) -> CavityPoints3DTable:
+        return self._cavity_points3d_table

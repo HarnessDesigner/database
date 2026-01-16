@@ -5,8 +5,8 @@ from . import PJTEntryBase, PJTTableBase
 from ...wrappers.decimal import Decimal as _decimal
 
 if TYPE_CHECKING:
-    from . import pjt_point_3d as _pjt_point_3d
-    from . import pjt_point_2d as _pjt_point_2d
+    from . import pjt_point3d as _pjt_point3d
+    from . import pjt_point2d as _pjt_point2d
     from . import pjt_circuit as _pjt_circuit
     from . import pjt_wire as _pjt_wire
 
@@ -63,9 +63,9 @@ class PJTSplice(PJTEntryBase):
         return res
 
     @property
-    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def start_point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.start_point3d_id
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def start_point3d_id(self) -> int:
@@ -77,9 +77,9 @@ class PJTSplice(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def stop_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def stop_point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.stop_point3d_id
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def stop_point3d_id(self) -> int:
@@ -91,9 +91,9 @@ class PJTSplice(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def branch_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def branch_point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.branch_point3d_id
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def branch_point3d_id(self) -> int:
@@ -101,13 +101,13 @@ class PJTSplice(PJTEntryBase):
 
     @branch_point3d_id.setter
     def branch_point3d_id(self, value: int):
-        self._table.update(self._db_id, point3_3d_id=value)
+        self._table.update(self._db_id, point33d_id=value)
         self._process_callbacks()
 
     @property
-    def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
+    def point2d(self) -> "_pjt_point2d.PJTPoint2D":
         point_id = self.point2d_id
-        return self._table.db.pjt_points_2d_table[point_id]
+        return self._table.db.pjt_points2d_table[point_id]
 
     @property
     def point2d_id(self) -> int:

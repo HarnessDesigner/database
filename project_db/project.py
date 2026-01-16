@@ -23,6 +23,9 @@ class ProjectsTable(PJTTableBase):
     def get_object_count(self, project_id) -> int:
         return self.select('object_count', id=project_id)[0][0]
 
+    def set_object_count(self, project_id, value: int):
+        self.update(project_id, object_count=value)
+
     def insert(self, name: str, description: str, creator: str) -> "Project":
 
         db_id = PJTTableBase.insert(self, name=name, description=description, creator=creator)

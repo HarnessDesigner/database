@@ -5,8 +5,8 @@ from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import angle as _angle
 
 if TYPE_CHECKING:
-    from . import pjt_point_3d as _pjt_point_3d
-    from . import pjt_point_2d as _pjt_point_2d
+    from . import pjt_point3d as _pjt_point3d
+    from . import pjt_point2d as _pjt_point2d
     from . import pjt_cavity as _pjt_cavity
     from . import pjt_cover as _pjt_cover
     from . import pjt_tpa_lock as _pjt_tpa_lock
@@ -34,11 +34,11 @@ class PJTHousingsTable(PJTTableBase):
         raise KeyError(item)
 
     def insert(self, part_id: int, name: str, point3d_id: int, point2d_id: int,
-               angle_3d: _angle.Angle, angle_2d: _decimal) -> "PJTHousing":
+               angle3d: _angle.Angle, angle2d: _decimal) -> "PJTHousing":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, name=name, point3d_id=point3d_id,
-                                    point2d_id=point2d_id, angle_3d=str(list(angle_3d.as_float)),
-                                    angle_2d=float(angle_2d))
+                                    point2d_id=point2d_id, angle3d=str(list(angle3d.as_float)),
+                                    angle2d=float(angle2d))
 
         return PJTHousing(self, db_id, self.project_id)
 
@@ -83,12 +83,12 @@ class PJTHousing(PJTEntryBase):
         return cavity
 
     @property
-    def point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.point3d_id
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def point3d_id(self) -> int:
@@ -100,30 +100,30 @@ class PJTHousing(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def angle_3d(self) -> _angle.Angle:
-        return _angle.Angle(*eval(self._table.select('angle_3d', id=self._db_id)[0][0]))
+    def angle3d(self) -> _angle.Angle:
+        return _angle.Angle(*eval(self._table.select('angle3d', id=self._db_id)[0][0]))
 
-    @angle_3d.setter
-    def angle_3d(self, value: _angle.Angle):
-        self._table.update(self._db_id, angle_3d=str(list(value.as_float)))
+    @angle3d.setter
+    def angle3d(self, value: _angle.Angle):
+        self._table.update(self._db_id, angle3d=str(list(value.as_float)))
         self._process_callbacks()
 
     @property
-    def angle_2d(self) -> _decimal:
-        return _decimal(self._table.select('angle_2d', id=self._db_id)[0][0])
+    def angle2d(self) -> _decimal:
+        return _decimal(self._table.select('angle2d', id=self._db_id)[0][0])
 
-    @angle_2d.setter
-    def angle_2d(self, value: _decimal):
-        self._table.update(self._db_id, angle_2d=float(value))
+    @angle2d.setter
+    def angle2d(self, value: _decimal):
+        self._table.update(self._db_id, angle2d=float(value))
         self._process_callbacks()
 
     @property
-    def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
+    def point2d(self) -> "_pjt_point2d.PJTPoint2D":
         point_id = self.point2d_id
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_2d_table[point_id]
+        return self._table.db.pjt_points2d_table[point_id]
 
     @property
     def point2d_id(self) -> int:

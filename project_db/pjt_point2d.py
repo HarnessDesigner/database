@@ -7,7 +7,7 @@ from ...geometry import point as _point
 
 
 class PJTPoints2DTable(PJTTableBase):
-    __table_name__ = 'pjt_points_2d'
+    __table_name__ = 'pjt_points2d'
     __points__ = {}
 
     def __iter__(self) -> _Iterable["PJTPoint2D"]:

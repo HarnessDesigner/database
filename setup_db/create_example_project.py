@@ -36,8 +36,8 @@ def create_example(con, cur):
 
     '''
     INSERT INTO projects (name) VALUES ("Example");
-    INSERT INTO pjt_points_3d (project_id, x, y, z) VALUES (?, ?, ?, ?);
-    INSERT INTO pjt_points_2d (project_id, x, y) VALUES (?, ?, ?);
+    INSERT INTO pjt_points3d (project_id, x, y, z) VALUES (?, ?, ?, ?);
+    INSERT INTO pjt_points2d (project_id, x, y) VALUES (?, ?, ?);
     INSERT INTO pjt_circuits (project_id, circuit_num, name, description, load, volts, voltage_drop) VALUES (?, ?, ?, ?, ?, ?, ?);
     INSERT INTO pjt_bundle_layouts (project_id, point_id) VALUES (?, ?);
     INSERT INTO pjt_wire3d_layouts (project_id, point_id) VALUES (?, ?);

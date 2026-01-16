@@ -7,8 +7,8 @@ from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import line as _line
 
 if TYPE_CHECKING:
-    from . import pjt_point_3d as _pjt_point_3d
-    from . import pjt_point_2d as _pjt_point_2d
+    from . import pjt_point3d as _pjt_point3d
+    from . import pjt_point2d as _pjt_point2d
     from . import pjt_circuit as _pjt_circuit
     from . import pjt_wire_marker as _pjt_wire_marker
     from ..global_db import wire as _wire
@@ -55,9 +55,9 @@ class PJTWire(PJTEntryBase):
         return res
 
     @property
-    def layer_view_point(self) -> "_pjt_point_2d.PJTPoint2D":
+    def layer_view_point(self) -> "_pjt_point2d.PJTPoint2D":
         point_id = self.layer_view_point_id
-        return self._table.db.pjt_points_2d_table[point_id]
+        return self._table.db.pjt_points2d_table[point_id]
 
     @property
     def layer_view_point_id(self) -> int:
@@ -119,12 +119,12 @@ class PJTWire(PJTEntryBase):
         return self._table
 
     @property
-    def start_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def start_point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.start_point3d_id
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def start_point3d_id(self) -> int:
@@ -136,12 +136,12 @@ class PJTWire(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def stop_point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def stop_point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.stop_point3d_id
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def stop_point3d_id(self) -> int:
@@ -153,12 +153,12 @@ class PJTWire(PJTEntryBase):
         self._process_callbacks()
     
     @property
-    def start_point2d(self) -> "_pjt_point_2d.PJTPoint2D":
+    def start_point2d(self) -> "_pjt_point2d.PJTPoint2D":
         point_id = self.start_point2d_id
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_2d_table[point_id]
+        return self._table.db.pjt_points2d_table[point_id]
 
     @property
     def start_point2d_id(self) -> int:
@@ -170,12 +170,12 @@ class PJTWire(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def stop_point2d(self) -> "_pjt_point_2d.PJTPoint2D":
+    def stop_point2d(self) -> "_pjt_point2d.PJTPoint2D":
         point_id = self.stop_point2d_id
         if point_id is None:
             return None
 
-        return self._table.db.pjt_points_2d_table[point_id]
+        return self._table.db.pjt_points2d_table[point_id]
 
     @property
     def stop_point2d_id(self) -> int:

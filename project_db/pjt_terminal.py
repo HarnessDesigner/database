@@ -10,8 +10,8 @@ from ...geometry import angle as _angle
 if TYPE_CHECKING:
     from . import pjt_cavity as _pjt_cavity
     from . import pjt_circuit as _pjt_circuit
-    from . import pjt_point_2d as _pjt_point_2d
-    from . import pjt_point_3d as _pjt_point_3d
+    from . import pjt_point2d as _pjt_point2d
+    from . import pjt_point3d as _pjt_point3d
     from . import pjt_seal as _pjt_seal
 
     from ..global_db import terminal as _terminal
@@ -35,14 +35,14 @@ class PJTTerminalsTable(PJTTableBase):
     def insert(self, part_id: int, cavity_id: int, circuit_id: int,
                point3d_id: int, point2d_id: int, angle: _decimal,
                quat: np.ndarray, is_start: bool, volts: _decimal,
-               load: _decimal, resistance: _decimal, voltage_drop: _decimal) -> "PJTTerminal":
+               load: _decimal, voltage_drop: _decimal) -> "PJTTerminal":
 
         db_id = PJTTableBase.insert(self, part_id=part_id, cavity_id=cavity_id,
                                     circuit_id=circuit_id, point3d_id=point3d_id,
                                     point2d_id=point2d_id, angle=float(angle),
                                     quat=str(quat.tolist()), is_start=int(is_start),
                                     volts=float(volts), load=float(load),
-                                    resistance=float(resistance), voltage_drop=float(voltage_drop))
+                                    voltage_drop=float(voltage_drop))
 
         return PJTTerminal(self, db_id, self.project_id)
 
@@ -181,9 +181,9 @@ class PJTTerminal(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def point3d(self) -> "_pjt_point_3d.PJTPoint3D":
+    def point3d(self) -> "_pjt_point3d.PJTPoint3D":
         point3d_id = self.point3d_id
-        return self._table.db.pjt_points_3d_table[point3d_id]
+        return self._table.db.pjt_points3d_table[point3d_id]
 
     @property
     def point3d_id(self) -> int:
@@ -195,9 +195,9 @@ class PJTTerminal(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def point2d(self) -> "_pjt_point_2d.PJTPoint2D":
+    def point2d(self) -> "_pjt_point2d.PJTPoint2D":
         point2d_id = self.point2d_id
-        return self._table.db.pjt_points_2d_table[point2d_id]
+        return self._table.db.pjt_points2d_table[point2d_id]
 
     @property
     def point2d_id(self) -> int:

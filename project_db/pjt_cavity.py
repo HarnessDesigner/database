@@ -66,8 +66,11 @@ class PJTCavity(PJTEntryBase):
     @property
     def terminal(self) -> "_pjt_terminal.PJTTerminal":
         terminal_ids = self._table.db.pjt_terminals_table.select('id', cavity_id=self._db_id)
-        if terminal_ids:
-            return self._table.db.pjt_terminals_table[terminal_ids[0][0]]
+
+        if not terminal_ids:
+            return None
+
+        return self._table.db.pjt_terminals_table[terminal_ids[0][0]]
 
     @property
     def part(self) -> "_cavity.Cavity":

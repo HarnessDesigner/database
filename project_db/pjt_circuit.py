@@ -9,7 +9,7 @@ from . import pjt_splice as _pjt_splice
 from . import pjt_terminal as _pjt_terminal
 from . import pjt_housing as _pjt_housing
 from . import pjt_wire_service_loop as _pjt_wire_service_loop
-from . import pjt_point_3d as _pjt_point_3d
+from . import pjt_point3d as _pjt_point3d
 
 
 class PJTCircuitsTable(PJTTableBase):
@@ -98,7 +98,7 @@ class PJTCircuit(PJTEntryBase):
     @property
     def circuit_map(self):
 
-        def iter_objs(obj, point: "_pjt_point_3d.PJTPoint3D"):
+        def iter_objs(obj, point: "_pjt_point3d.PJTPoint3D"):
             res = []
 
             if isinstance(obj, _pjt_terminal.PJTTerminal):

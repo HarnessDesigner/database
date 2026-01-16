@@ -3,8 +3,8 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
-    from . import pjt_point_3d as _pjt_point_3d
-    from . import pjt_bundle_layer as _pjt_bundle_layer
+    from . import pjt_point3d as _pjt_point3d
+    from . import pjt_concentric as _pjt_concentric
 
     from ..global_db import bundle_cover as _bundle_cover
 
@@ -39,24 +39,17 @@ class PJTBundle(PJTEntryBase):
         return self._table
 
     @property
-    def layers(self) -> list["_pjt_bundle_layer.PJTBundleLayer"]:
-        db_ids = self._table.db.pjt_bundle_layers_table.select('id', bundle_id=self.db_id)
-        res = []
-        for db_id in db_ids:
-            layer = self._table.db.pjt_bundle_layers_table[db_id[0]]
-            layer_id = layer.layer_id
+    def concentric(self) -> "_pjt_concentric.PJTConcentric":
+        concentric_id = self.table.db.pjt_concentrics_table.select('id', bundle_id=self.db_id)[0][0]
+        if concentric_id is None:
+            return None
 
-            while layer_id <= len(res):
-                res.append(None)
-
-            res[layer_id] = layer
-
-        return res
+        return self.table.db.pjt_concentrics_table[concentric_id]
 
     @property
-    def start_point(self) -> "_pjt_point_3d.PJTPoint3D":
+    def start_point(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.start_point_id
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def start_point_id(self) -> int:
@@ -68,9 +61,9 @@ class PJTBundle(PJTEntryBase):
         self._process_callbacks()
 
     @property
-    def stop_point(self) -> "_pjt_point_3d.PJTPoint3D":
+    def stop_point(self) -> "_pjt_point3d.PJTPoint3D":
         point_id = self.stop_point_id
-        return self._table.db.pjt_points_3d_table[point_id]
+        return self._table.db.pjt_points3d_table[point_id]
 
     @property
     def stop_point_id(self) -> int:

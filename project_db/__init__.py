@@ -233,8 +233,8 @@ from .pjt_bundle import PJTBundlesTable  # NOQA
 from .pjt_bundle_layout import PJTBundleLayoutsTable  # NOQA
 from .pjt_bundle_layer import PJTBundleLayersTable  # NOQA
 from .pjt_circuit import PJTCircuitsTable  # NOQA
-from .pjt_point_2d import PJTPoints2DTable  # NOQA
-from .pjt_point_3d import PJTPoints3DTable  # NOQA
+from .pjt_point2d import PJTPoints2DTable  # NOQA
+from .pjt_point3d import PJTPoints3DTable  # NOQA
 from .pjt_housing import PJTHousingsTable  # NOQA
 from .pjt_splice import PJTSplicesTable  # NOQA
 from .pjt_transition import PJTTransitionsTable  # NOQA
@@ -250,6 +250,11 @@ from .pjt_boot import PJTBootsTable  # NOQA
 from .pjt_cpa_lock import PJTCPALocksTable  # NOQA
 from .pjt_tpa_lock import PJTTPALocksTable  # NOQA
 from .pjt_wire_service_loop import PJTWireServiceLoopsTable  # NOQA
+from .pjt_note import PJTNotesTable  # NOQA
+from .pjt_concentric import PJTConcentricsTable  # NOQA
+from .pjt_concentric_layer import PJTConcentricLayersTable  # NOQA
+from .pjt_concentric_wire import PJTConcentricWiresTable  # NOQA
+from .pjt_transition_branch import PJTTransitionBranchesTable  # NOQA
 
 from .project import ProjectsTable  # NOQA
 
@@ -276,8 +281,8 @@ class PJTTables:
         self._pjt_bundle_layouts_table = None
         self._pjt_bundle_layers_table = None
         self._pjt_circuits_table = None
-        self._pjt_points_2d_table = None
-        self._pjt_points_3d_table = None
+        self._pjt_points2d_table = None
+        self._pjt_points3d_table = None
         self._pjt_housings_table = None
         self._pjt_splices_table = None
         self._pjt_transitions_table = None
@@ -293,9 +298,14 @@ class PJTTables:
         self._pjt_tpa_locks_table = None
         self._pjt_wire_markers_table = None
         self._pjt_wire_service_loops_table = None
+        self._pjt_notes_table = None
+        self._pjt_concentrics_table = None
+        self._pjt_concentric_layers_table = None
+        self._pjt_concentric_wires_table = None
+        self._pjt_transition_branches_table = None
 
-        self._points_2d = []
-        self._points_3d = []
+        self._points2d = []
+        self._points3d = []
 
         self._current_count = 0
 
@@ -308,8 +318,8 @@ class PJTTables:
         self._pjt_bundle_layouts_table = PJTBundleLayoutsTable(self, project_id)
         self._pjt_bundle_layers_table = PJTBundleLayersTable(self, project_id)
         self._pjt_circuits_table = PJTCircuitsTable(self, project_id)
-        self._pjt_points_2d_table = PJTPoints2DTable(self, project_id)
-        self._pjt_points_3d_table = PJTPoints3DTable(self, project_id)
+        self._pjt_points2d_table = PJTPoints2DTable(self, project_id)
+        self._pjt_points3d_table = PJTPoints3DTable(self, project_id)
         self._pjt_housings_table = PJTHousingsTable(self, project_id)
         self._pjt_splices_table = PJTSplicesTable(self, project_id)
         self._pjt_transitions_table = PJTTransitionsTable(self, project_id)
@@ -325,6 +335,11 @@ class PJTTables:
         self._pjt_tpa_locks_table = PJTTPALocksTable(self, project_id)
         self._pjt_wire_markers_table = PJTWireMarkersTable(self, project_id)
         self._pjt_wire_service_loops_table = PJTWireServiceLoopsTable(self, project_id)
+        self._pjt_notes_table = PJTNotesTable(self, project_id)
+        self._pjt_concentrics_table = PJTConcentricsTable(self, project_id)
+        self._pjt_concentric_layers_table = PJTConcentricLayersTable(self, project_id)
+        self._pjt_concentric_wires_table = PJTConcentricWiresTable(self, project_id)
+        self._pjt_transition_branches_table = PJTTransitionBranchesTable(self, project_id)
 
         # the points are how we initially identify thing. It links together
         # the various objects. As an example say I have a wire and in the
@@ -345,8 +360,8 @@ class PJTTables:
         # takes place. I am able to adjust the coordinates of our object from events
         # that occur in the matplot lib objects.
 
-        self._points_2d = [point.point for point in self._pjt_points_2d_table]
-        self._points_3d = [point.point for point in self._pjt_points_3d_table]
+        self._points2d = [point.point for point in self._pjt_points2d_table]
+        self._points3d = [point.point for point in self._pjt_points3d_table]
 
         # the loading occurs using multiple threads to speed things up.
         # The plan is to have a thread running that creates multiple SQL
@@ -375,12 +390,12 @@ class PJTTables:
         return self._pjt_circuits_table
 
     @property
-    def pjt_points_2d_table(self) -> PJTPoints2DTable:
-        return self._pjt_points_2d_table
+    def pjt_points2d_table(self) -> PJTPoints2DTable:
+        return self._pjt_points2d_table
 
     @property
-    def pjt_points_3d_table(self) -> PJTPoints3DTable:
-        return self._pjt_points_3d_table
+    def pjt_points3d_table(self) -> PJTPoints3DTable:
+        return self._pjt_points3d_table
 
     @property
     def pjt_housings_table(self) -> PJTHousingsTable:
@@ -445,3 +460,23 @@ class PJTTables:
     @property
     def pjt_wire_service_loops_table(self) -> PJTWireServiceLoopsTable:
         return self._pjt_wire_service_loops_table
+
+    @property
+    def pjt_notes_table(self) -> PJTNotesTable:
+        return self._pjt_notes_table
+
+    @property
+    def pjt_concentrics_table(self) -> PJTConcentricsTable:
+        return self._pjt_concentrics_table
+
+    @property
+    def pjt_concentric_layers_table(self) -> PJTConcentricLayersTable:
+        return self._pjt_concentric_layers_table
+
+    @property
+    def pjt_concentric_wires_table(self) -> PJTConcentricWiresTable:
+        return self._pjt_concentric_wires_table
+
+    @property
+    def pjt_transition_branches_table(self) -> PJTTransitionBranchesTable:
+        return self._pjt_transition_branches_table
