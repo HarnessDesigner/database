@@ -14,16 +14,14 @@ from datetime import (
 from decimal import Decimal as _Decimal
 from time import struct_time as _struct_time
 
-import os
 import sqlite3
 
-from ....config import Config as _Config
-from .... import utils
 from .. import ConnectorBase
 
+from harness_designer import Config
 
-class Config(metaclass=_Config):
-    database_path = os.path.join(utils.get_appdata(), 'harness_designer.db')
+
+Config = Config.database.sqlite
 
 
 _StrOrBytes = _Union[str, bytes]

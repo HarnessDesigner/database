@@ -1,10 +1,11 @@
-from typing import TYPE_CHECKING, Iterable as _Iterable
+from typing import TYPE_CHECKING, Iterable as _Iterable, Union
 
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
     from . import pjt_point3d as _pjt_point3d
     from . import pjt_concentric as _pjt_concentric
+    from . import pjt_bundle_layout as _pjt_bundle_layout
 
     from ..global_db import bundle_cover as _bundle_cover
 
@@ -47,32 +48,48 @@ class PJTBundle(PJTEntryBase):
         return self.table.db.pjt_concentrics_table[concentric_id]
 
     @property
-    def start_point(self) -> "_pjt_point3d.PJTPoint3D":
-        point_id = self.start_point_id
+    def start_point3d(self) -> "_pjt_point3d.PJTPoint3D":
+        point_id = self.start_point3d_id
         return self._table.db.pjt_points3d_table[point_id]
 
     @property
-    def start_point_id(self) -> int:
-        return self._table.select('start_point_id', id=self._db_id)[0][0]
+    def start_point3d_id(self) -> int:
+        return self._table.select('start_point3d_id', id=self._db_id)[0][0]
 
-    @start_point_id.setter
-    def start_point_id(self, value: int):
-        self._table.update(self._db_id, start_point_id=value)
+    @start_point3d_id.setter
+    def start_point3d_id(self, value: int):
+        self._table.update(self._db_id, start_point3d_id=value)
         self._process_callbacks()
 
     @property
-    def stop_point(self) -> "_pjt_point3d.PJTPoint3D":
-        point_id = self.stop_point_id
+    def stop_point3d(self) -> "_pjt_point3d.PJTPoint3D":
+        point_id = self.stop_point3d_id
         return self._table.db.pjt_points3d_table[point_id]
 
     @property
-    def stop_point_id(self) -> int:
-        return self._table.select('stop_point_id', id=self._db_id)[0][0]
+    def stop_point3d_id(self) -> int:
+        return self._table.select('stop_point3d_id', id=self._db_id)[0][0]
 
-    @stop_point_id.setter
-    def stop_point_id(self, value: int):
-        self._table.update(self._db_id, stop_point_id=value)
+    @stop_point3d_id.setter
+    def stop_point3d_id(self, value: int):
+        self._table.update(self._db_id, stop_point3d_id=value)
         self._process_callbacks()
+
+    @property
+    def start_layout(self) -> Union["_pjt_bundle_layout.PJTBundleLayout", None]:
+        db_ids = self._table.db.pjt_bundle_layouts_table.select('id', point3d_id=self.start_point3d_id)
+        if not db_ids:
+            return None
+
+        return self._table.db.pjt_bundle_layouts_table[db_ids[0][0]]
+
+    @property
+    def stop_layout(self) -> Union["_pjt_bundle_layout.PJTBundleLayout", None]:
+        db_ids = self._table.db.pjt_bundle_layouts_table.select('id', point3d_id=self.stop_point3d_id)
+        if not db_ids:
+            return None
+
+        return self._table.db.pjt_bundle_layouts_table[db_ids[0][0]]
 
     @property
     def part(self) -> "_bundle_cover.BundleCover":

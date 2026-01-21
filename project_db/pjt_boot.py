@@ -1,9 +1,12 @@
 from typing import TYPE_CHECKING, Iterable as _Iterable
+import uuid
 
 from . import PJTEntryBase, PJTTableBase
+from ...geometry import angle as _angle
 
 if TYPE_CHECKING:
     from . import pjt_housing as _pjt_housing
+    from . import pjt_point3d as _pjt_point3d
 
     from ..global_db import boot as _boot
 
@@ -31,6 +34,34 @@ class PJTBootsTable(PJTTableBase):
 
 class PJTBoot(PJTEntryBase):
     _table: PJTBootsTable = None
+
+    _angle_id: str = None
+
+    def __update_angle(self, angle: _angle.Angle):
+        self._table.update(self._db_id, angle=str(angle.as_quat))
+        self._process_callbacks()
+
+    @property
+    def angle3d(self) -> _angle.Angle:
+        quat = eval(self._table.select('angle', id=self._db_id)[0][0])
+        if self._angle_id is None:
+            self._angle_id = str(uuid.uuid4())
+        angle = _angle.Angle.from_quat(quat, order='YXZ', db_id=self._angle_id)
+        angle.bind(self.__update_angle)
+        return angle
+
+    @property
+    def point3d(self) -> "_pjt_point3d.PJTPoint3D":
+        return self._table.db.pjt_points3d_table[self.point3d_id]
+
+    @property
+    def point3d_id(self) -> int:
+        return self._table.select('point3d_id', id=self._db_id)[0][0]
+
+    @point3d_id.setter
+    def point3d_id(self, value: int):
+        self._table.update(self._db_id, point3d_id=value)
+        self._process_callbacks()
 
     @property
     def table(self) -> PJTBootsTable:

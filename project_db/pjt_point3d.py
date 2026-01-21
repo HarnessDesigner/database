@@ -1,5 +1,7 @@
 from typing import Iterable as _Iterable
 
+import uuid
+
 from . import PJTEntryBase, PJTTableBase
 
 from ...wrappers.decimal import Decimal as _decimal
@@ -41,6 +43,7 @@ class PJTPoints3DTable(PJTTableBase):
 
 class PJTPoint3D(PJTEntryBase):
     _table: PJTPoints3DTable = None
+    _point_id: str = None
 
     @property
     def table(self) -> PJTPoints3DTable:
@@ -73,17 +76,17 @@ class PJTPoint3D(PJTEntryBase):
         self._table.update(self._db_id, z=float(value))
         self._process_callbacks()
 
-    _saved_point: _point.Point = None
+    def __update_point(self, point: _point.Point):
+        x, y, z = point.as_float
+        self._table.update(self._db_id, x=x, y=y, z=z)
+        self._process_callbacks()
 
     @property
     def point(self) -> _point.Point:
-        if self._saved_point is not None:
-            return self._saved_point
+        if self._point_id is None:
+            self._point_id = str(uuid.uuid4())
 
-        self._saved_point = _point.Point(self.x, self.y, self.z, db_obj=self)
-        self._saved_point.Bind(self._update_point)
+        point = _point.Point(self.x, self.y, self.z, db_id=self._point_id)
+        point.bind(self.__update_point)
 
-        return self._saved_point
-
-    def _update_point(self, point: _point.Point) -> None:
-        self._table.update(self.db_id, x=float(point.x), y=float(point.y), z=float(point.z))
+        return point

@@ -4002,6 +4002,19 @@ def splices(con, cur):
         con.commit()
 
 
+def settings(con, cur):
+    from ... import utils
+    import os
+
+    res = cur.execute('SELECT id FROM settings WHERE id=1;')
+
+    if res.fetchall():
+        return
+
+    cur.execute(f'INSERT INTO settings (id, name, value) VALUES(1, "model_path", "\'{os.path.join(utils.get_appdata(), 'models')}\'");')
+    con.commit()
+
+
 def bundle_covers(con, cur):
     res = cur.execute('SELECT id FROM bundle_covers WHERE id=0;')
 

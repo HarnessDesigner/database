@@ -1,4 +1,3 @@
-
 from typing import Iterable as _Iterable, TYPE_CHECKING
 
 import weakref
@@ -7,26 +6,41 @@ if TYPE_CHECKING:
     from ... import ui as _ui
 
 
-class PJTEntryMeta(type):
+class _PJTEntrySingleton(type):
+    _instances = {}
 
     def __init__(cls, name, bases, dct):
         super().__init__(name, bases, dct)
-
+        setattr(cls, '_instances', {})
         cls._instances = {}
 
-    def __call__(cls, table, db_id, project_id):
-        if db_id not in cls._instances:
-            cls._instances[db_id] = super().__call__(table, db_id, project_id)
+    @classmethod
+    def __remove_ref(cls, ref):
+        for key, value in cls._instances.items():
+            if value == ref:
+                break
+        else:
+            return
 
-        instance = cls._instances[db_id]
+        del cls._instances[key]
+
+    def __call__(cls, table, db_id: int, project_id: int):
+        key = (project_id, db_id)
+
+        if key in cls._instances:
+            ref = cls._instances[key]
+            instance = ref()
+        else:
+            instance = None
+
+        if instance is None:
+            instance = super().__call__(table, db_id, project_id)
+            cls._instances[key] = weakref.ref(instance, cls.__remove_ref)
 
         return instance
 
-    def unload(cls):
-        cls._instances.clear()
 
-
-class PJTEntryBase:
+class PJTEntryBase(metaclass=_PJTEntrySingleton):
 
     def __init__(self, table: "PJTTableBase", db_id: int, project_id: int):
         self._table = table

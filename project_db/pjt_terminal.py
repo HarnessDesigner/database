@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING, Iterable as _Iterable
 
 import numpy as np
+import uuid
 
 from . import PJTEntryBase, PJTTableBase
 
@@ -49,6 +50,7 @@ class PJTTerminalsTable(PJTTableBase):
 
 class PJTTerminal(PJTEntryBase):
     _table: PJTTerminalsTable = None
+    _angle_id: str = None
 
     @property
     def is_start(self) -> bool:
@@ -134,24 +136,19 @@ class PJTTerminal(PJTEntryBase):
         self._table.update(self._db_id, load=float(value))
         self._process_callbacks()
 
-    @property
-    def quat(self) -> np.ndarray:
-        return np.array(eval(self._table.select('quat', id=self._db_id)[0][0]), dtype=np.dtypes.Float64DType)
-
-    @quat.setter
-    def quat(self, value: np.ndarray):
-        value = str(value.tolist())
-        self._table.update(self._db_id, quat=value)
+    def __update_angle(self, angle: _angle.Angle):
+        self._table.update(self._db_id, quat=str(angle.as_quat))
         self._process_callbacks()
 
     @property
     def angle3d(self) -> _angle.Angle:
-        quat = self.quat
-        return _angle.Angle.from_quat(quat)
+        if self._angle_id is None:
+            self._angle_id = str(uuid.uuid4())
 
-    @angle3d.setter
-    def angle3d(self, value: _angle.Angle):
-        self.quat = value.as_quat
+        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
+        angle = _angle.Angle.from_quat(quat, db_id=self._angle_id)
+        angle.bind(self.__update_angle)
+        return angle
 
     @property
     def angle2d(self) -> _decimal:

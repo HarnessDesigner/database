@@ -1,7 +1,7 @@
 
 from typing import TYPE_CHECKING, Iterable as _Iterable
 
-import numpy as np
+import uuid
 
 from . import PJTEntryBase, PJTTableBase
 
@@ -39,28 +39,24 @@ class PJTTransitionsTable(PJTTableBase):
 
 class PJTTransition(PJTEntryBase):
     _table: PJTTransitionsTable = None
-    _center: "_pjt_point3d.PJTPoint3D" = None
+    _angle_id: str = None
 
     @property
     def table(self) -> PJTTransitionsTable:
         return self._table
 
     @property
-    def center(self) -> "_pjt_point3d.PJTPoint3D":
-        if self._center is not None:
-            return self._center
-
-        center_id = self.center_id
-        self._center = self._table.db.pjt_points3d_table[center_id]
-        return self._center
+    def point3d(self) -> "_pjt_point3d.PJTPoint3D":
+        point3d_id = self.point3d_id
+        return self._table.db.pjt_points3d_table[point3d_id]
 
     @property
-    def center_id(self) -> int:
-        return self._table.select('center_id', id=self._db_id)[0][0]
+    def point3d_id(self) -> int:
+        return self._table.select('point3d_id', id=self._db_id)[0][0]
 
-    @center_id.setter
-    def center_id(self, value: int):
-        self._table.update(self._db_id, center_id=value)
+    @point3d_id.setter
+    def point3d_id(self, value: int):
+        self._table.update(self._db_id, point3d_id=value)
         self._process_callbacks()
 
     @property
@@ -129,33 +125,19 @@ class PJTTransition(PJTEntryBase):
         self._table.update(self._db_id, name=value)
         self._process_callbacks()
 
-    def _update_angle(self, a: _angle.Angle) -> None:
-        self.quat = a.as_quat
-
-    _saved_angle: _angle.Angle = None
-
-    @property
-    def angle(self) -> _angle.Angle:
-        if self._saved_angle is not None:
-            return self._saved_angle
-
-        quat = self.quat
-
-        angle = _angle.Angle.from_quat(quat)
-        angle.Bind(self._update_angle)
-        self._saved_angle = angle
-        return angle
-
-    @property
-    def quat(self) -> np.ndarray:
-        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
-        return np.array(quat, dtype=np.dtypes.Float64DType)
-
-    @quat.setter
-    def quat(self, value: np.ndarray):
-        value = value.tolist()
-        self._table.update(self._db_id, quat=str(value))
+    def __update_angle(self, angle: _angle.Angle):
+        self._table.update(self._db_id, quat=str(angle.as_quat))
         self._process_callbacks()
+
+    @property
+    def angle3d(self) -> _angle.Angle:
+        if self._angle_id is None:
+            self._angle_id = str(uuid.uuid4())
+
+        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
+        angle = _angle.Angle.from_quat(quat, db_id=self._angle_id)
+        angle.bind(self.__update_angle)
+        return angle
 
     @property
     def part(self) -> "_transition.Transition":

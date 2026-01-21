@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import angle as _angle
+import uuid
 
 if TYPE_CHECKING:
     from . import pjt_point3d as _pjt_point3d
@@ -45,6 +46,7 @@ class PJTHousingsTable(PJTTableBase):
 
 class PJTHousing(PJTEntryBase):
     _table: PJTHousingsTable = None
+    _angle_id: str = None
 
     @property
     def table(self) -> PJTHousingsTable:
@@ -99,14 +101,19 @@ class PJTHousing(PJTEntryBase):
         self._table.update(self._db_id, point3d_id=value)
         self._process_callbacks()
 
+    def __update_angle(self, angle: _angle.Angle):
+        self._table.update(self._db_id, quat=str(angle.as_quat))
+        self._process_callbacks()
+
     @property
     def angle3d(self) -> _angle.Angle:
-        return _angle.Angle(*eval(self._table.select('angle3d', id=self._db_id)[0][0]))
+        if self._angle_id is None:
+            self._angle_id = str(uuid.uuid4())
 
-    @angle3d.setter
-    def angle3d(self, value: _angle.Angle):
-        self._table.update(self._db_id, angle3d=str(list(value.as_float)))
-        self._process_callbacks()
+        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
+        angle = _angle.Angle.from_quat(quat, db_id=self._angle_id)
+        angle.bind(self.__update_angle)
+        return angle
 
     @property
     def angle2d(self) -> _decimal:

@@ -1,11 +1,44 @@
 from typing import Iterable as _Iterable, TYPE_CHECKING
 
+import weakref
 
 if TYPE_CHECKING:
     from ... import ui as _ui
 
 
-class EntryBase:
+class _EntrySingleton(type):
+    _instances = {}
+
+    def __init__(cls, name, bases, dct):
+        super().__init__(name, bases, dct)
+        setattr(cls, '_instances', {})
+        cls._instances = {}
+
+    @classmethod
+    def __remove_ref(cls, ref):
+        for key, value in cls._instances.items():
+            if value == ref:
+                break
+        else:
+            return
+
+        del cls._instances[key]
+
+    def __call__(cls, table, db_id: int):
+        if db_id in cls._instances:
+            ref = cls._instances[db_id]
+            instance = ref()
+        else:
+            instance = None
+
+        if instance is None:
+            instance = super().__call__(table, db_id)
+            cls._instances[db_id] = weakref.ref(instance, cls.__remove_ref)
+
+        return instance
+
+
+class EntryBase(metaclass=_EntrySingleton):
 
     def __init__(self, table: "TableBase", db_id: int):
         self._table = table
@@ -175,6 +208,7 @@ from .wire_marker import WireMarkersTable  # NOQA
 from .splice_types import SpliceTypesTable  # NOQA
 from .cavity_point2d import CavityPoints2DTable  # NOQA
 from .cavity_point3d import CavityPoints3DTable  # NOQA
+from .setting import SettingsTable # NOQA
 
 
 class GLBTables:
@@ -209,7 +243,8 @@ class GLBTables:
             load_database.housings,
             load_database.splices,
             load_database.wire_markers,
-            load_database.wires
+            load_database.wires,
+            load_database.settings
         ]
 
         for func in funcs:
@@ -296,6 +331,8 @@ class GLBTables:
         splash.SetText(f'Loading cavity points 3d database table...')
         self._cavity_points3d_table = CavityPoints3DTable(self)
 
+        self._settings_table = SettingsTable(self)
+
     @property
     def accessories_table(self) -> AccessoriesTable:
         return self._accessories_table
@@ -373,10 +410,6 @@ class GLBTables:
         return self._genders_table
 
     @property
-    def sealings_table(self) -> SealingsTable:
-        return self._sealings_table
-
-    @property
     def temperatures_table(self) -> TemperaturesTable:
         return self._temperatures_table
 
@@ -447,3 +480,7 @@ class GLBTables:
     @property
     def cavity_points3d_table(self) -> CavityPoints3DTable:
         return self._cavity_points3d_table
+
+    @property
+    def settings_table(self) -> SettingsTable:
+        return self._settings_table

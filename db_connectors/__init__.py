@@ -1,14 +1,8 @@
 from typing import Optional as _Optional, Generator as _Generator
 
-from ...config import Config as _Config
-
-
-CONNECTOR_SQLITE = 1
-CONNECTOR_MYSQL = 2
-
-
-class Config(metaclass=_Config):
-    db_connector = CONNECTOR_SQLITE
+from harness_designer import Config
+from harness_designer import CONNECTOR_SQLITE
+from harness_designer import CONNECTOR_MYSQL
 
 
 class ConnectorBase:
@@ -52,12 +46,10 @@ class ConnectorBase:
         raise NotImplementedError
 
 
-if Config.db_connector == CONNECTOR_SQLITE:
+if Config.database.connector == CONNECTOR_SQLITE:
     from .sqlite_connector import SQLConnector
 
-elif Config.db_connector == CONNECTOR_MYSQL:
+elif Config.database.connector == CONNECTOR_MYSQL:
     from .mysql_connector import SQLConnector
 else:
     raise RuntimeError('Unknown connector type')
-
-

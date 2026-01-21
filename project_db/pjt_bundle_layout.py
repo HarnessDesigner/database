@@ -48,17 +48,17 @@ class PJTBundleLayout(PJTEntryBase):
         return self._table
 
     @property
-    def point(self) -> "_pjt_point3d.PJTPoint3D":
-        point_id = self.point_id
-        return self._table.db.pjt_points3d_table[point_id]
+    def point3d(self) -> "_pjt_point3d.PJTPoint3D":
+        point3d_id = self.point3d_id
+        return self._table.db.pjt_points3d_table[point3d_id]
 
     @property
-    def point_id(self) -> int:
-        return self._table.select('point_id', id=self._db_id)[0][0]
+    def point3d_id(self) -> int:
+        return self._table.select('point3d_id', id=self._db_id)[0][0]
 
-    @point_id.setter
-    def point_id(self, value: int):
-        self._table.update(self._db_id, point_id=value)
+    @point3d_id.setter
+    def point3d_id(self, value: int):
+        self._table.update(self._db_id, point3d_id=value)
         self._process_callbacks()
 
     @property

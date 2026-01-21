@@ -1,12 +1,11 @@
+import weakref
 from typing import Iterable as _Iterable
 
-import io
-import requests
-import zipfile
 import numpy as np
 import tempfile
 import os
-import build123d
+import uuid
+import shutil
 
 
 from . import EntryBase, TableBase
@@ -15,44 +14,13 @@ from ...geometry import point as _point
 from ...wrappers.decimal import Decimal as _decimal
 
 
-def _read_step(data):
-    temp_dir = tempfile.gettempdir()
-    tmp_file_path = os.path.join(temp_dir, 'harness_designer_tmp.stp')
-    with open(tmp_file_path, 'wb') as f:
-        f.write(data)
-
-    model = build123d.import_step(tmp_file_path)
-
-    bb = model.bounding_box()
-    corner1 = _point.Point(*[_decimal(float(item)) for item in bb.min])
-    corner2 = _point.Point(*[_decimal(float(item)) for item in bb.max])
-
-    try:
-        os.remove(tmp_file_path)
-    except OSError:
-        pass
-
-    return model, (corner1, corner2)
-
-
-def _read_stl(data: bytes):
-    temp_dir = tempfile.gettempdir()
-    tmp_file_path = os.path.join(temp_dir, 'harness_designer_tmp.stl')
-    with open(tmp_file_path, 'wb') as f:
-        f.write(data)
-
-    model = build123d.import_stl(tmp_file_path)
-
-    bb = model.bounding_box()
-    corner1 = _point.Point(*[_decimal(float(item)) for item in bb.min])
-    corner2 = _point.Point(*[_decimal(float(item)) for item in bb.max])
-
-    try:
-        os.remove(tmp_file_path)
-    except OSError:
-        pass
-
-    return model, (corner1, corner2)
+# TODO: Rework collecting the models from the web to include additional types.
+#       Add dialog to load the model and add controls for the user to set how
+#       agressive the triangle reduction is.
+#       Also add controls to set the offset and the angle of the model so it
+#       appears like it should.
+#       the dialog needs to be tailored to the type of model being loaded
+#       housing, boot, seal, etc...
 
 
 class Models3DTable(TableBase):
@@ -77,34 +45,48 @@ class Models3DTable(TableBase):
         return Model3D(self, db_id)
 
 
+class ModelData:
+
+    def __init__(self, data: list):
+        self._data = data
+
+    def __iter__(self):
+        return iter(self._data)
+
+
 class Model3D(EntryBase):
     _table: Models3DTable = None
+    _angle_id = None
+    _offset_id = None
+    _model = None
+
+    def __update_angle(self, angle: _angle.Angle):
+        self._table.update(self._db_id, angle=str(angle.as_quat))
 
     @property
     def angle(self) -> _angle.Angle:
-        value = eval(self._table.select('angle', id=self._db_id)[0][0])
-        return _angle.Angle(q=np.array(value, dtype=np.dtypes.Float64DType))
+        if self._angle_id is None:
+            self._angle_id = str(uuid.uuid4())
 
-    @angle.setter
-    def angle(self, value: _angle.Angle):
-        self._table.update(self._db_id, angle=str(value.quat))
+        value = eval(self._table.select('angle', id=self._db_id)[0][0])
+        quat = np.array(value, dtype=np.dtypes.Float64DType)
+        angle = _angle.Angle.from_quat(quat, order='YXZ', db_id=self._angle_id)
+        angle.bind(self.__update_angle)
+        return angle
+
+    def __update_offset(self, offset: _point.Point):
+        self._table.update(self._db_id, offset=str(list(offset.as_float)))
 
     @property
     def offset(self) -> _point.Point:
+        if self._offset_id is None:
+            self._offset_id = str(uuid.uuid4())
+
         value = eval(self._table.select('offset', id=self._db_id)[0][0])
-        return _point.Point(*[_decimal(item) for item in value])
-
-    @offset.setter
-    def offset(self, value:  _point.Point):
-        self._table.update(self._db_id, offset=str(list(value.as_float)))
-
-    @property
-    def index(self) -> int:
-        return self._table.select('idx', id=self._db_id)[0][0]
-
-    @index.setter
-    def index(self, value: int):
-        self._table.update(self._db_id, idx=value)
+        x, y, z = value
+        offset = _point.Point(_decimal(x), _decimal(y), _decimal(z), db_id=self._offset_id)
+        offset.bind(self.__update_offset)
+        return offset
 
     @property
     def type(self) -> str:
@@ -114,144 +96,91 @@ class Model3D(EntryBase):
     def type(self, value: str):
         self._table.update(self._db_id, type=value)
 
-    def __get_resource(self, db_id):
-        if db_id is None:
-            return None
+    @property
+    def target_count(self) -> int:
+        return self._table.select('target_count', id=self._db_id)[0][0]
 
-        resource = self._table.db.resources_table[db_id]
-        return resource.data
+    @target_count.setter
+    def target_count(self, value: int):
+        self._table.update(self._db_id, target_count=value)
 
-    def __set_resource(self, db_id, value) -> int:
-        if isinstance(value, (bytes, None)):
-            if db_id is None:
-                resource = self._table.db.resources_table.insert(path=None, data=value, type='')
-                db_id = resource.db_id
-            else:
-                resource = self._table.db.resources_table[db_id]
-                resource.data = value
+    @property
+    def agressive(self) -> float:
+        return self._table.select('agressive', id=self._db_id)[0][0]
+
+    @agressive.setter
+    def agressive(self, value: float):
+        self._table.update(self._db_id, agressive=value)
+
+    @property
+    def path(self) -> str:
+        return self._table.select('path', id=self._db_id)[0][0]
+
+    @path.setter
+    def path(self, value: str):
+        self._table.update(self._db_id, path=value)
+
+    def __remove_model_ref(self, ref):
+        if ref == self._model:
+            self._model = None
+
+    @property
+    def model(self) -> ModelData | None:
+        if self._model is not None and self._model() is not None:
+            return self._model()
+
+        data_type = self.type
+        path = self._table.db.settings_table['model_path']
+        infile = os.path.join(path, self.path)
+
+        path = tempfile.gettempdir()
+        file = os.path.join(path, f'{self.path}.{data_type}')
+
+        if data_type in ('stp', 'step'):  # Standard for the Exchange of Product model data
+            from ...model_loaders import stp as loader
+        elif data_type == '3mf':  # 3D Manufacturing Format
+            from ...model_loaders import _3mf as loader  # NOQA
+        elif data_type == 'gltf':  # Graphics Library Transmission Format
+            from ...model_loaders import gltf as loader
+        elif data_type == 'iges' or file.endswith('igs'):  # IGES
+            from ...model_loaders import iges as loader
+        elif data_type in ('wrl', 'wrz'):  # Virtual Reality Modeling Language
+            from ...model_loaders import vrml as loader
+        elif data_type == 'obj':
+            from ...model_loaders import obj as loader
+        elif data_type == 'stl':  # 'Stereolithography File'
+            from ...model_loaders import stl as loader
+        elif data_type == 'ply':  # 'Polygon File Format/Stanford Triangle Format'
+            from ...model_loaders import ply as loader
+        elif data_type == 'off':
+            from ...model_loaders import off as loader
+        elif data_type == 'glb':
+            from ...model_loaders import glb as loader
+        elif data_type == 'ifc':
+            from ...model_loaders import ifc as loader
         else:
-            if db_id is None:
-                resource = self._table.db.resources_table.insert(path=value, data=None, type='')
-                db_id = resource.db_id
-            else:
-                resource = self._table.db.resources_table[db_id]
-                if value.startswith('http'):
-                    resource.http = value
-                else:
-                    resource.path = value
-        return db_id
+            raise RuntimeError('sanity check')
 
-    @property
-    def all_model_data(self):
+        shutil.copyfile(infile, file)
 
-        def _read_zip_file(zip_data):
-            buf = io.BytesIO(zip_data)
-            buf.seek(0)
-            zf = zipfile.ZipFile(buf)
-            files = {name: zf.read(name) for name in zf.namelist()}
-            zf.close()
-            buf.close()
+        model_data = loader.load(file)
 
-            ret = []
+        offset = self.offset
+        angle = self.angle
 
-            for fn, file_data in files.items():
-                if len(fn) < 5:
-                    continue
+        from ... import model_loaders
 
-                if fn.endswith('.zip'):
-                    ret.extend(_read_zip_file(file_data))
-                    continue
+        for i, (vertices, faces) in enumerate(model_data):
+            if len(faces) > 20000:
+                vertices, faces = model_loaders.reduce_triangles(
+                    vertices, faces, self.target_count, self.agressive)
 
-                if fn[-4:] not in ('.stl', '.stp', 'step'):
-                    continue
+            vertices @= angle
+            vertices += offset
+            model_data[i] = [vertices, faces]
 
-                f_type_ = fn.rsplit('.', 1)[-1]
-                ret.append((file_data, f_type_))
+        model_data = ModelData(model_data)
 
-            return ret
+        self._model = weakref.ref(model_data, self.__remove_model_ref)
 
-        res = []
-
-        data = self._table.select('data', id=self._db_id)[0][0]
-        if data is None:
-            return []
-
-        if data.startswith(b'http'):
-            if data[-4:] in (b'.stl', b'.stp') or data.endswith(b'.step'):
-                maybe_zip = False
-                is_zip = False
-            else:
-                maybe_zip = True
-                if data[-4:] == b'.zip':
-                    is_zip = True
-                else:
-                    is_zip = False
-
-            response = requests.get(data)
-            data = response.content
-
-            if maybe_zip:
-                content_type = response.headers.get('Content-Type', None)
-                if not is_zip:
-                    if content_type is None:
-                        return []
-
-                    if content_type.split(';')[0] != 'application/zip':
-                        return []
-
-                res = _read_zip_file(data)
-
-        elif data[-4:] in (b'.stl', b'.stp', b'step'):
-            f_type = data.rsplit(b'.', 1)[-1].decode('utf-8')
-
-            try:
-                with open(data, 'rb') as f:
-                    res.append((f.read(), f_type))
-
-            except OSError:
-                pass
-
-        elif data[-4:] == b'.zip':
-            res = _read_zip_file(data)
-
-        return res
-
-    @property
-    def model(self) -> tuple[build123d.Shape, tuple[_point.Point, _point.Point]] | tuple[None, None]:
-        if self.type == 'stl':
-            data = self.data
-            if data is not None:
-                return _read_stl(data)
-
-        elif self.type in ('step', 'stp'):
-            data = self.data
-            if data is not None:
-                return _read_step(data)
-
-        return None, None
-
-    @property
-    def data(self) -> bytes | None:
-        data = self.all_model_data
-        if not data:
-            return None
-
-        index = self.index
-
-        if index >= len(data):
-            return None
-
-        return data[index][0]
-
-    @data.setter
-    def data(self, value: bytes | None):
-        if value is not None:
-            if (
-                len(value) >= 5 and
-                not value.startswith(b'http') and
-                (value[-4:] in (b'.zip', b'.stl', b'.stp') or value.endswith(b'.step'))
-            ):
-                with open(value, 'wb') as f:
-                    f.write(value)
-
-        self._table.update(self._db_id, data=value)
+        return model_data

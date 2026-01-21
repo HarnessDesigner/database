@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 from ...wrappers.decimal import Decimal as _decimal
 
+
 if TYPE_CHECKING:
     from . import pjt_point3d as _pjt_point3d
     from . import pjt_point2d as _pjt_point2d

@@ -3,19 +3,11 @@ import sys
 import wx
 import wx.lib.filebrowsebutton as filebrowse
 import mysql.connector.constants
-try:
-    from . import Config as SQLConfig
-    from ....config import Config as _Config
-except ImportError:
-    from __init__ import Config as SQLConfig
 
-    class _Config:
-        pass
+from harness_designer import Config
 
-
-class Config(metaclass=_Config):
-    size = (950, 950)
-    pos = (0, 0)
+DBConfig = Config.database
+Config = Config.database.mysql
 
 
 class BoxedGroup(wx.StaticBox):
@@ -155,8 +147,8 @@ MODE_TOOLTIPS = {
 class SQLOptionsDialog(wx.Dialog):
 
     def __init__(self, parent):
-        wx.Dialog.__init__(self, parent, wx.ID_ANY, size=Config.size,
-                           title='MySQL Options', pos=Config.pos,
+        wx.Dialog.__init__(self, parent, wx.ID_ANY, size=Config.settings_dialog.size,
+                           title='MySQL Options', pos=Config.settings_dialog.pos,
                            style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER | wx.STAY_ON_TOP)
 
         self.Bind(wx.EVT_SIZE, self.on_size)
@@ -165,31 +157,31 @@ class SQLOptionsDialog(wx.Dialog):
         con_group = BoxedGroup(self, 'Connection Settings')
         misc_group = BoxedGroup(self, 'Misc Settings')
 
-        host_ctrl = wx.TextCtrl(con_group, wx.ID_ANY, value=SQLConfig.host)
+        host_ctrl = wx.TextCtrl(con_group, wx.ID_ANY, value=Config.host)
         con_group.AppendItems(('Host:', host_ctrl))
 
         port_ctrl = wx.SpinCtrl(
-            con_group, wx.ID_ANY, value=str(SQLConfig.port),
-            initial=SQLConfig.port, min=1, max=65535)
+            con_group, wx.ID_ANY, value=str(Config.port),
+            initial=Config.port, min=1, max=65535)
 
         con_group.AppendItems(('Port:', port_ctrl))
 
         force_ipv6_ctrl = wx.CheckBox(con_group, wx.ID_ANY, label='')
-        force_ipv6_ctrl.SetValue(SQLConfig.force_ipv6)
+        force_ipv6_ctrl.SetValue(Config.force_ipv6)
         con_group.AppendItems(('Force IPV6:', force_ipv6_ctrl))
 
         compress_ctrl = wx.CheckBox(con_group, wx.ID_ANY, label='')
-        compress_ctrl.SetValue(SQLConfig.compress)
+        compress_ctrl.SetValue(Config.compress)
         con_group.AppendItems(('Compress Protocol:', compress_ctrl))
 
         buffer_ctrl = wx.CheckBox(misc_group, wx.ID_ANY, label='')
-        buffer_ctrl.SetValue(SQLConfig.buffered)
+        buffer_ctrl.SetValue(Config.buffered)
         misc_group.AppendItems(('Buffer responses:', buffer_ctrl))
 
-        if SQLConfig.write_timeout is None:
+        if Config.write_timeout is None:
             write_timeout = 0
         else:
-            write_timeout = SQLConfig.write_timeout
+            write_timeout = Config.write_timeout
 
         write_timeout_ctrl = wx.SpinCtrl(
             misc_group, wx.ID_ANY, value=str(write_timeout),
@@ -197,10 +189,10 @@ class SQLOptionsDialog(wx.Dialog):
 
         misc_group.AppendItems(('Write Timeout (sec):', write_timeout_ctrl))
 
-        if SQLConfig.read_timeout is None:
+        if Config.read_timeout is None:
             read_timeout = 0
         else:
-            read_timeout = SQLConfig.read_timeout
+            read_timeout = Config.read_timeout
 
         read_timeout_ctrl = wx.SpinCtrl(
             misc_group, wx.ID_ANY, value=str(read_timeout),
@@ -208,10 +200,10 @@ class SQLOptionsDialog(wx.Dialog):
 
         misc_group.AppendItems(('Read Timeout (sec):', read_timeout_ctrl))
 
-        if SQLConfig.connection_timeout is None:
+        if Config.connection_timeout is None:
             connection_timeout = 0
         else:
-            connection_timeout = SQLConfig.connection_timeout
+            connection_timeout = Config.connection_timeout
 
         connection_timeout_ctrl = wx.SpinCtrl(
             misc_group, wx.ID_ANY, value=str(connection_timeout),
@@ -222,7 +214,7 @@ class SQLOptionsDialog(wx.Dialog):
         auth_group = BoxedGroup(self, 'Authentication Settings')
 
         auth_plugin_ctrl = wx.TextCtrl(
-            auth_group, wx.ID_ANY, value=SQLConfig.auth_plugin)
+            auth_group, wx.ID_ANY, value=Config.auth_plugin)
         auth_group.AppendItems(('Auth plugin:', auth_plugin_ctrl))
 
         auth_plugin_ctrl.Bind(wx.EVT_CHAR, self.on_auth_plugin)
@@ -233,14 +225,14 @@ class SQLOptionsDialog(wx.Dialog):
         oci_file_ctrl = filebrowse.FileBrowseButton(
             oci_group, wx.ID_ANY, labelText='File:')
         oci_config_profile_ctrl = wx.TextCtrl(
-            oci_group, wx.ID_ANY, value=SQLConfig.oci_config_profile)
+            oci_group, wx.ID_ANY, value=Config.oci_config_profile)
 
         oci_group.AppendItems(oci_file_ctrl)
         self.oci_config_profile_label = oci_group.AppendItems(
             ('Config Profile:', oci_config_profile_ctrl))[0]
 
-        if SQLConfig.oci_config_file:
-            oci_file_ctrl.SetValue(SQLConfig.oci_config_file)
+        if Config.oci_config_file:
+            oci_file_ctrl.SetValue(Config.oci_config_file)
         else:
             oci_config_profile_ctrl.Enable(False)
             self.oci_config_profile_label.Enable(False)
@@ -253,10 +245,10 @@ class SQLOptionsDialog(wx.Dialog):
         openid_token_file_ctrl = filebrowse.FileBrowseButton(
             openid_group, wx.ID_ANY, labelText='Token File:')
 
-        if SQLConfig.openid_token_file:
-            openid_token_file_ctrl.SetValue(SQLConfig.openid_token_file)
+        if Config.openid_token_file:
+            openid_token_file_ctrl.SetValue(Config.openid_token_file)
 
-        if SQLConfig.auth_plugin != 'authentication_openid_connect_client':
+        if Config.auth_plugin != 'authentication_openid_connect_client':
             openid_token_file_ctrl.Enable(False)
 
         openid_group.AppendItems(openid_token_file_ctrl)
@@ -267,16 +259,16 @@ class SQLOptionsDialog(wx.Dialog):
 
             kerberos_auth_mode_ctrl = wx.Choice(
                 kerberos_group, wx.ID_ANY, choices=['SSPI', 'GSSAPI'])
-            kerberos_auth_mode_ctrl.SetStringSelection(SQLConfig.kerberos_auth_mode)
+            kerberos_auth_mode_ctrl.SetStringSelection(Config.kerberos_auth_mode)
 
             self.kerberos_auth_mode_label = kerberos_group.AppendItems(
                 ('Auth Mode:', kerberos_auth_mode_ctrl))[0]
             self.kerberos_auth_mode_ctrl = kerberos_auth_mode_ctrl
 
             self.kerberos_auth_mode_label.Enable(
-                SQLConfig.auth_plugin == 'authentication_kerberos_client')
+                Config.auth_plugin == 'authentication_kerberos_client')
             kerberos_auth_mode_ctrl.Enable(
-                SQLConfig.auth_plugin == 'authentication_kerberos_client')
+                Config.auth_plugin == 'authentication_kerberos_client')
 
         ssl_group = BoxedGroup(auth_group, 'SSL')
         auth_group.Add(ssl_group, 1, wx.EXPAND | wx.ALL, 10)
@@ -285,7 +277,7 @@ class SQLOptionsDialog(wx.Dialog):
 
         ssl_enabled_label = wx.StaticText(ssl_group, wx.ID_ANY, label='Enable:')
         ssl_enabled_ctrl = wx.CheckBox(ssl_group, wx.ID_ANY, label='')
-        ssl_enabled_ctrl.SetValue(not SQLConfig.ssl_disabled)
+        ssl_enabled_ctrl.SetValue(not Config.ssl_disabled)
 
         h_sizer.Add(ssl_enabled_label, 0, wx.EXPAND | wx.LEFT | wx.TOP | wx.BOTTOM, 10)
         h_sizer.Add(ssl_enabled_ctrl, 0, wx.EXPAND | wx.ALL, 10)
@@ -294,13 +286,13 @@ class SQLOptionsDialog(wx.Dialog):
 
         tls_12_label = wx.StaticText(ssl_group, wx.ID_ANY, label='Use TLS 1.2:')
         tls_12_ctrl = wx.CheckBox(ssl_group, wx.ID_ANY, label='')
-        tls_12_ctrl.SetValue('TLSv1.2' in SQLConfig.tls_versions)
+        tls_12_ctrl.SetValue('TLSv1.2' in Config.tls_versions)
         h_sizer.Add(tls_12_label, 0, wx.EXPAND | wx.LEFT | wx.TOP | wx.BOTTOM, 10)
         h_sizer.Add(tls_12_ctrl, 0, wx.EXPAND | wx.ALL, 10)
 
         tls_13_label = wx.StaticText(ssl_group, wx.ID_ANY, label='Use TLS 1.3:')
         tls_13_ctrl = wx.CheckBox(ssl_group, wx.ID_ANY, label='')
-        tls_13_ctrl.SetValue('TLSv1.2' in SQLConfig.tls_versions)
+        tls_13_ctrl.SetValue('TLSv1.2' in Config.tls_versions)
         h_sizer.Add(tls_13_label, 0, wx.EXPAND | wx.LEFT | wx.TOP | wx.BOTTOM, 10)
         h_sizer.Add(tls_13_ctrl, 0, wx.EXPAND | wx.ALL, 10)
 
@@ -312,21 +304,21 @@ class SQLOptionsDialog(wx.Dialog):
         ssl_key_file_ctrl = filebrowse.FileBrowseButton(
             ssl_group, wx.ID_ANY, labelText='Key File:')
 
-        if SQLConfig.ssl_key:
-            ssl_key_file_ctrl.SetValue(SQLConfig.ssl_key)
+        if Config.ssl_key:
+            ssl_key_file_ctrl.SetValue(Config.ssl_key)
 
         ssl_group.AppendItems(ssl_key_file_ctrl)
 
         ssl_cert_file_ctrl = filebrowse.FileBrowseButton(
             ssl_group, wx.ID_ANY, labelText='Certificate File:')
 
-        if SQLConfig.ssl_cert:
-            ssl_cert_file_ctrl.SetValue(SQLConfig.ssl_cert)
+        if Config.ssl_cert:
+            ssl_cert_file_ctrl.SetValue(Config.ssl_cert)
 
         ssl_group.AppendItems(ssl_cert_file_ctrl)
 
         ssl_verify_cert_ctrl = wx.CheckBox(ssl_group, wx.ID_ANY, label='')
-        ssl_verify_cert_ctrl.SetValue(SQLConfig.ssl_verify_cert)
+        ssl_verify_cert_ctrl.SetValue(Config.ssl_verify_cert)
 
         self.ssl_verify_cert_label = ssl_group.AppendItems(
             ('Verify Certificate:', ssl_verify_cert_ctrl))[0]
@@ -334,41 +326,35 @@ class SQLOptionsDialog(wx.Dialog):
         ssl_ca_file_ctrl = filebrowse.FileBrowseButton(
             ssl_group, wx.ID_ANY, labelText='CA File:')
 
-        if SQLConfig.ssl_ca:
-            ssl_ca_file_ctrl.SetValue(SQLConfig.ssl_ca)
+        if Config.ssl_ca:
+            ssl_ca_file_ctrl.SetValue(Config.ssl_ca)
 
         ssl_group.AppendItems(ssl_ca_file_ctrl)
 
         ssl_verify_identity_ctrl = wx.CheckBox(ssl_group, wx.ID_ANY, label='')
-        ssl_verify_identity_ctrl.SetValue(SQLConfig.ssl_verify_identity)
+        ssl_verify_identity_ctrl.SetValue(Config.ssl_verify_identity)
 
         self.ssl_verify_identity_label = ssl_group.AppendItems(
             ('Verify Identity:', ssl_verify_identity_ctrl))[0]
 
-        tls_12_ctrl.Enable(not SQLConfig.ssl_disabled)
-        tls_13_ctrl.Enable(not SQLConfig.ssl_disabled)
-        ssl_key_file_ctrl.Enable(not SQLConfig.ssl_disabled)
-        ssl_cert_file_ctrl.Enable(not SQLConfig.ssl_disabled)
-        ssl_verify_cert_ctrl.Enable(not SQLConfig.ssl_disabled)
-        ssl_ca_file_ctrl.Enable(not SQLConfig.ssl_disabled)
-        ssl_verify_identity_ctrl.Enable(not SQLConfig.ssl_disabled)
+        tls_12_ctrl.Enable(not Config.ssl_disabled)
+        tls_13_ctrl.Enable(not Config.ssl_disabled)
+        ssl_key_file_ctrl.Enable(not Config.ssl_disabled)
+        ssl_cert_file_ctrl.Enable(not Config.ssl_disabled)
+        ssl_verify_cert_ctrl.Enable(not Config.ssl_disabled)
+        ssl_ca_file_ctrl.Enable(not Config.ssl_disabled)
+        ssl_verify_identity_ctrl.Enable(not Config.ssl_disabled)
 
         database_group = BoxedGroup(self, 'Database Settings')
         sql_modes_group = BoxedGroup(database_group, 'SQL Modes')
 
-        global_database_name_ctrl = wx.TextCtrl(
-            database_group, wx.ID_ANY, value=SQLConfig.global_database_name)
+        database_name_ctrl = wx.TextCtrl(
+            database_group, wx.ID_ANY, value=Config.database_name)
 
         database_group.AppendItems(
-            ('Global Database Name:', global_database_name_ctrl))
+            ('Database Name:', database_name_ctrl))
 
-        project_database_name_ctrl = wx.TextCtrl(
-            database_group, wx.ID_ANY, value=SQLConfig.project_database_name)
-
-        database_group.AppendItems(
-            ('Project Database Name:', project_database_name_ctrl))
-
-        current_modes = SQLConfig.sql_mode
+        current_modes = Config.sql_mode
         modes = mysql.connector.constants.SQLMode.get_full_info()
 
         gbs = wx.GridBagSizer(vgap=0, hgap=5)
@@ -416,7 +402,7 @@ class SQLOptionsDialog(wx.Dialog):
             available_client_flags[name] = dict(description=description, value=value)
 
         for i, (name, flag_data) in enumerate(list(available_client_flags.items())):
-            is_set = bool(SQLConfig.client_flags & flag_data['value'])
+            is_set = bool(Config.client_flags & flag_data['value'])
 
             label = wx.StaticText(
                 client_flags_group, wx.ID_ANY, label=name + ': ')
@@ -469,8 +455,7 @@ class SQLOptionsDialog(wx.Dialog):
         self.connection_timeout_ctrl = connection_timeout_ctrl
         self.auth_plugin_ctrl = auth_plugin_ctrl
         self.openid_token_file_ctrl = openid_token_file_ctrl
-        self.global_database_name_ctrl = global_database_name_ctrl
-        self.project_database_name_ctrl = project_database_name_ctrl
+        self.database_name_ctrl = database_name_ctrl
         self.ssl_verify_identity_ctrl = ssl_verify_identity_ctrl
         self.ssl_verify_cert_ctrl = ssl_verify_cert_ctrl
         self.ssl_enabled_ctrl = ssl_enabled_ctrl
@@ -537,8 +522,7 @@ class SQLOptionsDialog(wx.Dialog):
             sql_mode=sql_mode,
             auth_plugin=self.auth_plugin_ctrl.GetValue(),
             openid_token_file=self.openid_token_file_ctrl.GetValue(),
-            global_database_name=self.global_database_name_ctrl.GetValue(),
-            project_database_name=self.project_database_name_ctrl.GetValue()
+            database_name=self.database_name_ctrl.GetValue(),
         )
 
         if sys.platform.startswith('win'):

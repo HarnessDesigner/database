@@ -1,8 +1,8 @@
-
 from typing import TYPE_CHECKING, Iterable as _Iterable
 
 import math
 import numpy as np
+import uuid
 
 from . import PJTEntryBase, PJTTableBase
 
@@ -45,7 +45,7 @@ class PJTWireServiceLoopsTable(PJTTableBase):
 
 class PJTWireServiceLoop(PJTEntryBase):
     _table: PJTWireServiceLoopsTable = None
-    _r_angle: _angle.Angle = None
+    _angle_id: str = None
 
     @property
     def length_mm(self) -> _decimal:
@@ -155,23 +155,19 @@ class PJTWireServiceLoop(PJTEntryBase):
 
         return self._table.db.global_db.wires_table[part_id]
 
-    @property
-    def quat(self) -> np.ndarray:
-        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
-        return np.array(quat, dtype=np.dtypes.Float64DType)
-
-    def __update_angle(self, angle):
-        quat = angle.as_quat.tolist()
-        self._table.update(self._db_id, quat=str(quat))
+    def __update_angle(self, angle: _angle.Angle):
+        self._table.update(self._db_id, quat=str(angle.as_quat))
         self._process_callbacks()
 
     @property
-    def angle(self) -> _angle.Angle:
-        if self._r_angle is None:
-            self._r_angle = _angle.Angle.from_quat(self.quat)
-            self._r_angle.Bind(self.__update_angle)
+    def angle3d(self) -> _angle.Angle:
+        if self._angle_id is None:
+            self._angle_id = str(uuid.uuid4())
 
-        return self._r_angle
+        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
+        angle = _angle.Angle.from_quat(quat, db_id=self._angle_id)
+        angle.bind(self.__update_angle)
+        return angle
 
     @property
     def part_id(self) -> int:

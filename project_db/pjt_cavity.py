@@ -2,6 +2,9 @@
 from typing import Iterable as _Iterable, TYPE_CHECKING
 
 from . import PJTEntryBase, PJTTableBase
+import uuid
+from ...geometry import angle as _angle
+
 
 if TYPE_CHECKING:
     from . import pjt_housing as _pjt_housing
@@ -35,6 +38,7 @@ class PJTCavitiesTable(PJTTableBase):
 
 class PJTCavity(PJTEntryBase):
     _table: PJTCavitiesTable = None
+    _angle_id: str = None
 
     @property
     def table(self) -> PJTCavitiesTable:
@@ -87,4 +91,31 @@ class PJTCavity(PJTEntryBase):
     @part_id.setter
     def part_id(self, value: int):
         self._table.update(self._db_id, part_id=value)
+        self._process_callbacks()
+
+    def __update_angle(self, angle: _angle.Angle):
+        self._table.update(self._db_id, quat=str(angle.as_quat))
+        self._process_callbacks()
+
+    @property
+    def angle3d(self) -> _angle.Angle:
+        if self._angle_id is None:
+            self._angle_id = str(uuid.uuid4())
+
+        quat = eval(self._table.select('quat', id=self._db_id)[0][0])
+        angle = _angle.Angle.from_quat(quat, db_id=self._angle_id)
+        angle.bind(self.__update_angle)
+        return angle
+
+    @property
+    def point3d(self) -> "_pjt_point3d.PJTPoint3D":
+        return self._table.db.pjt_points3d_table[self.point3d_id]
+
+    @property
+    def point3d_id(self) -> int:
+        return self._table.select('point3d_id', id=self._db_id)[0][0]
+
+    @point3d_id.setter
+    def point3d_id(self, value: int):
+        self._table.update(self._db_id, point3d_id=value)
         self._process_callbacks()

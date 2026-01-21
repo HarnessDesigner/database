@@ -23,8 +23,15 @@ import mysql.connector.constants
 
 from .. import ConnectorBase
 
-from ....config import Config as _Config
+from harness_designer import Config
+
 from ....gui_controls import auto_complete
+
+
+Config = Config.database.mysql
+
+if Config.client_flags is None:
+    Config.client_flags = mysql.connector.constants.ClientFlag.get_default()
 
 
 _StrOrBytes = _Union[str, bytes]
@@ -39,35 +46,6 @@ _ParamsDictType = dict[str, _ToMysqlInputTypes]
 _ParamsSequenceOrDictType = _Union[_ParamsDictType, _ParamsSequenceType]
 
 _RowType = tuple[_ToPythonOutputTypes, ...]
-
-
-class Config(metaclass=_Config):
-    host = 'local_host'
-    port = 3306
-    compress = False
-    oci_config_file = ''
-    oci_config_profile = 'DEFAULT'
-    kerberos_auth_mode = 'SSPI'
-    force_ipv6 = False
-    ssl_verify_identity = False
-    ssl_verify_cert = False
-    ssl_key = ''  # path to ssl key file
-    ssl_disabled = False
-    ssl_cert = ''  # path to ssl certificate file
-    ssl_ca = ''  # path to ssl certificate authority file
-    tls_versions = ['TLSv1.2', 'TLSv1.3']
-    buffered = False
-    write_timeout = None
-    read_timeout = None
-    connection_timeout = None
-    client_flags = mysql.connector.constants.ClientFlag.get_default()
-    sql_mode = []
-    auth_plugin = ''
-    openid_token_file = ''  # Path to the file containing the OpenID JWT formatted identity token.
-
-    database_name = 'harness_maker'
-    recent_projects = []
-    recent_users = []
 
 
 class LoginDialog(wx.Dialog):

@@ -600,6 +600,15 @@ def terminals(con, cur):
     con.commit()
 
 
+def settings(con, cur):
+    cur.execute('CREATE TABLE settings('
+                'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'name TEXT UNIQUE NOT NULL, '
+                'value BLOB NOT NULL'
+                ');')
+    con.commit()
+
+
 def splice_types(con, cur):
     cur.execute('CREATE TABLE splice_types('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
@@ -648,13 +657,14 @@ def splices(con, cur):
 def models3d(con, cur):
     cur.execute('CREATE TABLE models3d('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+                'idx INTEGER DEFAULT 0 NOT NULL, '
+                'type TEXT DEFAULT "" NOT NULL, '
+                'target_count INTEGER DEFAULT 25000 NOT NULL, '
+                'agressive REAL DEFAULT "5.0" NOT NULL, '
                 'path TEXT DEFAULT NULL, '
                 'data BLOB DEFAULT NULL, '
-                'type TEXT DEFAULT "" NOT NULL, '
                 'offset TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, '
-                'quat TEXT DEFAULT "[0.0, 0.0, 0.0, 0.0]" NOT NULL, '
-                'angle_reference DEFAULT "[0.0, 0.0, 10.0]" NOT NULL, '
-                'idx INTEGER DEFAULT 0 NOT NULL'
+                'angle TEXT DEFAULT "[0.0, 0.0, 0.0, 1.0]" NOT NULL, '
                 ');')
     
     con.commit()
@@ -931,9 +941,9 @@ def pjt_bundle_layouts(con, cur):
     cur.execute('CREATE TABLE pjt_bundle_layouts('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
-                'point_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute, share with bundle
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
-                'FOREIGN KEY (point_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id)'
                 ');')
     con.commit()
 
@@ -942,9 +952,9 @@ def pjt_wire3d_layouts(con, cur):
     cur.execute('CREATE TABLE pjt_wire3d_layouts('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
-                'point_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute, shared with wire
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
-                'FOREIGN KEY (point_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id)'
                 ');')
     con.commit()
 
@@ -1010,12 +1020,12 @@ def pjt_bundles(con, cur):
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
-                'start_point_id INTEGER DEFAULT NULL, '
-                'stop_point_id INTEGER DEFAULT NULL, '
+                'start_point3d_id INTEGER NOT NULL, '  # absolute, can be shared with a bundle layout or transition
+                'stop_point3d_id INTEGER NOT NULL, '  # absolute, can be shared with a bundle layout or transition
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES bundle_covers(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (start_point_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (stop_point_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_points3d(id), '
+                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_points3d(id)'
                 ');')
     con.commit()
 
@@ -1025,9 +1035,13 @@ def pjt_seals(con, cur):
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute, calculated using housing relative point or terminal relative point
+                'housing_id INTEGER DEFAULT NULL, '
                 'terminal_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES seals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (terminal_id) REFERENCES pjt_terminals(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -1038,9 +1052,11 @@ def pjt_cpa_locks(con, cur):
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
-                'housing_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute, calculated using housing relative point
+                'housing_id INTEGER NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES cpa_locks(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -1051,9 +1067,11 @@ def pjt_tpa_locks(con, cur):
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute, calculated using housing relative point
                 'housing_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES tpa_locks(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -1065,15 +1083,15 @@ def pjt_splices(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
                 'circuit_id INTEGER DEFAULT NULL, '
-                'start_point3d_id INTEGER DEFAULT NULL, '
-                'stop_point3d_id INTEGER DEFAULT NULL, '
-                'branch_point3d_id INTEGER DEFAULT NULL, '
+                'start_point3d_id INTEGER NOT NULL, '  # absolute
+                'stop_point3d_id INTEGER NOT NULL, '  # absolute
+                'branch_point3d_id INTEGER NOT NULL, '  # absolute
                 'point2d_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES splices(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (branch_point3d_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_circuits(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_circuits(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (branch_point3d_id) REFERENCES pjt_circuits(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (point2d_id) REFERENCES pjt_points2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -1085,14 +1103,26 @@ def pjt_housings(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
                 'name TEXT DEFAULT "" NOT NULL, '
-                'point3d_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute
+                'cover_point3d_id INTEGER NOT NULL, '  # relative to housing, for cover to snap onto
+                'seal_point3d_id INTEGER NOT NULL, '  # relative to housing, for seal to snap onto
+                'boot_point3d_id INTEGER NOT NULL, '  # relative to housing, for boot to snap onto
+                'tpa_lock_1_point3d_id INTEGER NOT NULL, '  # relative to housing, for the first tpa lock to snap onto
+                'tpa_lock_2_point3d_id INTEGER NOT NULL, '  # relative to housing, for a second tpa lock to snap onto
+                'cpa_lock_point3d_id INTEGER NOT NULL, '  # relative to housing, for cpa lock to snap onto
                 'point2d_id INTEGER DEFAULT NULL, '
                 'quat TEXT DEFAULT "[0.0, 0.0, 0.0, 0.0]" NOT NULL, '
                 'angle REAL DEFAULT "0.0" NOT NULL, '
                 'angle_reference TEXT DEFAULT "[0.0, 0.0, 10.0]" NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES housings(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id)  ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (cover_point3d_id) REFERENCES pjt_points3d(id)  ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (seal_point3d_id) REFERENCES pjt_points3d(id)  ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (boot_point3d_id) REFERENCES pjt_points3d(id)  ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (tpa_lock_1_point3d_id) REFERENCES pjt_points3d(id)  ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (tpa_lock_2_point3d_id) REFERENCES pjt_points3d(id)  ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (cpa_lock_point3d_id) REFERENCES pjt_points3d(id)  ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (point2d_id) REFERENCES pjt_points2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -1106,11 +1136,11 @@ def pjt_cavities(con, cur):
                 'housing_id INTEGER NOT NULL, '
                 'name TEXT DEFAULT "" NOT NULL, '
                 'point2d_id INTEGER DEFAULT NULL, '
-                'point3d_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # Relative to housing
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES cavities(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (point2d_id) REFERENCES pjt_points2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (housing_id) REFERENCES pjt_housings(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -1123,7 +1153,8 @@ def pjt_terminals(con, cur):
                 'part_id INTEGER DEFAULT NULL, '
                 'cavity_id INTEGER NOT NULL, '
                 'circuit_id INTEGER DEFAULT NULL, '
-                'point3d_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # will snap to a cavity point
+                'wire_point3d_id INTEGER NOT NULL, '  # calculated point for where a wire or seal will snap onto
                 'point2d_id INTEGER DEFAULT NULL, '
                 'is_start INTEGER DEFAULT 0 NOT NULL, '
                 'volts REAL DEFAULT "0.0" NOT NULL, '
@@ -1133,7 +1164,8 @@ def pjt_terminals(con, cur):
                 'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (cavity_id) REFERENCES pjt_cavities(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (circuit_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (wire_point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (point2d_id) REFERENCES pjt_points2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
     con.commit()
@@ -1145,11 +1177,11 @@ def pjt_transition_branches(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'branch_id INTEGER NOT NULL, '
                 'transition_id INTEGER DEFAULT NULL, '
-                'point_id INTEGER NOT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # can be shared with a bundle cover
                 'diameter REAL DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (transition_id) REFERENCES pjt_transitions(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (point_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -1160,11 +1192,11 @@ def pjt_transitions(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'part_id INTEGER DEFAULT NULL, '
                 'name TEXT DEFAULT "" NOT NULL, '
-                'center_id INTEGER NOT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute
                 'quat TEXT DEFAULT "[0.0, 0.0, 0.0, 0.0]" NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES terminals(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (center_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE'
                 ');')
     con.commit()
 
@@ -1177,8 +1209,8 @@ def pjt_wires(con, cur):
                 'circuit_id INTEGER DEFAULT NULL, '
                 'bundle_id INTEGER DEFAULT NULL, '
                 'transition_id INTEGER DEFAULT NULL, '
-                'start_point3d_id INTEGER DEFAULT NULL, '
-                'stop_point3d_id INTEGER DEFAULT NULL, '
+                'start_point3d_id INTEGER NOT NULL, '  # can be shared with a wire layout or terminal
+                'stop_point3d_id INTEGER NOT NULL, '  # can be shared with a wire layout or terminal
                 'start_point2d_id INTEGER DEFAULT NULL, '
                 'stop_point2d_id INTEGER DEFAULT NULL, '
                 'is_visible INTEGER DEFAULT 1, '
@@ -1187,8 +1219,8 @@ def pjt_wires(con, cur):
                 'FOREIGN KEY (circuit_id) REFERENCES pjt_circuits(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (bundle_id) REFERENCES pjt_bundles(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (transition_id) REFERENCES pjt_transitions(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '               
-                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (start_point2d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
                 'FOREIGN KEY (stop_point2d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'
                 ');')
@@ -1200,12 +1232,12 @@ def pjt_notes(con, cur):
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'point2d_id INTEGER DEFAULT NULL, '
-                'point3d_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute
                 'note TEXT DEFAULT "" NOT NULL, '
                 'size INTEGER DEFAULT 1 NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (point2d_id) REFERENCES pjt_points2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE'              
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE'              
                 ');')
     con.commit()
 
@@ -1215,13 +1247,13 @@ def pjt_wire_markers(con, cur):
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'point2d_id INTEGER DEFAULT NULL, '
-                'point3d_id INTEGER DEFAULT NULL, '
+                'point3d_id INTEGER NOT NULL, '  # absolute but must be on a wire
                 'part_id INTEGER NOT NULL, '
                 'wire_id INTEGER NOT NULL, '
                 'label TEXT DEFAULT "" NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (point2d_id) REFERENCES pjt_points2d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES wire_markers(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (wire_id) REFERENCES pjt_wires(id) ON DELETE CASCADE ON UPDATE CASCADE'                
                 ');')
@@ -1232,15 +1264,15 @@ def pjt_wire_service_loops(con, cur):
     cur.execute('CREATE TABLE pjt_wire_service_loops('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
-                'start_point3d_id INTEGER DEFAULT NULL, '
-                'stop_point3d_id INTEGER DEFAULT NULL, '
+                'start_point3d_id INTEGER NOT NULL, '  # can be shared with a terminal or wire_layout
+                'stop_point3d_id INTEGER NOT NULL, '  # can be shared with a terminal or wire layout
                 'part_id INTEGER NOT NULL, '
                 'circuit_id INTEGER NOT NULL, '
                 'is_visible INTEGER DEFAULT 0 NOT NULL, '
                 'quat TEXT DEFAULT "[0.0, 0.0, 0.0, 0.0]" NOT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
-                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
-                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_points3d(id) ON DELETE SET DEFAULT ON UPDATE CASCADE, '
+                'FOREIGN KEY (start_point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
+                'FOREIGN KEY (stop_point3d_id) REFERENCES pjt_points3d(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (part_id) REFERENCES wires(id) ON DELETE CASCADE ON UPDATE CASCADE, '
                 'FOREIGN KEY (circuit_id) REFERENCES pjt_circuits(id) ON DELETE CASCADE ON UPDATE CASCADE'');')
     con.commit()
@@ -1286,7 +1318,8 @@ def global_table_mapping():
         ('housings', housings),
         ('cavity_points2d', cavity_points2d),
         ('cavity_points3d', cavity_points3d),
-        ('cavities', cavities)
+        ('cavities', cavities),
+        ('settings', settings)
     )
 
     for name, fnc in mapping:

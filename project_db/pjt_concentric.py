@@ -6,6 +6,8 @@ from ...wrappers.decimal import Decimal as _decimal
 
 if TYPE_CHECKING:
     from . import pjt_transition_branch as _pjt_transition_branches
+    from . import pjt_concentric_layer as _pjt_concentric_layer
+
     from . import pjt_bundle as _pjt_bundle
 
 
@@ -33,6 +35,16 @@ class PJTConcentricsTable(PJTTableBase):
 
 class PJTConcentric(PJTEntryBase):
     _table: PJTConcentricsTable = None
+
+    @property
+    def layers(self) -> list["_pjt_concentric_layer.PJTConcentricLayer"]:
+        layers = []
+
+        db_ids = self.table.db.pjt_concentric_layers_table.select("id", concentric_id=self.db_id)
+        for db_id in db_ids:
+            layers.append(self.table.db.pjt_concentric_layers_table[db_id[0]])
+
+        return sorted(layers, key=lambda x: x.index)
 
     @property
     def table(self) -> PJTConcentricsTable:
