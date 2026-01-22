@@ -243,14 +243,12 @@ class Transition(EntryBase, PartNumberMixin, SeriesMixin, MaterialMixin, FamilyM
 
     @property
     def branches(self) -> list["_transition_branch.TransitionBranch"]:
-        from .transition_branch import TransitionBranch
-
         res = [None] * self.branch_count
 
         branch_ids = self._table.db.transition_branches_table.select('id', transition_id=self._db_id)
 
         for branch_id in branch_ids:
-            branch = TransitionBranch(self, branch_id[0])
+            branch = self._table.db.transition_branches_table[branch_id[0]]
             res[branch.idx - 1] = branch
 
         return res

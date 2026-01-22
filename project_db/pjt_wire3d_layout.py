@@ -32,9 +32,9 @@ class PJTWire3DLayout(PJTEntryBase):
     _table: PJTWire3DLayoutsTable = None
 
     @property
-    def attached_objects(self) -> list["_pjt_wire.PJTWire"]:
+    def attached_wires(self) -> list["_pjt_wire.PJTWire"]:
         res = []
-        point_id = self.point_id
+        point_id = self.point3d_id
         db_ids = self._table.db.pjt_wires_table.select(
             "id", OR=True, start_point3d_id=point_id, stop_point3d_id=point_id)
         for db_id in db_ids:

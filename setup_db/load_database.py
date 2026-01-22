@@ -4011,7 +4011,7 @@ def settings(con, cur):
     if res.fetchall():
         return
 
-    cur.execute(f'INSERT INTO settings (id, name, value) VALUES(1, "model_path", "\'{os.path.join(utils.get_appdata(), 'models')}\'");')
+    cur.execute(f'INSERT INTO settings (id, name, value) VALUES(1, "model_path", "\'{os.path.join(utils.get_appdata(), "models")}\'");')
     con.commit()
 
 

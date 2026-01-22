@@ -664,7 +664,7 @@ def models3d(con, cur):
                 'path TEXT DEFAULT NULL, '
                 'data BLOB DEFAULT NULL, '
                 'offset TEXT DEFAULT "[0.0, 0.0, 0.0]" NOT NULL, '
-                'angle TEXT DEFAULT "[0.0, 0.0, 0.0, 1.0]" NOT NULL, '
+                'angle TEXT DEFAULT "[0.0, 0.0, 0.0, 1.0]" NOT NULL'
                 ');')
     
     con.commit()
@@ -989,7 +989,7 @@ def pjt_concentric_layers(con, cur):
                 'project_id INTEGER NOT NULL, '
                 'idx INTEGER NOT NULL, '
                 'diameter REAL DEFULT "0.0" NOT NULL, '
-                'num_wires INTEGER DEFULT 0 NOT NULL, '
+                'num_wires INTEGER DEFAULT 0 NOT NULL, '
                 'num_fillers INTEGER DEFAULT 0 NOT NULL, '
                 'concentric_id INTEGER DEFAULT NULL, '
                 'FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE ON UPDATE CASCADE, '
@@ -1172,7 +1172,7 @@ def pjt_terminals(con, cur):
 
 
 def pjt_transition_branches(con, cur):
-    cur.execute('CREATE TABLE pjt_transitions('
+    cur.execute('CREATE TABLE pjt_transition_branches('
                 'id INTEGER PRIMARY KEY AUTOINCREMENT, '
                 'project_id INTEGER NOT NULL, '
                 'branch_id INTEGER NOT NULL, '

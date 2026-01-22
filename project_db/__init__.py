@@ -245,7 +245,6 @@ class PJTTableBase:
 
 from .pjt_bundle import PJTBundlesTable  # NOQA
 from .pjt_bundle_layout import PJTBundleLayoutsTable  # NOQA
-from .pjt_bundle_layer import PJTBundleLayersTable  # NOQA
 from .pjt_circuit import PJTCircuitsTable  # NOQA
 from .pjt_point2d import PJTPoints2DTable  # NOQA
 from .pjt_point3d import PJTPoints3DTable  # NOQA
@@ -293,7 +292,6 @@ class PJTTables:
 
         self._pjt_bundles_table = None
         self._pjt_bundle_layouts_table = None
-        self._pjt_bundle_layers_table = None
         self._pjt_circuits_table = None
         self._pjt_points2d_table = None
         self._pjt_points3d_table = None
@@ -330,7 +328,6 @@ class PJTTables:
 
         self._pjt_bundles_table = PJTBundlesTable(self, project_id)
         self._pjt_bundle_layouts_table = PJTBundleLayoutsTable(self, project_id)
-        self._pjt_bundle_layers_table = PJTBundleLayersTable(self, project_id)
         self._pjt_circuits_table = PJTCircuitsTable(self, project_id)
         self._pjt_points2d_table = PJTPoints2DTable(self, project_id)
         self._pjt_points3d_table = PJTPoints3DTable(self, project_id)
@@ -394,10 +391,6 @@ class PJTTables:
     @property
     def pjt_bundle_layouts_table(self) -> PJTBundleLayoutsTable:
         return self._pjt_bundle_layouts_table
-
-    @property
-    def pjt_bundle_layers_table(self) -> PJTBundleLayersTable:
-        return self._pjt_bundle_layers_table
 
     @property
     def pjt_circuits_table(self) -> PJTCircuitsTable:
