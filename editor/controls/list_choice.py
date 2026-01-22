@@ -3,7 +3,7 @@ import wx.dataview as dv
 
 from wx.lib import popupctl
 from wx.lib import scrolledpanel
-from wx.lib.agw import aui
+from wx import aui
 
 
 class PopupContent(scrolledpanel.ScrolledPanel):
@@ -56,7 +56,7 @@ class ListChoice(popupctl.PopupControl):
         self.Bind(wx.EVT_SET_FOCUS, self.OnFocus)
         self.Bind(wx.EVT_MOVE, self.on_move)
 
-        manager = aui.GetManager(parent)
+        manager = aui.AuiManager.GetManager(parent)
         frame = manager.GetManagedWindow()
         frame.Bind(wx.EVT_MOVE, self.on_move)
 

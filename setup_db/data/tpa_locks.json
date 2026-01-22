@@ -1,6 +1,7 @@
 [
     {
         "part_number": "12052634",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "Metri-Pack",
@@ -17,6 +18,7 @@
     },
     {
         "part_number": "12077904",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "generic",
@@ -33,6 +35,7 @@
     },
     {
         "part_number": "15418547",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "GT",
@@ -49,6 +52,7 @@
     },
     {
         "part_number": "12160826",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "Metri-Pack",
@@ -65,6 +69,7 @@
     },
     {
         "part_number": "15418545",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "GT",
@@ -81,6 +86,7 @@
     },
     {
         "part_number": "15305024",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "GT",
@@ -97,6 +103,7 @@
     },
     {
         "part_number": "15418546",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "GT",
@@ -113,6 +120,7 @@
     },
     {
         "part_number": "13511587",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Secondary",
         "family": "GT",
@@ -129,6 +137,7 @@
     },
     {
         "part_number": "1 928 404 760",
+        "description": "",
         "mfg": "Bosch",
         "series": "Secondary",
         "family": "154P-E EMS",
@@ -145,6 +154,7 @@
     },
     {
         "part_number": "1 928 404 761",
+        "description": "",
         "mfg": "Bosch",
         "series": "Secondary",
         "family": "154P-E EMS",
@@ -161,6 +171,7 @@
     },
     {
         "part_number": "1 928 404 762",
+        "description": "",
         "mfg": "Bosch",
         "series": "Secondary",
         "family": "154P-E EMS",
@@ -177,6 +188,7 @@
     },
     {
         "part_number": "1 928 403 422",
+        "description": "",
         "mfg": "Bosch",
         "series": "Secondary",
         "family": "Kompakt",
@@ -193,6 +205,7 @@
     },
     {
         "part_number": "1 928 403 423",
+        "description": "",
         "mfg": "Bosch",
         "series": "Secondary",
         "family": "Kompakt",
@@ -209,6 +222,7 @@
     },
     {
         "part_number": "1 928 404 886",
+        "description": "",
         "mfg": "Bosch",
         "series": "Secondary",
         "family": "Kompakt",
@@ -225,6 +239,7 @@
     },
     {
         "part_number": "1 928 404 887",
+        "description": "",
         "mfg": "Bosch",
         "series": "Secondary",
         "family": "Kompakt",

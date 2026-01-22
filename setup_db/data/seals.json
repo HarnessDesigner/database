@@ -1,6 +1,7 @@
 [
     {
         "part_number": "15324973",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "SWS",
@@ -19,6 +20,7 @@
     },
     {
         "part_number": "12059168",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "Plug",
@@ -37,6 +39,7 @@
     },
     {
         "part_number": "12010300",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "Plug",
@@ -55,6 +58,7 @@
     },
     {
         "part_number": "15324982",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "SWS",
@@ -73,6 +77,7 @@
     },
     {
         "part_number": "15324976",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "SWS",
@@ -91,6 +96,7 @@
     },
     {
         "part_number": "15305171",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "Plug",
@@ -109,6 +115,7 @@
     },
     {
         "part_number": "15366021",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "SWS",
@@ -127,6 +134,7 @@
     },
     {
         "part_number": "12191229",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "SWS",
@@ -145,6 +153,7 @@
     },
     {
         "part_number": "12198198",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "Plug",
@@ -163,6 +172,7 @@
     },
     {
         "part_number": "15366022",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "SWS",
@@ -181,6 +191,7 @@
     },
     {
         "part_number": "15305351",
+        "description": "",
         "mfg": "Aptiv",
         "series": "",
         "type": "SWS",
@@ -199,6 +210,7 @@
     },
     {
         "part_number": "1 928 300 934",
+        "description": "",
         "mfg": "Bosch",
         "series": "Matrix 1.2",
         "type": "SWS",
@@ -217,6 +229,7 @@
     },
     {
         "part_number": "1 928 300 936",
+        "description": "",
         "mfg": "Bosch",
         "series": "Matrix 1.2",
         "type": "SWS",
@@ -235,6 +248,7 @@
     },
     {
         "part_number": "1 928 300 599",
+        "description": "",
         "mfg": "Bosch",
         "series": "BDK 2.8",
         "type": "SWS",
@@ -253,6 +267,7 @@
     },
     {
         "part_number": "1 928 300 600",
+        "description": "",
         "mfg": "Bosch",
         "series": "BDK 2.8",
         "type": "SWS",
@@ -271,6 +286,7 @@
     },
     {
         "part_number": "1 928 300 601",
+        "description": "",
         "mfg": "Bosch",
         "series": "BDK 2.8",
         "type": "Plug",
@@ -289,6 +305,7 @@
     },
     {
         "part_number": "1 928 300 935",
+        "description": "",
         "mfg": "Bosch",
         "series": "Matrix 1.2",
         "type": "Plug",
@@ -307,6 +324,7 @@
     },
     {
         "part_number": "828904-1",
+        "description": "",
         "mfg": "TE",
         "series": "MCP",
         "type": "SWS",
@@ -325,6 +343,7 @@
     },
     {
         "part_number": "828905-1",
+        "description": "",
         "mfg": "TE",
         "series": "MCP",
         "type": "SWS",
@@ -343,6 +362,7 @@
     },
     {
         "part_number": "828922-2",
+        "description": "",
         "mfg": "TE",
         "series": "MCP",
         "type": "Plug",
@@ -361,6 +381,7 @@
     },
     {
         "part_number": "7158-3030-50",
+        "description": "",
         "mfg": "Yazaki",
         "series": "",
         "type": "SWS",
@@ -379,6 +400,7 @@
     },
     {
         "part_number": "7158-3031-90",
+        "description": "",
         "mfg": "Yazaki",
         "series": "",
         "type": "SWS",
@@ -397,6 +419,7 @@
     },
     {
         "part_number": "7158-3033-40",
+        "description": "",
         "mfg": "Yazaki",
         "series": "",
         "type": "SWS",
@@ -415,6 +438,7 @@
     },
     {
         "part_number": "7158-3034-50",
+        "description": "",
         "mfg": "Yazaki",
         "series": "",
         "type": "SWS",
@@ -433,6 +457,7 @@
     },
     {
         "part_number": "7158-3035",
+        "description": "",
         "mfg": "Yazaki",
         "series": "",
         "type": "SWS",
@@ -451,6 +476,7 @@
     },
     {
         "part_number": "7158-3036-70",
+        "description": "",
         "mfg": "Yazaki",
         "series": "",
         "type": "SWS",
@@ -469,6 +495,7 @@
     },
     {
         "part_number": "7158-3006-90",
+        "description": "",
         "mfg": "Yazaki",
         "series": "090II ",
         "type": "SWS",
@@ -487,6 +514,7 @@
     },
     {
         "part_number": "7158-3007-10",
+        "description": "",
         "mfg": "Yazaki",
         "series": "090II ",
         "type": "SWS",
@@ -505,6 +533,7 @@
     },
     {
         "part_number": "7158-3008-80",
+        "description": "",
         "mfg": "Yazaki",
         "series": "090II ",
         "type": "SWS",
@@ -523,6 +552,7 @@
     },
     {
         "part_number": "7157-8761",
+        "description": "",
         "mfg": "Yazaki",
         "series": "090II ",
         "type": "Plug",

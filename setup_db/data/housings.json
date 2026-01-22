@@ -1,6 +1,7 @@
 [
     {
         "part_number": "12052641",
+        "description": "",
         "mfg": "Aptiv",
         "family": "Metri-Pack",
         "series": "150",
@@ -29,6 +30,7 @@
     },
     {
         "part_number": "12052644",
+        "description": "",
         "mfg": "Aptiv",
         "family": "Metri-Pack",
         "series": "150",
@@ -57,6 +59,7 @@
     },
     {
         "part_number": "12052643",
+        "description": "",
         "mfg": "Aptiv",
         "family": "Metri-Pack",
         "series": "150",
@@ -85,6 +88,7 @@
     },
     {
         "part_number": "12077900",
+        "description": "",
         "mfg": "Aptiv",
         "family": "generic",
         "series": "280",
@@ -113,6 +117,7 @@
     },
     {
         "part_number": "12186568",
+        "description": "",
         "mfg": "Aptiv",
         "family": "Metri-Pack",
         "series": "150",
@@ -141,6 +146,7 @@
     },
     {
         "part_number": "13519051",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -169,6 +175,7 @@
     },
     {
         "part_number": "15326423",
+        "description": "",
         "mfg": "Aptiv",
         "family": "Metri-Pack",
         "series": "150",
@@ -197,6 +204,7 @@
     },
     {
         "part_number": "15326808",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -225,6 +233,7 @@
     },
     {
         "part_number": "15335987",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -253,6 +262,7 @@
     },
     {
         "part_number": "15336004",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -281,6 +291,7 @@
     },
     {
         "part_number": "15355297",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -309,6 +320,7 @@
     },
     {
         "part_number": "15356722",
+        "description": "",
         "mfg": "Aptiv",
         "family": "",
         "series": "",
@@ -337,6 +349,7 @@
     },
     {
         "part_number": "15393432",
+        "description": "",
         "mfg": "Aptiv",
         "family": "",
         "series": "",
@@ -365,6 +378,7 @@
     },
     {
         "part_number": "15449028",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -393,6 +407,7 @@
     },
     {
         "part_number": "15466325",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -421,6 +436,7 @@
     },
     {
         "part_number": "15474881",
+        "description": "",
         "mfg": "Aptiv",
         "family": "",
         "series": "",
@@ -449,6 +465,7 @@
     },
     {
         "part_number": "15477863",
+        "description": "",
         "mfg": "Aptiv",
         "family": "GT",
         "series": "150",
@@ -477,6 +494,7 @@
     },
     {
         "part_number": "1 928 403 698",
+        "description": "",
         "mfg": "Bosch",
         "family": "Kompakt 1.a",
         "series": "0.0",
@@ -505,6 +523,7 @@
     },
     {
         "part_number": "1 928 403 874",
+        "description": "",
         "mfg": "Bosch",
         "family": "Kompakt 1.1a",
         "series": "0.0",
@@ -533,6 +552,7 @@
     },
     {
         "part_number": "1 928 403 966",
+        "description": "",
         "mfg": "Bosch",
         "family": "Kompakt 1.1a",
         "series": "0.0",
@@ -561,6 +581,7 @@
     },
     {
         "part_number": "1 928 404 900",
+        "description": "",
         "mfg": "Bosch",
         "family": "BAK",
         "series": "",
@@ -589,6 +610,7 @@
     },
     {
         "part_number": "1 928 403 736",
+        "description": "",
         "mfg": "Bosch",
         "family": "Kompakt 1.1m",
         "series": "",
@@ -617,6 +639,7 @@
     },
     {
         "part_number": "1 928 402 571",
+        "description": "",
         "mfg": "Bosch",
         "family": "Jetronic",
         "series": "",
@@ -645,6 +668,7 @@
     },
     {
         "part_number": "1 928 404 916",
+        "description": "",
         "mfg": "Bosch",
         "family": "154P-E EMS",
         "series": "",
@@ -673,6 +697,7 @@
     },
     {
         "part_number": "1 928 404 781",
+        "description": "",
         "mfg": "Bosch",
         "family": "154P-E EMS",
         "series": "",
@@ -701,6 +726,7 @@
     },
     {
         "part_number": "7283-8496-30",
+        "description": "",
         "mfg": "Yazaki",
         "family": "1.5/9.5",
         "series": "",
@@ -729,6 +755,7 @@
     },
     {
         "part_number": "7283-1057-30",
+        "description": "",
         "mfg": "Yazaki",
         "family": "090II",
         "series": "",
@@ -757,6 +784,7 @@
     },
     {
         "part_number": "7223-1324-60",
+        "description": "",
         "mfg": "Yazaki",
         "family": "90",
         "series": "",
@@ -785,6 +813,7 @@
     },
     {
         "part_number": "1355628-2",
+        "description": "",
         "mfg": "TE",
         "family": "",
         "series": "",

@@ -2528,7 +2528,9 @@ def _build_wires(con, cur):
     pn_template = '{series}-{awg}-{primary}{secondary}'
 
     values = []
-    family_id = get_family_id(con, cur, 'Tefzel', 2)
+    mfg_id = get_mfg_id(con, cur, 'TE')
+
+    family_id = get_family_id(con, cur, 'Tefzel', mfg_id)
 
     for series, wire_data in mapping.items():
         series_id = get_series_id(con, cur, series, 2)
@@ -2555,13 +2557,13 @@ def _build_wires(con, cur):
                 part_number = pn_template.format(series=series, awg=awg, primary=p_id, secondary='')
                 description = f'{awg}AWG ({mm_2}mm²) {color_mapping[p_id]} Tefzel milspec single conductor wire'
 
-                values.append((part_number, 2, description, str(mm_2), awg, od_mm, dia, weight, resistance, plating_id, min_temp_id, max_temp_id, volts, material_id, p_id, 999999, family_id, series_id))
+                values.append((part_number, mfg_id, description, str(mm_2), awg, od_mm, dia, weight, resistance, plating_id, min_temp_id, max_temp_id, volts, material_id, p_id, 999999, family_id, series_id))
                 for s_id in range(10):
                     if p_id == s_id:
                         continue
                     description = f'{awg}AWG ({mm_2}mm²) {color_mapping[p_id]}/{color_mapping[s_id]} Tefzel milspec single conductor wire'
 
-                    values.append((part_number + str(s_id), 2, description, mm_2, awg, od_mm, dia, weight, resistance, plating_id, min_temp_id, max_temp_id, volts, material_id, p_id, s_id, family_id, series_id))
+                    values.append((part_number + str(s_id), mfg_id, description, mm_2, awg, od_mm, dia, weight, resistance, plating_id, min_temp_id, max_temp_id, volts, material_id, p_id, s_id, family_id, series_id))
 
     return values
 
@@ -2817,14 +2819,15 @@ def get_resource_id(con, cur, path, type="UNKNOWN"):
         return res[0][0]
 
 
-def add_cover(con, cur, part_number, mfg, series, length, width, height, color,
-              pins, direction, min_temp, max_temp, image, cad):
+def add_cover(con, cur, part_number, description, mfg, series, length, width, height, color,
+              pins, direction, min_temp, max_temp, image, cad, family=''):
 
     mfg_id = get_mfg_id(con, cur, mfg)
     series_id = get_series_id(con, cur, series, mfg_id)
     color_id = get_color_id(con, cur, color)
     image_id = get_resource_id(con, cur, image)
     direction_id = get_direction_id(con, cur, direction)
+
     if min_temp > 0:
         min_temp = '+' + str(min_temp) + '°C'
     else:
@@ -2838,17 +2841,33 @@ def add_cover(con, cur, part_number, mfg, series, length, width, height, color,
     min_temp_id = get_temperature_id(con, cur, min_temp)
     max_temp_id = get_temperature_id(con, cur, max_temp)
 
-    cur.execute('INSERT INTO covers (part_number, mfg_id, series_id, color_id, '
+    if not description:
+        description = mfg
+        if series:
+            description += f' {series}'
+
+        if family:
+            description += f' {family}'
+
+        if color:
+            description += f' {color}'
+
+        if direction:
+            description += f' {direction}'
+
+        description += ' Cover'
+
+    cur.execute('INSERT INTO covers (part_number, description, mfg_id, series_id, color_id, '
                 'image_id, direction_id, min_temp_id, max_temp_id, length, width, '
                 'height, pins) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                (part_number, mfg_id, series_id, color_id, image_id, direction_id,
+                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (part_number, description, mfg_id, series_id, color_id, image_id, direction_id,
                  min_temp_id, max_temp_id, length, width, height, pins))
 
     con.commit()
 
 
-def add_cpa_lock(con, cur, part_number, mfg, series, family, length, width, height, color,
+def add_cpa_lock(con, cur, part_number, description, mfg, series, family, length, width, height, color,
                  pins, terminal_size, min_temp, max_temp, image, cad):
 
     mfg_id = get_mfg_id(con, cur, mfg)
@@ -2871,18 +2890,32 @@ def add_cpa_lock(con, cur, part_number, mfg, series, family, length, width, heig
     min_temp_id = get_temperature_id(con, cur, min_temp)
     max_temp_id = get_temperature_id(con, cur, max_temp)
 
-    cur.execute('INSERT INTO cpa_locks (part_number, mfg_id, series_id, family_id, '
+    if not description:
+        description = mfg
+
+        if family:
+            description += f' {family}'
+
+        if series:
+            description += f' {series}'
+
+        if color:
+            description += f' {color}'
+
+        description += ' CPA Lock'
+
+    cur.execute('INSERT INTO cpa_locks (part_number, description, mfg_id, series_id, family_id, '
                 'color_id, image_id, cad_id, terminal_size, min_temp_id, max_temp_id, '
                 'length, width, height, pins) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                (part_number, mfg_id, series_id, family_id, color_id, image_id,
+                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (part_number, description, mfg_id, series_id, family_id, color_id, image_id,
                  cad_id, terminal_size, min_temp_id, max_temp_id, length, width,
                  height, pins))
 
     con.commit()
 
 
-def add_tpa_lock(con, cur, part_number, mfg, series, family, length, width, height, color,
+def add_tpa_lock(con, cur, part_number, description, mfg, series, family, length, width, height, color,
                  pins, terminal_size, min_temp, max_temp, image, cad):
 
     mfg_id = get_mfg_id(con, cur, mfg)
@@ -2905,18 +2938,32 @@ def add_tpa_lock(con, cur, part_number, mfg, series, family, length, width, heig
     min_temp_id = get_temperature_id(con, cur, min_temp)
     max_temp_id = get_temperature_id(con, cur, max_temp)
 
-    cur.execute('INSERT INTO tpa_locks (part_number, mfg_id, series_id, family_id, '
+    if not description:
+        description = mfg
+
+        if family:
+            description += f' {family}'
+
+        if series:
+            description += f' {series}'
+
+        if color:
+            description += f' {color}'
+
+        description += ' TPA Lock'
+
+    cur.execute('INSERT INTO tpa_locks (part_number, description, mfg_id, series_id, family_id, '
                 'color_id, image_id, cad_id, terminal_size, min_temp_id, max_temp_id, '
                 'length, width, height, pins) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                (part_number, mfg_id, series_id, family_id, color_id, image_id,
+                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (part_number, description, mfg_id, series_id, family_id, color_id, image_id,
                  cad_id, terminal_size, min_temp_id, max_temp_id, length, width,
                  height, pins))
 
     con.commit()
 
 
-def add_seal(con, cur, part_number, mfg, series, type, length, o_dia, i_dia, color,
+def add_seal(con, cur, part_number, description, mfg, series, type, length, o_dia, i_dia, color,
              hardness, lubricant, min_temp, max_temp, image, cad, wire_dia_min, wire_dia_max):
 
     mfg_id = get_mfg_id(con, cur, mfg)
@@ -2940,18 +2987,40 @@ def add_seal(con, cur, part_number, mfg, series, type, length, o_dia, i_dia, col
     min_temp_id = get_temperature_id(con, cur, min_temp)
     max_temp_id = get_temperature_id(con, cur, max_temp)
 
-    cur.execute('INSERT INTO seals (part_number, mfg_id, series_id, type_id, '
+    if not description:
+        description = mfg
+        if series:
+            description += f' {series}'
+
+        if color:
+            description += f' {color}'
+
+        if wire_dia_min:
+            description += f' {wire_dia_min}mm'
+
+        if wire_dia_max:
+            if wire_dia_min:
+                description += f' -'
+
+            description += f' {wire_dia_max}mm'
+
+        if type:
+            description += f' {type}'
+
+        description += ' Seal'
+
+    cur.execute('INSERT INTO seals (part_number, description, mfg_id, series_id, type_id, '
                 'color_id, image_id, cad_id, lubricant, min_temp_id, max_temp_id, '
                 'length, o_dia, i_dia, hardness, wire_dia_min, wire_dia_max) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                (part_number, mfg_id, series_id, type_id, color_id, image_id,
+                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (part_number, description, mfg_id, series_id, type_id, color_id, image_id,
                  cad_id, lubricant, min_temp_id, max_temp_id, length, o_dia,
                  i_dia, hardness, wire_dia_min, wire_dia_max))
 
     con.commit()
 
 
-def add_terminal(con, cur, part_number, mfg, series, cavity_lock, wire_dia_min,
+def add_terminal(con, cur, part_number, description, mfg, series, cavity_lock, wire_dia_min,
                  wire_dia_max, min_wire_cross, max_wire_cross, gender, blade_size,
                  sealing, plating, image, cad, datasheet=None):
 
@@ -2964,18 +3033,43 @@ def add_terminal(con, cur, part_number, mfg, series, cavity_lock, wire_dia_min,
     cad_id = get_resource_id(con, cur, cad)
     datasheet_id = get_resource_id(con, cur, datasheet)
 
-    cur.execute('INSERT INTO terminals (part_number, mfg_id, series_id, plating_id, '
+    if not description:
+        description = mfg
+        if series:
+            description += f' {series}'
+
+        if gender:
+            description += f' {gender}'
+
+        if blade_size:
+            description += f' {blade_size}mm'
+
+        if plating:
+            description += f' {plating}'
+
+        if min_wire_cross:
+            description += f' {min_wire_cross}mm²'
+
+        if max_wire_cross:
+            if min_wire_cross:
+                description += f' -'
+
+            description += f' {max_wire_cross}mm²'
+
+        description += ' Terminal'
+
+    cur.execute('INSERT INTO terminals (part_number, description, mfg_id, series_id, plating_id, '
                 'image_id, cad_id, gender_id, sealing, cavity_lock_id, blade_size, '
                 'wire_dia_min, wire_dia_max, min_wire_cross, max_wire_cross, datasheet_id) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                (part_number, mfg_id, series_id, plating_id, image_id,
+                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (part_number, description, mfg_id, series_id, plating_id, image_id,
                  cad_id, gender_id, sealing, cavity_lock_id, blade_size,
                  wire_dia_min, wire_dia_max, min_wire_cross, max_wire_cross, datasheet_id))
 
     con.commit()
 
 
-def add_housing(con, cur, part_number, mfg, family, series, num_pins, rows,
+def add_housing(con, cur, part_number, description, mfg, family, series, num_pins, rows,
                 centerline, gender, direction, color, sealed, min_temp, max_temp,
                 length, width, height, cavity_lock, terminal_sizes, mates_to,
                 compat_terminals, compat_seals, compat_covers, compat_cpas,
@@ -3005,14 +3099,36 @@ def add_housing(con, cur, part_number, mfg, family, series, num_pins, rows,
     image_id = get_resource_id(con, cur, image)
     cad_id = get_resource_id(con, cur, cad)
 
-    cur.execute('INSERT INTO housings (part_number, mfg_id, family_id, series_id, '
+    if not description:
+        description = mfg
+
+        if family:
+            description += f' {family}'
+
+        if series:
+            description += f' {series}'
+
+        if num_pins:
+            description += f' {num_pins} cavity'
+
+        if gender:
+            description += f' {gender}'
+
+        if terminal_sizes:
+            t_sizes = eval(terminal_sizes)
+            for t_size in t_sizes:
+                description += f' {t_size}mm'
+
+        description += ' Housing'
+
+    cur.execute('INSERT INTO housings (part_number, description, mfg_id, family_id, series_id, '
                 'color_id, min_temp_id, max_temp_id, image_id, cad_id, gender_id, '
                 'direction_id, length, width, height, cavity_lock_id, sealing, '
                 'rows, num_pins, terminal_sizes, centerline, compat_cpas, '
                 'compat_tpas, compat_covers, compat_terminals, compat_seals, '
                 'compat_housings) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-                (part_number, mfg_id, family_id, series_id, color_id,
+                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (part_number, description, mfg_id, family_id, series_id, color_id,
                  min_temp_id, max_temp_id, image_id, cad_id, gender_id,
                  direction_id, length, width, height, cavity_lock_id,
                  sealed, rows, num_pins, terminal_sizes, centerline,

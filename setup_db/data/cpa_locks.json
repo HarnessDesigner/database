@@ -1,6 +1,7 @@
 [
     {
         "part_number": "12052834",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Axial",
         "family": "Generic",
@@ -17,6 +18,7 @@
     },
     {
         "part_number": "15317832",
+        "description": "",
         "mfg": "Aptiv",
         "series": "Axial",
         "family": "GT",
