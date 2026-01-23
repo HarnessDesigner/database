@@ -3793,7 +3793,7 @@ def boots(con, cur):
 
         for i, item in enumerate(data):
             splash.SetText(f'Adding boots to db [{i} | {data_len}]...')
-            add_boot(con, cur, **item)
+            # add_boot(con, cur, **item)
      
         con.commit()
 
@@ -4113,7 +4113,7 @@ def splices(con, cur):
         for i, item in enumerate(data):
             splash.SetText(f'Adding splices to db [{i + 1} | {data_len}]')
 
-            add_splice(con, cur, **item)
+            # add_splice(con, cur, **item)
 
         con.commit()
 
@@ -4165,7 +4165,7 @@ def bundle_covers(con, cur):
 
         for i, item in enumerate(data):
             splash.SetText(f'Adding bundle covers to db [{i + 1} | {data_len}]')
-            add_bundle_cover(con, cur, **item)
+            # add_bundle_cover(con, cur, **item)
 
         con.commit()
 

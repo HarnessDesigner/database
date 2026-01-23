@@ -6,7 +6,7 @@ class DataViewCtrl(dv.DataViewCtrl):
 
     def __init__(self, parent: wx.Window, id: int = wx.ID_ANY, pos: wx.Point = wx.DefaultPosition,
                  size: wx.Size = wx.DefaultSize, style: int = 0, validator: wx.Validator = wx.DefaultValidator,
-                 name: str = dv.DataViewCtrlNameStr):
+                 name: bytes = dv.DataViewCtrlNameStr):
 
         dv.DataViewCtrl.__init__(self, parent, id, pos=pos, size=size, style=style, validator=validator, name=name)
 

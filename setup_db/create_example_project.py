@@ -1,6 +1,6 @@
 
 
-
+'''
 
 # calculating core diameter
 # core_diameter = core_wire_diameter * factor
@@ -27,14 +27,11 @@ def calc_layer_count(od_mm, ll_dia):
     return int(count)
 
 
-lay_length = 10 * layer_diameter
-d
-
 def create_example(con, cur):
 
     project_id = 1
 
-    '''
+    
     INSERT INTO projects (name) VALUES ("Example");
     INSERT INTO pjt_points3d (project_id, x, y, z) VALUES (?, ?, ?, ?);
     INSERT INTO pjt_points2d (project_id, x, y) VALUES (?, ?, ?);
@@ -54,6 +51,6 @@ def create_example(con, cur):
     INSERT INTO pjt_terminals (project_id, part_id, cavity_id, circuit_id, point3d_id, point2d_id, quat, angle) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
     INSERT INTO pjt_transitions (project_id, part_id, name, center_id, quat, angle_reference) VALUES (?, ?, ?, ?, ?, ?);
     INSERT INTO pjt_wires (project_id, part_id, circuit_id, start_point3d_id, stop_point3d_id, is_visible) VALUES (?, ?, ?, ?, ?, ?);
-    '''
 
+'''
 
