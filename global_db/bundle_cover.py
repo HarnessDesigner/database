@@ -50,228 +50,95 @@ class BundleCoversTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        families = self.get_unique('family_id', 'families')
-        materials = self.get_unique('material_id', 'materials')
-        colors = self.get_unique('color_id', 'colors')
-        rigidities = self.get_unique('rigidity')
-        shrink_temps = self.get_unique('shrink_temp_id', 'temperatures')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        min_diameters = self.get_unique('min_dia')
-        max_diameters = self.get_unique('min_dia')
-        walls = self.get_unique('wall')
-        shrink_ratios = self.get_unique('shrink_ratio')
-        protections = self.get_unique('protection_id', 'protections')
-        weights = self.get_unique('weight')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Rigidity': {
-                'field': 'rigidity',
-                'type': 'str',
-                'values': rigidities
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Material': {
-                'field': 'material_id',
-                'type': 'id',
-                'values': materials
+            5: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            6: {
+                'label': 'Material',
+                'type': [int, str],
+                'search_params': ['material_id', 'materials', 'name']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            7: {
+                'label': 'Diameter (Min)',
+                'type': [float],
+                'search_params': ['min_dia']
             },
-            'Weight': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            8: {
+                'label': 'Diameter (Max)',
+                'type': [float],
+                'search_params': ['max_dia']
             },
-            'Shrink Temp': {
-                'field': 'shrink_temp_id',
-                'type': 'id',
-                'values': shrink_temps
+            9: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
             },
-            'Protection': {
-                'field': 'protection_id',
-                'type': 'id',
-                'values': protections
+            10: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
             },
-            'Min Diameter': {
-                'field': 'min_dia',
-                'type': 'float',
-                'values': min_diameters
+            11: {
+                'label': 'Temperature (Shrink)',
+                'type': [int, str],
+                'search_params': ['shrink_temp_id', 'temperatures', 'name']
             },
-
-            'Max Diameter': {
-                'field': 'max_dia',
-                'type': 'float',
-                'values': max_diameters
+            12: {
+                'label': 'Weight',
+                'type': [float],
+                'search_params': ['weight']
             },
-            'Wall Type': {
-                'field': 'wall',
-                'type': 'str',
-                'values': walls
+            13: {
+                'label': 'Rigidity',
+                'type': [str],
+                'search_params': ['rigidity']
             },
-            'Shrink Ratio': {
-                'field': 'shrink_ratio',
-                'type': 'str',
-                'values': shrink_ratios
+            14: {
+                'label': 'Wall',
+                'type': [str],
+                'search_params': ['wall']
+            },
+            15: {
+                'label': 'Shrink Ratio',
+                'type': [str],
+                'search_params': ['shrink_ratio']
+            },
+            16: {
+                'label': 'Protection',
+                'type': [int, str],
+                'search_params': ['protection_id', 'protections', 'name']
             },
         }
 
         return ret
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Series',
-            'Min Dia',
-            'Max Dia',
-            'Material',
-            'Wall',
-            'Shrink Ratio',
-            'Adhesive',
-            'Protection',
-            'Rigidity',
-            'Shrink Temp',
-            'Weight',
-            'Min Temp',
-            'Max Temp'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT bundle_cover.id, bundle_cover.part_number, bundle_cover.description,',
-            'manufacturer.name, material.name, series.name, bundle_cover.weight,',
-            'mintemp.name, maxtemp.name, adhesive.name, protection.name, bundle_cover.rigidity,',
-            'shrinktemp.name, bundle_cover.shrink_ratio, bundle_cover.wall, bundle_cover.min_size,',
-            'bundle_cover.max_size FROM bundle_covers bundle_cover',
-            'INNER JOIN manufacturers manufacturer ON bundle_cover.mfg_id = manufacturer.id',
-            'INNER JOIN materials material ON bundle_cover.material_id = material.id',
-            'INNER JOIN temperatures mintemp ON bundle_cover.min_temp_id = mintemp.id',
-            'INNER JOIN temperatures maxtemp ON bundle_cover.max_temp_id = maxtemp.id',
-            'INNER JOIN adhesives adhesive ON bundle_cover.adhesive_id = ashesive.id',
-            'INNER JOIN protections protection ON bundle_cover.protection_id = protection.id',
-            'INNER JOIN temperatures shrinktemp ON bundle_cover.shrink_temp_id = shrinktemp.id',
-            'INNER JOIN series series ON bundle_cover.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Rigidity': dict(),
-            'Shrink Ratio': dict(),
-            'Wall Type': dict(),
-            'Min Diameter': dict(),
-            'Nax Diameter': dict(),
-            'Material': dict(),
-            'Series': dict(),
-            'Min Temp': dict(),
-            'Max Temp': dict(),
-            'Adhesive': dict(),
-            'Protections': dict()
-        }
-
-        res = {}
-
-        for (id, part_number, description, mfg, material, series, weight, mintemp, maxtemp,
-             adhesive, protection, rigidity, shrinktemp, shrink_ratio, wall, min_size, max_size) in data:
-
-            res[part_number] = (mfg, description, series, min_size, max_size,
-                                material, wall, shrink_ratio, adhesive, protection,
-                                rigidity, shrinktemp, weight, mintemp, maxtemp, id)
-
-            if rigidity not in commons['Rigidity']:
-                commons['Rigidity'][rigidity] = []
-
-            commons['Rigidity'][rigidity].append(part_number)
-
-            if shrink_ratio not in commons['Shrink Ratio']:
-                commons['Shrink Ratio'][shrink_ratio] = []
-
-            commons['Shrink Ratio'][shrink_ratio].append(part_number)
-
-            if wall not in commons['Wall Type']:
-                commons['Wall Type'][wall] = []
-
-            commons['Wall Type'][wall].append(part_number)
-
-            if min_size not in commons['Min Diameter']:
-                commons['Min Diameter'][min_size] = []
-
-            commons['Min Diameter'][min_size].append(part_number)
-
-            if max_size not in commons['Max Diameter']:
-                commons['Nax Diameter'][max_size] = []
-
-            commons['Max Diameter'][max_size].append(part_number)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-
-            if material not in commons['Material']:
-                commons['Material'][material] = []
-
-            commons['Material'][material].append(part_number)
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Series'][series].append(part_number)
-
-            if mintemp not in commons['Min Temp']:
-                commons['Min Temp'][mintemp] = []
-
-            commons['Min Temp'][mintemp].append(part_number)
-
-            if maxtemp not in commons['Max Temp']:
-                commons['Max Temp'][maxtemp] = []
-
-            commons['Max Temp'][maxtemp].append(part_number)
-
-            if adhesive not in commons['Adhesive']:
-                commons['Adhesive'][adhesive] = []
-
-            commons['Adhesive'][adhesive].append(part_number)
-
-            if protection not in commons['Protections']:
-                commons['Protections'][protection] = []
-
-            commons['Protections'][protection].append(part_number)
-
-        return res, commons
 
 
 class BundleCover(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, 

@@ -252,8 +252,7 @@ from .pjt_housing import PJTHousingsTable  # NOQA
 from .pjt_splice import PJTSplicesTable  # NOQA
 from .pjt_transition import PJTTransitionsTable  # NOQA
 from .pjt_wire import PJTWiresTable  # NOQA
-from .pjt_wire2d_layout import PJTWire2DLayoutsTable  # NOQA
-from .pjt_wire3d_layout import PJTWire3DLayoutsTable  # NOQA
+from .pjt_wire_layout import PJTWireLayoutsTable  # NOQA
 from .pjt_cavity import PJTCavitiesTable  # NOQA
 from .pjt_terminal import PJTTerminalsTable  # NOQA
 from .pjt_wire_marker import PJTWireMarkersTable  # NOQA
@@ -299,8 +298,7 @@ class PJTTables:
         self._pjt_splices_table = None
         self._pjt_transitions_table = None
         self._pjt_wires_table = None
-        self._pjt_wire2d_layouts_table = None
-        self._pjt_wire3d_layouts_table = None
+        self._pjt_wire_layouts_table = None
         self._pjt_cavities_table = None
         self._pjt_terminals_table = None
         self._pjt_seals_table = None
@@ -335,8 +333,7 @@ class PJTTables:
         self._pjt_splices_table = PJTSplicesTable(self, project_id)
         self._pjt_transitions_table = PJTTransitionsTable(self, project_id)
         self._pjt_wires_table = PJTWiresTable(self, project_id)
-        self._pjt_wire2d_layouts_table = PJTWire2DLayoutsTable(self, project_id)
-        self._pjt_wire3d_layouts_table = PJTWire3DLayoutsTable(self, project_id)
+        self._pjt_wire_layouts_table = PJTWireLayoutsTable(self, project_id)
         self._pjt_cavities_table = PJTCavitiesTable(self, project_id)
         self._pjt_terminals_table = PJTTerminalsTable(self, project_id)
         self._pjt_seals_table = PJTSealsTable(self, project_id)
@@ -389,12 +386,8 @@ class PJTTables:
         return self._pjt_wires_table
 
     @property
-    def pjt_wire2d_layouts_table(self) -> PJTWire2DLayoutsTable:
-        return self._pjt_wire2d_layouts_table
-
-    @property
-    def pjt_wire3d_layouts_table(self) -> PJTWire3DLayoutsTable:
-        return self._pjt_wire3d_layouts_table
+    def pjt_wire3d_layouts_table(self) -> PJTWireLayoutsTable:
+        return self._pjt_wire_layouts_table
 
     @property
     def projects_table(self) -> ProjectsTable:

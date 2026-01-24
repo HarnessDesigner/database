@@ -63,242 +63,110 @@ class HousingsTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        families = self.get_unique('family_id', 'families')
-        colors = self.get_unique('color_id', 'colors')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        genders = self.get_unique('gender_id', 'genders')
-        directions = self.get_unique('direction_id', 'directions')
-        lengths = self.get_unique('length')
-        widths = self.get_unique('width')
-        heights = self.get_unique('height')
-        weights = self.get_unique('weight')
-        cavity_locks = self.get_unique('cavity_lock_id', 'cavity_locks')
-        sealings = self.get_unique('sealing')
-        rowss = self.get_unique('rows')
-        num_pinss = self.get_unique('num_pins')
-        centerlines = self.get_unique('centerline')
-        ip_ratings = self.get_unique('ip_rating_id', 'ip_ratings')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Gender': {
-                'field': 'gender_id',
-                'type': 'id',
-                'values': genders
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Sealing': {
-                'field': 'sealing',
-                'type': 'int',
-                'values': sealings
+            5: {
+                'label': 'Gender',
+                'type': [int, str],
+                'search_params': ['gender_id', 'genders', 'name']
             },
-            'Cavity Lock': {
-                'field': 'cavity_lock_id',
-                'type': 'id',
-                'values': cavity_locks
+            6: {
+                'label': 'Rows',
+                'type': [int],
+                'search_params': ['rows']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            7: {
+                'label': 'Pins',
+                'type': [int],
+                'search_params': ['pins']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            8: {
+                'label': 'Centerline (mm)',
+                'type': [float],
+                'search_params': ['centerline']
             },
-            'Direction': {
-                'field': 'direction_id',
-                'type': 'id',
-                'values': directions
+            9: {
+                'label': 'Sealable',
+                'type': [bool],
+                'search_params': ['sealing']
             },
-            'Row Count': {
-                'field': 'rows',
-                'type': 'int',
-                'values': rowss
+            10: {
+                'label': 'Direction',
+                'type': [int, str],
+                'search_params': ['direction_id', 'directions', 'name']
             },
-            'Pin Count': {
-                'field': 'num_pins',
-                'type': 'int',
-                'values': num_pinss
+            11: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Pitch': {
-                'field': 'centerline',
-                'type': 'float',
-                'values': centerlines
+            12: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
             },
-            'IP Rating': {
-                'field': 'ip_rating_id',
-                'type': 'if',
-                'values': ip_ratings
+            13: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
             },
-            'Weight': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            14: {
+                'label': 'Cavity Lock',
+                'type': [int, str],
+                'search_params': ['cavity_lock_id', 'cavity_locks', 'name']
             },
-            'Length': {
-                'field': 'length',
-                'type': 'float',
-                'values': lengths
+            15: {
+                'label': 'IP Rating',
+                'type': [int, str],
+                'search_params': ['ip_rating_id', 'ip_ratings', 'name']
             },
-            'Width': {
-                'field': 'width',
-                'type': 'float',
-                'values': widths
+            16: {
+                'label': 'Length (mm)',
+                'type': [float],
+                'search_params': ['length']
             },
-            'Height': {
-                'field': 'height',
-                'type': 'float',
-                'values': heights
+            17: {
+                'label': 'Width (mm)',
+                'type': [float],
+                'search_params': ['width']
+            },
+            18: {
+                'label': 'Height (mm)',
+                'type': [float],
+                'search_params': ['height']
+            },
+            19: {
+                'label': 'Weight (g)',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 
         return ret
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Series',
-            'Family',
-            'Gender',
-            'Num Pins',
-            'Rows',
-            'Sealed',
-            'Terminal Sizes',
-            'IP Rating',
-            'Cavity Lock',
-            'Centerline',
-            'Min Temp',
-            'Max Temp',
-            'Weight'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT housing.id, housing.part_number, housing.description,',
-            'manufacturer.name, series.name, housing.weight, gender.name,',
-            'ip_rating.name, cavity_lock.name, housing.terminal_sizes,',
-            'housing.sealed, housing.centerline, housing.rows, housing.num_pins,',
-            'mintemp.name, maxtemp.name, family.name FROM housings housing',
-            'INNER JOIN manufacturers manufacturer ON housing.mfg_id = manufacturer.id',
-            'INNER JOIN families family ON housing.family_id = family.id',
-            'INNER JOIN cavity_locks cavity_lock ON housing.cavity_lock_id = cavity_lock.id',
-            'INNER JOIN ip_ratings ip_rating ON housing.ip_rating_id = ip_rating.id',
-            'INNER JOIN genders gender ON housing.gender_id = gender.id',
-            'INNER JOIN temperatures mintemp ON housing.min_temp_id = maxtemp.id',
-            'INNER JOIN temperatures maxtemp ON housing.max_temp_id = maxtemp.id',
-            'INNER JOIN series series ON housing.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Series': dict(),
-            'Family': dict(),
-            'Gender': dict(),
-            'Num Pins': dict(),
-            'Rows': dict(),
-            'Sealed': dict(),
-            'Terminal Sizes': dict(),
-            'IP Rating': dict(),
-            'Cavity Lock': dict(),
-            'Centerline': dict()
-        }
-
-        res = {}
-
-        for (id, part_number, description, mfg, series, weight, gender, ip_rating,
-             cavity_lock, terminal_sizes, sealed, centerline, rows, num_pins,
-             mintemp, maxtemp, family) in data:
-
-            res[part_number] = (mfg, description, series, family, gender, num_pins,
-                                rows, sealed, terminal_sizes, ip_rating, cavity_lock,
-                                centerline, mintemp, maxtemp, weight, id)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Series'][series].append(part_number)
-
-            if family not in commons['Family']:
-                commons['Family'][family] = []
-
-            commons['Family'][family].append(part_number)
-
-            if gender not in commons['Gender']:
-                commons['Gender'][gender] = []
-
-            commons['Gender'][gender].append(part_number)
-
-            if num_pins not in commons['Num Pins']:
-                commons['Num Pins'][num_pins] = []
-
-            commons['Num Pins'][num_pins].append(part_number)
-
-            if rows not in commons['Rows']:
-                commons['Rows'][rows] = []
-
-            commons['Rows'][rows].append(part_number)
-
-            sealed = 'Yes' if sealed else 'No'
-
-            if sealed not in commons['Sealed']:
-                commons['Sealed'][sealed] = []
-
-            commons['Sealed'][sealed].append(part_number)
-
-            if terminal_sizes not in commons['Terminal Sizes']:
-                commons['Terminal Sizes'][terminal_sizes] = []
-
-            commons['Terminal Sizes'][terminal_sizes].append(part_number)
-
-            if ip_rating not in commons['IP Rating']:
-                commons['IP Rating'][ip_rating] = []
-
-            commons['IP Rating'][ip_rating].append(part_number)
-
-            if cavity_lock not in commons['Cavity Lock']:
-                commons['Cavity Lock'][cavity_lock] = []
-
-            commons['Cavity Lock'][cavity_lock].append(part_number)
-
-            if centerline not in commons['Centerline']:
-                commons['Centerline'][centerline] = []
-
-            commons['Centerline'][centerline].append(part_number)
-
-        return res, commons
 
 
 class Housing(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin, 

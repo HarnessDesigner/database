@@ -4,32 +4,33 @@ from typing import TYPE_CHECKING, Iterable as _Iterable
 from . import PJTEntryBase, PJTTableBase
 
 if TYPE_CHECKING:
+    from . import pjt_point2d as _pjt_point2d
     from . import pjt_point3d as _pjt_point3d
     from . import pjt_wire as _pjt_wire
 
 
-class PJTWire3DLayoutsTable(PJTTableBase):
-    __table_name__ = 'pjt_wire3d_layouts'
+class PJTWireLayoutsTable(PJTTableBase):
+    __table_name__ = 'pjt_wire_layouts'
 
-    def __iter__(self) -> _Iterable["PJTWire3DLayout"]:
+    def __iter__(self) -> _Iterable["PJTWireLayout"]:
         for db_id in PJTTableBase.__iter__(self):
-            yield PJTWire3DLayout(self, db_id, self.project_id)
+            yield PJTWireLayout(self, db_id, self.project_id)
 
-    def __getitem__(self, item) -> "PJTWire3DLayout":
+    def __getitem__(self, item) -> "PJTWireLayout":
         if isinstance(item, int):
             if item in self:
-                return PJTWire3DLayout(self, item, self.project_id)
+                return PJTWireLayout(self, item, self.project_id)
             raise IndexError(str(item))
 
         raise KeyError(item)
 
-    def insert(self, point_id: int) -> "PJTWire3DLayout":
+    def insert(self, point_id: int) -> "PJTWireLayout":
         db_id = PJTTableBase.insert(self, point_id=point_id)
-        return PJTWire3DLayout(self, db_id, self.project_id)
+        return PJTWireLayout(self, db_id, self.project_id)
 
 
-class PJTWire3DLayout(PJTEntryBase):
-    _table: PJTWire3DLayoutsTable = None
+class PJTWireLayout(PJTEntryBase):
+    _table: PJTWireLayoutsTable = None
 
     @property
     def attached_wires(self) -> list["_pjt_wire.PJTWire"]:
@@ -43,7 +44,7 @@ class PJTWire3DLayout(PJTEntryBase):
         return res
 
     @property
-    def table(self) -> PJTWire3DLayoutsTable:
+    def table(self) -> PJTWireLayoutsTable:
         return self._table
 
     @property
@@ -58,4 +59,18 @@ class PJTWire3DLayout(PJTEntryBase):
     @point3d_id.setter
     def point3d_id(self, value: int):
         self._table.update(self._db_id, point3d_id=value)
+        self._process_callbacks()
+
+    @property
+    def point2d(self) -> "_pjt_point2d.PJTPoint2D":
+        point2d_id = self.point2d_id
+        return self._table.db.pjt_points2d_table[point2d_id]
+
+    @property
+    def point2d_id(self) -> int:
+        return self._table.select('point2d_id', id=self._db_id)[0][0]
+
+    @point2d_id.setter
+    def point2d_id(self, value: int):
+        self._table.update(self._db_id, point2d_id=value)
         self._process_callbacks()

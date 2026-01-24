@@ -43,73 +43,71 @@ class CPALocksTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        families = self.get_unique('family_id', 'families')
-        colors = self.get_unique('color_id', 'colors')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        terminal_sizes = self.get_unique('terminal_size')
-        lengths = self.get_unique('length')
-        widths = self.get_unique('width')
-        heights = self.get_unique('height')
-        weights = self.get_unique('weight')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Length': {
-                'field': 'length',
-                'type': 'float',
-                'values': lengths
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Terminal Size': {
-                'field': 'terminal_size',
-                'type': 'float',
-                'values': terminal_sizes
+            5: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            6: {
+                'label': 'Direction',
+                'type': [int, str],
+                'search_params': ['direction_id', 'directions', 'name']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            7: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
             },
-            'Weight': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            8: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
             },
-            'Width': {
-                'field': 'width',
-                'type': 'float',
-                'values': widths
+            9: {
+                'label': 'Length (mm)',
+                'type': [float],
+                'search_params': ['length']
             },
-            'Height': {
-                'field': 'height',
-                'type': 'float',
-                'values': heights
+            10: {
+                'label': 'Width (mm)',
+                'type': [float],
+                'search_params': ['width']
+            },
+            11: {
+                'label': 'Height (mm)',
+                'type': [float],
+                'search_params': ['height']
+            },
+            12: {
+                'label': 'Weight (g)',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 

@@ -42,117 +42,65 @@ class BootsTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        families = self.get_unique('family_id', 'families')
-        series = self.get_unique('series_id', 'series')
-        colors = self.get_unique('color_id', 'colors')
-        materials = self.get_unique('material_id', 'materials')
-        directions = self.get_unique('direction_id', 'directions')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        weights = self.get_unique('weight')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Direction': {
-                'field': 'direction_id',
-                'type': 'id',
-                'values': directions
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Material': {
-                'field': 'material_id',
-                'type': 'id',
-                'values': materials
+            5: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            6: {
+                'label': 'Material',
+                'type': [int, str],
+                'search_params': ['material_id', 'materials', 'name']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            7: {
+                'label': 'Direction',
+                'type': [int, str],
+                'search_params': ['direction_id', 'directions', 'name']
             },
-            'Weight': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            8: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
+            },
+            9: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
+            },
+            10: {
+                'label': 'Weight',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 
         return ret
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Series',
-            'Family',
-            'Min Temp',
-            'Max Temp',
-            'Weight'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT boot.id, boot.part_number, boot.description, manufacturer.name,',
-            'family.name, series.name, mintemp.name, maxtemp.name, boot.weight FROM boots boot',
-            'INNER JOIN manufacturers manufacturer ON boot.mfg_id = manufacturer.id',
-            'INNER JOIN families family ON boot.family_id = family.id',
-            'INNER JOIN temperatures mintemp family ON boot.min_temp_id = mintemp.id',
-            'INNER JOIN temperatures maxtemp ON boot.max_temp_id = maxtemp.id',
-            'INNER JOIN series series ON boot.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Family': dict(),
-            'Series': dict()
-        }
-
-        res = {}
-
-        for id, part_number, description, mfg, family, series, mintemp, maxtemp, weight in data:
-            res[part_number] = (mfg, description, series, family, mintemp, maxtemp, weight, id)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            if family not in commons['Family']:
-                commons['Family'][family] = []
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-            commons['Family'][family].append(part_number)
-            commons['Series'][series].append(part_number)
-
-        return res, commons
 
 
 class Boot(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, FamilyMixin,

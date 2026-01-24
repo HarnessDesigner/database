@@ -51,285 +51,115 @@ class TerminalsTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        families = self.get_unique('family_id', 'families')
-        platings = self.get_unique('plating_id', 'platings', 'symbol')
-        genders = self.get_unique('gender_id', 'genders')
-        sealings = self.get_unique('sealing')
-        cavity_locks = self.get_unique('cavity_lock_id', 'cavity_locks')
-        blade_sizes = self.get_unique('blade_size')
-        resistances = self.get_unique('resistance')
-        mating_cycless = self.get_unique('mating_cycles')
-        max_vibration_gs = self.get_unique('max_vibration_g')
-        max_current_mas = self.get_unique('max_current_ma')
-        wire_size_min_awgs = self.get_unique('wire_size_min_awg')
-        wire_size_max_awgs = self.get_unique('wire_size_max_awg')
-        wire_dia_mins = self.get_unique('wire_dia_min')
-        wire_dia_maxs = self.get_unique('wire_dia_max')
-        min_wire_crosss = self.get_unique('min_wire_cross')
-        max_wire_crosss = self.get_unique('max_wire_cross')
-        weights = self.get_unique('weight')
-        lengths = self.get_unique('length')
-        widths = self.get_unique('width')
-        heights = self.get_unique('height')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Plating': {
-                'field': 'plating_id',
-                'type': 'id',
-                'values': platings
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Gender': {
-                'field': 'gender_id',
-                'type': 'id',
-                'values': genders
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Sealing': {
-                'field': 'sealing',
-                'type': 'int',
-                'values': sealings
+            5: {
+                'label': 'Plating',
+                'type': [int, str],
+                'search_params': ['plating_id', 'platings', 'symbol']
             },
-            'Cavity Lock': {
-                'field': 'cavity_lock_id',
-                'type': 'id',
-                'values': cavity_locks
+            6: {
+                'label': 'Gender',
+                'type': [int, str],
+                'search_params': ['gender_id', 'genders', 'name']
             },
-            'Blade Size (mm)': {
-                'field': 'blade_size',
-                'type': 'float',
-                'values': blade_sizes
+            7: {
+                'label': 'Current (ma)',
+                'type': [int],
+                'search_params': ['max_current_ma']
             },
-            'Resistance (Ω)': {
-                'field': 'resistance',
-                'type': 'float',
-                'values': resistances
+            8: {
+                'label': 'Blade Size (mm)',
+                'type': [float],
+                'search_params': ['blade_size']
             },
-            'Mating Cycles': {
-                'field': 'mating_cycles',
-                'type': 'int',
-                'values': mating_cycless
+            9: {
+                'label': 'Wire Size (Min)(AWG)',
+                'type': [int],
+                'search_params': ['wire_size_min_awg']
             },
-            'Max Vibration (ɡ)': {
-                'field': 'max_vibration_g',
-                'type': 'int',
-                'values': max_vibration_gs
+            10: {
+                'label': 'Wire Size (Max)(AWG)',
+                'type': [int],
+                'search_params': ['wire_size_max_awg']
             },
-            'Max Current (mA)': {
-                'field': 'max_current_ma',
-                'type': 'int',
-                'values': max_current_mas
+            11: {
+                'label': 'Wire Size (Min)(mm2)',
+                'type': [float],
+                'search_params': ['min_wire_cross']
             },
-            'Wire Size Min (AWG)': {
-                'field': 'wire_size_min_awg',
-                'type': 'int',
-                'values': wire_size_min_awgs
+            12: {
+                'label': 'Wire Size (Max)(mm2)',
+                'type': [float],
+                'search_params': ['max_wire_cross']
             },
-            'Wire Size Max (AWG)': {
-                'field': 'wire_size_max_awg',
-                'type': 'int',
-                'values': wire_size_max_awgs
+            13: {
+                'label': 'Sealable',
+                'type': [bool],
+                'search_params': ['sealing']
             },
-            'Wire Size Min (mm²)': {
-                'field': 'min_wire_cross',
-                'type': 'float',
-                'values': min_wire_crosss
+            14: {
+                'label': 'Resistance',
+                'type': [float],
+                'out_params': 'resistance'
             },
-            'Wire Size Max (mm²)': {
-                'field': 'max_wire_cross',
-                'type': 'float',
-                'values': max_wire_crosss
+            15: {
+                'label': 'Mating Cycles',
+                'type': [int],
+                'out_params': 'mating_cycles'
             },
-            'Wire Diameter Min (mm)': {
-                'field': 'wire_dia_min',
-                'type': 'float',
-                'values': wire_dia_mins
+            16: {
+                'label': 'Cavity Lock',
+                'type': [int, str],
+                'search_params': ['cavity_lock_id', 'cavity_locks', 'name']
             },
-            'Wire Diameter Max (mm)': {
-                'field': 'wire_dia_max',
-                'type': 'float',
-                'values': wire_dia_maxs
+            17: {
+                'label': 'Length (mm)',
+                'type': [float],
+                'search_params': ['length']
             },
-            'Weight (g)': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            18: {
+                'label': 'Width (mm)',
+                'type': [float],
+                'search_params': ['width']
             },
-            'Length (mm)': {
-                'field': 'length',
-                'type': 'float',
-                'values': lengths
+            19: {
+                'label': 'Height (mm)',
+                'type': [float],
+                'search_params': ['height']
             },
-            'Width (mm)': {
-                'field': 'width',
-                'type': 'float',
-                'values': widths
-            },
-            'Height (mm)': {
-                'field': 'height',
-                'type': 'float',
-                'values': heights
+            20: {
+                'label': 'Weight (g)',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 
         return ret
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Series',
-            'Family',
-            'Gender',
-            'Blade Size',
-            'Sealing',
-            'Max Current (ma)',
-            'Plating',
-            'Min Wire Size (mm2)',
-            'Max Wire Size (mm2)',
-            'Min Wire Size (AWG)',
-            'Max Wire Size (AWG)',
-            'Min Wire Size (mm)',
-            'Max Wire Size (mm)',
-            'Weight'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT terminal.id, terminal.part_number, terminal.description,',
-            'manufacturer.name, series.name, terminal.weight, terminal.sealing,',
-            'terminal.blade_size, terminal.max_current_ma, gender.name,',
-            'plating.symbol, terminal.min_wire_cross, terminal.max_wire_cross,',
-            'terminal.wire_size_min_awg, terminal.wire_size_max_awg, terminal.wire_dia_min,',
-            'terminal.wire_dia_max, family.name FROM terminals terminal',
-            'INNER JOIN manufacturers manufacturer ON terminal.mfg_id = manufacturer.id',
-            'INNER JOIN families family ON terminal.family_id = family.id',
-            'INNER JOIN genders gender ON terminal.gender_id = gender.id',
-            'INNER JOIN platings plating ON terminal.plating_id = plating.id',
-            'INNER JOIN series series ON terminal.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Sealing': dict(),
-            'Blade Size': dict(),
-            'Max Current (ma)': dict(),
-            'Gender': dict(),
-            'Plating': dict(),
-            'Min Wire Size (mm2)': dict(),
-            'Max Wire Size (mm2)': dict(),
-            'Min Wire Size (AWG)': dict(),
-            'Max Wire Size (AWG)': dict(),
-            'Min Wire Size (mm)': dict(),
-            'Max Wire Size (mm)': dict(),
-            'Series': dict(),
-            'Family': dict()
-        }
-
-        res = {}
-
-        for (id, part_number, description, mfg, series,
-             weight, sealing, blade_size, max_current_ma, gender,
-             plating, min_wire_cross, max_wire_cross, wire_size_min_awg,
-             wire_size_max_awg, wire_dia_min, wire_dia_max, family) in data:
-
-            res[part_number] = (mfg, description, series, family, gender, blade_size,
-                                sealing, max_current_ma, plating, min_wire_cross,
-                                max_wire_cross, wire_size_min_awg, wire_size_max_awg,
-                                wire_dia_min, wire_dia_max, weight, id)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-
-            sealing = 'Yes' if sealing else 'No'
-
-            if sealing not in commons['Sealing']:
-                commons['Sealing'][sealing] = []
-
-            commons['Sealing'][sealing].append(part_number)
-
-            if blade_size not in commons['Blade Size']:
-                commons['Blade Size'][blade_size] = []
-
-            commons['Blade Size'][blade_size].append(part_number)
-
-            if max_current_ma not in commons['Max Current (ma)']:
-                commons['Max Current (ma)'][max_current_ma] = []
-
-            commons['Max Current (ma)'][max_current_ma].append(part_number)
-
-            if gender not in commons['Gender']:
-                commons['Gender'][gender] = []
-
-            commons['Gender'][gender].append(part_number)
-
-            if plating not in commons['Plating']:
-                commons['Plating'][plating] = []
-
-            commons['Plating'][plating].append(part_number)
-
-            if min_wire_cross not in commons['Min Wire Size (mm2)']:
-                commons['Min Wire Size (mm2)'][min_wire_cross] = []
-
-            commons['Min Wire Size (mm2)'][min_wire_cross].append(part_number)
-
-            if max_wire_cross not in commons['Max Wire Size (mm2)']:
-                commons['Max Wire Size (mm2)'][max_wire_cross] = []
-
-            commons['Max Wire Size (mm2)'][max_wire_cross].append(part_number)
-
-            if wire_size_min_awg not in commons['Min Wire Size (AWG)']:
-                commons['Min Wire Size (AWG)'][wire_size_min_awg] = []
-
-            commons['Min Wire Size (AWG)'][wire_size_min_awg].append(part_number)
-
-            if wire_size_max_awg not in commons['Max Wire Size (AWG)']:
-                commons['Max Wire Size (AWG)'][wire_size_max_awg] = []
-
-            commons['Max Wire Size (AWG)'][wire_size_max_awg].append(part_number)
-
-            if wire_dia_min not in commons['Min Wire Size (mm)']:
-                commons['Min Wire Size (mm)'][wire_dia_min] = []
-
-            commons['Min Wire Size (mm)'][wire_dia_min].append(part_number)
-
-            if wire_dia_max not in commons['Max Wire Size (mm)']:
-                commons['Max Wire Size (mm)'][wire_dia_max] = []
-
-            commons['Max Wire Size (mm)'][wire_dia_max].append(part_number)
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Series'][series].append(part_number)
-
-            if family not in commons['Family']:
-                commons['Family'][family] = []
-
-            commons['Family'][family].append(part_number)
-
-        return res, commons
 
 
 class Terminal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,

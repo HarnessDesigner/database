@@ -46,79 +46,76 @@ class SplicesTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        families = self.get_unique('family_id', 'families')
-        platings = self.get_unique('plating_id', 'platings', 'symbol')
-        materials = self.get_unique('material_id', 'materials')
-        types = self.get_unique('type_id', 'splice_types')
-        colors = self.get_unique('color_id', 'colors')
-        resistances = self.get_unique('resistance')
-        min_dias = self.get_unique('min_dia')
-        max_dias = self.get_unique('max_dia')
-        weights = self.get_unique('weight')
-        lengths = self.get_unique('length')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Plating': {
-                'field': 'plating_id',
-                'type': 'id',
-                'values': platings
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Material': {
-                'field': 'material_id',
-                'type': 'id',
-                'values': materials
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Type': {
-                'field': 'type_id',
-                'type': 'id',
-                'values': types
+            5: {
+                'label': 'Material',
+                'type': [int, str],
+                'search_params': ['material_id', 'materials', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            6: {
+                'label': 'Plating',
+                'type': [int, str],
+                'search_params': ['plating_id', 'platings', 'symbol']
             },
-            'Diameter Max (mm)': {
-                'field': 'max_dia',
-                'type': 'float',
-                'values': max_dias
+            7: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Diameter Min (mm)': {
-                'field': 'min_dia',
-                'type': 'float',
-                'values': min_dias
+            8: {
+                'label': 'Type',
+                'type': [int, str],
+                'search_params': ['type_id', 'splice_types', 'name']
             },
-            'Resistance ()':{
-                'field': 'resistance',
-                'type': 'float',
-                'values': resistances
+            9: {
+                'label': 'Diameter (Min)(mm)',
+                'type': [float],
+                'search_params': ['min_dia']
             },
-            'Weight (g)': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            10: {
+                'label': 'Diameter (Max)(mm)',
+                'type': [float],
+                'search_params': ['max_dia']
             },
-            'Length (mm)': {
-                'field': 'length',
-                'type': 'float',
-                'values': lengths
+            11: {
+                'label': 'Resistance (ohms)',
+                'type': [float],
+                'search_params': ['resistance']
+            },
+            12: {
+                'label': 'Length (mm)',
+                'type': [float],
+                'search_params': ['length']
+            },
+            13: {
+                'label': 'Weight (g)',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 

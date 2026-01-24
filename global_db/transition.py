@@ -48,183 +48,70 @@ class TransitionsTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        families = self.get_unique('family_id', 'families')
-        series = self.get_unique('series_id', 'series')
-        transition_series = self.get_unique('transition_series_id', 'transition_series')
-        colors = self.get_unique('color_id', 'colors')
-        materials = self.get_unique('material_id', 'materials')
-        branch_counts = self.get_unique('branch_count')
-        shapes = self.get_unique('shape_id', 'shapes')
-        protections = self.get_unique('protection_id', 'protections')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        weights = self.get_unique('weight')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Transition Series': {
-                'field': 'transition_series_id',
-                'type': 'id',
-                'values': transition_series
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Material': {
-                'field': 'material_id',
-                'type': 'id',
-                'values': materials
+            5: {
+                'label': 'Branch Count',
+                'type': [int],
+                'search_params': ['branch_count']
             },
-            'Branch Count': {
-                'field': 'branch_count',
-                'type': 'int',
-                'values': branch_counts
+            6: {
+                'label': 'Shape',
+                'type': [int, str],
+                'search_params': ['shape_id', 'shapes', 'name']
             },
-            'Shape': {
-                'field': 'shape_id',
-                'type': 'id',
-                'values': shapes
+            7: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Protection': {
-                'field': 'protection_id',
-                'type': 'id',
-                'values': protections
+            8: {
+                'label': 'Material',
+                'type': [int, str],
+                'search_params': ['material_id', 'materials', 'name']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            9: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            10: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
             },
-            'Weight': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            11: {
+                'label': 'Weight (g)',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 
         return ret
-
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Branch Count',
-            'Shape',
-            'Series',
-            'Family',
-            'Material',
-            'Weight',
-            'Protection',
-            'Adhesive',
-            'Min Temp',
-            'Max Temp'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT transition.id, transition.part_number, transition.description,',
-            'manufacturer.name, series.name, transition.weight, material.name,',
-            'transition.branch_count, protection.name, adhesive.name, shape.name,',
-            'mintemp.name, maxtemp.name, family.name FROM transitions transition',
-            'INNER JOIN manufacturers manufacturer ON transition.mfg_id = manufacturer.id',
-            'INNER JOIN families family ON transition.family_id = family.id',
-            'INNER JOIN materials material ON transition.material_id = material.id',
-            'INNER JOIN adhesives adhesive ON transition.adhesive_id = adhesive.id',
-            'INNER JOIN protections adhesive ON transition.protection_id = protection.id',
-            'INNER JOIN shapes shape ON transition.shape_id = shape.id',
-            'INNER JOIN temperatures mintemp ON transition.min_temp_id = mintemp.id',
-            'INNER JOIN temperatures maxtemp ON transition.max_temp_id = maxtemp.id',
-            'INNER JOIN series series ON transition.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Material': dict(),
-            'Branch Count': dict(),
-            'Protection': dict(),
-            'Adhesive': dict(),
-            'Shape': dict(),
-            'Series': dict(),
-            'Family': dict()
-        }
-
-        res = {}
-
-        for (id, part_number, description, mfg, series, weight, material, branch_count,
-             protection, adhesive, shape, mintemp, maxtemp, family) in data:
-
-            res[part_number] = (mfg, description, branch_count, shape, series,
-                                family, material, weight, protection, adhesive,
-                                mintemp, maxtemp, id)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-
-            if material not in commons['Material']:
-                commons['Material'][material] = []
-
-            commons['Material'][material].append(part_number)
-
-            if branch_count not in commons['Branch Count']:
-                commons['Branch Count'][branch_count] = []
-
-            commons['Branch Count'][branch_count].append(part_number)
-
-            if protection not in commons['Protection']:
-                commons['Protection'][protection] = []
-
-            commons['Protection'][protection].append(part_number)
-
-            if adhesive not in commons['Adhesive']:
-                commons['Adhesive'][adhesive] = []
-
-            commons['Adhesive'][adhesive].append(part_number)
-
-            if shape not in commons['Shape']:
-                commons['Shape'][shape] = []
-
-            commons['Shape'][shape].append(part_number)
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Series'][series].append(part_number)
-
-            if family not in commons['Family']:
-                commons['Family'][family] = []
-
-            commons['Family'][family].append(part_number)
-
-        return res, commons
 
 
 class Transition(EntryBase, PartNumberMixin, SeriesMixin, MaterialMixin, FamilyMixin,

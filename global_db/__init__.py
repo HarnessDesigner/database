@@ -153,20 +153,106 @@ class TableBase:
 
     def get_unique(self, field_name, table_name=None, get_field_name='name'):
         if table_name is None:
-            self.execute(f'SELECT DISTINCT {field_name} FROM {self.__table_name__};')
-            values = [item[0] for item in self._con.fetchall()]
-            return values
+            self.execute(f'SELECT DISTINCT {field_name} FROM {self.__table_name__} ORDER BY {field_name};')
+            res = self._con.fetchall()
         else:
-            self.execute(f'SELECT DISTINCT {field_name} FROM {self.__table_name__};')
-            ids = self._con.fetchall()
+            cmd = (f'SELECT DISTINCT tbl2.id, tbl2.{get_field_name} '
+                   f'FROM {self.__table_name__} tbl1 JOIN {table_name} tbl2 '
+                   f'ON tbl1.{field_name}=tbl2.id ORDER BY tbl2.{get_field_name};')
 
-            cmd = [f'id = {id_[0]}' for id_ in ids]
+            self.execute(cmd)
+            res = self.fetchall()
 
-            if cmd:
-                self.execute(f'SELECT id, {get_field_name} FROM {table_name} WHERE {" OR ".join(cmd)};')
-                return self._con.fetchall()
+        if not res:
+            res = []
 
-            return []
+        return res
+
+    def search(self, search_items: dict, **kwargs):
+        """
+        Search table.
+
+        Thi function is a bit tricky. The search_items parameter is the dict
+        returned by the search_items method for a table. The format of the
+        dictionary is as follows.
+
+        The key is an integer that is the index for the column to display the results
+        the value is a dict that has the following keys/values
+
+        * 'label': Label for the results column. example: `'label': 'Column Label'`
+        * 'type': Type of data that is to be returned. There are 2 ways this can be done
+
+          * `'type': [data_type]`: where `data_type` can be `int`, `float`, `str`
+          * `'type': [int, data_type]`: where `data_type` can be `int`, `float`, `str`.
+                                        This one is for use when querying a referenced
+                                        table and the id for the record is needed to collect
+                                        the value in that table.
+
+        * 'out_params': This is an optional entry and is only used to pull data
+                        for the results and not used for searchs.
+                        example: `'out_params': field_name` where `field_name` is
+                        the name of the field to collect the data from.
+        * 'search_params': This is another optional entry. Either this entry or `'out_params'`
+                           MUST be present. This entry is searchable and it can be formatted
+                           in one of 2 ways.
+
+          * `'search_params': [field_name]`: if the data you are searching for is
+                                             located in the queried table.
+          * `'search_params': [field_name, referenced_table, field_name_in_table]`: If the data is in a referenced table.
+
+        The kwargs parameter gets passed to it the things that have been selected
+        to search for. It will consist of the first item in 'search_params' and the
+        value that is passed for it will be a list of the values selected for that
+        field. If the 'search_params' entry only has the single field name and no
+        table information then the results of the search is only going to be values
+        for that column. If there is table information then the returned data for
+        that column is going to be the id for the record in the referenced table
+        and the value collected from that tableusing the field name in that table
+        which is the 3rd item in the 'search_params' entry.
+        """
+        select_args = []
+        tables = []
+
+        for key in sorted(list(search_items.keys())):
+            value = search_items[key]
+
+            if 'out_params' in value:
+                select_args.append(f'tbl1.{value["out_params"]}')
+            else:
+                param = value["search_params"]
+                if len(param == 1):
+                    select_args.append(f'tbl1.{param[0]}')
+                else:
+                    table = f'tbl{len(tables) + 2}'
+                    tables.append(f'JOIN {param[1]} {table} ON tbl1.{param[0]}={table}.id')
+                    select_args.append(f'{table}.{param[2]}')
+
+        select_args = ', '.join(select_args)
+        tables = ' '.join(tables)
+        if tables:
+            tables = ' JOIN ' + tables
+
+        query = [
+            f'SELECT {select_args} FROM {self.__table_name__} tbl1 {tables}'
+        ]
+
+        args = []
+
+        for key, value in kwargs.items():
+            items = ' OR '.join(f'{key}="{item}"' if isinstance(item, float)
+                                else f'{key}={repr(item)}'
+                                for item in value)
+
+            args.append(f'({items})')
+
+        args = ' AND '.join(args)
+        if args:
+            query.extend(['WHERE', args])
+
+        query = ' '.join(query)
+        query += ';'
+
+        self.execute(query)
 
 
 

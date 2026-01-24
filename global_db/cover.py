@@ -42,145 +42,75 @@ class CoversTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        families = self.get_unique('family_id', 'families')
-        colors = self.get_unique('color_id', 'colors')
-        directions = self.get_unique('direction_id', 'directions')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        lengths = self.get_unique('length')
-        widths = self.get_unique('width')
-        heights = self.get_unique('height')
-        weights = self.get_unique('weight')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Length': {
-                'field': 'length',
-                'type': 'float',
-                'values': lengths
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Direction': {
-                'field': 'direction_id',
-                'type': 'id',
-                'values': directions
+            5: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            6: {
+                'label': 'Direction',
+                'type': [int, str],
+                'search_params': ['direction_id', 'directions', 'name']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            7: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
             },
-            'Weight': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            8: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
             },
-            'Width': {
-                'field': 'width',
-                'type': 'float',
-                'values': widths
+            9: {
+                'label': 'Length (mm)',
+                'type': [float],
+                'search_params': ['length']
             },
-            'Height': {
-                'field': 'height',
-                'type': 'float',
-                'values': heights
+            10: {
+                'label': 'Width (mm)',
+                'type': [float],
+                'search_params': ['width']
+            },
+            11: {
+                'label': 'Height (mm)',
+                'type': [float],
+                'search_params': ['height']
+            },
+            12: {
+                'label': 'Weight (g)',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 
         return ret
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Series',
-            'Family',
-            'Weight',
-            'Min Temp',
-            'Max Temp'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT cover.id, cover.part_number, cover.description, manufacturer.name,',
-            'series.name, cover.weight, mintemp.name, maxtemp.name, family.name FROM covers cover',
-            'INNER JOIN manufacturers manufacturer ON cover.mfg_id = manufacturer.id',
-            'INNER JOIN materials material ON cover.material_id = material.id',
-            'INNER JOIN temperatures mintemp ON cover.min_temp_id = mintemp.id',
-            'INNER JOIN temperatures maxtemp ON cover.max_temp_id = maxtemp.id',
-            'INNER JOIN families family ON cover.family_id = family.id',
-            'INNER JOIN series series ON cover.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Family': dict(),
-            'Series': dict(),
-            'Min Temp': dict(),
-            'Max Temp': dict()
-        }
-
-        res = {}
-
-        for (id, part_number, description, mfg, series, weight, mintemp, maxtemp, family) in data:
-
-            res[part_number] = (mfg, description, series, family, weight, mintemp, maxtemp, id)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-
-            if family not in commons['Family']:
-                commons['Family'][family] = []
-
-            commons['Family'][family].append(part_number)
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Series'][series].append(part_number)
-
-            if mintemp not in commons['Min Temp']:
-                commons['Min Temp'][mintemp] = []
-
-            commons['Min Temp'][mintemp].append(part_number)
-
-            if maxtemp not in commons['Max Temp']:
-                commons['Max Temp'][maxtemp] = []
-
-            commons['Max Temp'][maxtemp].append(part_number)
-
-        return res, commons
 
 
 class Cover(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, DirectionMixin,

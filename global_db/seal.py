@@ -40,193 +40,90 @@ class SealsTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        colors = self.get_unique('color_id', 'colors')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        types = self.get_unique('type')
-        hardnesses = self.get_unique('hardness')
-        lubricants = self.get_unique('lubricant')
-        lengths = self.get_unique('length')
-        o_dias = self.get_unique('o_dia')
-        i_dias = self.get_unique('i_dia')
-        wire_dia_mins = self.get_unique('wire_dia_min')
-        wire_dia_maxs = self.get_unique('wire_dia_max')
-        weights = self.get_unique('weight')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Length': {
-                'field': 'length',
-                'type': 'float',
-                'values': lengths
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            3: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Type': {
-                'field': 'type',
-                'type': 'str',
-                'values': types
+            4: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            5: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            6: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
             },
-            'Weight': {
-                'field': 'weight',
-                'type': 'float',
-                'values': weights
+            7: {
+                'label': 'Type',
+                'type': [int, str],
+                'search_params': ['type_id', 'seal_types', 'name']
             },
-            'Hardness': {
-                'field': 'hardness',
-                'type': 'int',
-                'values': hardnesses
+            8: {
+                'label': 'Hardness (shore)',
+                'type': [int],
+                'search_params': ['hardness']
             },
-            'Lubricant': {
-                'field': 'lubricant',
-                'type': 'str',
-                'values': lubricants
+            9: {
+                'label': 'Lubricant',
+                'type': [str],
+                'out_params': 'lubricant'
             },
-            'Outside Diameter': {
-                'field': 'o_dia',
-                'type': 'float',
-                'values': o_dias
+            10: {
+                'label': 'Length (mm)',
+                'type': [float],
+                'search_params': ['length']
             },
-            'Inside Diameter': {
-                'field': 'i_dia',
-                'type': 'float',
-                'values': i_dias
+            11: {
+                'label': 'Diameter (OD)(mm)',
+                'type': [float],
+                'search_params': ['o_dia']
             },
-            'Wire Diameter (min)': {
-                'field': 'wire_dia_min',
-                'type': 'float',
-                'values': wire_dia_mins
+            12: {
+                'label': 'Diameter (ID)(mm)',
+                'type': [float],
+                'search_params': ['i_dia']
             },
-            'Wire Diameter (max)': {
-                'field': 'wire_dia_max',
-                'type': 'float',
-                'values': wire_dia_maxs
+            13: {
+                'label': 'Wire Diameter (Min)(mm)',
+                'type': [float],
+                'search_params': ['wire_dia_min']
+            },
+            14: {
+                'label': 'Wire Diameter (Max)(mm)',
+                'type': [float],
+                'search_params': ['wire_dia_max']
+            },
+            15: {
+                'label': 'Weight (g)',
+                'type': [float],
+                'search_params': ['weight']
             }
         }
 
         return ret
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Series',
-            'Type',
-            'Min Wire Dia',
-            'Max Wire Dia',
-            'Outside Dia',
-            'Inside Dia',
-            'Weight',
-            'Min Temp',
-            'Max Temp'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT seal.id, seal.part_number, seal.description, manufacturer.name,',
-            'series.name, seal.weight, mintemp.name, maxtemp.name, seal.o_dia,',
-            'seal.i_dia, seal.type, seal.wire_dia_min, seal.wire_dia_max FROM seals seal',
-            'INNER JOIN manufacturers manufacturer ON seal.mfg_id = manufacturer.id',
-            'INNER JOIN temperatures mintemp ON seal.min_temp_id = mintemp.id',
-            'INNER JOIN temperatures maxtemp ON seal.max_temp_id = maxtemp.id',
-            'INNER JOIN series series ON seal.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Outside Diameter': dict(),
-            'Inside Diameter': dict(),
-            'Type': dict(),
-            'Min Wire Diameter': dict(),
-            'Max Wire Diameter': dict(),
-            'Series': dict(),
-            'Min Temp': dict(),
-            'Max Temp': dict()
-        }
-
-        res = {}
-
-        for (id, part_number, description, mfg, series, weight, mintemp, maxtemp,
-             o_dia, i_dia, type, wire_dia_min, wire_dia_max) in data:
-
-            res[part_number] = (mfg, description, series, type, wire_dia_min,
-                                wire_dia_max, o_dia, i_dia, weight, mintemp,
-                                maxtemp, id)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-
-            if o_dia not in commons['Outside Diameter']:
-                commons['Outside Diameter'][o_dia] = []
-
-            commons['Outside Diameter'][o_dia].append(part_number)
-
-            if i_dia not in commons['Inside Diameter']:
-                commons['Inside Diameter'][i_dia] = []
-
-            commons['Inside Diameter'][i_dia].append(part_number)
-
-            if type not in commons['Type']:
-                commons['Type'][type] = []
-
-            commons['Type'][type].append(part_number)
-
-            if wire_dia_min not in commons['Min Wire Diameter']:
-                commons['Min Wire Diameter'][wire_dia_min] = []
-
-            commons['Min Wire Diameter'][wire_dia_min].append(part_number)
-
-            if wire_dia_max not in commons['Max Wire Diameter']:
-                commons['Max Wire Diameter'][wire_dia_max] = []
-
-            commons['Max Wire Diameter'][wire_dia_max].append(part_number)
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Series'][series].append(part_number)
-
-            if mintemp not in commons['Min Temp']:
-                commons['Min Temp'][mintemp] = []
-
-            commons['Min Temp'][mintemp].append(part_number)
-
-            if maxtemp not in commons['Max Temp']:
-                commons['Max Temp'][maxtemp] = []
-
-            commons['Max Temp'][maxtemp].append(part_number)
-
-        return res, commons
 
 
 class Seal(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,

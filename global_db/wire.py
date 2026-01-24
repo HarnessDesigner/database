@@ -50,238 +50,110 @@ class WiresTable(TableBase):
 
     @property
     def search_items(self) -> dict:
-        mfgs = self.get_unique('mfg_id', 'manufacturers')
-        series = self.get_unique('series_id', 'series')
-        families = self.get_unique('family_id', 'families')
-        colors = self.get_unique('color_id', 'colors')
-        min_temps = self.get_unique('min_temp_id', 'temperatures')
-        max_temps = self.get_unique('max_temp_id', 'temperatures')
-        stripe_colors = self.get_unique('stripe_color_id', 'colors')
-        materials = self.get_unique('material_id', 'materials')
-        num_conductors = self.get_unique('num_conductors')
-        shieldeds = self.get_unique('shielded')
-        tpis = self.get_unique('tpi')
-        conductor_dia_mms = self.get_unique('conductor_dia_mm')
-        size_mm2s = self.get_unique('size_mm2')
-        size_awgs = self.get_unique('size_awg')
-        od_mms = self.get_unique('od_mm')
-        weight_1kms = self.get_unique('weight_1km')
-        core_materials = self.get_unique('core_material_id', 'platings')
-        resistance_1kms = self.get_unique('resistance_1km')
-        volts = self.get_unique('volts')
-
         ret = {
-            'Manufacturer': {
-                'field': 'mfg_id',
-                'type': 'id',
-                'values': mfgs
+            0: {
+                'label': 'Part Number',
+                'type': [str],
+                'out_params': 'part_number'
             },
-            'Family': {
-                'field': 'family_id',
-                'type': 'id',
-                'values': families
+            1: {
+                'label': 'Description',
+                'type': [str],
+                'out_params': 'description'
             },
-            'Series': {
-                'field': 'series_id',
-                'type': 'id',
-                'values': series
+            2: {
+                'label': 'Manufacturer',
+                'type': [int, str],
+                'search_params': ['mfg_id', 'manufacturers', 'name']
             },
-            'Stripe Color': {
-                'field': 'stripe_color_id',
-                'type': 'id',
-                'values': stripe_colors
+            3: {
+                'label': 'Family',
+                'type': [int, str],
+                'search_params': ['family_id', 'families', 'name']
             },
-            'Color': {
-                'field': 'color_id',
-                'type': 'id',
-                'values': colors
+            4: {
+                'label': 'Series',
+                'type': [int, str],
+                'search_params': ['series_id', 'series', 'name']
             },
-            'Material': {
-                'field': 'material_id',
-                'type': 'id',
-                'values': materials
+            5: {
+                'label': 'Color',
+                'type': [int, str],
+                'search_params': ['color_id', 'colors', 'name']
             },
-            'Min Temp': {
-                'field': 'min_temp_id',
-                'type': 'id',
-                'values': min_temps
+            6: {
+                'label': 'Stripe Color',
+                'type': [int, str],
+                'search_params': ['stripe_color_id', 'colors', 'name']
             },
-            'Max Temp': {
-                'field': 'max_temp_id',
-                'type': 'id',
-                'values': max_temps
+            7: {
+                'label': 'Material',
+                'type': [int, str],
+                'search_params': ['material_id', 'materials', 'name']
             },
-            'Weight (1km)': {
-                'field': 'weight_1km',
-                'type': 'float',
-                'values': weight_1kms
+            8: {
+                'label': 'Temperature (Min)',
+                'type': [int, str],
+                'search_params': ['min_temp_id', 'temperatures', 'name']
             },
-            'Core Material': {
-                'field': 'core_material_id',
-                'type': 'id',
-                'values': core_materials
+            9: {
+                'label': 'Temperature (Max)',
+                'type': [int, str],
+                'search_params': ['max_temp_id', 'temperatures', 'name']
             },
-            'Size (mm2)': {
-                'field': 'size_mm2',
-                'type': 'float',
-                'values': size_mm2s
+            10: {
+                'label': 'Conductors',
+                'type': [int],
+                'search_params': ['num_conductors']
             },
-            'Size (AWG)': {
-                'field': 'size_awg',
-                'type': 'int',
-                'values': size_awgs
+            11: {
+                'label': 'Shielded',
+                'type': [bool],
+                'search_params': ['shielded']
             },
-            'Conductor Count': {
-                'field': 'num_conductors',
-                'type': 'int',
-                'values': num_conductors
+            12: {
+                'label': 'TPI',
+                'type': [float],
+                'search_params': ['tpi']
             },
-            'Shielded': {
-                'field': 'shielded',
-                'type': 'int',
-                'values': shieldeds
+            13: {
+                'label': 'Conductor Diameter (mm)',
+                'type': [float],
+                'out_params': 'conductor_dia_mm'
             },
-            'Turns Per Inch': {
-                'field': 'tpi',
-                'type': 'int',
-                'values': tpis
+            14: {
+                'label': 'Size (AWG)',
+                'type': [int],
+                'search_params': ['size_awg']
             },
-            'Conductor Diameter': {
-                'field': 'conductor_dia_mm',
-                'type': 'float',
-                'values': conductor_dia_mms
+            15: {
+                'label': 'Size (mm2)',
+                'type': [float],
+                'search_params': ['size_mm2']
             },
-            'Outside Diameter': {
-                'field': 'od_mm',
-                'type': 'float',
-                'values': od_mms
+            16: {
+                'label': 'Diameter (OD)(mm)',
+                'type': [float],
+                'search_params': ['od_mm']
             },
-            'Resistance (1km)': {
-                'field': 'resistance_1km',
-                'type': 'float',
-                'values': resistance_1kms
+            17: {
+                'label': 'Core Material',
+                'type': [int, str],
+                'search_params': ['core_material_id', 'platings', 'symbol']
             },
-            'Volts': {
-                'field': 'volts',
-                'type': 'float',
-                'values': volts
+            18: {
+                'label': 'Volts',
+                'type': [float],
+                'search_params': ['volts']
+            },
+            19: {
+                'label': 'Weight (1km)(g)',
+                'type': [float],
+                'search_params': ['weight_1km']
             }
         }
 
         return ret
-
-    @property
-    def headers(self):
-        return [
-            'Part Number',
-            'Manufacturer',
-            'Description',
-            'Size (mm2)',
-            'Size (AWG)',
-            'Conductor Count',
-            'Series',
-            'Family',
-            'Material',
-            'Outside Diameter',
-            'Shielded',
-            'TPI',
-            'Weight',
-            'Max Temperature',
-            'Conductor Diameter'
-        ]
-
-    def parts_list(self):
-        cmd = (
-            'SELECT wire.id, wire.part_number, wire.description,',
-            'manufacturer.name, series.name, wire.weight, material.name,',
-            'wire.od_mm, wire.shielded, wire.tpi, wire.conductor_dia_mm,',
-            'wire.num_conductors, wire.size_mm2, wire.size_awg, maxtemp.name,',
-            'family.name FROM wires wire',
-            'INNER JOIN manufacturers manufacturer ON transition.mfg_id = manufacturer.id',
-            'INNER JOIN families family ON wire.family_id = family.id',
-            'INNER JOIN materials material ON wire.material_id = material.id',
-            'INNER JOIN temperatures maxtemp ON wire.max_temp_id = maxtemp.id',
-            'INNER JOIN series series ON wire.series_id = series.id;'
-        )
-        cmd = ' '.join(cmd)
-        data = self.execute(cmd)
-
-        commons = {
-            'Manufacturer': dict(),
-            'Material': dict(),
-            'Outside Diameter': dict(),
-            'Shielded': dict(),
-            'TPI': dict(),
-            'Conductor Count': dict(),
-            'Size (mm2)': dict(),
-            'Size (AWG)': dict(),
-            'Series': dict(),
-            'Family': dict()
-        }
-
-        res = {}
-
-        for (db_id, part_number, description, mfg, series, weight, material, od_mm,
-             shielded, tpi, conductor_dia_mm, num_conductors, size_mm2, size_awg,
-             maxtemp, family) in data:
-
-            res[part_number] = (mfg, description, size_mm2, size_awg, num_conductors,
-                                series, family, material, od_mm, shielded, tpi, weight,
-                                maxtemp, conductor_dia_mm, db_id)
-
-            if mfg not in commons['Manufacturer']:
-                commons['Manufacturer'][mfg] = []
-
-            commons['Manufacturer'][mfg].append(part_number)
-
-            if material not in commons['Material']:
-                commons['Material'][material] = []
-
-            commons['Material'][material].append(part_number)
-
-            if od_mm not in commons['Outside Diameter']:
-                commons['Outside Diameter'][od_mm] = []
-
-            commons['Outside Diameter'][od_mm].append(part_number)
-
-            shielded = 'Yes' if shielded else 'No'
-
-            if shielded not in commons['Shielded']:
-                commons['Shielded'][shielded] = []
-
-            commons['Shielded'][shielded].append(part_number)
-
-            if tpi not in commons['TPI']:
-                commons['TPI'][tpi] = []
-
-            commons['TPI'][tpi].append(part_number)
-
-            if size_mm2 not in commons['Size (mm2)']:
-                commons['Size (mm2)'][size_mm2] = []
-
-            commons['Size (mm2)'][size_mm2].append(part_number)
-
-            if size_awg not in commons['Size (AWG)']:
-                commons['Size (AWG)'][size_awg] = []
-
-            commons['Size (AWG)'][size_awg].append(part_number)
-
-            if num_conductors not in commons['Conductor Count']:
-                commons['Conductor Count'][num_conductors] = []
-
-            commons['Conductor Count'][num_conductors].append(part_number)
-
-            if series not in commons['Series']:
-                commons['Series'][series] = []
-
-            commons['Series'][series].append(part_number)
-
-            if family not in commons['Family']:
-                commons['Family'][family] = []
-
-            commons['Family'][family].append(part_number)
-
-        return res, commons
 
 
 class Wire(EntryBase, PartNumberMixin, ManufacturerMixin, DescriptionMixin,
