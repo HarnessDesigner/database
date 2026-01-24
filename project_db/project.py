@@ -63,4 +63,3 @@ class Project(PJTEntryBase):
     @creator.setter
     def creator(self, value: str):
         self._table.update(self._db_id, creator=value)
-
