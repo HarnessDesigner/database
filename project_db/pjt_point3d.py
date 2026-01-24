@@ -10,16 +10,10 @@ from ...geometry import point as _point
 
 class PJTPoints3DTable(PJTTableBase):
     __table_name__ = 'pjt_points3d'
-    __points__ = {}
 
     def __iter__(self) -> _Iterable["PJTPoint3D"]:
-
         for db_id in PJTTableBase.__iter__(self):
-            if db_id in self.__points__:
-                yield self.__points__[db_id]
-            else:
                 point = PJTPoint3D(self, db_id, self.project_id)
-                self.__points__[db_id] = point
                 yield point
 
     def __getitem__(self, item) -> "PJTPoint3D":
@@ -29,12 +23,6 @@ class PJTPoints3DTable(PJTTableBase):
             raise IndexError(str(item))
 
         raise KeyError(item)
-
-    def delete(self, db_id: int):
-        if db_id in self.__points__:
-            del self.__points__[db_id]
-
-        PJTTableBase.delete(self, db_id)
 
     def insert(self, x: _decimal, y: _decimal, z: _decimal) -> "PJTPoint3D":
         db_id = PJTTableBase.insert(self, x=float(x), y=float(y), z=float(z))
@@ -76,7 +64,7 @@ class PJTPoint3D(PJTEntryBase):
         self._table.update(self._db_id, z=float(value))
         self._process_callbacks()
 
-    def __update_point(self, point: _point.Point):
+    def _update_point(self, point: _point.Point):
         x, y, z = point.as_float
         self._table.update(self._db_id, x=x, y=y, z=z)
         self._process_callbacks()
@@ -87,6 +75,6 @@ class PJTPoint3D(PJTEntryBase):
             self._point_id = str(uuid.uuid4())
 
         point = _point.Point(self.x, self.y, self.z, db_id=self._point_id)
-        point.bind(self.__update_point)
+        point.bind(self._update_point)
 
         return point

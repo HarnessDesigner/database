@@ -1,17 +1,11 @@
-
-from typing import Iterable as _Iterable, TYPE_CHECKING
-import math
+from typing import Iterable as _Iterable
 
 from . import EntryBase, TableBase
 
-from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin, SeriesMixin,
-                     ResourceMixin, ColorMixin, FamilyMixin, MaterialMixin, TemperatureMixin)
+from .mixins import (PartNumberMixin, ManufacturerMixin, DescriptionMixin,
+                     ResourceMixin, ColorMixin)
 
 from ...wrappers.decimal import Decimal as _decimal
-
-if TYPE_CHECKING:
-    from . import color as _color
-    from . import plating as _plating
 
 
 class WireMarkersTable(TableBase):
@@ -99,7 +93,6 @@ class WireMarkersTable(TableBase):
             },
             10: {
                 'label': 'Weight (g)',
-                'field': 'weight',
                 'type': [float],
                 'search_params': ['weight']
             }

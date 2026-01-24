@@ -207,7 +207,7 @@ class PJTCircuit(PJTEntryBase):
                         result = result.intersection(s)
 
                     print(result)
-                    common_obj = list(result)[0]
+                    # common_obj = list(result)[0]
 
                     raise RuntimeError
 

@@ -1,9 +1,8 @@
 from typing import Iterable as _Iterable
-import weakref
 
 from . import EntryBase, TableBase
 from .mixins import NameMixin
-
+import uuid
 from ...wrappers import color as _color
 
 
@@ -32,48 +31,35 @@ class ColorsTable(TableBase):
 
 
 class Color(EntryBase, NameMixin):
-    _color_instances = {}
-
     _table: ColorsTable = None
-
-    @classmethod
-    def _remove_ref(cls, ref):
-        for key, value in list(cls._color_instances.items()):
-            if value != ref:
-                continue
-
-            del cls._color_instances[key]
-            break
+    _color_id: str = None
 
     def _update_color(self, c: _color.Color) -> None:
-        self.rgba = (c.GetRed(), c.GetGreen(), c.GetBlue)
+        self._table.update(self._db_id, rgb=c.GetRGBA())
 
     @property
     def ui(self) -> _color.Color:
-        if self.db_id in self._color_instances:
-            ref = self._color_instances[self.db_id]
-            color = ref()
-            if color is not None:
-                return color
+        if self._color_id is None:
+            self._color_id = str(uuid.uuid4())
 
-        color = _color.Color(*self.rgb)
-        color.Bind(self._update_color)
-        self._color_instances[self.db_id] = weakref.ref(color, Color._remove_ref)
+        color = _color.Color(*self.rgb, db_id=self._color_id)
+        color.bind(self._update_color)
         return color
 
     @property
     def rgb(self) -> tuple[int, int, int, int]:
-        rgb = self._table.select('rgb', id=self._db_id)[0][0]
+        rgba = self._table.select('rgb', id=self._db_id)[0][0]
 
-        r = rgb >> 16
-        g = (rgb >> 8) & 0xff
-        b = rgb & 0xFF
-        return r, g, b, 255
+        r = rgba >> 24
+        g = (rgba >> 16) & 0xFF
+        b = (rgba >> 8) & 0xFF
+        a = rgba & 0xFF
+        return r, g, b, a
 
     @rgb.setter
     def rgb(self, value: tuple[int, int, int, int]):
-        r, g, b = value[:3]
+        r, g, b, a = value
 
-        rgb = r << 16 | b << 8 | b
+        rgba = r << 24 | b << 16 | b << 8 | a
 
-        self._table.update(self._db_id, rgb=rgb)
+        self._table.update(self._db_id, rgb=rgba)

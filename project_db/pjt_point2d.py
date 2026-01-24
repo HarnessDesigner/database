@@ -1,5 +1,7 @@
 from typing import Iterable as _Iterable
 
+import uuid
+
 from . import PJTEntryBase, PJTTableBase
 
 from ...wrappers.decimal import Decimal as _decimal
@@ -8,17 +10,12 @@ from ...geometry import point as _point
 
 class PJTPoints2DTable(PJTTableBase):
     __table_name__ = 'pjt_points2d'
-    __points__ = {}
 
     def __iter__(self) -> _Iterable["PJTPoint2D"]:
 
         for db_id in PJTTableBase.__iter__(self):
-            if db_id in self.__points__:
-                yield self.__points__[db_id]
-            else:
-                point = PJTPoint2D(self, db_id, self.project_id)
-                self.__points__[db_id] = point
-                yield point
+            point = PJTPoint2D(self, db_id, self.project_id)
+            yield point
 
     def __getitem__(self, item) -> "PJTPoint2D":
         if isinstance(item, int):
@@ -28,12 +25,6 @@ class PJTPoints2DTable(PJTTableBase):
 
         raise KeyError(item)
 
-    def delete(self, db_id: int):
-        if db_id in self.__points__:
-            del self.__points__[db_id]
-
-        PJTTableBase.delete(self, db_id)
-
     def insert(self, x: float, y: float) -> "PJTPoint2D":
         db_id = PJTTableBase.insert(self, x=x, y=y)
         return PJTPoint2D(self, db_id, self.project_id)
@@ -41,6 +32,7 @@ class PJTPoints2DTable(PJTTableBase):
 
 class PJTPoint2D(PJTEntryBase):
     _table: PJTPoints2DTable = None
+    _point_id: str = None
 
     @property
     def table(self) -> PJTPoints2DTable:
@@ -66,13 +58,14 @@ class PJTPoint2D(PJTEntryBase):
 
     @property
     def point(self) -> _point.Point:
-        point = _point.Point(self.x, self.y, db_obj=self)
-        point.Bind(self.__on_update)
+        if self._point_id is None:
+            self._point_id = str(uuid.uuid4())
+
+        point = _point.Point(self.x, self.y, db_id=self._point_id)
+        point.bind(self._update_point)
         return point
 
-    def __on_update(self, point: _point.Point) -> None:
-        self._table.update(self.db_id, x=float(point.x), y=float(point.y))
-
-
-
-
+    def _update_point(self, point: _point.Point):
+        x, y, z = point.as_float
+        self._table.update(self._db_id, x=x, y=y)
+        self._process_callbacks()

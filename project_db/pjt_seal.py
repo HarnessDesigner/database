@@ -8,6 +8,7 @@ from ...geometry import angle as _angle
 if TYPE_CHECKING:
     from . import pjt_terminal as _pjt_terminal
     from . import pjt_housing as _pjt_housing
+    from . import pjt_point3d as _pjt_point3d
 
     from ..global_db import seal as _seal
 

@@ -27,10 +27,6 @@ class AdhesivesTable(TableBase):
         db_id = TableBase.insert(self, code=code, description=description)
         return Adhesive(self, db_id)
 
-    @property
-    def choices(self) -> list[str]:
-        return [row[0] for row in self.execute(f'SELECT DISTINCT code FROM {self.__table_name__};')]
-
 
 class Adhesive(EntryBase, DescriptionMixin):
     _table: AdhesivesTable = None

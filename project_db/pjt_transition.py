@@ -5,7 +5,6 @@ import uuid
 
 from . import PJTEntryBase, PJTTableBase
 
-from ...wrappers.decimal import Decimal as _decimal
 from ...geometry import angle as _angle
 
 if TYPE_CHECKING:

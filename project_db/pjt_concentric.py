@@ -2,7 +2,6 @@
 from typing import TYPE_CHECKING, Iterable as _Iterable
 
 from . import PJTEntryBase, PJTTableBase
-from ...wrappers.decimal import Decimal as _decimal
 
 if TYPE_CHECKING:
     from . import pjt_transition_branch as _pjt_transition_branches
@@ -83,6 +82,3 @@ class PJTConcentric(PJTEntryBase):
     def transition_branch_id(self, value: int):
         self._table.update(self._db_id, transition_branch_id=value)
         self._process_callbacks()
-
-
-

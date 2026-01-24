@@ -1,6 +1,4 @@
-from typing import Union as _Union, Iterable as _Iterable
-
-import wx
+from typing import Iterable as _Iterable
 
 
 from . import EntryBase, TableBase

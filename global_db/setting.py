@@ -1,12 +1,11 @@
-from typing import Iterable as _Iterable
 
-from . import EntryBase, TableBase
+from . import TableBase
 
 
 class SettingsTable(TableBase):
     __table_name__ = 'settings'
 
-    def __getitem__(self, item) -> "Setting":
+    def __getitem__(self, item):
         if isinstance(item, int):
             value = self.select('value', id=item)
             if not value:

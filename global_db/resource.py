@@ -1,4 +1,3 @@
-import os.path
 from typing import Iterable as _Iterable
 import requests
 import zipfile
@@ -22,7 +21,7 @@ class ResourcesTable(TableBase):
 
         raise KeyError(item)
 
-    def insert(self, path: str, data: bytes | None, type: str) -> "Resource":
+    def insert(self, path: str, data: bytes | None, type: str) -> "Resource":  # NOQA
         db_id = TableBase.insert(self, path=path, data=data)
         return Resource(self, db_id)
 
@@ -161,4 +160,3 @@ class Resource(EntryBase):
     @type.setter
     def type(self, value: str):
         self._table.update(self._db_id, type=value)
-

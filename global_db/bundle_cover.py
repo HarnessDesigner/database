@@ -1,5 +1,3 @@
-
-
 from typing import Iterable as _Iterable, TYPE_CHECKING
 
 from . import EntryBase, TableBase

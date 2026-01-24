@@ -76,5 +76,3 @@ class AccessoriesTable(TableBase):
 
 class Accessory(EntryBase, PartNumberMixin, DescriptionMixin, ManufacturerMixin, FamilyMixin, SeriesMixin, ColorMixin, MaterialMixin):
     _table: AccessoriesTable = None
-
-
