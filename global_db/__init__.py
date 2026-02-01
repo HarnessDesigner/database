@@ -147,6 +147,9 @@ class TableBase:
     def fetchall(self):
         return self._con.fetchall()
 
+    def fetchone(self):
+        return self._con.fetchone()
+
     @property
     def search_items(self) -> dict:
         raise NotImplementedError
@@ -210,7 +213,7 @@ class TableBase:
         and the value collected from that tableusing the field name in that table
         which is the 3rd item in the 'search_params' entry.
         """
-        select_args = []
+        select_args = ['tbl1.id']
         tables = []
 
         for key in sorted(list(search_items.keys())):
@@ -250,10 +253,14 @@ class TableBase:
             query.extend(['WHERE', args])
 
         query = ' '.join(query)
-        query += ';'
 
-        self.execute(query)
+        cmd = 'WITH results AS ({query}) SELECT (SELECT COUNT(*) FROM results) AS count, * FROM results;'
 
+        self.execute(cmd)
+        count = self.fetchone()
+
+        count = count[0][0] if count else 0
+        return self, count
 
 
 from .accessory import AccessoriesTable  # NOQA

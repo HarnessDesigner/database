@@ -691,6 +691,7 @@ def housings(con, cur):
                 'rows INTEGER DEFAULT 0 NOT NULL, '    
                 'num_pins INTEGER DEFAULT 0 NOT NULL, '
                 'terminal_sizes TEXT DEFAULT "[]" NOT NULL, '
+                'terminal_size_counts TEXT DEFAULT "[]" NOT NULL,'
                 'centerline REAL DEFAULT "0.0" NOT NULL, '
                 'compat_cpas TEXT DEFAULT "[]" NOT NULL, '    
                 'compat_tpas TEXT DEFAULT "[]" NOT NULL, '    

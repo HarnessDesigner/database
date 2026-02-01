@@ -68,21 +68,25 @@ class ItemsPanel(scrolledpanel.ScrolledPanel):
 
 class SearchPanelField(wx.Panel):
 
-    def __init__(self, parent, label, field_name, field_type, choices):
+    def __init__(self, parent, label, params, types):
         wx.Panel.__init__(self, parent, wx.ID_ANY, style=wx.BORDER_SUNKEN)
 
-        self.field_name = field_name
-        self.field_type = field_type
-        self.choices = choices[:]
+        self.params = params
+        self.types = types
+
+        self.values = parent.db_table.get_unique(*params)
+
+        if len(types) == 1:
+            choices = [str(value[0]) for value in self.values]
+        else:
+            choices = [str(value[1]) for value in self.values]
+
         v_sizer = wx.BoxSizer(wx.VERTICAL)
 
         st = wx.StaticText(self, wx.ID_ANY, label=label)
         v_sizer.Add(st, 0, wx.ALL | wx.ALIGN_CENTER, 5)
 
-        if field_type == 'id':
-            choices = [choice[1] for choice in choices]
-
-        self.items_panel = ItemsPanel(self, sorted(choices))
+        self.items_panel = ItemsPanel(self, choices)
         v_sizer.Add(self.items_panel, 1, wx.ALL | wx.EXPAND, 5)
 
         self.reset_button = wx.Button(wx.ID_RESET, size=(40, -1))
@@ -96,62 +100,164 @@ class SearchPanelField(wx.Panel):
         evt.Skip()
         self.items_panel.Reset()
 
-    def GetSQLCommand(self):
+    def GetValues(self):
+        values = self.items_panel.GetValues()
+
         res = []
-        items = self.items_panel.GetValues()
+        if len(self.types) == 1:
+            type_ = self.types[0]
 
-        for item in items:
-            if self.field_type == 'id':
-                for value, choice in self.choices:
-                    if choice == item.GetLabel():
+            for value in values:
+                value = type_(value.GetName())
+
+                res.append(value)
+        else:
+            type_ = self.types[1]
+
+            for value in values:
+                value = type_(value.GetName())
+                for row in self.values:
+                    if row[1] == value:
+                        res.append(row[0])
                         break
-                else:
-                    raise RuntimeError('sanity check')
-            elif self.field_type in ('str', 'float'):
-                value = f'"{item.GetLabel()}"'
-            else:
-                value = item.GetLabel()
+        if res:
+            return {self.params[0]: res}
 
-            res.append(f'{self.field_name} = {value}')
-
-        res = ' OR '.join(res)
-        return f'({res})'
+        return {}
 
 
 class SearchPanel(scrolledpanel.ScrolledPanel):
 
     def __init__(self, parent, db_table: Union["_global_db.TableBase", "_project_db.PJTTableBase"]):
         scrolledpanel.ScrolledPanel.__init__(self, parent, wx.ID_ANY)
-        self._db_table = db_table
+        self.parent = parent
+        self.db_table = db_table
 
         self.SetupScrolling(self, scroll_y=False)
-
         self.search_items = db_table.search_items
 
         self.fields = []
-        for label, data in self.search_items.items():
-            field = SearchPanelField(self, label, data['field'], data['type'], data['values'])
-            self.fields.append(field)
+        self.columns = []
 
-            field.Bind(wx.EVT_CHECKBOX, self.on_update)
-            field.Bind(wx.EVT_BUTTON, self.on_update)
+        for key in sorted(list(self.search_items.keys())):
+            value = self.search_items[key]
+
+            self.columns.append(value['label'])
+            if 'search_params' in value:
+                field = SearchPanelField(self, value['label'], value['search_params'], value['type'])
+                self.fields.append(field)
+
+                field.Bind(wx.EVT_CHECKBOX, self.on_update)
+                field.Bind(wx.EVT_BUTTON, self.on_update)
 
     def on_update(self, evt):
         evt.Skip()
 
-        cmd = []
+        cmd = {}
         for field in self.fields:
-            params = field.GetSQLCommand()
-            if params:
-                cmd.append(params)
+            cmd.update(field.GetValues())
 
-        if cmd:
-            cmd = ' AND '.join(cmd)
-            cmd = f'SELECT id from {self._db_table.__table_name__} WHERE {cmd};'
+        results, count = self.db_table.search(self.search_items, **cmd)
+        self.parent.SetResults(results, count)
+
+
+class SelectPartDialog(wx.Dialog):
+
+    def __init__(self, parent, title, table):
+        wx.Dialog.__init__(self, parent, wx.ID_ANY, title=title)
+
+        self.parent = parent
+        self.table = table
+
+        self.search_panel = SearchPanel(self, table)
+        self.result_ctrl = ResultCtrl(self, self.search_panel.columns)
+
+        vsizer = wx.BoxSizer(wx.VERTICAL)
+
+        top_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        top_sizer.Add(self.search_panel, 1, wx.EXPAND)
+        vsizer.AddSpacer(1)
+        vsizer.Add(top_sizer, 1, wx.EXPAND | wx.ALL, 10)
+
+        bottom_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        bottom_sizer.Add(self.result_ctrl, 1, wx.RIGHT, 10)
+        bottom_sizer.Add(self.preview_ctrl, 1)
+        vsizer.Add(bottom_sizer, 1, wx.EXPAND | wx.ALL, 10)
+
+    def SetResults(self, results, count):
+        self.result_ctrl.SetValues(results, count)
+
+    def GetValue(self):
+        return self.result_ctrl.GetValue()
+
+
+class ResultCtrl(wx.ListCtrl):
+
+    def __init__(self, parent, columns):
+        wx.ListCtrl.__init__(self, parent, style=wx.LC_REPORT | wx.LC_VIRTUAL | wx.LC_SINGLE_SEL | wx.LC_HRULES)
+        self.parent = parent
+        self._selected_db_id = None
+
+        self._loaded_results = []
+        self.results = None
+
+        for column in columns:
+            width = self.GetTextExtent(column)[0]
+
+            self.AppendColumn(column, width=width)
+
+        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_item_selected)
+        self.Bind(wx.EVT_LIST_ITEM_ACTIVATED, self.on_item_activated)
+
+    def GetValue(self):
+        return self._selected_db_id
+
+    def on_item_selected(self, evt: wx.ListEvent):
+        item = evt.GetItem()
+        db_id = self.GetItemData(item)
+        self._selected_db_id = db_id
+        obj = self.parent.db_table[db_id]
+
+        model = obj.model3d
+
+        if model is None:
+            self.parent.clear_model_preview()
         else:
-            cmd = f'SELECT id from {self._db_table.__table_name__};'
+            model_data = model.model
+            self.parent.load_model_preview(model_data)
 
-        # Create the event
-        evt = SearchChangedEvent(command=cmd)
-        # Post the event
-        wx.PostEvent(self, evt)
+        evt.Skip()
+
+    def on_item_activated(self, evt: wx.ListEvent):
+        item = evt.GetItem()
+        db_id = self.GetItemData(item)
+        self._selected_db_id = db_id
+        self.parent.exit_modal()
+
+        evt.Skip()
+
+    def SetValues(self, results, count):
+        self.DeleteAllItems()
+        self._loaded_results = []
+        self.results = results
+        self.SetItemCount(count)
+
+    def OnGetItemText(self, item, col):
+        if len(self._loaded_results) - 1 >= item:
+            return self._loaded_results[item][col + 1]
+
+        while len(self._loaded_results) - 1 < item:
+            line = self.results.fetchone()
+            if line:
+                self._loaded_results.append(line[0])
+                self.SetItemData(item, line[0][0])
+            else:
+                break
+
+        if len(self._loaded_results) - 1 >= item:
+            return self._loaded_results[item][col + 1]
+
+        raise RuntimeError('sanity check')
+
+GetCountPerPage
+GetItemData
