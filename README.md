@@ -1,2 +1,2 @@
 # database
-Harness Designer database connector
+Harness Designer database files
