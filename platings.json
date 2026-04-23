@@ -1,0 +1,82 @@
+[
+    {
+        "id": 0,
+        "symbol": "Unknown",
+        "description": "Unknown"
+    },
+    {
+        "id": 1,
+        "symbol": "Sn",
+        "description": "Tin"
+    },
+    {
+        "id": 2,
+        "symbol": "Cu",
+        "description": "Copper"
+    },
+    {
+        "id": 3,
+        "symbol": "Al",
+        "description": "Aluminum"
+    },
+    {
+        "id": 4,
+        "symbol": "Ti",
+        "description": "Titanium"
+    },
+    {
+        "id": 5,
+        "symbol": "Zn",
+        "description": "Zinc"
+    },
+    {
+        "id": 6,
+        "symbol": "Au",
+        "description": "Gold"
+    },
+    {
+        "id": 7,
+        "symbol": "Ag",
+        "description": "Silver"
+    },
+    {
+        "id": 8,
+        "symbol": "Ni",
+        "description": "Nickel"
+    },
+    {
+        "id": 9,
+        "symbol": "Ag/Cu",
+        "description": "Silver-plated Copper"
+    },
+    {
+        "id": 10,
+        "symbol": "Sn/Cu",
+        "description": "Tin-plated Copper"
+    },
+    {
+        "id": 11,
+        "symbol": "Au/Cu",
+        "description": "Gold-plated Copper"
+    },
+    {
+        "id": 12,
+        "symbol": "Ni/Cu",
+        "description": "Nickel-plated Copper"
+    },
+    {
+        "id": 13,
+        "symbol": "Ag/Al",
+        "description": "Silver-plated Aluminum"
+    },
+    {
+        "id": 14,
+        "symbol": "Sn/Al",
+        "description": "Tin-plated Aluminum"
+    },
+    {
+        "id": 15,
+        "symbol": "Au/Al",
+        "description": "Gold-plated Aluminum"
+    }
+]

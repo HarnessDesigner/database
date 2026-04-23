@@ -1,0 +1,82 @@
+[
+    {
+        "id": 0,
+        "name": "None",
+        "description": "",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 1,
+        "name": "TE",
+        "description": "",
+        "address": "",
+        "phone": "1-800-522-6752",
+        "ext": "",
+        "email": "",
+        "website": "https://www.te.com/en/home.html"
+    },
+    {
+        "id": 2,
+        "name": "Bosch",
+        "description": "",
+        "address": "Robert-Bosch-Platz 1\n70839 Gerlingen-Schillerh\u00f6he\nGERMANY\n",
+        "phone": "+49 304 036 94077",
+        "ext": "",
+        "email": "Connectors-Webshop-Hotline.PSCTS1-CO@de.bosch.com",
+        "website": "https://bosch-connectors.com/bcp/b2bshop-psconnectors/en/EUR"
+    },
+    {
+        "id": 3,
+        "name": "Aptiv",
+        "description": "",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": "https://www.aptiv.com/en/contact"
+    },
+    {
+        "id": 4,
+        "name": "Molex",
+        "description": "",
+        "address": "2222 Wellington Ct\nLisle, IL 60532, USA",
+        "phone": "+800-786-6539",
+        "ext": "",
+        "email": "",
+        "website": "https://www.molex.com/en-us/products/connectors"
+    },
+    {
+        "id": 5,
+        "name": "EPC",
+        "description": "",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 6,
+        "name": "Yazaki",
+        "description": "",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 7,
+        "name": "Milspecwiring.com",
+        "description": "",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": "https://www.milspecwiring.com"
+    }
+]

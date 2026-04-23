@@ -1,0 +1,30 @@
+[
+    {
+        "id": 0,
+        "name": "None"
+    },
+    {
+        "id": 1,
+        "name": "Unknown Seal"
+    },
+    {
+        "id": 2,
+        "name": "Axial Seal"
+    },
+    {
+        "id": 3,
+        "name": "Radial Seal"
+    },
+    {
+        "id": 4,
+        "name": "Rubber Cap Over Wires"
+    },
+    {
+        "id": 5,
+        "name": "Single Wire Seal"
+    },
+    {
+        "id": 6,
+        "name": "Mat Seal"
+    }
+]

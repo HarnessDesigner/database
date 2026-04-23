@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "name": "Unknown"
+    },
+    {
+        "id": 1,
+        "name": "Butt"
+    },
+    {
+        "id": 2,
+        "name": "Cable"
+    },
+    {
+        "id": 3,
+        "name": "Closed End"
+    },
+    {
+        "id": 4,
+        "name": "Parallel"
+    },
+    {
+        "id": 5,
+        "name": "Pigtail"
+    },
+    {
+        "id": 6,
+        "name": "Tap"
+    },
+    {
+        "id": 7,
+        "name": "Thru"
+    },
+    {
+        "id": 8,
+        "name": "Solder Sleeve"
+    },
+    {
+        "id": 9,
+        "name": "Solder Sleeve w/Pigtail"
+    }
+]
