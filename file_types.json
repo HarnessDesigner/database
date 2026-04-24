@@ -1,0 +1,584 @@
+[
+    {
+        "mimetype": "image/apng",
+        "extension": "apng",
+        "name": "APNG",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/png",
+        "extension": "png",
+        "name": "PNG",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/gif",
+        "extension": "gif",
+        "name": "GIF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "application/jpg",
+        "extension": "jpg",
+        "name": "JPG",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/jpg",
+        "extension": "jpg",
+        "name": "JPG",
+        "is_model": 0
+    },
+    {
+        "mimetype": "application/x-jpg",
+        "extension": "jpg",
+        "name": "JPG",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/jpeg",
+        "extension": "jpeg",
+        "name": "JPEG",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/pjpg",
+        "extension": "pjpg",
+        "name": "PJPG",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/jpe",
+        "extension": "jpe",
+        "name": "JPE",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/x-jpf",
+        "extension": "jpf",
+        "name": "JPF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/x-jp2",
+        "extension": "jp2",
+        "name": "JPEG 2000 JP2",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/jp2",
+        "extension": "jp2",
+        "name": "JPEG 2000 JP2",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/jpx",
+        "extension": "jpx",
+        "name": "JPEG 2000 JPX",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/jpm",
+        "extension": "jpm",
+        "name": "JPEG 2000 JPM",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/tiff",
+        "extension": "tiff",
+        "name": "TIFF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/tif",
+        "extension": "tif",
+        "name": "TIF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/bmp",
+        "extension": "bmp",
+        "name": "BMP",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/x-ms-bmp",
+        "extension": "dib",
+        "name": "DIB",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/pdf",
+        "extension": "pdf",
+        "name": "PDF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "application/pdf",
+        "extension": "pdf",
+        "name": "PDF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/webp",
+        "extension": "webp",
+        "name": "WEBp",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/x-dxf",
+        "extension": "dxf",
+        "name": "DXF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "image/vnd.dxf",
+        "extension": "dxf",
+        "name": "DXF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "application/dxf",
+        "extension": "dxf",
+        "name": "DXF",
+        "is_model": 0
+    },
+    {
+        "mimetype": "model/3mf",
+        "extension": "3mf",
+        "name": "3MF",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/gltf-binary",
+        "extension": "gltf",
+        "name": "GLTF",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/gltf+json",
+        "extension": "gltf",
+        "name": "GLTF",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/iges",
+        "extension": "iges",
+        "name": "IGES",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "igs",
+        "name": "IGES",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/vnd.collada+xml",
+        "extension": "dae",
+        "name": "Collada",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/obj",
+        "extension": ".obj",
+        "name": "OBJ",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/step",
+        "extension": "step",
+        "name": "STEP",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/step+xml",
+        "extension": "step",
+        "name": "STEP",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "stp",
+        "name": "STEP",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/stl",
+        "extension": ".stl",
+        "name": "STL",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/vrml",
+        "extension": "vrml",
+        "name": "VRML",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "wrl",
+        "name": "VRML",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/x3d-vrml",
+        "extension": "x3d",
+        "name": "X3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "model/x3d+xml",
+        "extension": "x3d",
+        "name": "X3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "application/gltf-buffer",
+        "extension": "gltf",
+        "name": "GLTF",
+        "is_model": 1
+    },
+    {
+        "mimetype": "application/iges",
+        "extension": "iges",
+        "name": "IGES",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "mdl",
+        "name": "3D GameStudio",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "hmp",
+        "name": "3D GameStudio",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "3ds",
+        "name": "3D Studio Max",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ase",
+        "name": "3D Studio Max",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ac",
+        "name": "AC3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ac3d",
+        "name": "AC3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "dxf",
+        "name": "Autodesk/AutoCAD DXF",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "bvh",
+        "name": "Biovision BVH",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "blend",
+        "name": "Blender BVH",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "csm",
+        "name": "CharacterStudio Motion",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "x",
+        "name": "DirectX X",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "md5mesh",
+        "name": "Doom 3",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "md5anim",
+        "name": "Doom 3",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "md5camera",
+        "name": "Doom 3",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "fbx",
+        "name": "FBX-Format",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ifc",
+        "name": "IFC-STEP",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "irr",
+        "name": "Irrlicht Mesh/Scene",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "irrmesh",
+        "name": "Irrlicht Mesh/Scene",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "lwo",
+        "name": "LightWave Model/Scene",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "lws",
+        "name": "LightWave Model/Scene",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ms3d",
+        "name": "Milkshape 3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "lxo",
+        "name": "Modo Model",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "nff",
+        "name": "Neutral File Format",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "off",
+        "name": "Object File Format",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "mesh.xml",
+        "name": "Ogre",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "skeleton.xml",
+        "name": "Ogre",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ogex",
+        "name": "OpenGEX-Fomat",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "mdl",
+        "name": "Quake I",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "md2",
+        "name": "Quake II",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "md3",
+        "name": "Quake III",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "pk3",
+        "name": "Quake 3BSP",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "q3o",
+        "name": "Quick3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "q3s",
+        "name": "Quick3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "raw",
+        "name": "Raw Triangles",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "mdc",
+        "name": "RtCW",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "nff",
+        "name": "Sense8 WorldToolkit",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ply",
+        "name": "Polygon File Format",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ter",
+        "name": "Terragen Terrain",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "cob",
+        "name": "TrueSpace",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "scn",
+        "name": "TrueSpace",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "smd",
+        "name": "Valve Model",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "vta",
+        "name": "Valve Model",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "xgl",
+        "name": "XGL-3D-Format",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "amf",
+        "name": "Additive Manufacturing",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "assbin",
+        "name": "ASSBIN",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "b3d",
+        "name": "OpenBVE 3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "iqm",
+        "name": "Inter-Quake Model",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "ndo",
+        "name": "3D Low-polygon Modeler",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "q3d",
+        "name": "Quest3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "sib",
+        "name": "Silo Model Format",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "x3d",
+        "name": "Extensible 3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "x3db",
+        "name": "Extensible 3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "x3dz",
+        "name": "Extensible 3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "x3dbz",
+        "name": "Extensible 3D",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "pmd",
+        "name": "MikuMikuDance Format",
+        "is_model": 1
+    },
+    {
+        "mimetype": "",
+        "extension": "pmx",
+        "name": "MikuMikuDance Format",
+        "is_model": 1
+    }
+]
