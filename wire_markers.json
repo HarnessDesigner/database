@@ -13,11 +13,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-0",
@@ -33,11 +37,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-1",
@@ -53,11 +61,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-1",
@@ -73,11 +85,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-2",
@@ -93,11 +109,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-2",
@@ -113,11 +133,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-3",
@@ -133,11 +157,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-3",
@@ -153,11 +181,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-4",
@@ -173,11 +205,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-4",
@@ -193,11 +229,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-5",
@@ -213,11 +253,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-5",
@@ -233,11 +277,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-6",
@@ -253,11 +301,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-6",
@@ -273,11 +325,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-7",
@@ -293,11 +349,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-7",
@@ -313,11 +373,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-8",
@@ -333,11 +397,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-8",
@@ -353,11 +421,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH RNF-3000-3/1-9",
@@ -373,11 +445,15 @@
         "max_temp": null,
         "min_diameter": 1.0,
         "max_diameter": 3.0,
-        "min_awg": 18,
-        "max_awg": 10,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 18,
+        "wire_size_awg_max": 10,
+        "wire_size_dia_min": 1.0237,
+        "wire_size_dia_max": 2.5882,
+        "wire_size_cross_min": 0.823,
+        "wire_size_cross_max": 5.2612
     },
     {
         "part_number": "SH RNF-3000-0-9",
@@ -393,11 +469,15 @@
         "max_temp": null,
         "min_diameter": 0.5,
         "max_diameter": 1.5,
-        "min_awg": 26,
-        "max_awg": 18,
         "length": 5.0,
         "weight": 0.0,
-        "has_label": 0
+        "has_label": 0,
+        "wire_size_awg_min": 26,
+        "wire_size_awg_max": 18,
+        "wire_size_dia_min": 0.405,
+        "wire_size_dia_max": 1.0237,
+        "wire_size_cross_min": 0.1288,
+        "wire_size_cross_max": 0.823
     },
     {
         "part_number": "SH CT 3/32K",
@@ -413,11 +493,15 @@
         "max_temp": null,
         "min_diameter": 0.79,
         "max_diameter": 2.36,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 1/8K",
@@ -433,11 +517,15 @@
         "max_temp": null,
         "min_diameter": 1.07,
         "max_diameter": 3.18,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 3/16K",
@@ -453,11 +541,15 @@
         "max_temp": null,
         "min_diameter": 1.57,
         "max_diameter": 4.75,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 1/4K",
@@ -473,11 +565,15 @@
         "max_temp": null,
         "min_diameter": 6.35,
         "max_diameter": 2.11,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 3/8K",
@@ -493,11 +589,15 @@
         "max_temp": null,
         "min_diameter": 3.18,
         "max_diameter": 9.53,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 1/2K",
@@ -513,11 +613,15 @@
         "max_temp": null,
         "min_diameter": 4.22,
         "max_diameter": 12.7,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 3/4K",
@@ -533,11 +637,15 @@
         "max_temp": null,
         "min_diameter": 6.35,
         "max_diameter": 19.05,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 1K",
@@ -553,11 +661,15 @@
         "max_temp": null,
         "min_diameter": 8.46,
         "max_diameter": 25.4,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 1-1/2K",
@@ -573,11 +685,15 @@
         "max_temp": null,
         "min_diameter": 19.05,
         "max_diameter": 38.1,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "SH CT 2K",
@@ -593,10 +709,14 @@
         "max_temp": null,
         "min_diameter": 25.4,
         "max_diameter": 50.8,
-        "min_awg": null,
-        "max_awg": null,
         "length": -1.0,
         "weight": 0.0,
-        "has_label": 1
+        "has_label": 1,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     }
 ]

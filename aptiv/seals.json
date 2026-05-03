@@ -16,10 +16,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.08,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f61bf45c-8acc-43da-b242-9d00ef1c0098"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f61bf45c-8acc-43da-b242-9d00ef1c0098",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12198198",
@@ -38,10 +42,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.06,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15327913",
@@ -60,10 +68,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.057,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_4b1dea9a-49cd-494e-b979-fe221fcfaad5"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_4b1dea9a-49cd-494e-b979-fe221fcfaad5",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33120594",
@@ -82,10 +94,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.05,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15339412",
@@ -104,10 +120,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.053,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_797fc47f-666e-467c-a7ae-ae90502ac038"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_797fc47f-666e-467c-a7ae-ae90502ac038",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15342610",
@@ -126,10 +146,14 @@
         "length": 0.0,
         "o_dia": 2.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.08,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13806076",
@@ -148,10 +172,14 @@
         "length": 0.0,
         "o_dia": 2.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.07467,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13768626",
@@ -170,10 +198,14 @@
         "length": 0.0,
         "o_dia": 2.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.07,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13826722",
@@ -192,10 +224,14 @@
         "length": 0.0,
         "o_dia": 3.3,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.12,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15316894",
@@ -214,10 +250,14 @@
         "length": 0.0,
         "o_dia": 2.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.14,
-        "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_9e599209-b37d-473b-8dda-2480ca7239c0"
+        "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_9e599209-b37d-473b-8dda-2480ca7239c0",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15339838",
@@ -236,10 +276,14 @@
         "length": 7.8,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.102,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12059168",
@@ -258,10 +302,14 @@
         "length": 16.0,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.227,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_50600478-6f1e-4f26-8c6b-b833072d5f75"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_50600478-6f1e-4f26-8c6b-b833072d5f75",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15327864",
@@ -280,10 +328,14 @@
         "length": 7.8,
         "o_dia": 9.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.33,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35232480",
@@ -302,10 +354,14 @@
         "length": 20.0,
         "o_dia": 9.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.592,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35081644",
@@ -324,10 +380,14 @@
         "length": 49.15,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35790629",
@@ -346,10 +406,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.02318,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13887349",
@@ -368,10 +432,14 @@
         "length": 8.5,
         "o_dia": 4.1,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.069,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15489185",
@@ -390,10 +458,14 @@
         "length": 0.0,
         "o_dia": 1.8,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.08208,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_142d028c-efa8-4d3f-ba28-d1fa2bc20f8b"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_142d028c-efa8-4d3f-ba28-d1fa2bc20f8b",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12065266",
@@ -412,10 +484,14 @@
         "length": 0.0,
         "o_dia": 2.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.057,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35747488",
@@ -434,10 +510,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.76,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35748167",
@@ -456,10 +536,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.85,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13963810",
@@ -478,10 +562,14 @@
         "length": 29.6,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15339967",
@@ -500,10 +588,14 @@
         "length": 7.8,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.114,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15337197",
@@ -522,10 +614,14 @@
         "length": 6.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.11,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b7a660d8-36a2-4f42-be6b-b4d9543ebbb4"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b7a660d8-36a2-4f42-be6b-b4d9543ebbb4",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15363604",
@@ -544,10 +640,14 @@
         "length": 7.8,
         "o_dia": 9.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.34,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33318278",
@@ -566,10 +666,14 @@
         "length": 0.0,
         "o_dia": 3.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33402443",
@@ -588,10 +692,14 @@
         "length": 0.0,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.088,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735521",
@@ -610,10 +718,14 @@
         "length": 7.8,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.102,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15327860",
@@ -632,10 +744,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.12,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15363779",
@@ -654,10 +770,14 @@
         "length": 7.8,
         "o_dia": 9.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.37,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13756464",
@@ -676,10 +796,14 @@
         "length": 0.0,
         "o_dia": 2.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.14478,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35228087",
@@ -698,10 +822,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.052,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35572559",
@@ -720,10 +848,14 @@
         "length": 45.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35572561",
@@ -742,10 +874,14 @@
         "length": 38.8,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15318164",
@@ -764,10 +900,14 @@
         "length": 0.0,
         "o_dia": 1.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0456,
-        "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_ebf8abcb-0c2e-4bb5-8cbd-373b9005f42f"
+        "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_ebf8abcb-0c2e-4bb5-8cbd-373b9005f42f",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13927323",
@@ -786,10 +926,14 @@
         "length": 29.6,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33359662",
@@ -808,10 +952,14 @@
         "length": 16.0,
         "o_dia": 9.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.47198,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33359659",
@@ -830,10 +978,14 @@
         "length": 0.0,
         "o_dia": 8.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.18592,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33359660",
@@ -852,10 +1004,14 @@
         "length": 8.9,
         "o_dia": 9.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.312,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33359661",
@@ -874,10 +1030,14 @@
         "length": 8.9,
         "o_dia": 9.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.328,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15404841",
@@ -896,10 +1056,14 @@
         "length": 0.0,
         "o_dia": 2.4,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.06042,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15327859",
@@ -918,10 +1082,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.11,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13756465",
@@ -940,10 +1108,14 @@
         "length": 0.0,
         "o_dia": 3.8,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.15048,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366021",
@@ -962,10 +1134,14 @@
         "length": 6.0,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.056,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e6bdb783-f510-400b-80ce-5a31c9f12ca7"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e6bdb783-f510-400b-80ce-5a31c9f12ca7",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35385926",
@@ -984,10 +1160,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.061,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35105310",
@@ -1006,10 +1186,14 @@
         "length": 5.5,
         "o_dia": 10.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.325,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12059255",
@@ -1028,10 +1212,14 @@
         "length": 0.0,
         "o_dia": 10.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.72501,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2171e9de-0a85-4dad-935e-04f9bf20986f"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2171e9de-0a85-4dad-935e-04f9bf20986f",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35522042",
@@ -1050,10 +1238,14 @@
         "length": 17.4,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35522043",
@@ -1072,10 +1264,14 @@
         "length": 17.4,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35194249",
@@ -1094,10 +1290,14 @@
         "length": 8.2,
         "o_dia": 4.4,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.09,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35069181",
@@ -1116,10 +1316,14 @@
         "length": 9.3,
         "o_dia": 6.8,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.23,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35069182",
@@ -1138,10 +1342,14 @@
         "length": 9.3,
         "o_dia": 6.8,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35069183",
@@ -1160,10 +1368,14 @@
         "length": 8.9,
         "o_dia": 7.4,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.31,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13613164",
@@ -1182,10 +1394,14 @@
         "length": 0.0,
         "o_dia": 1.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.12,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13770939",
@@ -1204,10 +1420,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.171,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13765188",
@@ -1226,10 +1446,14 @@
         "length": 0.0,
         "o_dia": 2.45,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.171,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13510403",
@@ -1248,10 +1472,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0767,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13887350",
@@ -1270,10 +1498,14 @@
         "length": 8.5,
         "o_dia": 4.1,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.063,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35034363",
@@ -1292,10 +1524,14 @@
         "length": 7.6,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.111,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324973",
@@ -1314,10 +1550,14 @@
         "length": 7.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.106,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_952c5da3-45d4-4f30-8b12-1d04ac1291db"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_952c5da3-45d4-4f30-8b12-1d04ac1291db",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12191232",
@@ -1336,10 +1576,14 @@
         "length": 0.0,
         "o_dia": 6.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.11424,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12191233",
@@ -1358,10 +1602,14 @@
         "length": 0.0,
         "o_dia": 6.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.10752,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15305170",
@@ -1380,10 +1628,14 @@
         "length": 12.0,
         "o_dia": 6.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.2,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366067",
@@ -1402,10 +1654,14 @@
         "length": 6.0,
         "o_dia": 6.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.117,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366065",
@@ -1424,10 +1680,14 @@
         "length": 6.0,
         "o_dia": 6.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.166,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366066",
@@ -1446,10 +1706,14 @@
         "length": 6.0,
         "o_dia": 6.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.133,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10779162",
@@ -1468,10 +1732,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35034195",
@@ -1490,10 +1758,14 @@
         "length": 7.6,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.093,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10889241",
@@ -1512,10 +1784,14 @@
         "length": 10.6,
         "o_dia": 12.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.7,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13756673",
@@ -1534,10 +1810,14 @@
         "length": 10.6,
         "o_dia": 12.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.8,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12186633",
@@ -1556,10 +1836,14 @@
         "length": 10.6,
         "o_dia": 12.85,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12186636",
@@ -1578,10 +1862,14 @@
         "length": 6.5,
         "o_dia": 7.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10788269",
@@ -1600,10 +1888,14 @@
         "length": 6.5,
         "o_dia": 7.55,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.172,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834633",
@@ -1622,10 +1914,14 @@
         "length": 9.05,
         "o_dia": 6.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.195,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834635",
@@ -1644,10 +1940,14 @@
         "length": 8.75,
         "o_dia": 6.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.187,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13779855",
@@ -1666,10 +1966,14 @@
         "length": 0.0,
         "o_dia": 2.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0252,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10737671",
@@ -1688,10 +1992,14 @@
         "length": 6.5,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10737670",
@@ -1710,10 +2018,14 @@
         "length": 6.6,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.12,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35407244",
@@ -1732,10 +2044,14 @@
         "length": 7.8,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366022",
@@ -1754,10 +2070,14 @@
         "length": 6.0,
         "o_dia": 4.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.039,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15305171",
@@ -1776,10 +2096,14 @@
         "length": 12.0,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.066,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13688074",
@@ -1798,10 +2122,14 @@
         "length": 20.08,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10757056",
@@ -1820,10 +2148,14 @@
         "length": 6.6,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.086,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324976",
@@ -1842,10 +2174,14 @@
         "length": 7.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.11,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15443869",
@@ -1864,10 +2200,14 @@
         "length": 6.6,
         "o_dia": 7.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.17,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15327788",
@@ -1886,10 +2226,14 @@
         "length": 10.75,
         "o_dia": 12.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.7,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35372077",
@@ -1908,10 +2252,14 @@
         "length": 0.0,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.112,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33513681",
@@ -1930,10 +2278,14 @@
         "length": 0.0,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.08,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33318274",
@@ -1952,10 +2304,14 @@
         "length": 0.0,
         "o_dia": 3.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.074,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35020635",
@@ -1974,10 +2330,14 @@
         "length": 0.0,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.088,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33348208",
@@ -1996,10 +2356,14 @@
         "length": 10.3,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33348209",
@@ -2018,10 +2382,14 @@
         "length": 9.1,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10779160",
@@ -2040,10 +2408,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.2,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_470e6b2c-bbd8-47c6-9bc2-9de85c43b31d"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_470e6b2c-bbd8-47c6-9bc2-9de85c43b31d",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15327863",
@@ -2062,10 +2434,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.107,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ee49e531-3af1-455f-98c8-2ab350449aa7"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ee49e531-3af1-455f-98c8-2ab350449aa7",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33504677",
@@ -2084,10 +2460,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.7571,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33504675",
@@ -2106,10 +2486,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 4.441,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366060",
@@ -2128,10 +2512,14 @@
         "length": 6.0,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.049,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12191227",
@@ -2150,10 +2538,14 @@
         "length": 0.0,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.04144,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13546490",
@@ -2172,10 +2564,14 @@
         "length": 10.6,
         "o_dia": 12.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.95,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35269088",
@@ -2194,10 +2590,14 @@
         "length": 0.0,
         "o_dia": 3.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33318279",
@@ -2216,10 +2616,14 @@
         "length": 0.0,
         "o_dia": 3.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33511838",
@@ -2238,10 +2642,14 @@
         "length": 0.0,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.08,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33501764",
@@ -2260,10 +2668,14 @@
         "length": 10.9,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33282443",
@@ -2282,10 +2694,14 @@
         "length": 0.0,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33513680",
@@ -2304,10 +2720,14 @@
         "length": 0.0,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.08,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33501763",
@@ -2326,10 +2746,14 @@
         "length": 10.9,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35240442",
@@ -2348,10 +2772,14 @@
         "length": 25.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 2.1,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2cd5e10f-85aa-487b-b967-c6af2b0153f7"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2cd5e10f-85aa-487b-b967-c6af2b0153f7",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35230976",
@@ -2370,10 +2798,14 @@
         "length": 25.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 2.2,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_01c4db7f-ff13-4ab7-aefc-5b509544398f"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_01c4db7f-ff13-4ab7-aefc-5b509544398f",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35206307",
@@ -2392,10 +2824,14 @@
         "length": 25.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 2.1,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_394cb5c6-cac7-4143-84d5-7a7e901aeb20"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_394cb5c6-cac7-4143-84d5-7a7e901aeb20",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834630",
@@ -2414,10 +2850,14 @@
         "length": 7.1,
         "o_dia": 5.45,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.101,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33318275",
@@ -2436,10 +2876,14 @@
         "length": 0.0,
         "o_dia": 3.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35034194",
@@ -2458,10 +2902,14 @@
         "length": 7.6,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.129,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33318273",
@@ -2480,10 +2928,14 @@
         "length": 0.0,
         "o_dia": 3.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35770788",
@@ -2502,10 +2954,14 @@
         "length": 36.8,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.171,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15327786",
@@ -2524,10 +2980,14 @@
         "length": 6.6,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.095,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834763",
@@ -2546,10 +3006,14 @@
         "length": 10.6,
         "o_dia": 12.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 722.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10720611",
@@ -2568,10 +3032,14 @@
         "length": 6.5,
         "o_dia": 7.55,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.227,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735454",
@@ -2590,10 +3058,14 @@
         "length": 7.8,
         "o_dia": 9.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.321,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35082288",
@@ -2612,10 +3084,14 @@
         "length": 10.42,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35151812",
@@ -2634,10 +3110,14 @@
         "length": 11.12,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35082291",
@@ -2656,10 +3136,14 @@
         "length": 12.75,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834634",
@@ -2678,10 +3162,14 @@
         "length": 9.05,
         "o_dia": 6.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.188,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15363605",
@@ -2700,10 +3188,14 @@
         "length": 7.8,
         "o_dia": 9.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.28,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10736278",
@@ -2722,10 +3214,14 @@
         "length": 6.65,
         "o_dia": 5.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.061,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13644795",
@@ -2744,10 +3240,14 @@
         "length": 16.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13602967",
@@ -2766,10 +3266,14 @@
         "length": 19.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15441383",
@@ -2788,10 +3292,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324974",
@@ -2810,10 +3318,14 @@
         "length": 7.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.14,
-        "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_72f67d9d-e818-4cd6-9056-c4f5ec4ff495"
+        "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_72f67d9d-e818-4cd6-9056-c4f5ec4ff495",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15305172",
@@ -2832,10 +3344,14 @@
         "length": 12.0,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.134,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10787316",
@@ -2854,10 +3370,14 @@
         "length": 6.5,
         "o_dia": 5.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.075,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15441379",
@@ -2876,10 +3396,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_945de434-dedc-4c74-9888-ecd122c24216"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_945de434-dedc-4c74-9888-ecd122c24216",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10779161",
@@ -2898,10 +3422,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10720615",
@@ -2920,10 +3448,14 @@
         "length": 6.5,
         "o_dia": 7.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.164,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15448883",
@@ -2942,10 +3474,14 @@
         "length": 6.5,
         "o_dia": 7.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.16,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834764",
@@ -2964,10 +3500,14 @@
         "length": 10.6,
         "o_dia": 12.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.741,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15460621",
@@ -2986,10 +3526,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15340264",
@@ -3008,10 +3552,14 @@
         "length": 6.65,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33503298",
@@ -3030,10 +3578,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.38,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33504639",
@@ -3052,10 +3604,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.815,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13578695",
@@ -3074,10 +3630,14 @@
         "length": 0.0,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0908,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12010300",
@@ -3096,10 +3656,14 @@
         "length": 19.9,
         "o_dia": 7.25,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.364,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0c0a7df0-9c48-4365-bb40-86d3c6eeddf0"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0c0a7df0-9c48-4365-bb40-86d3c6eeddf0",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15344938",
@@ -3118,10 +3682,14 @@
         "length": 7.2,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.077,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10720807",
@@ -3140,10 +3708,14 @@
         "length": 7.2,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.061,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10720811",
@@ -3162,10 +3734,14 @@
         "length": 7.2,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.05,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13806069",
@@ -3184,10 +3760,14 @@
         "length": 30.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "35150387",
@@ -3206,10 +3786,14 @@
         "length": 8.3,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735535",
@@ -3228,10 +3812,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.09,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15498732",
@@ -3250,10 +3838,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735527",
@@ -3272,10 +3864,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.09,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324997",
@@ -3294,10 +3890,14 @@
         "length": 7.5,
         "o_dia": 10.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.544,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324994",
@@ -3316,10 +3916,14 @@
         "length": 7.5,
         "o_dia": 10.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.386,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324993",
@@ -3338,10 +3942,14 @@
         "length": 7.5,
         "o_dia": 10.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.325,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324995",
@@ -3360,10 +3968,14 @@
         "length": 7.5,
         "o_dia": 10.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.392,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33198869",
@@ -3382,10 +3994,14 @@
         "length": 80.7,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33168991",
@@ -3404,10 +4020,14 @@
         "length": 25.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15305351",
@@ -3426,10 +4046,14 @@
         "length": 6.0,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.038,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_7fae3f6c-e0f7-4659-8ff6-6ba189f92e0b"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_7fae3f6c-e0f7-4659-8ff6-6ba189f92e0b",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735480",
@@ -3448,10 +4072,14 @@
         "length": 8.2,
         "o_dia": 9.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.33,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13831889",
@@ -3470,10 +4098,14 @@
         "length": 6.25,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13831885",
@@ -3492,10 +4124,14 @@
         "length": 73.4,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13629105",
@@ -3514,10 +4150,14 @@
         "length": 0.0,
         "o_dia": 2.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.05781,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15470809",
@@ -3536,10 +4176,14 @@
         "length": 11.9,
         "o_dia": 14.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.032,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13797502",
@@ -3558,10 +4202,14 @@
         "length": 11.9,
         "o_dia": 14.95,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.22728,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15513451",
@@ -3580,10 +4228,14 @@
         "length": 25.3,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.6279,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a80e704d-678c-4fb0-be42-92fd85923f12"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a80e704d-678c-4fb0-be42-92fd85923f12",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15513452",
@@ -3602,10 +4254,14 @@
         "length": 25.3,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.69,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324982",
@@ -3624,10 +4280,14 @@
         "length": 7.5,
         "o_dia": 7.25,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.16,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_9f1d42d1-e9c6-47ed-acf6-7f17e0415427"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_9f1d42d1-e9c6-47ed-acf6-7f17e0415427",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10730124",
@@ -3646,10 +4306,14 @@
         "length": 6.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15356825",
@@ -3668,10 +4332,14 @@
         "length": 0.0,
         "o_dia": 1.8,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.057,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12191235",
@@ -3690,10 +4358,14 @@
         "length": 6.0,
         "o_dia": 6.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.091,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12052842",
@@ -3712,10 +4384,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.61936,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10720901",
@@ -3734,10 +4410,14 @@
         "length": 7.8,
         "o_dia": 5.65,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.142,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13926843",
@@ -3756,10 +4436,14 @@
         "length": 19.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324996",
@@ -3778,10 +4462,14 @@
         "length": 7.5,
         "o_dia": 10.35,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.3416,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324980",
@@ -3800,10 +4488,14 @@
         "length": 7.5,
         "o_dia": 7.25,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.156,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12129557",
@@ -3822,10 +4514,14 @@
         "length": 0.0,
         "o_dia": 1.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0456,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12065849",
@@ -3844,10 +4540,14 @@
         "length": 4.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15305169",
@@ -3866,10 +4566,14 @@
         "length": 0.0,
         "o_dia": 3.2,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0715,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15483009",
@@ -3888,10 +4592,14 @@
         "length": 5.8,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12040750",
@@ -3910,10 +4618,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.52338,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12191226",
@@ -3932,10 +4644,14 @@
         "length": 0.0,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.04592,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6a06b20b-09b8-486a-9cca-be1eb91a5797"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6a06b20b-09b8-486a-9cca-be1eb91a5797",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15336177",
@@ -3954,10 +4670,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 2.05348,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15326866",
@@ -3976,10 +4696,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.895,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15344324",
@@ -3998,10 +4722,14 @@
         "length": 5.5,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.05,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15439078",
@@ -4020,10 +4748,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.5,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12034170",
@@ -4042,10 +4774,14 @@
         "length": 7.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324988",
@@ -4064,10 +4800,14 @@
         "length": 7.5,
         "o_dia": 9.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.315,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_7f884eeb-1091-4003-835c-7211fccb3111"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_7f884eeb-1091-4003-835c-7211fccb3111",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324989",
@@ -4086,10 +4826,14 @@
         "length": 7.5,
         "o_dia": 9.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.298,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6206fde0-4f1d-46a1-aeb9-664c7e8d2dfd"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6206fde0-4f1d-46a1-aeb9-664c7e8d2dfd",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735538",
@@ -4108,10 +4852,14 @@
         "length": 0.0,
         "o_dia": 5.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.102,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324983",
@@ -4130,10 +4878,14 @@
         "length": 7.5,
         "o_dia": 7.25,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.194,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12034413",
@@ -4152,10 +4904,14 @@
         "length": 0.0,
         "o_dia": 2.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.123,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366063",
@@ -4174,10 +4930,14 @@
         "length": 6.0,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.08,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366064",
@@ -4196,10 +4956,14 @@
         "length": 6.0,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.136,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15326811",
@@ -4218,10 +4982,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.442,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324979",
@@ -4240,10 +5008,14 @@
         "length": 7.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.103,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324981",
@@ -4262,10 +5034,14 @@
         "length": 7.5,
         "o_dia": 7.25,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.133,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15366061",
@@ -4284,10 +5060,14 @@
         "length": 6.0,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.086,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834614",
@@ -4306,10 +5086,14 @@
         "length": 7.1,
         "o_dia": 5.45,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.085,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13834623",
@@ -4328,10 +5112,14 @@
         "length": 7.1,
         "o_dia": 5.45,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.093,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12129909",
@@ -4350,10 +5138,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.39784,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12160481",
@@ -4372,10 +5164,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.585,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12176807",
@@ -4394,10 +5190,14 @@
         "length": 5.8,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15326236",
@@ -4416,10 +5216,14 @@
         "length": 3.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324987",
@@ -4438,10 +5242,14 @@
         "length": 7.5,
         "o_dia": 9.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.2,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15344714",
@@ -4460,10 +5268,14 @@
         "length": 7.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15336703",
@@ -4482,10 +5294,14 @@
         "length": 8.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33501746",
@@ -4504,10 +5320,14 @@
         "length": 6.5,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.09,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10788270",
@@ -4526,10 +5346,14 @@
         "length": 6.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.09,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324985",
@@ -4548,10 +5372,14 @@
         "length": 7.5,
         "o_dia": 7.25,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.182,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15497745",
@@ -4570,10 +5398,14 @@
         "length": 7.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324998",
@@ -4592,10 +5424,14 @@
         "length": 8.5,
         "o_dia": 13.05,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.5,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12040756",
@@ -4614,10 +5450,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.57456,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12040757",
@@ -4636,10 +5476,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.99456,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12110213",
@@ -4658,10 +5502,14 @@
         "length": 7.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12089678",
@@ -4680,10 +5528,14 @@
         "length": 7.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.11,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12040751",
@@ -4702,10 +5554,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.5992,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15324818",
@@ -4724,10 +5580,14 @@
         "length": 5.8,
         "o_dia": 5.3,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.07,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12129930",
@@ -4746,10 +5606,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.20448,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a65d76fc-1108-47dd-ba30-a319a13eaa64"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a65d76fc-1108-47dd-ba30-a319a13eaa64",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735534",
@@ -4768,10 +5632,14 @@
         "length": 7.2,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.05,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15305001",
@@ -4790,10 +5658,14 @@
         "length": 8.5,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.15,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15305000",
@@ -4812,10 +5684,14 @@
         "length": 8.5,
         "o_dia": 5.7,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.179,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15339560",
@@ -4834,10 +5710,14 @@
         "length": 7.2,
         "o_dia": 4.5,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.05,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15344778",
@@ -4856,10 +5736,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.04,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15344777",
@@ -4878,10 +5762,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.4,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13582731",
@@ -4900,10 +5788,14 @@
         "length": 6.5,
         "o_dia": 5.1,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.091,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13582730",
@@ -4922,10 +5814,14 @@
         "length": 6.5,
         "o_dia": 5.1,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.079,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13584300",
@@ -4944,10 +5840,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.89,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13735537",
@@ -4966,10 +5866,14 @@
         "length": 7.8,
         "o_dia": 3.9,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.06,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13567793",
@@ -4988,10 +5892,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.6,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "13567794",
@@ -5010,10 +5918,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.4,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15356671",
@@ -5032,10 +5944,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.588,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15356988",
@@ -5054,10 +5970,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 4.7,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12191230",
@@ -5076,10 +5996,14 @@
         "length": 6.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12160845",
@@ -5098,10 +6022,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 13.2,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12176391",
@@ -5120,10 +6048,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 6.1,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12191066",
@@ -5142,10 +6074,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 3.6,
-        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0458c8c3-705b-41ec-bdea-aef01ea6ec70"
+        "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0458c8c3-705b-41ec-bdea-aef01ea6ec70",
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12129026",
@@ -5164,10 +6100,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 5.89976,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12160684",
@@ -5186,10 +6126,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 2.419,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12177085",
@@ -5208,10 +6152,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.512,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12047907",
@@ -5230,10 +6178,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.79632,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12047908",
@@ -5252,10 +6204,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.6149,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12084193",
@@ -5274,10 +6230,14 @@
         "length": 7.5,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12110822",
@@ -5296,10 +6256,14 @@
         "length": 7.25,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "15393249",
@@ -5318,10 +6282,14 @@
         "length": 0.0,
         "o_dia": 5.75,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.14256,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12110403",
@@ -5340,10 +6308,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 4.7,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12045893",
@@ -5362,10 +6334,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.3,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12020818",
@@ -5384,10 +6360,14 @@
         "length": 6.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12110489",
@@ -5406,10 +6386,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 6.6,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12110269",
@@ -5428,10 +6412,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.23,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12059215",
@@ -5450,10 +6438,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.85,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12065285",
@@ -5472,10 +6464,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.58916,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12052893",
@@ -5494,10 +6490,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.4368,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12059184",
@@ -5516,10 +6516,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.57792,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12103067",
@@ -5538,10 +6542,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.476,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12065297",
@@ -5560,10 +6568,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.21,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12040879",
@@ -5582,10 +6594,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 3.3,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12048370",
@@ -5604,10 +6620,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12040972",
@@ -5626,10 +6646,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 1.50722,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "12077383",
@@ -5648,10 +6672,14 @@
         "length": 0.0,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.86515,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "10721071",
@@ -5670,10 +6698,14 @@
         "length": 10.7,
         "o_dia": 12.6,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.67,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     },
     {
         "part_number": "33511807",
@@ -5692,9 +6724,13 @@
         "length": 6.5,
         "o_dia": 0.0,
         "i_dia": 0.0,
-        "wire_dia_min": 0.0,
-        "wire_dia_max": 0.0,
         "weight": 0.0,
-        "model3d": null
+        "model3d": null,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null
     }
 ]
