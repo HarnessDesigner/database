@@ -1,5 +1,5 @@
-{
-    "13648597": {
+[
+    {
         "part_number": "13648597",
         "description": "COV CONN PROTECTIVE Black",
         "mfg": "Aptiv",
@@ -17,7 +17,7 @@
         "weight": 9.2037,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_c9fea130-af40-4e60-8618-8f1a7ee551f5"
     },
-    "35017218": {
+    {
         "part_number": "35017218",
         "description": "Cover Wire Dress",
         "mfg": "Aptiv",
@@ -35,7 +35,7 @@
         "weight": 20.56674,
         "model3d": null
     },
-    "35056875": {
+    {
         "part_number": "35056875",
         "description": "Cover Wire Dress",
         "mfg": "Aptiv",
@@ -53,7 +53,7 @@
         "weight": 19.31274,
         "model3d": null
     },
-    "35464619": {
+    {
         "part_number": "35464619",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -71,7 +71,7 @@
         "weight": 30.1,
         "model3d": null
     },
-    "33165770": {
+    {
         "part_number": "33165770",
         "description": "ASM COV WIRE DRESS",
         "mfg": "Aptiv",
@@ -89,7 +89,7 @@
         "weight": 33.35303,
         "model3d": null
     },
-    "33326011": {
+    {
         "part_number": "33326011",
         "description": "ASM COV WIRE DRESS NAT",
         "mfg": "Aptiv",
@@ -107,7 +107,7 @@
         "weight": 33.1,
         "model3d": null
     },
-    "35104748": {
+    {
         "part_number": "35104748",
         "description": "Cover Wire Dress  Black",
         "mfg": "Aptiv",
@@ -125,7 +125,7 @@
         "weight": 12.10452,
         "model3d": null
     },
-    "35283288": {
+    {
         "part_number": "35283288",
         "description": "Cover Wire Dress  Black",
         "mfg": "Aptiv",
@@ -143,7 +143,7 @@
         "weight": 12.82158,
         "model3d": null
     },
-    "35104749": {
+    {
         "part_number": "35104749",
         "description": "Cover Wire Dress  Black",
         "mfg": "Aptiv",
@@ -161,7 +161,7 @@
         "weight": 18.2571,
         "model3d": null
     },
-    "35283609": {
+    {
         "part_number": "35283609",
         "description": "Cover Wire Dress  Black",
         "mfg": "Aptiv",
@@ -179,7 +179,7 @@
         "weight": 18.96618,
         "model3d": null
     },
-    "35029257": {
+    {
         "part_number": "35029257",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -197,7 +197,7 @@
         "weight": 24.313,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_9f2aafab-995b-41d4-9e3c-89b2392d9cf8"
     },
-    "35056880": {
+    {
         "part_number": "35056880",
         "description": "COV WIRE DRESS YEL",
         "mfg": "Aptiv",
@@ -215,7 +215,7 @@
         "weight": 18.153,
         "model3d": null
     },
-    "15514241": {
+    {
         "part_number": "15514241",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -233,7 +233,7 @@
         "weight": 28.07442,
         "model3d": null
     },
-    "13672173": {
+    {
         "part_number": "13672173",
         "description": "COV CONN MQS BLK",
         "mfg": "Aptiv",
@@ -251,7 +251,7 @@
         "weight": 9.5,
         "model3d": null
     },
-    "33268977": {
+    {
         "part_number": "33268977",
         "description": "COV CONN HIGH V BLK",
         "mfg": "Aptiv",
@@ -269,7 +269,7 @@
         "weight": 10.7,
         "model3d": null
     },
-    "33268985": {
+    {
         "part_number": "33268985",
         "description": "COV CONN HIGH V BLK",
         "mfg": "Aptiv",
@@ -287,7 +287,7 @@
         "weight": 8.7,
         "model3d": null
     },
-    "13778862": {
+    {
         "part_number": "13778862",
         "description": "COV HOUSING BLK",
         "mfg": "Aptiv",
@@ -305,7 +305,7 @@
         "weight": 14.455,
         "model3d": null
     },
-    "35612038": {
+    {
         "part_number": "35612038",
         "description": "COV WIRE DRESS NAT",
         "mfg": "Aptiv",
@@ -323,7 +323,7 @@
         "weight": 24.94502,
         "model3d": null
     },
-    "35559850": {
+    {
         "part_number": "35559850",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -341,7 +341,7 @@
         "weight": 12.91727,
         "model3d": null
     },
-    "35559851": {
+    {
         "part_number": "35559851",
         "description": "COV CONN YEL",
         "mfg": "Aptiv",
@@ -359,7 +359,7 @@
         "weight": 12.91727,
         "model3d": null
     },
-    "35385212": {
+    {
         "part_number": "35385212",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -377,7 +377,7 @@
         "weight": 16.57332,
         "model3d": null
     },
-    "35511665": {
+    {
         "part_number": "35511665",
         "description": "COV CONN  Black",
         "mfg": "Aptiv",
@@ -395,7 +395,7 @@
         "weight": 14.56,
         "model3d": null
     },
-    "35042025": {
+    {
         "part_number": "35042025",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -413,7 +413,7 @@
         "weight": 28.2808,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_d98cf082-9dac-4b53-b566-ac363fb14d91"
     },
-    "35199392": {
+    {
         "part_number": "35199392",
         "description": "ASM CONN SLD",
         "mfg": "Aptiv",
@@ -431,7 +431,7 @@
         "weight": 27.896,
         "model3d": null
     },
-    "35445176": {
+    {
         "part_number": "35445176",
         "description": "ASM COV SLIDE GRA",
         "mfg": "Aptiv",
@@ -449,7 +449,7 @@
         "weight": 27.896,
         "model3d": null
     },
-    "13831684": {
+    {
         "part_number": "13831684",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -467,7 +467,7 @@
         "weight": 0.875,
         "model3d": null
     },
-    "35472251": {
+    {
         "part_number": "35472251",
         "description": "Cover Lever Assembly",
         "mfg": "Aptiv",
@@ -485,7 +485,7 @@
         "weight": 32.199,
         "model3d": null
     },
-    "35535557": {
+    {
         "part_number": "35535557",
         "description": "ASM COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -503,7 +503,7 @@
         "weight": 10.13975,
         "model3d": null
     },
-    "35211578": {
+    {
         "part_number": "35211578",
         "description": "ASM COV WIRE DRESS APEX BLK",
         "mfg": "Aptiv",
@@ -521,7 +521,7 @@
         "weight": 9.816,
         "model3d": null
     },
-    "35535556": {
+    {
         "part_number": "35535556",
         "description": "ASM COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -539,7 +539,7 @@
         "weight": 19.66955,
         "model3d": null
     },
-    "13579678": {
+    {
         "part_number": "13579678",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -557,7 +557,7 @@
         "weight": 10.5,
         "model3d": null
     },
-    "35290089": {
+    {
         "part_number": "35290089",
         "description": "ASM COV SHIELD",
         "mfg": "Aptiv",
@@ -575,7 +575,7 @@
         "weight": 15.98,
         "model3d": null
     },
-    "35522064": {
+    {
         "part_number": "35522064",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -593,7 +593,7 @@
         "weight": 6.52,
         "model3d": null
     },
-    "35522053": {
+    {
         "part_number": "35522053",
         "description": "COVER Black",
         "mfg": "Aptiv",
@@ -611,7 +611,7 @@
         "weight": 5.45,
         "model3d": null
     },
-    "13950412": {
+    {
         "part_number": "13950412",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -629,7 +629,7 @@
         "weight": 40.148,
         "model3d": null
     },
-    "35103470": {
+    {
         "part_number": "35103470",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -647,7 +647,7 @@
         "weight": 26.52,
         "model3d": null
     },
-    "35235634": {
+    {
         "part_number": "35235634",
         "description": "ASM COV WIRE DRESS",
         "mfg": "Aptiv",
@@ -665,7 +665,7 @@
         "weight": 33.1,
         "model3d": null
     },
-    "35333921": {
+    {
         "part_number": "35333921",
         "description": "ASM LOCK COV",
         "mfg": "Aptiv",
@@ -683,7 +683,7 @@
         "weight": 34.142,
         "model3d": null
     },
-    "13667839": {
+    {
         "part_number": "13667839",
         "description": "COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -701,7 +701,7 @@
         "weight": 11.30424,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0d365832-5383-4002-bce3-ea44beb3027e"
     },
-    "13667840": {
+    {
         "part_number": "13667840",
         "description": "COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -719,7 +719,7 @@
         "weight": 28.74624,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_99b56994-4313-4faa-9912-22d7ac529e29"
     },
-    "15545822": {
+    {
         "part_number": "15545822",
         "description": "COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -737,7 +737,7 @@
         "weight": 29.3607,
         "model3d": null
     },
-    "15545824": {
+    {
         "part_number": "15545824",
         "description": "COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -755,7 +755,7 @@
         "weight": 11.91186,
         "model3d": null
     },
-    "35484280": {
+    {
         "part_number": "35484280",
         "description": "ASM LOCK COV BLK",
         "mfg": "Aptiv",
@@ -773,7 +773,7 @@
         "weight": 39.65368,
         "model3d": null
     },
-    "35268696": {
+    {
         "part_number": "35268696",
         "description": "ASM COV WIRE DRESS BLU DK",
         "mfg": "Aptiv",
@@ -791,7 +791,7 @@
         "weight": 22.039,
         "model3d": null
     },
-    "33377082": {
+    {
         "part_number": "33377082",
         "description": "ASM COV WIRE DRESS GRN",
         "mfg": "Aptiv",
@@ -809,7 +809,7 @@
         "weight": 18.146,
         "model3d": null
     },
-    "35538953": {
+    {
         "part_number": "35538953",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -827,7 +827,7 @@
         "weight": 11.815,
         "model3d": null
     },
-    "15494614": {
+    {
         "part_number": "15494614",
         "description": "ASM COV CONN MECH ASST Black",
         "mfg": "Aptiv",
@@ -845,7 +845,7 @@
         "weight": 19.015,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f5f3c4ea-1b9c-4955-91d9-fd3c9497e2c3"
     },
-    "13530931": {
+    {
         "part_number": "13530931",
         "description": "ASM COV CONN MECH ASST Black",
         "mfg": "Aptiv",
@@ -863,7 +863,7 @@
         "weight": 17.5408,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_8551cd11-9efa-495e-a423-56cf8c718c13"
     },
-    "35399105": {
+    {
         "part_number": "35399105",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -881,7 +881,7 @@
         "weight": 17.1,
         "model3d": null
     },
-    "15494583": {
+    {
         "part_number": "15494583",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -899,7 +899,7 @@
         "weight": 17.1,
         "model3d": null
     },
-    "13956254": {
+    {
         "part_number": "13956254",
         "description": "COV CONN PROTECTIVE Black",
         "mfg": "Aptiv",
@@ -917,7 +917,7 @@
         "weight": 6.5259,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_5f0f6d0c-0884-4590-b901-24b929d3b5e2"
     },
-    "33517228": {
+    {
         "part_number": "33517228",
         "description": "COV CONN PROTECTIVE Black",
         "mfg": "Aptiv",
@@ -935,7 +935,7 @@
         "weight": 6.798,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_4d516838-54d7-4cce-8832-e388599b847d"
     },
-    "15476351": {
+    {
         "part_number": "15476351",
         "description": "COV CONN GT BLK",
         "mfg": "Aptiv",
@@ -953,7 +953,7 @@
         "weight": 7.7028,
         "model3d": null
     },
-    "35392346": {
+    {
         "part_number": "35392346",
         "description": "LOCK CONN LK",
         "mfg": "Aptiv",
@@ -971,7 +971,7 @@
         "weight": 9.2,
         "model3d": null
     },
-    "15498543": {
+    {
         "part_number": "15498543",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -989,7 +989,7 @@
         "weight": 17.5,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_53727499-52cc-4132-a657-47c6082eca29"
     },
-    "15432298": {
+    {
         "part_number": "15432298",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -1007,7 +1007,7 @@
         "weight": 10.5,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_fa37a91a-9dd0-4796-9b94-9199225a7aa5"
     },
-    "13598000": {
+    {
         "part_number": "13598000",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1025,7 +1025,7 @@
         "weight": 11.9,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_fe98cff8-b5cc-4d52-b313-fb02c482a6fd"
     },
-    "33303444": {
+    {
         "part_number": "33303444",
         "description": "COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -1043,7 +1043,7 @@
         "weight": 9.40474,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_d51d11f0-a9af-4094-909c-663995763c4d"
     },
-    "33387253": {
+    {
         "part_number": "33387253",
         "description": "ASM COV DUST CAP  Black",
         "mfg": "Aptiv",
@@ -1061,7 +1061,7 @@
         "weight": 6.2265,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_49131b03-e736-4369-a6b2-f6caef746af1"
     },
-    "33283431": {
+    {
         "part_number": "33283431",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1079,7 +1079,7 @@
         "weight": 11.18988,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f44c6e3e-bcf5-406d-ad1a-d22a93718341"
     },
-    "33342229": {
+    {
         "part_number": "33342229",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1097,7 +1097,7 @@
         "weight": 12.7881,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_241c9798-ceac-40d6-ab59-007e975e426c"
     },
-    "33387217": {
+    {
         "part_number": "33387217",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -1115,7 +1115,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_30ae2fac-bab7-4dd7-9ab2-9b1735b00fe1"
     },
-    "33348055": {
+    {
         "part_number": "33348055",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1133,7 +1133,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_5cf6d33d-9842-476b-b2c7-5788a3f2ab46"
     },
-    "33348058": {
+    {
         "part_number": "33348058",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1151,7 +1151,7 @@
         "weight": 10.90296,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_1d23a51b-c963-468f-925b-d24cd96fd5cb"
     },
-    "35302308": {
+    {
         "part_number": "35302308",
         "description": "ASM LOCK COV BLK",
         "mfg": "Aptiv",
@@ -1169,7 +1169,7 @@
         "weight": 22.89,
         "model3d": null
     },
-    "35360811": {
+    {
         "part_number": "35360811",
         "description": "COV CONN GRA",
         "mfg": "Aptiv",
@@ -1187,7 +1187,7 @@
         "weight": 11.5804,
         "model3d": null
     },
-    "35138081": {
+    {
         "part_number": "35138081",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -1205,7 +1205,7 @@
         "weight": 54.371,
         "model3d": null
     },
-    "35240527": {
+    {
         "part_number": "35240527",
         "description": "COV CAP PROTECTOR GRA LT",
         "mfg": "Aptiv",
@@ -1223,7 +1223,7 @@
         "weight": 22.833,
         "model3d": null
     },
-    "35165849": {
+    {
         "part_number": "35165849",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1241,7 +1241,7 @@
         "weight": 4.705,
         "model3d": null
     },
-    "35169790": {
+    {
         "part_number": "35169790",
         "description": "COV HOUSING",
         "mfg": "Aptiv",
@@ -1259,7 +1259,7 @@
         "weight": 5.79,
         "model3d": null
     },
-    "35242833": {
+    {
         "part_number": "35242833",
         "description": "ASM COV STRAIN RLF",
         "mfg": "Aptiv",
@@ -1277,7 +1277,7 @@
         "weight": 4.598,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_d6ef8dee-3d88-4dcf-9f0a-e0d7d75ded09"
     },
-    "35206310": {
+    {
         "part_number": "35206310",
         "description": "ASM COV STRAIN RLF",
         "mfg": "Aptiv",
@@ -1295,7 +1295,7 @@
         "weight": 4.598,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_adacefac-b1b2-452c-847a-36e5e837b349"
     },
-    "35208801": {
+    {
         "part_number": "35208801",
         "description": "ASM COV WIRE DRESS GRA",
         "mfg": "Aptiv",
@@ -1313,7 +1313,7 @@
         "weight": 4.598,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_600571e3-ebb1-49ff-a2a1-9fdbf53beb2c"
     },
-    "13942889": {
+    {
         "part_number": "13942889",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1331,7 +1331,7 @@
         "weight": 10.323,
         "model3d": null
     },
-    "35166276": {
+    {
         "part_number": "35166276",
         "description": "COV WIRE DRESS",
         "mfg": "Aptiv",
@@ -1349,7 +1349,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33276641": {
+    {
         "part_number": "33276641",
         "description": "ASM COV CONN  Black",
         "mfg": "Aptiv",
@@ -1367,7 +1367,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_72d9f518-9aff-4b92-8943-8ec42a1a952e"
     },
-    "33276607": {
+    {
         "part_number": "33276607",
         "description": "COV CONN  Black",
         "mfg": "Aptiv",
@@ -1385,7 +1385,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_af37a55f-ab9d-4519-ae66-1f5a8f83c757"
     },
-    "33106893": {
+    {
         "part_number": "33106893",
         "description": "ASM COV CONN  Black",
         "mfg": "Aptiv",
@@ -1403,7 +1403,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_991ca4e7-41b4-4b6b-8d4d-7f794a3c55ba"
     },
-    "33241970": {
+    {
         "part_number": "33241970",
         "description": "COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -1421,7 +1421,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_4ce3fb45-a01f-425e-b30e-e3330c09ae7d"
     },
-    "35094897": {
+    {
         "part_number": "35094897",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -1439,7 +1439,7 @@
         "weight": 34.1,
         "model3d": null
     },
-    "13969664": {
+    {
         "part_number": "13969664",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -1457,7 +1457,7 @@
         "weight": 47.0,
         "model3d": null
     },
-    "35252661": {
+    {
         "part_number": "35252661",
         "description": "COV CONN MIXED",
         "mfg": "Aptiv",
@@ -1475,7 +1475,7 @@
         "weight": 17.586,
         "model3d": null
     },
-    "35078347": {
+    {
         "part_number": "35078347",
         "description": "COV WIRE DRESS",
         "mfg": "Aptiv",
@@ -1493,7 +1493,7 @@
         "weight": 13.8,
         "model3d": null
     },
-    "35252658": {
+    {
         "part_number": "35252658",
         "description": "COV CONN MIXED",
         "mfg": "Aptiv",
@@ -1511,7 +1511,7 @@
         "weight": 14.37,
         "model3d": null
     },
-    "15546007": {
+    {
         "part_number": "15546007",
         "description": "Cover Lever Assembly",
         "mfg": "Aptiv",
@@ -1529,7 +1529,7 @@
         "weight": 10.5,
         "model3d": null
     },
-    "13697648": {
+    {
         "part_number": "13697648",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1547,7 +1547,7 @@
         "weight": 10.0,
         "model3d": null
     },
-    "33387222": {
+    {
         "part_number": "33387222",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -1565,7 +1565,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_233fae0f-f126-45aa-b92b-6adf058ce49a"
     },
-    "33339906": {
+    {
         "part_number": "33339906",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1583,7 +1583,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_966020b7-60df-461c-8999-c10cd204868d"
     },
-    "33342240": {
+    {
         "part_number": "33342240",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1601,7 +1601,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_20f3b53c-9b78-497e-8c9f-4a70d0ddc0d7"
     },
-    "35667746": {
+    {
         "part_number": "35667746",
         "description": "ASM COV CONN YEL",
         "mfg": "Aptiv",
@@ -1619,7 +1619,7 @@
         "weight": 32.16,
         "model3d": null
     },
-    "13759772": {
+    {
         "part_number": "13759772",
         "description": "ASM CONN 20 F DUO-TWIN 0.64 BLK",
         "mfg": "Aptiv",
@@ -1637,7 +1637,7 @@
         "weight": 4.0,
         "model3d": null
     },
-    "33247648": {
+    {
         "part_number": "33247648",
         "description": "COV DUST CAP BLK",
         "mfg": "Aptiv",
@@ -1655,7 +1655,7 @@
         "weight": 5.53,
         "model3d": null
     },
-    "13647357": {
+    {
         "part_number": "13647357",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -1673,7 +1673,7 @@
         "weight": 5.0,
         "model3d": null
     },
-    "13851307": {
+    {
         "part_number": "13851307",
         "description": "Connector Protective Cover Black",
         "mfg": "Aptiv",
@@ -1691,7 +1691,7 @@
         "weight": 5.325,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_c7ad0392-e220-49ce-bcc7-ed523b13963c"
     },
-    "35121207": {
+    {
         "part_number": "35121207",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1709,7 +1709,7 @@
         "weight": 5.865,
         "model3d": null
     },
-    "35049054": {
+    {
         "part_number": "35049054",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1727,7 +1727,7 @@
         "weight": 12.428,
         "model3d": null
     },
-    "35049055": {
+    {
         "part_number": "35049055",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1745,7 +1745,7 @@
         "weight": 11.111,
         "model3d": null
     },
-    "35496740": {
+    {
         "part_number": "35496740",
         "description": "COV WIRE DRESS GRN",
         "mfg": "Aptiv",
@@ -1763,7 +1763,7 @@
         "weight": 36.72,
         "model3d": null
     },
-    "35496737": {
+    {
         "part_number": "35496737",
         "description": "COV WIRE DRESS BLU",
         "mfg": "Aptiv",
@@ -1781,7 +1781,7 @@
         "weight": 36.72,
         "model3d": null
     },
-    "35496736": {
+    {
         "part_number": "35496736",
         "description": "COV WIRE DRESS GRA",
         "mfg": "Aptiv",
@@ -1799,7 +1799,7 @@
         "weight": 36.14,
         "model3d": null
     },
-    "35496735": {
+    {
         "part_number": "35496735",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -1817,7 +1817,7 @@
         "weight": 36.149,
         "model3d": null
     },
-    "13934567": {
+    {
         "part_number": "13934567",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -1835,7 +1835,7 @@
         "weight": 5.53776,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_fbf51ef9-dbfd-4fba-8b62-5f6426aa70ca"
     },
-    "33380852": {
+    {
         "part_number": "33380852",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -1853,7 +1853,7 @@
         "weight": 5.64,
         "model3d": null
     },
-    "33387224": {
+    {
         "part_number": "33387224",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -1871,7 +1871,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_4ee1b9a3-037e-4e15-a96c-e1097542e186"
     },
-    "33349715": {
+    {
         "part_number": "33349715",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1889,7 +1889,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f3b2c7f3-1de0-4b22-88dc-cb0ab2f5c304"
     },
-    "33349716": {
+    {
         "part_number": "33349716",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1907,7 +1907,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_1d3594d3-b91d-49eb-aed5-6c579df1a3a6"
     },
-    "33387251": {
+    {
         "part_number": "33387251",
         "description": "ASM COV CONN END CAP Black",
         "mfg": "Aptiv",
@@ -1925,7 +1925,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_9f85f0ae-5413-4fa0-97ec-aded47bbb7b4"
     },
-    "33387252": {
+    {
         "part_number": "33387252",
         "description": "ASM COV DUST CAP  Black",
         "mfg": "Aptiv",
@@ -1943,7 +1943,7 @@
         "weight": 6.0954,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_c2f2c940-8a5c-4c60-b181-67926947e41b"
     },
-    "33387220": {
+    {
         "part_number": "33387220",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -1961,7 +1961,7 @@
         "weight": 12.39606,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_679a6309-7aee-48b1-bec0-d77208d86ed9"
     },
-    "33387249": {
+    {
         "part_number": "33387249",
         "description": "ASM COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -1979,7 +1979,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b1a36e96-6686-409b-9b9e-80da96b7a958"
     },
-    "33347494": {
+    {
         "part_number": "33347494",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -1997,7 +1997,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b821c8b2-1091-4700-9219-6e9bdf0133e1"
     },
-    "33347502": {
+    {
         "part_number": "33347502",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2015,7 +2015,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_3037ef35-022f-4d91-94de-51bd91b52c63"
     },
-    "33347498": {
+    {
         "part_number": "33347498",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2033,7 +2033,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2b0a5027-8fd1-4201-9d5c-66488ce3f3d1"
     },
-    "33347505": {
+    {
         "part_number": "33347505",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2051,7 +2051,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_1df49fdc-ac64-415f-8517-01c0ee6a881b"
     },
-    "33346482": {
+    {
         "part_number": "33346482",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2069,7 +2069,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_67ece7e3-b634-45ce-acb7-7487fb46f988"
     },
-    "33347322": {
+    {
         "part_number": "33347322",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2087,7 +2087,7 @@
         "weight": 6.0,
         "model3d": null
     },
-    "33347325": {
+    {
         "part_number": "33347325",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2105,7 +2105,7 @@
         "weight": 5.0,
         "model3d": null
     },
-    "33347517": {
+    {
         "part_number": "33347517",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2123,7 +2123,7 @@
         "weight": 6.5,
         "model3d": null
     },
-    "33347506": {
+    {
         "part_number": "33347506",
         "description": "COV CONN  BLK",
         "mfg": "Aptiv",
@@ -2141,7 +2141,7 @@
         "weight": 7.5,
         "model3d": null
     },
-    "33347525": {
+    {
         "part_number": "33347525",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2159,7 +2159,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33347520": {
+    {
         "part_number": "33347520",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2177,7 +2177,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33347531": {
+    {
         "part_number": "33347531",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2195,7 +2195,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33347529": {
+    {
         "part_number": "33347529",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2213,7 +2213,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33348556": {
+    {
         "part_number": "33348556",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -2231,7 +2231,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0734c40b-77f8-4b21-af39-e6c087a10dac"
     },
-    "33347499": {
+    {
         "part_number": "33347499",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2249,7 +2249,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_856b7cf8-2009-4773-8187-ff8279a2e751"
     },
-    "33344882": {
+    {
         "part_number": "33344882",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2267,7 +2267,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_babff3c0-e353-4170-a1f5-07e4d534b8c8"
     },
-    "33344881": {
+    {
         "part_number": "33344881",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2285,7 +2285,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f6b63f14-d7c7-435d-bf12-01f6a7052464"
     },
-    "33387227": {
+    {
         "part_number": "33387227",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -2303,7 +2303,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e10f389b-b5b8-4dc9-98cc-b54995e4f33b"
     },
-    "33387250": {
+    {
         "part_number": "33387250",
         "description": "ASM COV CONN END CAP Black",
         "mfg": "Aptiv",
@@ -2321,7 +2321,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_d791ce03-f15d-44c9-9c8e-56f04f6395ca"
     },
-    "33387247": {
+    {
         "part_number": "33387247",
         "description": "ASM COV CONN END CAP Black",
         "mfg": "Aptiv",
@@ -2339,7 +2339,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e5124320-dd08-4e2b-9163-0cc08cae5dff"
     },
-    "33344598": {
+    {
         "part_number": "33344598",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2357,7 +2357,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_9249f6b1-4a25-4c09-aa7a-3dfee0f534c4"
     },
-    "33344597": {
+    {
         "part_number": "33344597",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2375,7 +2375,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_06626379-5f2b-46d8-9a4c-12f77b79d94a"
     },
-    "33387232": {
+    {
         "part_number": "33387232",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -2393,7 +2393,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ba26b7ba-4426-41ec-b0c9-9b72553699ca"
     },
-    "33387225": {
+    {
         "part_number": "33387225",
         "description": "ASM COV CONN END CAP Black",
         "mfg": "Aptiv",
@@ -2411,7 +2411,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_3035b5f8-7b77-496c-beba-657ce9c06d27"
     },
-    "33387223": {
+    {
         "part_number": "33387223",
         "description": "ASM COV CONN END CAP Black",
         "mfg": "Aptiv",
@@ -2429,7 +2429,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ec3de759-5fb4-4a58-bd27-f28c99e60983"
     },
-    "33283430": {
+    {
         "part_number": "33283430",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2447,7 +2447,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_883758e1-33fa-44bd-8b6f-e15dc646cabd"
     },
-    "33341421": {
+    {
         "part_number": "33341421",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2465,7 +2465,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_08f4717f-37b7-4a9f-bc0e-b418cb4a15bb"
     },
-    "33387226": {
+    {
         "part_number": "33387226",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -2483,7 +2483,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e784006f-bca9-42ba-a2c3-b1c04bf333c1"
     },
-    "33334989": {
+    {
         "part_number": "33334989",
         "description": "ASM COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -2501,7 +2501,7 @@
         "weight": 2.745,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_c1368f46-6662-4cc2-b05e-fbec60aa7348"
     },
-    "35078412": {
+    {
         "part_number": "35078412",
         "description": "COV DUST CAP  Black",
         "mfg": "Aptiv",
@@ -2519,7 +2519,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33273779": {
+    {
         "part_number": "33273779",
         "description": "ASM COV CONN  Black",
         "mfg": "Aptiv",
@@ -2537,7 +2537,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_05a5bc1d-98c9-4a4c-9d49-7695f6d5ad32"
     },
-    "33111591": {
+    {
         "part_number": "33111591",
         "description": "ASM COV CONN  Black",
         "mfg": "Aptiv",
@@ -2555,7 +2555,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b94744fd-5114-4955-a698-050141d62729"
     },
-    "33204328": {
+    {
         "part_number": "33204328",
         "description": "COV WIRE DRESS  BLK",
         "mfg": "Aptiv",
@@ -2573,7 +2573,7 @@
         "weight": 16.55755,
         "model3d": null
     },
-    "33309878": {
+    {
         "part_number": "33309878",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2591,7 +2591,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_078f0229-913f-438b-90f5-fa131ded6d95"
     },
-    "33309877": {
+    {
         "part_number": "33309877",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2609,7 +2609,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_16e0216f-4ea2-4b18-9c1c-fe69809ef9cc"
     },
-    "33309876": {
+    {
         "part_number": "33309876",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2627,7 +2627,7 @@
         "weight": 7.1955,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_c2ecfd6b-628c-4dab-9ee1-ac56e5f87ec6"
     },
-    "33309879": {
+    {
         "part_number": "33309879",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2645,7 +2645,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e5e95f48-fe02-48bb-8e42-b3092017b233"
     },
-    "33309880": {
+    {
         "part_number": "33309880",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2663,7 +2663,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_3d53df1c-40ca-4b12-944c-00bb2ea27060"
     },
-    "33309872": {
+    {
         "part_number": "33309872",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2681,7 +2681,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b1dc0526-5a27-489e-9ff2-70374d59d3c8"
     },
-    "33309874": {
+    {
         "part_number": "33309874",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -2699,7 +2699,7 @@
         "weight": 6.0,
         "model3d": null
     },
-    "33309875": {
+    {
         "part_number": "33309875",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -2717,7 +2717,7 @@
         "weight": 5.0,
         "model3d": null
     },
-    "33309881": {
+    {
         "part_number": "33309881",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2735,7 +2735,7 @@
         "weight": 6.5,
         "model3d": null
     },
-    "33309873": {
+    {
         "part_number": "33309873",
         "description": "COV CONN ADAPTER BLK",
         "mfg": "Aptiv",
@@ -2753,7 +2753,7 @@
         "weight": 7.5,
         "model3d": null
     },
-    "33309887": {
+    {
         "part_number": "33309887",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -2771,7 +2771,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33309885": {
+    {
         "part_number": "33309885",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -2789,7 +2789,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33309888": {
+    {
         "part_number": "33309888",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -2807,7 +2807,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33309886": {
+    {
         "part_number": "33309886",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -2825,7 +2825,7 @@
         "weight": 7.0,
         "model3d": null
     },
-    "33387248": {
+    {
         "part_number": "33387248",
         "description": "ASM COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -2843,7 +2843,7 @@
         "weight": 3.259,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_51b0b5ae-e12a-4733-bac0-3e7466a7b613"
     },
-    "33308723": {
+    {
         "part_number": "33308723",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -2861,7 +2861,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_aa15746e-e018-473e-a039-c97cc100f833"
     },
-    "33284004": {
+    {
         "part_number": "33284004",
         "description": "ASM COV CONN  Black",
         "mfg": "Aptiv",
@@ -2879,7 +2879,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6cec5fd2-33dc-4995-b303-981f55ec0ba1"
     },
-    "13737712": {
+    {
         "part_number": "13737712",
         "description": "COV SHIELD EMI BLK",
         "mfg": "Aptiv",
@@ -2897,7 +2897,7 @@
         "weight": 2.941,
         "model3d": null
     },
-    "33312671": {
+    {
         "part_number": "33312671",
         "description": "COV CAP PROTECTOR Black",
         "mfg": "Aptiv",
@@ -2915,7 +2915,7 @@
         "weight": 5.59088,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_7a2e6e80-98e2-484e-b8d2-e8903d19dda2"
     },
-    "33248838": {
+    {
         "part_number": "33248838",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2933,7 +2933,7 @@
         "weight": 4.88241,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_027a15ec-9350-4794-9415-1415ebcefbe5"
     },
-    "33306181": {
+    {
         "part_number": "33306181",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -2951,7 +2951,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_39b2e55d-3455-4a53-aa8a-b3236d658cf0"
     },
-    "33312674": {
+    {
         "part_number": "33312674",
         "description": "ASM COV CONN END CAP Black",
         "mfg": "Aptiv",
@@ -2969,7 +2969,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_9ca5c3a2-fbb3-4310-b2d9-d0c63dfb6e41"
     },
-    "33380851": {
+    {
         "part_number": "33380851",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -2987,7 +2987,7 @@
         "weight": 10.10741,
         "model3d": null
     },
-    "33207232": {
+    {
         "part_number": "33207232",
         "description": "ASM COV WIRE DRESS APEX Black",
         "mfg": "Aptiv",
@@ -3005,7 +3005,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0f7dbd73-6716-4ba2-8157-e998fef8e965"
     },
-    "33200044": {
+    {
         "part_number": "33200044",
         "description": "ASM COV CONN  Black",
         "mfg": "Aptiv",
@@ -3023,7 +3023,7 @@
         "weight": 0.0,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_be6b537c-fdd1-4100-b03a-24ad7c5e0bbc"
     },
-    "33169047": {
+    {
         "part_number": "33169047",
         "description": "COV CONN HIGH V SLV",
         "mfg": "Aptiv",
@@ -3041,7 +3041,7 @@
         "weight": 3.08,
         "model3d": null
     },
-    "33169089": {
+    {
         "part_number": "33169089",
         "description": "ASM COV CONN HIGH V ORN",
         "mfg": "Aptiv",
@@ -3059,7 +3059,7 @@
         "weight": 6.7,
         "model3d": null
     },
-    "13927639": {
+    {
         "part_number": "13927639",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3077,7 +3077,7 @@
         "weight": 27.125,
         "model3d": null
     },
-    "13954433": {
+    {
         "part_number": "13954433",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3095,7 +3095,7 @@
         "weight": 4.01,
         "model3d": null
     },
-    "33162636": {
+    {
         "part_number": "33162636",
         "description": "ASM COV WIRE DRESS  Yellow",
         "mfg": "Aptiv",
@@ -3113,7 +3113,7 @@
         "weight": 11.43344,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_93606925-a8f6-4ca3-b181-443007d3a916"
     },
-    "33121914": {
+    {
         "part_number": "33121914",
         "description": "COV CONN MECH ASST Black",
         "mfg": "Aptiv",
@@ -3131,7 +3131,7 @@
         "weight": 19.4072,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_623abbab-7621-4388-bc78-69b9ce13688a"
     },
-    "33121915": {
+    {
         "part_number": "33121915",
         "description": "ASM COV CONN MECH ASST Black",
         "mfg": "Aptiv",
@@ -3149,7 +3149,7 @@
         "weight": 25.6972,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_656a8941-889e-42d4-bba5-1babdc68d3c9"
     },
-    "33155930": {
+    {
         "part_number": "33155930",
         "description": "COV WIRE DRESS GRN",
         "mfg": "Aptiv",
@@ -3167,7 +3167,7 @@
         "weight": 27.47,
         "model3d": null
     },
-    "33155929": {
+    {
         "part_number": "33155929",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3185,7 +3185,7 @@
         "weight": 27.327,
         "model3d": null
     },
-    "33155926": {
+    {
         "part_number": "33155926",
         "description": "COV WIRE DRESS BLU",
         "mfg": "Aptiv",
@@ -3203,7 +3203,7 @@
         "weight": 23.502,
         "model3d": null
     },
-    "13950370": {
+    {
         "part_number": "13950370",
         "description": "ASM COV CONN BLK",
         "mfg": "Aptiv",
@@ -3221,7 +3221,7 @@
         "weight": 21.0986,
         "model3d": null
     },
-    "13950371": {
+    {
         "part_number": "13950371",
         "description": "ASM COV CONN BLK",
         "mfg": "Aptiv",
@@ -3239,7 +3239,7 @@
         "weight": 20.47261,
         "model3d": null
     },
-    "13932303": {
+    {
         "part_number": "13932303",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3257,7 +3257,7 @@
         "weight": 12.546,
         "model3d": null
     },
-    "13819977": {
+    {
         "part_number": "13819977",
         "description": "ASM COV CONN MECH ASST",
         "mfg": "Aptiv",
@@ -3275,7 +3275,7 @@
         "weight": 21.943,
         "model3d": null
     },
-    "13712208": {
+    {
         "part_number": "13712208",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3293,7 +3293,7 @@
         "weight": 8.689,
         "model3d": null
     },
-    "13979965": {
+    {
         "part_number": "13979965",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3311,7 +3311,7 @@
         "weight": 23.751,
         "model3d": null
     },
-    "13934566": {
+    {
         "part_number": "13934566",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -3329,7 +3329,7 @@
         "weight": 10.01078,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_4e55acc8-e719-45e0-badc-8d8a8305ad37"
     },
-    "13707401": {
+    {
         "part_number": "13707401",
         "description": "ASM COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3347,7 +3347,7 @@
         "weight": 22.1,
         "model3d": null
     },
-    "13651234": {
+    {
         "part_number": "13651234",
         "description": "COV MODULE HSG",
         "mfg": "Aptiv",
@@ -3365,7 +3365,7 @@
         "weight": 446.1,
         "model3d": null
     },
-    "13651238": {
+    {
         "part_number": "13651238",
         "description": "COV CONN MICRO 64 BLK",
         "mfg": "Aptiv",
@@ -3383,7 +3383,7 @@
         "weight": 9.8,
         "model3d": null
     },
-    "13678224": {
+    {
         "part_number": "13678224",
         "description": "COV CONN GT GRA MD",
         "mfg": "Aptiv",
@@ -3401,7 +3401,7 @@
         "weight": 0.484,
         "model3d": null
     },
-    "13522384": {
+    {
         "part_number": "13522384",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -3419,7 +3419,7 @@
         "weight": 6.67314,
         "model3d": null
     },
-    "33108966": {
+    {
         "part_number": "33108966",
         "description": "ASM COV CONN MQS",
         "mfg": "Aptiv",
@@ -3437,7 +3437,7 @@
         "weight": 5.553,
         "model3d": null
     },
-    "15533302": {
+    {
         "part_number": "15533302",
         "description": "LOCK SECONDARY BLK",
         "mfg": "Aptiv",
@@ -3455,7 +3455,7 @@
         "weight": 0.365,
         "model3d": null
     },
-    "13871964": {
+    {
         "part_number": "13871964",
         "description": "ASM COV WIRE DRESS GRA LT",
         "mfg": "Aptiv",
@@ -3473,7 +3473,7 @@
         "weight": 5.699,
         "model3d": null
     },
-    "15494586": {
+    {
         "part_number": "15494586",
         "description": "Cover Lever Assembly",
         "mfg": "Aptiv",
@@ -3491,7 +3491,7 @@
         "weight": 0.016,
         "model3d": null
     },
-    "15498406": {
+    {
         "part_number": "15498406",
         "description": "Cover Lever Assembly",
         "mfg": "Aptiv",
@@ -3509,7 +3509,7 @@
         "weight": 17.1,
         "model3d": null
     },
-    "15494581": {
+    {
         "part_number": "15494581",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -3527,7 +3527,7 @@
         "weight": 17.1,
         "model3d": null
     },
-    "15516549": {
+    {
         "part_number": "15516549",
         "description": "COV CAP BLK",
         "mfg": "Aptiv",
@@ -3545,7 +3545,7 @@
         "weight": 7.002,
         "model3d": null
     },
-    "15511752": {
+    {
         "part_number": "15511752",
         "description": "ASM COV CONN MECH ASST MULTI",
         "mfg": "Aptiv",
@@ -3563,7 +3563,7 @@
         "weight": 26.82,
         "model3d": null
     },
-    "15511759": {
+    {
         "part_number": "15511759",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -3581,7 +3581,7 @@
         "weight": 27.25,
         "model3d": null
     },
-    "15491050": {
+    {
         "part_number": "15491050",
         "description": "COV CONN",
         "mfg": "Aptiv",
@@ -3599,7 +3599,7 @@
         "weight": 25.823,
         "model3d": null
     },
-    "15498762": {
+    {
         "part_number": "15498762",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -3617,7 +3617,7 @@
         "weight": 6.3,
         "model3d": null
     },
-    "15356659": {
+    {
         "part_number": "15356659",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3635,7 +3635,7 @@
         "weight": 11.408,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_5b416550-8d92-478f-a85f-15f5f2afd303"
     },
-    "13530930": {
+    {
         "part_number": "13530930",
         "description": "ASM COV CONN MECH ASST Black",
         "mfg": "Aptiv",
@@ -3653,7 +3653,7 @@
         "weight": 19.096,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_24691b37-e587-4bf2-8c8b-82d656ff32da"
     },
-    "15329099": {
+    {
         "part_number": "15329099",
         "description": "COV CONN MetriPack (M/P) GRA LT",
         "mfg": "Aptiv",
@@ -3671,7 +3671,7 @@
         "weight": 19.09,
         "model3d": null
     },
-    "13577943": {
+    {
         "part_number": "13577943",
         "description": "ASM COV SHROUD BLK",
         "mfg": "Aptiv",
@@ -3689,7 +3689,7 @@
         "weight": 87.478,
         "model3d": null
     },
-    "15491936": {
+    {
         "part_number": "15491936",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3707,7 +3707,7 @@
         "weight": 5.618,
         "model3d": null
     },
-    "15410978": {
+    {
         "part_number": "15410978",
         "description": "COV WIRE DRESS BLU",
         "mfg": "Aptiv",
@@ -3725,7 +3725,7 @@
         "weight": 6.875,
         "model3d": null
     },
-    "15491031": {
+    {
         "part_number": "15491031",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3743,7 +3743,7 @@
         "weight": 23.723,
         "model3d": null
     },
-    "15488664": {
+    {
         "part_number": "15488664",
         "description": "Cover Wire Dress",
         "mfg": "Aptiv",
@@ -3761,7 +3761,7 @@
         "weight": 16.24506,
         "model3d": null
     },
-    "15489188": {
+    {
         "part_number": "15489188",
         "description": "COV WIRE DRESS GRA",
         "mfg": "Aptiv",
@@ -3779,7 +3779,7 @@
         "weight": 6.554,
         "model3d": null
     },
-    "15489189": {
+    {
         "part_number": "15489189",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3797,7 +3797,7 @@
         "weight": 6.554,
         "model3d": null
     },
-    "13552252": {
+    {
         "part_number": "13552252",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3815,7 +3815,7 @@
         "weight": 13.57968,
         "model3d": null
     },
-    "13514294": {
+    {
         "part_number": "13514294",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3833,7 +3833,7 @@
         "weight": 9.272,
         "model3d": null
     },
-    "13514295": {
+    {
         "part_number": "13514295",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -3851,7 +3851,7 @@
         "weight": 11.284,
         "model3d": null
     },
-    "13539484": {
+    {
         "part_number": "13539484",
         "description": "Cover Module",
         "mfg": "Aptiv",
@@ -3869,7 +3869,7 @@
         "weight": 200.0,
         "model3d": null
     },
-    "15356930": {
+    {
         "part_number": "15356930",
         "description": "Wire Dress Cover",
         "mfg": "Aptiv",
@@ -3887,7 +3887,7 @@
         "weight": 7.492,
         "model3d": null
     },
-    "13514508": {
+    {
         "part_number": "13514508",
         "description": "ASM COV CONN BLK",
         "mfg": "Aptiv",
@@ -3905,7 +3905,7 @@
         "weight": 11.79415,
         "model3d": null
     },
-    "15409393": {
+    {
         "part_number": "15409393",
         "description": "COV CONN MIC/P GRA MD",
         "mfg": "Aptiv",
@@ -3923,7 +3923,7 @@
         "weight": 4.527,
         "model3d": null
     },
-    "13535624": {
+    {
         "part_number": "13535624",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -3941,7 +3941,7 @@
         "weight": 31.5252,
         "model3d": null
     },
-    "35554248": {
+    {
         "part_number": "35554248",
         "description": "COV DUST CAP BLK",
         "mfg": "Aptiv",
@@ -3959,7 +3959,7 @@
         "weight": 12.65,
         "model3d": null
     },
-    "15441828": {
+    {
         "part_number": "15441828",
         "description": "COV CONN CLIP CDT GRA LT",
         "mfg": "Aptiv",
@@ -3977,7 +3977,7 @@
         "weight": 9.49962,
         "model3d": null
     },
-    "15366687": {
+    {
         "part_number": "15366687",
         "description": "COV CONN CLIP CDT BLK",
         "mfg": "Aptiv",
@@ -3995,7 +3995,7 @@
         "weight": 9.239,
         "model3d": null
     },
-    "15345505": {
+    {
         "part_number": "15345505",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4013,7 +4013,7 @@
         "weight": 3.577,
         "model3d": null
     },
-    "12185279": {
+    {
         "part_number": "12185279",
         "description": "COV CONN MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -4031,7 +4031,7 @@
         "weight": 3.61836,
         "model3d": null
     },
-    "13834199": {
+    {
         "part_number": "13834199",
         "description": "COV CONN END CAP BLK",
         "mfg": "Aptiv",
@@ -4049,7 +4049,7 @@
         "weight": 3.306,
         "model3d": null
     },
-    "15400215": {
+    {
         "part_number": "15400215",
         "description": "COV RELAY BLK",
         "mfg": "Aptiv",
@@ -4067,7 +4067,7 @@
         "weight": 18.067,
         "model3d": null
     },
-    "15405467": {
+    {
         "part_number": "15405467",
         "description": "COV CONN MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -4085,7 +4085,7 @@
         "weight": 11.535,
         "model3d": null
     },
-    "15393126": {
+    {
         "part_number": "15393126",
         "description": "COV CONN MICRO 64 BLU",
         "mfg": "Aptiv",
@@ -4103,7 +4103,7 @@
         "weight": 8.436,
         "model3d": null
     },
-    "10720328": {
+    {
         "part_number": "10720328",
         "description": "COV CONN MIC/P BLK",
         "mfg": "Aptiv",
@@ -4121,7 +4121,7 @@
         "weight": 7.52,
         "model3d": null
     },
-    "10730125": {
+    {
         "part_number": "10730125",
         "description": "COV CONV CTR BLK",
         "mfg": "Aptiv",
@@ -4139,7 +4139,7 @@
         "weight": 1.71,
         "model3d": null
     },
-    "15337662": {
+    {
         "part_number": "15337662",
         "description": "Cover Conduit Slit",
         "mfg": "Aptiv",
@@ -4157,7 +4157,7 @@
         "weight": 2.954,
         "model3d": null
     },
-    "15329014": {
+    {
         "part_number": "15329014",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -4175,7 +4175,7 @@
         "weight": 10.753,
         "model3d": null
     },
-    "15305292": {
+    {
         "part_number": "15305292",
         "description": "ASM COV CONN MetriPack (M/P) CRM",
         "mfg": "Aptiv",
@@ -4193,7 +4193,7 @@
         "weight": 6.71262,
         "model3d": null
     },
-    "13981127": {
+    {
         "part_number": "13981127",
         "description": "COV HOUSING TOP BLK",
         "mfg": "Aptiv",
@@ -4211,7 +4211,7 @@
         "weight": 3.48,
         "model3d": null
     },
-    "13972193": {
+    {
         "part_number": "13972193",
         "description": "ASM COV BODY",
         "mfg": "Aptiv",
@@ -4229,7 +4229,7 @@
         "weight": 27.849,
         "model3d": null
     },
-    "13819976": {
+    {
         "part_number": "13819976",
         "description": "ASM COV CONN MECH ASST",
         "mfg": "Aptiv",
@@ -4247,7 +4247,7 @@
         "weight": 23.7,
         "model3d": null
     },
-    "13949449": {
+    {
         "part_number": "13949449",
         "description": "COV CONN",
         "mfg": "Aptiv",
@@ -4265,7 +4265,7 @@
         "weight": 18.806,
         "model3d": null
     },
-    "13955048": {
+    {
         "part_number": "13955048",
         "description": "ASM COV CONN",
         "mfg": "Aptiv",
@@ -4283,7 +4283,7 @@
         "weight": 25.29288,
         "model3d": null
     },
-    "13932546": {
+    {
         "part_number": "13932546",
         "description": "COV CHAN BLK",
         "mfg": "Aptiv",
@@ -4301,7 +4301,7 @@
         "weight": 19.619,
         "model3d": null
     },
-    "13923561": {
+    {
         "part_number": "13923561",
         "description": "ASM CONN",
         "mfg": "Aptiv",
@@ -4319,7 +4319,7 @@
         "weight": 24.84,
         "model3d": null
     },
-    "12033731": {
+    {
         "part_number": "12033731",
         "description": "COV FUSE  BLK",
         "mfg": "Aptiv",
@@ -4337,7 +4337,7 @@
         "weight": 7.42824,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_c54a953a-a4f9-4ae5-9ecf-91d44f63a987"
     },
-    "13885833": {
+    {
         "part_number": "13885833",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4355,7 +4355,7 @@
         "weight": 5.07072,
         "model3d": null
     },
-    "13861801": {
+    {
         "part_number": "13861801",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4373,7 +4373,7 @@
         "weight": 9.12,
         "model3d": null
     },
-    "15357142": {
+    {
         "part_number": "15357142",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -4391,7 +4391,7 @@
         "weight": 9.429,
         "model3d": null
     },
-    "15475968": {
+    {
         "part_number": "15475968",
         "description": "COV WIRE DRESS  Black",
         "mfg": "Aptiv",
@@ -4409,7 +4409,7 @@
         "weight": 36.11064,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_3b61c586-2de5-4f82-9840-a06ac7b61e2e"
     },
-    "15475969": {
+    {
         "part_number": "15475969",
         "description": "COV CONN CLIP CDT Black",
         "mfg": "Aptiv",
@@ -4427,7 +4427,7 @@
         "weight": 34.5876,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b0ecd338-324e-4e84-93aa-a97269bdf2c8"
     },
-    "13831365": {
+    {
         "part_number": "13831365",
         "description": "ASM COV WIRE DRESS",
         "mfg": "Aptiv",
@@ -4445,7 +4445,7 @@
         "weight": 17.01,
         "model3d": null
     },
-    "13837391": {
+    {
         "part_number": "13837391",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4463,7 +4463,7 @@
         "weight": 7.88,
         "model3d": null
     },
-    "13884810": {
+    {
         "part_number": "13884810",
         "description": "ASM COV CONN MECH ASST BLK",
         "mfg": "Aptiv",
@@ -4481,7 +4481,7 @@
         "weight": 18.57256,
         "model3d": null
     },
-    "13552248": {
+    {
         "part_number": "13552248",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -4499,7 +4499,7 @@
         "weight": 16.72836,
         "model3d": null
     },
-    "13780641": {
+    {
         "part_number": "13780641",
         "description": "COV CONN 0.64 BLK",
         "mfg": "Aptiv",
@@ -4517,7 +4517,7 @@
         "weight": 0.29725,
         "model3d": null
     },
-    "13771650": {
+    {
         "part_number": "13771650",
         "description": "COV CONN MQS BLK",
         "mfg": "Aptiv",
@@ -4535,7 +4535,7 @@
         "weight": 0.674,
         "model3d": null
     },
-    "13752446": {
+    {
         "part_number": "13752446",
         "description": "Cover Connector",
         "mfg": "Aptiv",
@@ -4553,7 +4553,7 @@
         "weight": 2.528,
         "model3d": null
     },
-    "13674454": {
+    {
         "part_number": "13674454",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -4571,7 +4571,7 @@
         "weight": 14.1,
         "model3d": null
     },
-    "13719691": {
+    {
         "part_number": "13719691",
         "description": "COV CONN PROTECTIVE BLK",
         "mfg": "Aptiv",
@@ -4589,7 +4589,7 @@
         "weight": 3.36414,
         "model3d": null
     },
-    "13667277": {
+    {
         "part_number": "13667277",
         "description": "COV CONN  Black",
         "mfg": "Aptiv",
@@ -4607,7 +4607,7 @@
         "weight": 7.00992,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ec60cc08-ab2c-4193-9ae8-2741b1274053"
     },
-    "13682688": {
+    {
         "part_number": "13682688",
         "description": "COV CONN GRA LT",
         "mfg": "Aptiv",
@@ -4625,7 +4625,7 @@
         "weight": 21.2,
         "model3d": null
     },
-    "13682685": {
+    {
         "part_number": "13682685",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4643,7 +4643,7 @@
         "weight": 21.02,
         "model3d": null
     },
-    "13677841": {
+    {
         "part_number": "13677841",
         "description": "Seal Retainer",
         "mfg": "Aptiv",
@@ -4661,7 +4661,7 @@
         "weight": 0.839,
         "model3d": null
     },
-    "13632178": {
+    {
         "part_number": "13632178",
         "description": "ASM COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -4679,7 +4679,7 @@
         "weight": 30.424,
         "model3d": null
     },
-    "33500289": {
+    {
         "part_number": "33500289",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4697,7 +4697,7 @@
         "weight": 1.8426,
         "model3d": null
     },
-    "15477591": {
+    {
         "part_number": "15477591",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4715,7 +4715,7 @@
         "weight": 15.6,
         "model3d": null
     },
-    "13610317": {
+    {
         "part_number": "13610317",
         "description": "Wire Dress Cover",
         "mfg": "Aptiv",
@@ -4733,7 +4733,7 @@
         "weight": 7.9,
         "model3d": null
     },
-    "13709524": {
+    {
         "part_number": "13709524",
         "description": "COV CONN GRA",
         "mfg": "Aptiv",
@@ -4751,7 +4751,7 @@
         "weight": 38.857,
         "model3d": null
     },
-    "13709518": {
+    {
         "part_number": "13709518",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4769,7 +4769,7 @@
         "weight": 38.857,
         "model3d": null
     },
-    "13709534": {
+    {
         "part_number": "13709534",
         "description": "COV CONN",
         "mfg": "Aptiv",
@@ -4787,7 +4787,7 @@
         "weight": 19.1,
         "model3d": null
     },
-    "33366691": {
+    {
         "part_number": "33366691",
         "description": "COV CONN CLIP CDT",
         "mfg": "Aptiv",
@@ -4805,7 +4805,7 @@
         "weight": 0.94734,
         "model3d": null
     },
-    "33366692": {
+    {
         "part_number": "33366692",
         "description": "COV CONN CLIP CDT",
         "mfg": "Aptiv",
@@ -4823,7 +4823,7 @@
         "weight": 1.56294,
         "model3d": null
     },
-    "13530006": {
+    {
         "part_number": "13530006",
         "description": "COV CONN MECH ASST GRA",
         "mfg": "Aptiv",
@@ -4841,7 +4841,7 @@
         "weight": 8.86,
         "model3d": null
     },
-    "13503623": {
+    {
         "part_number": "13503623",
         "description": "COV CONN BLK",
         "mfg": "Aptiv",
@@ -4859,7 +4859,7 @@
         "weight": 7.65,
         "model3d": null
     },
-    "13503602": {
+    {
         "part_number": "13503602",
         "description": "COV WIRE DRESS BLU",
         "mfg": "Aptiv",
@@ -4877,7 +4877,7 @@
         "weight": 6.319,
         "model3d": null
     },
-    "12191914": {
+    {
         "part_number": "12191914",
         "description": "ASM COV CONN GT GRN LT",
         "mfg": "Aptiv",
@@ -4895,7 +4895,7 @@
         "weight": 4.47896,
         "model3d": null
     },
-    "12191217": {
+    {
         "part_number": "12191217",
         "description": "ASM COV CONN GT GRA MD",
         "mfg": "Aptiv",
@@ -4913,7 +4913,7 @@
         "weight": 3.875,
         "model3d": null
     },
-    "12110794": {
+    {
         "part_number": "12110794",
         "description": "COV CONN MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -4931,7 +4931,7 @@
         "weight": 0.79002,
         "model3d": null
     },
-    "12177084": {
+    {
         "part_number": "12177084",
         "description": "COV WIRE DRESS BLK",
         "mfg": "Aptiv",
@@ -4949,7 +4949,7 @@
         "weight": 12.2115,
         "model3d": null
     },
-    "12176470": {
+    {
         "part_number": "12176470",
         "description": "ASM COV CONN GT CRM",
         "mfg": "Aptiv",
@@ -4967,7 +4967,7 @@
         "weight": 3.607,
         "model3d": null
     },
-    "12176469": {
+    {
         "part_number": "12176469",
         "description": "ASM COV CONN GT GRA LT",
         "mfg": "Aptiv",
@@ -4985,7 +4985,7 @@
         "weight": 4.249,
         "model3d": null
     },
-    "12092408": {
+    {
         "part_number": "12092408",
         "description": "ASM COV SHELL NAT",
         "mfg": "Aptiv",
@@ -5003,7 +5003,7 @@
         "weight": 0.676,
         "model3d": null
     },
-    "12066164": {
+    {
         "part_number": "12066164",
         "description": "COV CONN MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -5021,4 +5021,4 @@
         "weight": 3.8,
         "model3d": null
     }
-}
+]

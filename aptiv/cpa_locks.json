@@ -1,5 +1,5 @@
-{
-    "15519096": {
+[
+    {
         "part_number": "15519096",
         "description": "LOCK CPA AXIAL Red",
         "mfg": "Aptiv",
@@ -17,7 +17,7 @@
         "weight": 0.334,
         "model3d": null
     },
-    "15488490": {
+    {
         "part_number": "15488490",
         "description": "LOCK CPA    NAT",
         "mfg": "Aptiv",
@@ -35,7 +35,7 @@
         "weight": 0.3336,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_3f67894d-18c7-4125-ac3e-5d67c3aeee4d"
     },
-    "15317832": {
+    {
         "part_number": "15317832",
         "description": "LOCK CPA AXIAL  2 GRA LT",
         "mfg": "Aptiv",
@@ -53,7 +53,7 @@
         "weight": 0.75465,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_827dd73f-b0f5-48cd-8055-0452c0f39d04"
     },
-    "15357145": {
+    {
         "part_number": "15357145",
         "description": "LOCK CPA GT TETHER  Red",
         "mfg": "Aptiv",
@@ -72,7 +72,7 @@
         "model3d": null,
         "type": "Cpa"
     },
-    "33503757": {
+    {
         "part_number": "33503757",
         "description": "LOCK CPA Red",
         "mfg": "Aptiv",
@@ -90,7 +90,7 @@
         "weight": 0.409,
         "model3d": null
     },
-    "33511970": {
+    {
         "part_number": "33511970",
         "description": "LOCK CPA    Red",
         "mfg": "Aptiv",
@@ -108,7 +108,7 @@
         "weight": 0.2702,
         "model3d": null
     },
-    "12020833": {
+    {
         "part_number": "12020833",
         "description": "LOCK CPA PERP   GRA",
         "mfg": "Aptiv",
@@ -126,7 +126,7 @@
         "weight": 0.80827,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_17bd2063-3b27-4ad6-b586-1b205572e111"
     },
-    "15526971": {
+    {
         "part_number": "15526971",
         "description": "LOCK CPA AXIAL   Red",
         "mfg": "Aptiv",
@@ -144,7 +144,7 @@
         "weight": 0.524,
         "model3d": null
     },
-    "15477038": {
+    {
         "part_number": "15477038",
         "description": "LOCK CPA MICRO 64   Red",
         "mfg": "Aptiv",
@@ -162,7 +162,7 @@
         "weight": 0.44,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_fdfa0c6a-bfe6-4ac7-b614-490549f1e3c6"
     },
-    "13854913": {
+    {
         "part_number": "13854913",
         "description": "LOCK CPA AXIAL Red",
         "mfg": "Aptiv",
@@ -180,7 +180,7 @@
         "weight": 0.446,
         "model3d": null
     },
-    "33228260": {
+    {
         "part_number": "33228260",
         "description": "LOCK CPA Red LT",
         "mfg": "Aptiv",
@@ -198,7 +198,7 @@
         "weight": 0.5336,
         "model3d": null
     },
-    "13604607": {
+    {
         "part_number": "13604607",
         "description": "LOCK CPA Red",
         "mfg": "Aptiv",
@@ -216,7 +216,7 @@
         "weight": 0.2919,
         "model3d": null
     },
-    "33239515": {
+    {
         "part_number": "33239515",
         "description": "LOCK CPA    Red",
         "mfg": "Aptiv",
@@ -234,7 +234,7 @@
         "weight": 0.70751,
         "model3d": null
     },
-    "33380638": {
+    {
         "part_number": "33380638",
         "description": "LOCK CPA AXIAL Red",
         "mfg": "Aptiv",
@@ -252,7 +252,7 @@
         "weight": 0.243,
         "model3d": null
     },
-    "15432300": {
+    {
         "part_number": "15432300",
         "description": "LOCK CPA 38 Red",
         "mfg": "Aptiv",
@@ -270,7 +270,7 @@
         "weight": 0.8,
         "model3d": null
     },
-    "13581711": {
+    {
         "part_number": "13581711",
         "description": "ASM LOCK CPA SLIDE MULTI",
         "mfg": "Aptiv",
@@ -288,7 +288,7 @@
         "weight": 5.21,
         "model3d": null
     },
-    "12052834": {
+    {
         "part_number": "12052834",
         "description": "LOCK CPA AXIAL   GRN",
         "mfg": "Aptiv",
@@ -306,7 +306,7 @@
         "weight": 0.4761,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_530b3706-c79b-4fe0-914c-bdf38bd0e3d7"
     },
-    "13821935": {
+    {
         "part_number": "13821935",
         "description": "LOCK CPA GT   CRM",
         "mfg": "Aptiv",
@@ -324,7 +324,7 @@
         "weight": 0.66234,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2c3a4c31-3000-4866-a111-bf0e7a24b2b1"
     },
-    "12064989": {
+    {
         "part_number": "12064989",
         "description": "LOCK CPA AXIAL ORN",
         "mfg": "Aptiv",
@@ -342,7 +342,7 @@
         "weight": 0.383,
         "model3d": null
     },
-    "15318055": {
+    {
         "part_number": "15318055",
         "description": "LOCK CPA MetriPack (M/P) TETHER BLK",
         "mfg": "Aptiv",
@@ -360,7 +360,7 @@
         "weight": 0.834,
         "model3d": null
     },
-    "15326096": {
+    {
         "part_number": "15326096",
         "description": "LOCK CPA AXIAL BLU",
         "mfg": "Aptiv",
@@ -378,7 +378,7 @@
         "weight": 0.237,
         "model3d": null
     },
-    "12110503": {
+    {
         "part_number": "12110503",
         "description": "LOCK CPA AXIAL BLU",
         "mfg": "Aptiv",
@@ -396,7 +396,7 @@
         "weight": 0.4,
         "model3d": null
     },
-    "15366678": {
+    {
         "part_number": "15366678",
         "description": "LOCK CPA GT   CRM",
         "mfg": "Aptiv",
@@ -414,7 +414,7 @@
         "weight": 0.3591,
         "model3d": null
     },
-    "15394612": {
+    {
         "part_number": "15394612",
         "description": "LOCK CPA GT TETHER  BLU",
         "mfg": "Aptiv",
@@ -432,7 +432,7 @@
         "weight": 1.52646,
         "model3d": null
     },
-    "15305053": {
+    {
         "part_number": "15305053",
         "description": "LOCK CPA GRA MD",
         "mfg": "Aptiv",
@@ -450,7 +450,7 @@
         "weight": 0.817,
         "model3d": null
     },
-    "12077899": {
+    {
         "part_number": "12077899",
         "description": "LOCK CPA AXIAL ORN",
         "mfg": "Aptiv",
@@ -468,7 +468,7 @@
         "weight": 1.1,
         "model3d": null
     },
-    "12092053": {
+    {
         "part_number": "12092053",
         "description": "LOCK CPA MetriPack (M/P) TETHER ORN",
         "mfg": "Aptiv",
@@ -486,7 +486,7 @@
         "weight": 0.94,
         "model3d": null
     },
-    "12077979": {
+    {
         "part_number": "12077979",
         "description": "LOCK CPA PERP   BLU",
         "mfg": "Aptiv",
@@ -504,7 +504,7 @@
         "weight": 0.22002,
         "model3d": null
     },
-    "12092873": {
+    {
         "part_number": "12092873",
         "description": "LOCK CPA AXIAL 6 Red",
         "mfg": "Aptiv",
@@ -522,7 +522,7 @@
         "weight": 0.51,
         "model3d": null
     },
-    "15326239": {
+    {
         "part_number": "15326239",
         "description": "LOCK CPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -540,7 +540,7 @@
         "weight": 1.075,
         "model3d": null
     },
-    "15318201": {
+    {
         "part_number": "15318201",
         "description": "LOCK CPA GT GRA MD",
         "mfg": "Aptiv",
@@ -558,7 +558,7 @@
         "weight": 0.559,
         "model3d": null
     },
-    "12129551": {
+    {
         "part_number": "12129551",
         "description": "LOCK CPA AXIAL   Red",
         "mfg": "Aptiv",
@@ -576,7 +576,7 @@
         "weight": 1.49226,
         "model3d": null
     },
-    "12110292": {
+    {
         "part_number": "12110292",
         "description": "LOCK CPA AXIAL 3 NAT",
         "mfg": "Aptiv",
@@ -594,7 +594,7 @@
         "weight": 0.6,
         "model3d": null
     },
-    "12092360": {
+    {
         "part_number": "12092360",
         "description": "LOCK CPA AXIAL ORN",
         "mfg": "Aptiv",
@@ -612,7 +612,7 @@
         "weight": 0.8,
         "model3d": null
     },
-    "13947024": {
+    {
         "part_number": "13947024",
         "description": "LOCK CPA    Red",
         "mfg": "Aptiv",
@@ -630,7 +630,7 @@
         "weight": 0.11639,
         "model3d": null
     },
-    "15397330": {
+    {
         "part_number": "15397330",
         "description": "LOCK CPA PERP 2 BLU",
         "mfg": "Aptiv",
@@ -648,7 +648,7 @@
         "weight": 0.2,
         "model3d": null
     },
-    "15423276": {
+    {
         "part_number": "15423276",
         "description": "LOCK CPA GT 2 GRN LT",
         "mfg": "Aptiv",
@@ -666,7 +666,7 @@
         "weight": 0.646,
         "model3d": null
     },
-    "13590280": {
+    {
         "part_number": "13590280",
         "description": "LOCK CPA GT FBT 150 CRM",
         "mfg": "Aptiv",
@@ -684,7 +684,7 @@
         "weight": 0.584,
         "model3d": null
     },
-    "13592513": {
+    {
         "part_number": "13592513",
         "description": "LOCK CPA GT BLU",
         "mfg": "Aptiv",
@@ -702,7 +702,7 @@
         "weight": 0.605,
         "model3d": null
     },
-    "13528000": {
+    {
         "part_number": "13528000",
         "description": "LOCK CPA MICRO 64 CRM",
         "mfg": "Aptiv",
@@ -720,7 +720,7 @@
         "weight": 0.395,
         "model3d": null
     },
-    "12110299": {
+    {
         "part_number": "12110299",
         "description": "LOCK CPA MIC/P   Red",
         "mfg": "Aptiv",
@@ -738,7 +738,7 @@
         "weight": 1.41742,
         "model3d": null
     },
-    "12191219": {
+    {
         "part_number": "12191219",
         "description": "LOCK CPA MIC/P 16 GRA LT",
         "mfg": "Aptiv",
@@ -756,7 +756,7 @@
         "weight": 1.672,
         "model3d": null
     },
-    "12162768": {
+    {
         "part_number": "12162768",
         "description": "LOCK CPA AXIAL  2 BLU",
         "mfg": "Aptiv",
@@ -774,4 +774,4 @@
         "weight": 0.3,
         "model3d": null
     }
-}
+]

@@ -1,5 +1,5 @@
-{
-    "15327918": {
+[
+    {
         "part_number": "15327918",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -21,7 +21,7 @@
         "weight": 0.08,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f61bf45c-8acc-43da-b242-9d00ef1c0098"
     },
-    "12198198": {
+    {
         "part_number": "12198198",
         "description": "PLUG SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -43,7 +43,7 @@
         "weight": 0.06,
         "model3d": null
     },
-    "15327913": {
+    {
         "part_number": "15327913",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -65,7 +65,7 @@
         "weight": 0.057,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_4b1dea9a-49cd-494e-b979-fe221fcfaad5"
     },
-    "33120594": {
+    {
         "part_number": "33120594",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -87,7 +87,7 @@
         "weight": 0.05,
         "model3d": null
     },
-    "15339412": {
+    {
         "part_number": "15339412",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -109,7 +109,7 @@
         "weight": 0.053,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_797fc47f-666e-467c-a7ae-ae90502ac038"
     },
-    "15342610": {
+    {
         "part_number": "15342610",
         "description": "Cavity Plug",
         "mfg": "Aptiv",
@@ -131,7 +131,7 @@
         "weight": 0.08,
         "model3d": null
     },
-    "13806076": {
+    {
         "part_number": "13806076",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -153,7 +153,7 @@
         "weight": 0.07467,
         "model3d": null
     },
-    "13768626": {
+    {
         "part_number": "13768626",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -175,7 +175,7 @@
         "weight": 0.07,
         "model3d": null
     },
-    "13826722": {
+    {
         "part_number": "13826722",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -197,7 +197,7 @@
         "weight": 0.12,
         "model3d": null
     },
-    "15316894": {
+    {
         "part_number": "15316894",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -219,7 +219,7 @@
         "weight": 0.14,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_9e599209-b37d-473b-8dda-2480ca7239c0"
     },
-    "15339838": {
+    {
         "part_number": "15339838",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -241,7 +241,7 @@
         "weight": 0.102,
         "model3d": null
     },
-    "12059168": {
+    {
         "part_number": "12059168",
         "description": "PLUG SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -263,7 +263,7 @@
         "weight": 0.227,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_50600478-6f1e-4f26-8c6b-b833072d5f75"
     },
-    "15327864": {
+    {
         "part_number": "15327864",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -285,7 +285,7 @@
         "weight": 0.33,
         "model3d": null
     },
-    "35232480": {
+    {
         "part_number": "35232480",
         "description": "PLUG SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -307,7 +307,7 @@
         "weight": 0.592,
         "model3d": null
     },
-    "35081644": {
+    {
         "part_number": "35081644",
         "description": "SEAL HOLE FILLER PLUG GRA",
         "mfg": "Aptiv",
@@ -329,7 +329,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35790629": {
+    {
         "part_number": "35790629",
         "description": "SEAL CBL 1W HOLE PLUG WHT",
         "mfg": "Aptiv",
@@ -351,7 +351,7 @@
         "weight": 0.02318,
         "model3d": null
     },
-    "13887349": {
+    {
         "part_number": "13887349",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -373,7 +373,7 @@
         "weight": 0.069,
         "model3d": null
     },
-    "15489185": {
+    {
         "part_number": "15489185",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -395,7 +395,7 @@
         "weight": 0.08208,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_142d028c-efa8-4d3f-ba28-d1fa2bc20f8b"
     },
-    "12065266": {
+    {
         "part_number": "12065266",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -417,7 +417,7 @@
         "weight": 0.057,
         "model3d": null
     },
-    "35747488": {
+    {
         "part_number": "35747488",
         "description": "Single Wire Seal",
         "mfg": "Aptiv",
@@ -439,7 +439,7 @@
         "weight": 0.76,
         "model3d": null
     },
-    "35748167": {
+    {
         "part_number": "35748167",
         "description": "Single Wire Seal",
         "mfg": "Aptiv",
@@ -461,7 +461,7 @@
         "weight": 0.85,
         "model3d": null
     },
-    "13963810": {
+    {
         "part_number": "13963810",
         "description": "SEAL HOLE FILLER PLUG BLK",
         "mfg": "Aptiv",
@@ -483,7 +483,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15339967": {
+    {
         "part_number": "15339967",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -505,7 +505,7 @@
         "weight": 0.114,
         "model3d": null
     },
-    "15337197": {
+    {
         "part_number": "15337197",
         "description": "PLUG SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -527,7 +527,7 @@
         "weight": 0.11,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b7a660d8-36a2-4f42-be6b-b4d9543ebbb4"
     },
-    "15363604": {
+    {
         "part_number": "15363604",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -549,7 +549,7 @@
         "weight": 0.34,
         "model3d": null
     },
-    "33318278": {
+    {
         "part_number": "33318278",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -571,7 +571,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33402443": {
+    {
         "part_number": "33402443",
         "description": "Cavity Plug",
         "mfg": "Aptiv",
@@ -593,7 +593,7 @@
         "weight": 0.088,
         "model3d": null
     },
-    "13735521": {
+    {
         "part_number": "13735521",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -615,7 +615,7 @@
         "weight": 0.102,
         "model3d": null
     },
-    "15327860": {
+    {
         "part_number": "15327860",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -637,7 +637,7 @@
         "weight": 0.12,
         "model3d": null
     },
-    "15363779": {
+    {
         "part_number": "15363779",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -659,7 +659,7 @@
         "weight": 0.37,
         "model3d": null
     },
-    "13756464": {
+    {
         "part_number": "13756464",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -681,7 +681,7 @@
         "weight": 0.14478,
         "model3d": null
     },
-    "35228087": {
+    {
         "part_number": "35228087",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -703,7 +703,7 @@
         "weight": 0.052,
         "model3d": null
     },
-    "35572559": {
+    {
         "part_number": "35572559",
         "description": "SEAL HOLE FILLER PLUG NAT",
         "mfg": "Aptiv",
@@ -725,7 +725,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35572561": {
+    {
         "part_number": "35572561",
         "description": "SEAL HOLE FILLER PLUG GRA DK",
         "mfg": "Aptiv",
@@ -747,7 +747,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15318164": {
+    {
         "part_number": "15318164",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -769,7 +769,7 @@
         "weight": 0.0456,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_ebf8abcb-0c2e-4bb5-8cbd-373b9005f42f"
     },
-    "13927323": {
+    {
         "part_number": "13927323",
         "description": "SEAL HOLE FILLER PLUG BLU",
         "mfg": "Aptiv",
@@ -791,7 +791,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33359662": {
+    {
         "part_number": "33359662",
         "description": "PLUG SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -813,7 +813,7 @@
         "weight": 0.47198,
         "model3d": null
     },
-    "33359659": {
+    {
         "part_number": "33359659",
         "description": "Single Wire Seal FITS TO 8.3 mm CAVITY",
         "mfg": "Aptiv",
@@ -835,7 +835,7 @@
         "weight": 0.18592,
         "model3d": null
     },
-    "33359660": {
+    {
         "part_number": "33359660",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -857,7 +857,7 @@
         "weight": 0.312,
         "model3d": null
     },
-    "33359661": {
+    {
         "part_number": "33359661",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -879,7 +879,7 @@
         "weight": 0.328,
         "model3d": null
     },
-    "15404841": {
+    {
         "part_number": "15404841",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -901,7 +901,7 @@
         "weight": 0.06042,
         "model3d": null
     },
-    "15327859": {
+    {
         "part_number": "15327859",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -923,7 +923,7 @@
         "weight": 0.11,
         "model3d": null
     },
-    "13756465": {
+    {
         "part_number": "13756465",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -945,7 +945,7 @@
         "weight": 0.15048,
         "model3d": null
     },
-    "15366021": {
+    {
         "part_number": "15366021",
         "description": "SINGLE WIRE SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -967,7 +967,7 @@
         "weight": 0.056,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e6bdb783-f510-400b-80ce-5a31c9f12ca7"
     },
-    "35385926": {
+    {
         "part_number": "35385926",
         "description": "PLUG SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -989,7 +989,7 @@
         "weight": 0.061,
         "model3d": null
     },
-    "35105310": {
+    {
         "part_number": "35105310",
         "description": "NO CRIMP / DISK SEAL FITS TO 9.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1011,7 +1011,7 @@
         "weight": 0.325,
         "model3d": null
     },
-    "12059255": {
+    {
         "part_number": "12059255",
         "description": "Cavity Plug",
         "mfg": "Aptiv",
@@ -1033,7 +1033,7 @@
         "weight": 0.72501,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2171e9de-0a85-4dad-935e-04f9bf20986f"
     },
-    "35522042": {
+    {
         "part_number": "35522042",
         "description": "SEAL CBL 1W",
         "mfg": "Aptiv",
@@ -1055,7 +1055,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35522043": {
+    {
         "part_number": "35522043",
         "description": "SEAL CBL 1W GRN",
         "mfg": "Aptiv",
@@ -1077,7 +1077,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35194249": {
+    {
         "part_number": "35194249",
         "description": "PLUG SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -1099,7 +1099,7 @@
         "weight": 0.09,
         "model3d": null
     },
-    "35069181": {
+    {
         "part_number": "35069181",
         "description": "SINGLE WIRE SEAL FITS TO 6.45 mm CAVITY",
         "mfg": "Aptiv",
@@ -1121,7 +1121,7 @@
         "weight": 0.23,
         "model3d": null
     },
-    "35069182": {
+    {
         "part_number": "35069182",
         "description": "SINGLE WIRE SEAL FITS TO 6.45 mm CAVITY",
         "mfg": "Aptiv",
@@ -1143,7 +1143,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35069183": {
+    {
         "part_number": "35069183",
         "description": "PLUG SEAL FITS TO 6.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1165,7 +1165,7 @@
         "weight": 0.31,
         "model3d": null
     },
-    "13613164": {
+    {
         "part_number": "13613164",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -1187,7 +1187,7 @@
         "weight": 0.12,
         "model3d": null
     },
-    "13770939": {
+    {
         "part_number": "13770939",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -1209,7 +1209,7 @@
         "weight": 0.171,
         "model3d": null
     },
-    "13765188": {
+    {
         "part_number": "13765188",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -1231,7 +1231,7 @@
         "weight": 0.171,
         "model3d": null
     },
-    "13510403": {
+    {
         "part_number": "13510403",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -1253,7 +1253,7 @@
         "weight": 0.0767,
         "model3d": null
     },
-    "13887350": {
+    {
         "part_number": "13887350",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -1275,7 +1275,7 @@
         "weight": 0.063,
         "model3d": null
     },
-    "35034363": {
+    {
         "part_number": "35034363",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1297,7 +1297,7 @@
         "weight": 0.111,
         "model3d": null
     },
-    "15324973": {
+    {
         "part_number": "15324973",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1319,7 +1319,7 @@
         "weight": 0.106,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_952c5da3-45d4-4f30-8b12-1d04ac1291db"
     },
-    "12191232": {
+    {
         "part_number": "12191232",
         "description": "SEAL CBL 1W CAVITY  ORN",
         "mfg": "Aptiv",
@@ -1341,7 +1341,7 @@
         "weight": 0.11424,
         "model3d": null
     },
-    "12191233": {
+    {
         "part_number": "12191233",
         "description": "SEAL CBL 1W CAVITY  YEL",
         "mfg": "Aptiv",
@@ -1363,7 +1363,7 @@
         "weight": 0.10752,
         "model3d": null
     },
-    "15305170": {
+    {
         "part_number": "15305170",
         "description": "PLUG SEAL FITS TO 5.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1385,7 +1385,7 @@
         "weight": 0.2,
         "model3d": null
     },
-    "15366067": {
+    {
         "part_number": "15366067",
         "description": "SINGLE WIRE SEAL FITS TO 5.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1407,7 +1407,7 @@
         "weight": 0.117,
         "model3d": null
     },
-    "15366065": {
+    {
         "part_number": "15366065",
         "description": "SINGLE WIRE SEAL FITS TO 5.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1429,7 +1429,7 @@
         "weight": 0.166,
         "model3d": null
     },
-    "15366066": {
+    {
         "part_number": "15366066",
         "description": "SINGLE WIRE SEAL FITS TO 5.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1451,7 +1451,7 @@
         "weight": 0.133,
         "model3d": null
     },
-    "10779162": {
+    {
         "part_number": "10779162",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1473,7 +1473,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "35034195": {
+    {
         "part_number": "35034195",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1495,7 +1495,7 @@
         "weight": 0.093,
         "model3d": null
     },
-    "10889241": {
+    {
         "part_number": "10889241",
         "description": "SINGLE WIRE SEAL FITS TO 12 mm CAVITY",
         "mfg": "Aptiv",
@@ -1517,7 +1517,7 @@
         "weight": 0.7,
         "model3d": null
     },
-    "13756673": {
+    {
         "part_number": "13756673",
         "description": "SINGLE WIRE SEAL FITS TO 12.50 mm CAVITY",
         "mfg": "Aptiv",
@@ -1539,7 +1539,7 @@
         "weight": 0.8,
         "model3d": null
     },
-    "12186633": {
+    {
         "part_number": "12186633",
         "description": "PLUG SEAL FITS TO 12.50 mm CAVITY",
         "mfg": "Aptiv",
@@ -1561,7 +1561,7 @@
         "weight": 1.0,
         "model3d": null
     },
-    "12186636": {
+    {
         "part_number": "12186636",
         "description": "SINGLE WIRE SEAL FITS TO 6.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1583,7 +1583,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "10788269": {
+    {
         "part_number": "10788269",
         "description": "SINGLE WIRE SEAL FITS TO 6.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1605,7 +1605,7 @@
         "weight": 0.172,
         "model3d": null
     },
-    "13834633": {
+    {
         "part_number": "13834633",
         "description": "SINGLE WIRE SEAL FITS TO 6.45 mm CAVITY",
         "mfg": "Aptiv",
@@ -1627,7 +1627,7 @@
         "weight": 0.195,
         "model3d": null
     },
-    "13834635": {
+    {
         "part_number": "13834635",
         "description": "SINGLE WIRE SEAL FITS TO 6.45 mm CAVITY",
         "mfg": "Aptiv",
@@ -1649,7 +1649,7 @@
         "weight": 0.187,
         "model3d": null
     },
-    "13779855": {
+    {
         "part_number": "13779855",
         "description": "Wire Tube",
         "mfg": "Aptiv",
@@ -1671,7 +1671,7 @@
         "weight": 0.0252,
         "model3d": null
     },
-    "10737671": {
+    {
         "part_number": "10737671",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1693,7 +1693,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "10737670": {
+    {
         "part_number": "10737670",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1715,7 +1715,7 @@
         "weight": 0.12,
         "model3d": null
     },
-    "35407244": {
+    {
         "part_number": "35407244",
         "description": "SEAL CBL 1W GRA",
         "mfg": "Aptiv",
@@ -1737,7 +1737,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15366022": {
+    {
         "part_number": "15366022",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -1759,7 +1759,7 @@
         "weight": 0.039,
         "model3d": null
     },
-    "15305171": {
+    {
         "part_number": "15305171",
         "description": "PLUG SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -1781,7 +1781,7 @@
         "weight": 0.066,
         "model3d": null
     },
-    "13688074": {
+    {
         "part_number": "13688074",
         "description": "SEAL HOLE FILLER PLUG PPL",
         "mfg": "Aptiv",
@@ -1803,7 +1803,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "10757056": {
+    {
         "part_number": "10757056",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1825,7 +1825,7 @@
         "weight": 0.086,
         "model3d": null
     },
-    "15324976": {
+    {
         "part_number": "15324976",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -1847,7 +1847,7 @@
         "weight": 0.11,
         "model3d": null
     },
-    "15443869": {
+    {
         "part_number": "15443869",
         "description": "SINGLE WIRE SEAL FITS TO 6.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -1869,7 +1869,7 @@
         "weight": 0.17,
         "model3d": null
     },
-    "15327788": {
+    {
         "part_number": "15327788",
         "description": "SINGLE WIRE SEAL FITS TO 12.50 mm CAVITY",
         "mfg": "Aptiv",
@@ -1891,7 +1891,7 @@
         "weight": 0.7,
         "model3d": null
     },
-    "35372077": {
+    {
         "part_number": "35372077",
         "description": "SEAL CBL 1W CAVITY PLUG RedBRN",
         "mfg": "Aptiv",
@@ -1913,7 +1913,7 @@
         "weight": 0.112,
         "model3d": null
     },
-    "33513681": {
+    {
         "part_number": "33513681",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -1935,7 +1935,7 @@
         "weight": 0.08,
         "model3d": null
     },
-    "33318274": {
+    {
         "part_number": "33318274",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -1957,7 +1957,7 @@
         "weight": 0.074,
         "model3d": null
     },
-    "35020635": {
+    {
         "part_number": "35020635",
         "description": "Cavity Plug",
         "mfg": "Aptiv",
@@ -1979,7 +1979,7 @@
         "weight": 0.088,
         "model3d": null
     },
-    "33348208": {
+    {
         "part_number": "33348208",
         "description": "SEAL CONN",
         "mfg": "Aptiv",
@@ -2001,7 +2001,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33348209": {
+    {
         "part_number": "33348209",
         "description": "SEAL CBL 0W",
         "mfg": "Aptiv",
@@ -2023,7 +2023,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "10779160": {
+    {
         "part_number": "10779160",
         "description": "PLUG SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -2045,7 +2045,7 @@
         "weight": 0.2,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_470e6b2c-bbd8-47c6-9bc2-9de85c43b31d"
     },
-    "15327863": {
+    {
         "part_number": "15327863",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -2067,7 +2067,7 @@
         "weight": 0.107,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ee49e531-3af1-455f-98c8-2ab350449aa7"
     },
-    "33504677": {
+    {
         "part_number": "33504677",
         "description": "SEAL CONN BLU",
         "mfg": "Aptiv",
@@ -2089,7 +2089,7 @@
         "weight": 0.7571,
         "model3d": null
     },
-    "33504675": {
+    {
         "part_number": "33504675",
         "description": "SEAL CBL/CONN BLU LT",
         "mfg": "Aptiv",
@@ -2111,7 +2111,7 @@
         "weight": 4.441,
         "model3d": null
     },
-    "15366060": {
+    {
         "part_number": "15366060",
         "description": "SINGLE WIRE SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -2133,7 +2133,7 @@
         "weight": 0.049,
         "model3d": null
     },
-    "12191227": {
+    {
         "part_number": "12191227",
         "description": "SEAL CBL 1W CAVITY  BLU",
         "mfg": "Aptiv",
@@ -2155,7 +2155,7 @@
         "weight": 0.04144,
         "model3d": null
     },
-    "13546490": {
+    {
         "part_number": "13546490",
         "description": "SINGLE WIRE SEAL FITS TO 12.50 mm CAVITY",
         "mfg": "Aptiv",
@@ -2177,7 +2177,7 @@
         "weight": 0.95,
         "model3d": null
     },
-    "35269088": {
+    {
         "part_number": "35269088",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2199,7 +2199,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33318279": {
+    {
         "part_number": "33318279",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2221,7 +2221,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33511838": {
+    {
         "part_number": "33511838",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2243,7 +2243,7 @@
         "weight": 0.08,
         "model3d": null
     },
-    "33501764": {
+    {
         "part_number": "33501764",
         "description": "SEAL CBL 1W Red",
         "mfg": "Aptiv",
@@ -2265,7 +2265,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33282443": {
+    {
         "part_number": "33282443",
         "description": "Cavity Plug",
         "mfg": "Aptiv",
@@ -2287,7 +2287,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33513680": {
+    {
         "part_number": "33513680",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2309,7 +2309,7 @@
         "weight": 0.08,
         "model3d": null
     },
-    "33501763": {
+    {
         "part_number": "33501763",
         "description": "SEAL CBL 1W BLU",
         "mfg": "Aptiv",
@@ -2331,7 +2331,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35240442": {
+    {
         "part_number": "35240442",
         "description": "SEAL CBL/CONN",
         "mfg": "Aptiv",
@@ -2353,7 +2353,7 @@
         "weight": 2.1,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2cd5e10f-85aa-487b-b967-c6af2b0153f7"
     },
-    "35230976": {
+    {
         "part_number": "35230976",
         "description": "SEAL CBL/CONN",
         "mfg": "Aptiv",
@@ -2375,7 +2375,7 @@
         "weight": 2.2,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_01c4db7f-ff13-4ab7-aefc-5b509544398f"
     },
-    "35206307": {
+    {
         "part_number": "35206307",
         "description": "SEAL CBL/CONN GRA",
         "mfg": "Aptiv",
@@ -2397,7 +2397,7 @@
         "weight": 2.1,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_394cb5c6-cac7-4143-84d5-7a7e901aeb20"
     },
-    "13834630": {
+    {
         "part_number": "13834630",
         "description": "SINGLE WIRE SEAL FITS TO 4.85 mm CAVITY",
         "mfg": "Aptiv",
@@ -2419,7 +2419,7 @@
         "weight": 0.101,
         "model3d": null
     },
-    "33318275": {
+    {
         "part_number": "33318275",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2441,7 +2441,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35034194": {
+    {
         "part_number": "35034194",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -2463,7 +2463,7 @@
         "weight": 0.129,
         "model3d": null
     },
-    "33318273": {
+    {
         "part_number": "33318273",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2485,7 +2485,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35770788": {
+    {
         "part_number": "35770788",
         "description": "SEAL HOLE FILLER PLUG GRA LT",
         "mfg": "Aptiv",
@@ -2507,7 +2507,7 @@
         "weight": 0.171,
         "model3d": null
     },
-    "15327786": {
+    {
         "part_number": "15327786",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -2529,7 +2529,7 @@
         "weight": 0.095,
         "model3d": null
     },
-    "13834763": {
+    {
         "part_number": "13834763",
         "description": "SINGLE WIRE SEAL FITS TO 12 mm CAVITY",
         "mfg": "Aptiv",
@@ -2551,7 +2551,7 @@
         "weight": 722.0,
         "model3d": null
     },
-    "10720611": {
+    {
         "part_number": "10720611",
         "description": "SINGLE WIRE SEAL FITS TO 6.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -2573,7 +2573,7 @@
         "weight": 0.227,
         "model3d": null
     },
-    "13735454": {
+    {
         "part_number": "13735454",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -2595,7 +2595,7 @@
         "weight": 0.321,
         "model3d": null
     },
-    "35082288": {
+    {
         "part_number": "35082288",
         "description": "SEAL CBL 1W GRA LT",
         "mfg": "Aptiv",
@@ -2617,7 +2617,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35151812": {
+    {
         "part_number": "35151812",
         "description": "SEAL CONN CAVITY PLUG",
         "mfg": "Aptiv",
@@ -2639,7 +2639,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35082291": {
+    {
         "part_number": "35082291",
         "description": "SEAL CONN",
         "mfg": "Aptiv",
@@ -2661,7 +2661,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "13834634": {
+    {
         "part_number": "13834634",
         "description": "SINGLE WIRE SEAL FITS TO 6.45 mm CAVITY",
         "mfg": "Aptiv",
@@ -2683,7 +2683,7 @@
         "weight": 0.188,
         "model3d": null
     },
-    "15363605": {
+    {
         "part_number": "15363605",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -2705,7 +2705,7 @@
         "weight": 0.28,
         "model3d": null
     },
-    "10736278": {
+    {
         "part_number": "10736278",
         "description": "SINGLE WIRE SEAL FITS TO 4.4 mm CAVITY",
         "mfg": "Aptiv",
@@ -2727,7 +2727,7 @@
         "weight": 0.061,
         "model3d": null
     },
-    "13644795": {
+    {
         "part_number": "13644795",
         "description": "SEAL CONN CAVITY PLUG NAT",
         "mfg": "Aptiv",
@@ -2749,7 +2749,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "13602967": {
+    {
         "part_number": "13602967",
         "description": "SEAL HOLE FILLER PLUG Red",
         "mfg": "Aptiv",
@@ -2771,7 +2771,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15441383": {
+    {
         "part_number": "15441383",
         "description": "PLUG SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2793,7 +2793,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "15324974": {
+    {
         "part_number": "15324974",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -2815,7 +2815,7 @@
         "weight": 0.14,
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_72f67d9d-e818-4cd6-9056-c4f5ec4ff495"
     },
-    "15305172": {
+    {
         "part_number": "15305172",
         "description": "PLUG SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -2837,7 +2837,7 @@
         "weight": 0.134,
         "model3d": null
     },
-    "10787316": {
+    {
         "part_number": "10787316",
         "description": "PLUG SEAL FITS TO 4.4 mm CAVITY",
         "mfg": "Aptiv",
@@ -2859,7 +2859,7 @@
         "weight": 0.075,
         "model3d": null
     },
-    "15441379": {
+    {
         "part_number": "15441379",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2881,7 +2881,7 @@
         "weight": 0.1,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_945de434-dedc-4c74-9888-ecd122c24216"
     },
-    "10779161": {
+    {
         "part_number": "10779161",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -2903,7 +2903,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "10720615": {
+    {
         "part_number": "10720615",
         "description": "SINGLE WIRE SEAL FITS TO 6.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -2925,7 +2925,7 @@
         "weight": 0.164,
         "model3d": null
     },
-    "15448883": {
+    {
         "part_number": "15448883",
         "description": "PLUG SEAL FITS TO 6.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -2947,7 +2947,7 @@
         "weight": 0.16,
         "model3d": null
     },
-    "13834764": {
+    {
         "part_number": "13834764",
         "description": "SINGLE WIRE SEAL FITS TO 12 mm CAVITY",
         "mfg": "Aptiv",
@@ -2969,7 +2969,7 @@
         "weight": 0.741,
         "model3d": null
     },
-    "15460621": {
+    {
         "part_number": "15460621",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -2991,7 +2991,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "15340264": {
+    {
         "part_number": "15340264",
         "description": "PLUG SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -3013,7 +3013,7 @@
         "weight": 1.0,
         "model3d": null
     },
-    "33503298": {
+    {
         "part_number": "33503298",
         "description": "SEAL CONN INTERFACE ORN",
         "mfg": "Aptiv",
@@ -3035,7 +3035,7 @@
         "weight": 0.38,
         "model3d": null
     },
-    "33504639": {
+    {
         "part_number": "33504639",
         "description": "SEAL CBL 10W ORN",
         "mfg": "Aptiv",
@@ -3057,7 +3057,7 @@
         "weight": 0.815,
         "model3d": null
     },
-    "13578695": {
+    {
         "part_number": "13578695",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -3079,7 +3079,7 @@
         "weight": 0.0908,
         "model3d": null
     },
-    "12010300": {
+    {
         "part_number": "12010300",
         "description": "PLUG SEAL FITS TO 6.7 mm CAVITY",
         "mfg": "Aptiv",
@@ -3101,7 +3101,7 @@
         "weight": 0.364,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0c0a7df0-9c48-4365-bb40-86d3c6eeddf0"
     },
-    "15344938": {
+    {
         "part_number": "15344938",
         "description": "SINGLE WIRE SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -3123,7 +3123,7 @@
         "weight": 0.077,
         "model3d": null
     },
-    "10720807": {
+    {
         "part_number": "10720807",
         "description": "SINGLE WIRE SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -3145,7 +3145,7 @@
         "weight": 0.061,
         "model3d": null
     },
-    "10720811": {
+    {
         "part_number": "10720811",
         "description": "PLUG SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -3167,7 +3167,7 @@
         "weight": 0.05,
         "model3d": null
     },
-    "13806069": {
+    {
         "part_number": "13806069",
         "description": "SEAL HOLE FILLER PLUG YEL",
         "mfg": "Aptiv",
@@ -3189,7 +3189,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "35150387": {
+    {
         "part_number": "35150387",
         "description": "SEAL HOLE",
         "mfg": "Aptiv",
@@ -3211,7 +3211,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "13735535": {
+    {
         "part_number": "13735535",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -3233,7 +3233,7 @@
         "weight": 0.09,
         "model3d": null
     },
-    "15498732": {
+    {
         "part_number": "15498732",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -3255,7 +3255,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "13735527": {
+    {
         "part_number": "13735527",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -3277,7 +3277,7 @@
         "weight": 0.09,
         "model3d": null
     },
-    "15324997": {
+    {
         "part_number": "15324997",
         "description": "SINGLE WIRE SEAL FITS TO 9.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -3299,7 +3299,7 @@
         "weight": 0.544,
         "model3d": null
     },
-    "15324994": {
+    {
         "part_number": "15324994",
         "description": "SINGLE WIRE SEAL FITS TO 9.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -3321,7 +3321,7 @@
         "weight": 0.386,
         "model3d": null
     },
-    "15324993": {
+    {
         "part_number": "15324993",
         "description": "SINGLE WIRE SEAL FITS TO 9.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -3343,7 +3343,7 @@
         "weight": 0.325,
         "model3d": null
     },
-    "15324995": {
+    {
         "part_number": "15324995",
         "description": "SINGLE WIRE SEAL FITS TO 9.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -3365,7 +3365,7 @@
         "weight": 0.392,
         "model3d": null
     },
-    "33198869": {
+    {
         "part_number": "33198869",
         "description": "SEAL CONN RedBRN",
         "mfg": "Aptiv",
@@ -3387,7 +3387,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33168991": {
+    {
         "part_number": "33168991",
         "description": "SEAL CBL/CONN GRN",
         "mfg": "Aptiv",
@@ -3409,7 +3409,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15305351": {
+    {
         "part_number": "15305351",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -3431,7 +3431,7 @@
         "weight": 0.038,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_7fae3f6c-e0f7-4659-8ff6-6ba189f92e0b"
     },
-    "13735480": {
+    {
         "part_number": "13735480",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -3453,7 +3453,7 @@
         "weight": 0.33,
         "model3d": null
     },
-    "13831889": {
+    {
         "part_number": "13831889",
         "description": "SEAL CBL 54W GRN",
         "mfg": "Aptiv",
@@ -3475,7 +3475,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "13831885": {
+    {
         "part_number": "13831885",
         "description": "SEAL CONN BLU",
         "mfg": "Aptiv",
@@ -3497,7 +3497,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "13629105": {
+    {
         "part_number": "13629105",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -3519,7 +3519,7 @@
         "weight": 0.05781,
         "model3d": null
     },
-    "15470809": {
+    {
         "part_number": "15470809",
         "description": "SINGLE WIRE SEAL FITS TO 13.75 mm CAVITY",
         "mfg": "Aptiv",
@@ -3541,7 +3541,7 @@
         "weight": 1.032,
         "model3d": null
     },
-    "13797502": {
+    {
         "part_number": "13797502",
         "description": "SINGLE WIRE SEAL FITS TO 13.75 mm CAVITY",
         "mfg": "Aptiv",
@@ -3563,7 +3563,7 @@
         "weight": 1.22728,
         "model3d": null
     },
-    "15513451": {
+    {
         "part_number": "15513451",
         "description": "SEAL CBL/CONN Red",
         "mfg": "Aptiv",
@@ -3585,7 +3585,7 @@
         "weight": 1.6279,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a80e704d-678c-4fb0-be42-92fd85923f12"
     },
-    "15513452": {
+    {
         "part_number": "15513452",
         "description": "SEAL CBL/CONN GRA",
         "mfg": "Aptiv",
@@ -3607,7 +3607,7 @@
         "weight": 1.69,
         "model3d": null
     },
-    "15324982": {
+    {
         "part_number": "15324982",
         "description": "SINGLE WIRE SEAL FITS TO 6.7 mm CAVITY",
         "mfg": "Aptiv",
@@ -3629,7 +3629,7 @@
         "weight": 0.16,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_9f1d42d1-e9c6-47ed-acf6-7f17e0415427"
     },
-    "10730124": {
+    {
         "part_number": "10730124",
         "description": "PLUG SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -3651,7 +3651,7 @@
         "weight": 0.1,
         "model3d": null
     },
-    "15356825": {
+    {
         "part_number": "15356825",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -3673,7 +3673,7 @@
         "weight": 0.057,
         "model3d": null
     },
-    "12191235": {
+    {
         "part_number": "12191235",
         "description": "SINGLE WIRE SEAL FITS TO 5.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -3695,7 +3695,7 @@
         "weight": 0.091,
         "model3d": null
     },
-    "12052842": {
+    {
         "part_number": "12052842",
         "description": "SEAL CONN INTERFACE  VLT",
         "mfg": "Aptiv",
@@ -3717,7 +3717,7 @@
         "weight": 0.61936,
         "model3d": null
     },
-    "10720901": {
+    {
         "part_number": "10720901",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -3739,7 +3739,7 @@
         "weight": 0.142,
         "model3d": null
     },
-    "13926843": {
+    {
         "part_number": "13926843",
         "description": "SEAL CBL 1W HOLE PLUG NAT",
         "mfg": "Aptiv",
@@ -3761,7 +3761,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15324996": {
+    {
         "part_number": "15324996",
         "description": "SINGLE WIRE SEAL FITS TO 9.8 mm CAVITY",
         "mfg": "Aptiv",
@@ -3783,7 +3783,7 @@
         "weight": 0.3416,
         "model3d": null
     },
-    "15324980": {
+    {
         "part_number": "15324980",
         "description": "SINGLE WIRE SEAL FITS TO 6.7 mm CAVITY",
         "mfg": "Aptiv",
@@ -3805,7 +3805,7 @@
         "weight": 0.156,
         "model3d": null
     },
-    "12129557": {
+    {
         "part_number": "12129557",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -3827,7 +3827,7 @@
         "weight": 0.0456,
         "model3d": null
     },
-    "12065849": {
+    {
         "part_number": "12065849",
         "description": "SEAL CONN MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -3849,7 +3849,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15305169": {
+    {
         "part_number": "15305169",
         "description": "Cavity Plug",
         "mfg": "Aptiv",
@@ -3871,7 +3871,7 @@
         "weight": 0.0715,
         "model3d": null
     },
-    "15483009": {
+    {
         "part_number": "15483009",
         "description": "SEAL CBL 1W GT YEL",
         "mfg": "Aptiv",
@@ -3893,7 +3893,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "12040750": {
+    {
         "part_number": "12040750",
         "description": "SEAL CONN MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3915,7 +3915,7 @@
         "weight": 0.52338,
         "model3d": null
     },
-    "12191226": {
+    {
         "part_number": "12191226",
         "description": "SINGLE WIRE SEAL FITS TO 4 mm CAVITY",
         "mfg": "Aptiv",
@@ -3937,7 +3937,7 @@
         "weight": 0.04592,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6a06b20b-09b8-486a-9cca-be1eb91a5797"
     },
-    "15336177": {
+    {
         "part_number": "15336177",
         "description": "SEAL CONN GT  GRN",
         "mfg": "Aptiv",
@@ -3959,7 +3959,7 @@
         "weight": 2.05348,
         "model3d": null
     },
-    "15326866": {
+    {
         "part_number": "15326866",
         "description": "Interfacial Seal",
         "mfg": "Aptiv",
@@ -3981,7 +3981,7 @@
         "weight": 0.895,
         "model3d": null
     },
-    "15344324": {
+    {
         "part_number": "15344324",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -4003,7 +4003,7 @@
         "weight": 0.05,
         "model3d": null
     },
-    "15439078": {
+    {
         "part_number": "15439078",
         "description": "SEAL CONN GT YEL",
         "mfg": "Aptiv",
@@ -4025,7 +4025,7 @@
         "weight": 0.5,
         "model3d": null
     },
-    "12034170": {
+    {
         "part_number": "12034170",
         "description": "SEAL CBL 1W MetriPack (M/P) ORN",
         "mfg": "Aptiv",
@@ -4047,7 +4047,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15324988": {
+    {
         "part_number": "15324988",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -4069,7 +4069,7 @@
         "weight": 0.315,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_7f884eeb-1091-4003-835c-7211fccb3111"
     },
-    "15324989": {
+    {
         "part_number": "15324989",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -4091,7 +4091,7 @@
         "weight": 0.298,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6206fde0-4f1d-46a1-aeb9-664c7e8d2dfd"
     },
-    "13735538": {
+    {
         "part_number": "13735538",
         "description": "SEAL CBL 1W CAVITY  VLT",
         "mfg": "Aptiv",
@@ -4113,7 +4113,7 @@
         "weight": 0.102,
         "model3d": null
     },
-    "15324983": {
+    {
         "part_number": "15324983",
         "description": "SINGLE WIRE SEAL FITS TO 6.7 mm CAVITY",
         "mfg": "Aptiv",
@@ -4135,7 +4135,7 @@
         "weight": 0.194,
         "model3d": null
     },
-    "12034413": {
+    {
         "part_number": "12034413",
         "description": "Hole Plug",
         "mfg": "Aptiv",
@@ -4157,7 +4157,7 @@
         "weight": 0.123,
         "model3d": null
     },
-    "15366063": {
+    {
         "part_number": "15366063",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4179,7 +4179,7 @@
         "weight": 0.08,
         "model3d": null
     },
-    "15366064": {
+    {
         "part_number": "15366064",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4201,7 +4201,7 @@
         "weight": 0.136,
         "model3d": null
     },
-    "15326811": {
+    {
         "part_number": "15326811",
         "description": "SEAL CONN INTERFACE GRN",
         "mfg": "Aptiv",
@@ -4223,7 +4223,7 @@
         "weight": 0.442,
         "model3d": null
     },
-    "15324979": {
+    {
         "part_number": "15324979",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4245,7 +4245,7 @@
         "weight": 0.103,
         "model3d": null
     },
-    "15324981": {
+    {
         "part_number": "15324981",
         "description": "SINGLE WIRE SEAL FITS TO 6.7 mm CAVITY",
         "mfg": "Aptiv",
@@ -4267,7 +4267,7 @@
         "weight": 0.133,
         "model3d": null
     },
-    "15366061": {
+    {
         "part_number": "15366061",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4289,7 +4289,7 @@
         "weight": 0.086,
         "model3d": null
     },
-    "13834614": {
+    {
         "part_number": "13834614",
         "description": "SINGLE WIRE SEAL FITS TO 4.85 mm CAVITY",
         "mfg": "Aptiv",
@@ -4311,7 +4311,7 @@
         "weight": 0.085,
         "model3d": null
     },
-    "13834623": {
+    {
         "part_number": "13834623",
         "description": "SINGLE WIRE SEAL FITS TO 4.85 mm CAVITY",
         "mfg": "Aptiv",
@@ -4333,7 +4333,7 @@
         "weight": 0.093,
         "model3d": null
     },
-    "12129909": {
+    {
         "part_number": "12129909",
         "description": "SEAL CONN GASKET  BLK",
         "mfg": "Aptiv",
@@ -4355,7 +4355,7 @@
         "weight": 1.39784,
         "model3d": null
     },
-    "12160481": {
+    {
         "part_number": "12160481",
         "description": "SEAL CONN MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -4377,7 +4377,7 @@
         "weight": 0.585,
         "model3d": null
     },
-    "12176807": {
+    {
         "part_number": "12176807",
         "description": "SEAL CBL 1W CAVITY ORN",
         "mfg": "Aptiv",
@@ -4399,7 +4399,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15326236": {
+    {
         "part_number": "15326236",
         "description": "SEAL CONN Tan",
         "mfg": "Aptiv",
@@ -4421,7 +4421,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15324987": {
+    {
         "part_number": "15324987",
         "description": "SINGLE WIRE SEAL FITS TO 8.5 mm CAVITY",
         "mfg": "Aptiv",
@@ -4443,7 +4443,7 @@
         "weight": 0.2,
         "model3d": null
     },
-    "15344714": {
+    {
         "part_number": "15344714",
         "description": "SEAL CBL 1W CAVITY RedBRN",
         "mfg": "Aptiv",
@@ -4465,7 +4465,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15336703": {
+    {
         "part_number": "15336703",
         "description": "SEAL CBL 1W MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -4487,7 +4487,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "33501746": {
+    {
         "part_number": "33501746",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4509,7 +4509,7 @@
         "weight": 0.09,
         "model3d": null
     },
-    "10788270": {
+    {
         "part_number": "10788270",
         "description": "PLUG SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4531,7 +4531,7 @@
         "weight": 0.09,
         "model3d": null
     },
-    "15324985": {
+    {
         "part_number": "15324985",
         "description": "SINGLE WIRE SEAL FITS TO 6.7 mm CAVITY",
         "mfg": "Aptiv",
@@ -4553,7 +4553,7 @@
         "weight": 0.182,
         "model3d": null
     },
-    "15497745": {
+    {
         "part_number": "15497745",
         "description": "SEAL CBL 1W MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -4575,7 +4575,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15324998": {
+    {
         "part_number": "15324998",
         "description": "SINGLE WIRE SEAL FITS TO 12.50 mm CAVITY",
         "mfg": "Aptiv",
@@ -4597,7 +4597,7 @@
         "weight": 0.5,
         "model3d": null
     },
-    "12040756": {
+    {
         "part_number": "12040756",
         "description": "SEAL CONN INTERFACE  BLU",
         "mfg": "Aptiv",
@@ -4619,7 +4619,7 @@
         "weight": 0.57456,
         "model3d": null
     },
-    "12040757": {
+    {
         "part_number": "12040757",
         "description": "SEAL CBL 4W MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -4641,7 +4641,7 @@
         "weight": 0.99456,
         "model3d": null
     },
-    "12110213": {
+    {
         "part_number": "12110213",
         "description": "SEAL CBL 1W MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -4663,7 +4663,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "12089678": {
+    {
         "part_number": "12089678",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4685,7 +4685,7 @@
         "weight": 0.11,
         "model3d": null
     },
-    "12040751": {
+    {
         "part_number": "12040751",
         "description": "SEAL CBL 2W MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -4707,7 +4707,7 @@
         "weight": 0.5992,
         "model3d": null
     },
-    "15324818": {
+    {
         "part_number": "15324818",
         "description": "SINGLE WIRE SEAL FITS TO 5.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -4729,7 +4729,7 @@
         "weight": 0.07,
         "model3d": null
     },
-    "12129930": {
+    {
         "part_number": "12129930",
         "description": "Single Wire Seal",
         "mfg": "Aptiv",
@@ -4751,7 +4751,7 @@
         "weight": 0.20448,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a65d76fc-1108-47dd-ba30-a319a13eaa64"
     },
-    "13735534": {
+    {
         "part_number": "13735534",
         "description": "PLUG SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -4773,7 +4773,7 @@
         "weight": 0.05,
         "model3d": null
     },
-    "15305001": {
+    {
         "part_number": "15305001",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4795,7 +4795,7 @@
         "weight": 0.15,
         "model3d": null
     },
-    "15305000": {
+    {
         "part_number": "15305000",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -4817,7 +4817,7 @@
         "weight": 0.179,
         "model3d": null
     },
-    "15339560": {
+    {
         "part_number": "15339560",
         "description": "SINGLE WIRE SEAL FITS TO 4.0 mm CAVITY",
         "mfg": "Aptiv",
@@ -4839,7 +4839,7 @@
         "weight": 0.05,
         "model3d": null
     },
-    "15344778": {
+    {
         "part_number": "15344778",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -4861,7 +4861,7 @@
         "weight": 0.04,
         "model3d": null
     },
-    "15344777": {
+    {
         "part_number": "15344777",
         "description": "SINGLE WIRE SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -4883,7 +4883,7 @@
         "weight": 0.4,
         "model3d": null
     },
-    "13582731": {
+    {
         "part_number": "13582731",
         "description": "SINGLE WIRE SEAL FITS TO 4.4 mm CAVITY",
         "mfg": "Aptiv",
@@ -4905,7 +4905,7 @@
         "weight": 0.091,
         "model3d": null
     },
-    "13582730": {
+    {
         "part_number": "13582730",
         "description": "SINGLE WIRE SEAL FITS TO 4.4 mm CAVITY",
         "mfg": "Aptiv",
@@ -4927,7 +4927,7 @@
         "weight": 0.079,
         "model3d": null
     },
-    "13584300": {
+    {
         "part_number": "13584300",
         "description": "Seal Connector",
         "mfg": "Aptiv",
@@ -4949,7 +4949,7 @@
         "weight": 1.89,
         "model3d": null
     },
-    "13735537": {
+    {
         "part_number": "13735537",
         "description": "PLUG SEAL FITS TO 3.6 mm CAVITY",
         "mfg": "Aptiv",
@@ -4971,7 +4971,7 @@
         "weight": 0.06,
         "model3d": null
     },
-    "13567793": {
+    {
         "part_number": "13567793",
         "description": "SEAL CBL 8W MICRO HVT GRN",
         "mfg": "Aptiv",
@@ -4993,7 +4993,7 @@
         "weight": 0.6,
         "model3d": null
     },
-    "13567794": {
+    {
         "part_number": "13567794",
         "description": "SEAL CONN YEL",
         "mfg": "Aptiv",
@@ -5015,7 +5015,7 @@
         "weight": 0.4,
         "model3d": null
     },
-    "15356671": {
+    {
         "part_number": "15356671",
         "description": "SEAL CONN BLU LT",
         "mfg": "Aptiv",
@@ -5037,7 +5037,7 @@
         "weight": 1.588,
         "model3d": null
     },
-    "15356988": {
+    {
         "part_number": "15356988",
         "description": "ASM SEAL CBL 12W STRAIN RLF COMOLD ORN LT",
         "mfg": "Aptiv",
@@ -5059,7 +5059,7 @@
         "weight": 4.7,
         "model3d": null
     },
-    "12191230": {
+    {
         "part_number": "12191230",
         "description": "SEAL CBL 1W CAVITY GRA",
         "mfg": "Aptiv",
@@ -5081,7 +5081,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "12160845": {
+    {
         "part_number": "12160845",
         "description": "SEAL CBL 80W YEL",
         "mfg": "Aptiv",
@@ -5103,7 +5103,7 @@
         "weight": 13.2,
         "model3d": null
     },
-    "12176391": {
+    {
         "part_number": "12176391",
         "description": "SEAL CONN MIC/P ORN",
         "mfg": "Aptiv",
@@ -5125,7 +5125,7 @@
         "weight": 6.1,
         "model3d": null
     },
-    "12191066": {
+    {
         "part_number": "12191066",
         "description": "SEAL CBL 16W MIC/P  ORN",
         "mfg": "Aptiv",
@@ -5147,7 +5147,7 @@
         "weight": 3.6,
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0458c8c3-705b-41ec-bdea-aef01ea6ec70"
     },
-    "12129026": {
+    {
         "part_number": "12129026",
         "description": "SEAL CBL 32W MIC/P  GRN",
         "mfg": "Aptiv",
@@ -5169,7 +5169,7 @@
         "weight": 5.89976,
         "model3d": null
     },
-    "12160684": {
+    {
         "part_number": "12160684",
         "description": "SEAL CONN MIC/P ORN",
         "mfg": "Aptiv",
@@ -5191,7 +5191,7 @@
         "weight": 2.419,
         "model3d": null
     },
-    "12177085": {
+    {
         "part_number": "12177085",
         "description": "SEAL CONN MIC/P BLU",
         "mfg": "Aptiv",
@@ -5213,7 +5213,7 @@
         "weight": 1.512,
         "model3d": null
     },
-    "12047907": {
+    {
         "part_number": "12047907",
         "description": "SEAL CBL 3W CAVITY  GRN",
         "mfg": "Aptiv",
@@ -5235,7 +5235,7 @@
         "weight": 0.79632,
         "model3d": null
     },
-    "12047908": {
+    {
         "part_number": "12047908",
         "description": "SEAL CONN MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -5257,7 +5257,7 @@
         "weight": 0.6149,
         "model3d": null
     },
-    "12084193": {
+    {
         "part_number": "12084193",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -5279,7 +5279,7 @@
         "weight": 1.0,
         "model3d": null
     },
-    "12110822": {
+    {
         "part_number": "12110822",
         "description": "SEAL CONN MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -5301,7 +5301,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "15393249": {
+    {
         "part_number": "15393249",
         "description": "SINGLE WIRE SEAL FITS TO 5.2 mm CAVITY",
         "mfg": "Aptiv",
@@ -5323,7 +5323,7 @@
         "weight": 0.14256,
         "model3d": null
     },
-    "12110403": {
+    {
         "part_number": "12110403",
         "description": "SEAL CBL 24W MIC/P  GRN",
         "mfg": "Aptiv",
@@ -5345,7 +5345,7 @@
         "weight": 4.7,
         "model3d": null
     },
-    "12045893": {
+    {
         "part_number": "12045893",
         "description": "SEAL CBL 2W MetriPack (M/P) GRA LT",
         "mfg": "Aptiv",
@@ -5367,7 +5367,7 @@
         "weight": 0.3,
         "model3d": null
     },
-    "12020818": {
+    {
         "part_number": "12020818",
         "description": "SEAL CONN MetriPack (M/P) ORN",
         "mfg": "Aptiv",
@@ -5389,7 +5389,7 @@
         "weight": 0.0,
         "model3d": null
     },
-    "12110489": {
+    {
         "part_number": "12110489",
         "description": "SEAL CBL 36W MIC/P  GRN",
         "mfg": "Aptiv",
@@ -5411,7 +5411,7 @@
         "weight": 6.6,
         "model3d": null
     },
-    "12110269": {
+    {
         "part_number": "12110269",
         "description": "SEAL CONN MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -5433,7 +5433,7 @@
         "weight": 0.23,
         "model3d": null
     },
-    "12059215": {
+    {
         "part_number": "12059215",
         "description": "SEAL CBL 2W MetriPack (M/P) GRA",
         "mfg": "Aptiv",
@@ -5455,7 +5455,7 @@
         "weight": 0.85,
         "model3d": null
     },
-    "12065285": {
+    {
         "part_number": "12065285",
         "description": "SEAL CBL 3W MetriPack (M/P) Red DK",
         "mfg": "Aptiv",
@@ -5477,7 +5477,7 @@
         "weight": 0.58916,
         "model3d": null
     },
-    "12052893": {
+    {
         "part_number": "12052893",
         "description": "SEAL CONN INTERFACE  VLT",
         "mfg": "Aptiv",
@@ -5499,7 +5499,7 @@
         "weight": 0.4368,
         "model3d": null
     },
-    "12059184": {
+    {
         "part_number": "12059184",
         "description": "SEAL CONN INTERFACE  Tan",
         "mfg": "Aptiv",
@@ -5521,7 +5521,7 @@
         "weight": 0.57792,
         "model3d": null
     },
-    "12103067": {
+    {
         "part_number": "12103067",
         "description": "SEAL CONN MetriPack (M/P) GRA",
         "mfg": "Aptiv",
@@ -5543,7 +5543,7 @@
         "weight": 0.476,
         "model3d": null
     },
-    "12065297": {
+    {
         "part_number": "12065297",
         "description": "SEAL CONN MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -5565,7 +5565,7 @@
         "weight": 1.21,
         "model3d": null
     },
-    "12040879": {
+    {
         "part_number": "12040879",
         "description": "SEAL CBL 15W MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -5587,7 +5587,7 @@
         "weight": 3.3,
         "model3d": null
     },
-    "12048370": {
+    {
         "part_number": "12048370",
         "description": "SEAL CONN MetriPack (M/P) Black",
         "mfg": "Aptiv",
@@ -5609,7 +5609,7 @@
         "weight": 1.0,
         "model3d": null
     },
-    "12040972": {
+    {
         "part_number": "12040972",
         "description": "SEAL CBL 2W MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -5631,7 +5631,7 @@
         "weight": 1.50722,
         "model3d": null
     },
-    "12077383": {
+    {
         "part_number": "12077383",
         "description": "SEAL CONN MetriPack (M/P) Tan",
         "mfg": "Aptiv",
@@ -5653,7 +5653,7 @@
         "weight": 0.86515,
         "model3d": null
     },
-    "10721071": {
+    {
         "part_number": "10721071",
         "description": "SINGLE WIRE SEAL FITS TO 12 mm CAVITY",
         "mfg": "Aptiv",
@@ -5675,7 +5675,7 @@
         "weight": 0.67,
         "model3d": null
     },
-    "33511807": {
+    {
         "part_number": "33511807",
         "description": "SEAL CBL 1W 2.8 BLK",
         "mfg": "Aptiv",
@@ -5697,4 +5697,4 @@
         "weight": 0.0,
         "model3d": null
     }
-}
+]

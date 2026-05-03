@@ -1,5 +1,5 @@
-{
-    "35612044": {
+[
+    {
         "part_number": "35612044",
         "description": "LOCK SECONDARY TPA BRN",
         "mfg": "Aptiv",
@@ -18,7 +18,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15430899": {
+    {
         "part_number": "15430899",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -37,7 +37,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_77eb112e-a965-449f-8072-491abc13fbdb",
         "lock_type": ""
     },
-    "15430895": {
+    {
         "part_number": "15430895",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -56,7 +56,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15366676": {
+    {
         "part_number": "15366676",
         "description": "LOCK SECONDARY TPA GT  CRM",
         "mfg": "Aptiv",
@@ -75,7 +75,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "33503752": {
+    {
         "part_number": "33503752",
         "description": "LOCK SECONDARY TPA 24 NAT",
         "mfg": "Aptiv",
@@ -94,7 +94,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15418545": {
+    {
         "part_number": "15418545",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -113,7 +113,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f9f8bce6-a22a-4719-82f1-b628693f55c4",
         "lock_type": ""
     },
-    "15430898": {
+    {
         "part_number": "15430898",
         "description": "LOCK SECONDARY TPA GT 4 GRA MD",
         "mfg": "Aptiv",
@@ -132,7 +132,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_338008d7-6013-45a5-b481-dac9d756424d",
         "lock_type": ""
     },
-    "15430903": {
+    {
         "part_number": "15430903",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -151,7 +151,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15359004": {
+    {
         "part_number": "15359004",
         "description": "LOCK SECONDARY TPA GT  GRA LT",
         "mfg": "Aptiv",
@@ -170,7 +170,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15430896": {
+    {
         "part_number": "15430896",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -189,7 +189,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6bce61b1-bc35-40fd-a1b9-f1e1cc93dd7e",
         "lock_type": ""
     },
-    "15326059": {
+    {
         "part_number": "15326059",
         "description": "LOCK SECONDARY TPA GT 16 PPL",
         "mfg": "Aptiv",
@@ -208,7 +208,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15355128": {
+    {
         "part_number": "15355128",
         "description": "LOCK SECONDARY TPA GT 2 GRA LT",
         "mfg": "Aptiv",
@@ -227,7 +227,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_165c0b66-03f2-4e95-b9ba-b188d77fc2dd",
         "lock_type": ""
     },
-    "12047787": {
+    {
         "part_number": "12047787",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLU",
         "mfg": "Aptiv",
@@ -246,7 +246,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15324070": {
+    {
         "part_number": "15324070",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 GRA LT",
         "mfg": "Aptiv",
@@ -265,7 +265,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_3bd87dfc-fb39-496f-a5b3-9adac6ce1aeb",
         "lock_type": ""
     },
-    "35106564": {
+    {
         "part_number": "35106564",
         "description": "LOCK SECONDARY TPA BLU",
         "mfg": "Aptiv",
@@ -284,7 +284,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13854074": {
+    {
         "part_number": "13854074",
         "description": "LOCK SECONDARY TPA GRA",
         "mfg": "Aptiv",
@@ -303,7 +303,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "35066115": {
+    {
         "part_number": "35066115",
         "description": "LOCK SECONDARY TPA 8 VLT",
         "mfg": "Aptiv",
@@ -322,7 +322,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12052850": {
+    {
         "part_number": "12052850",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 6 GRA MD",
         "mfg": "Aptiv",
@@ -341,7 +341,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_d7a4b855-5123-43a3-b936-b80c0f0d1d34",
         "lock_type": ""
     },
-    "13606029": {
+    {
         "part_number": "13606029",
         "description": "LOCK SECONDARY TPA 8 VLT",
         "mfg": "Aptiv",
@@ -360,7 +360,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "33503739": {
+    {
         "part_number": "33503739",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -379,7 +379,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "33401469": {
+    {
         "part_number": "33401469",
         "description": "LOCK SECONDARY TPA 10 Red",
         "mfg": "Aptiv",
@@ -398,7 +398,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "33336184": {
+    {
         "part_number": "33336184",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -417,7 +417,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "35010699": {
+    {
         "part_number": "35010699",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -436,7 +436,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "35012192": {
+    {
         "part_number": "35012192",
         "description": "LOCK SECONDARY TPA BRN LT",
         "mfg": "Aptiv",
@@ -455,7 +455,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "35012193": {
+    {
         "part_number": "35012193",
         "description": "LOCK SECONDARY TPA GRA LT",
         "mfg": "Aptiv",
@@ -474,7 +474,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15393174": {
+    {
         "part_number": "15393174",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLU",
         "mfg": "Aptiv",
@@ -493,7 +493,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15373418": {
+    {
         "part_number": "15373418",
         "description": "LOCK SECONDARY TPA GT  BLK",
         "mfg": "Aptiv",
@@ -512,7 +512,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0c2f925e-e50c-4393-af9c-1deb455bc7de",
         "lock_type": ""
     },
-    "13707328": {
+    {
         "part_number": "13707328",
         "description": "LOCK SECONDARY TPA HVIL GRA DK",
         "mfg": "Aptiv",
@@ -531,7 +531,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13522385": {
+    {
         "part_number": "13522385",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -550,7 +550,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15526390": {
+    {
         "part_number": "15526390",
         "description": "LOCK SECONDARY TPA BLU",
         "mfg": "Aptiv",
@@ -569,7 +569,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12052634": {
+    {
         "part_number": "12052634",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLU",
         "mfg": "Aptiv",
@@ -588,7 +588,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_8a411f67-683a-4c16-9071-c1e6ac270054",
         "lock_type": ""
     },
-    "12129214": {
+    {
         "part_number": "12129214",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 78 NAT",
         "mfg": "Aptiv",
@@ -607,7 +607,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129213": {
+    {
         "part_number": "12129213",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 39 BLU",
         "mfg": "Aptiv",
@@ -626,7 +626,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12077904": {
+    {
         "part_number": "12077904",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLU",
         "mfg": "Aptiv",
@@ -645,7 +645,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15305024": {
+    {
         "part_number": "15305024",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -664,7 +664,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_97677639-ac95-4bee-9b91-2374ed4a7142",
         "lock_type": ""
     },
-    "15423278": {
+    {
         "part_number": "15423278",
         "description": "LOCK SECONDARY TPA GT  BLU",
         "mfg": "Aptiv",
@@ -683,7 +683,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_4ed3f5f9-3916-4fe9-ade4-ebcc2890cfea",
         "lock_type": ""
     },
-    "15356661": {
+    {
         "part_number": "15356661",
         "description": "LOCK SECONDARY TPA GT GRA MD",
         "mfg": "Aptiv",
@@ -702,7 +702,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15356665": {
+    {
         "part_number": "15356665",
         "description": "LOCK SECONDARY TPA MICRO BLU",
         "mfg": "Aptiv",
@@ -721,7 +721,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12052845": {
+    {
         "part_number": "12052845",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 CRM",
         "mfg": "Aptiv",
@@ -740,7 +740,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_eb612aba-dec7-4c83-b7a1-c002256a8f2a",
         "lock_type": ""
     },
-    "12131347": {
+    {
         "part_number": "12131347",
         "description": "LOCK SECONDARY TPA GT 3 BLK",
         "mfg": "Aptiv",
@@ -759,7 +759,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15324857": {
+    {
         "part_number": "15324857",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -778,7 +778,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_8c5c5023-ffa0-4fe6-b0da-6bd5e8cfc2bc",
         "lock_type": ""
     },
-    "12047665": {
+    {
         "part_number": "12047665",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 GRA MD",
         "mfg": "Aptiv",
@@ -797,7 +797,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_5c237f14-b638-42a5-a755-9813d4523e0e",
         "lock_type": ""
     },
-    "12064861": {
+    {
         "part_number": "12064861",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -816,7 +816,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15394375": {
+    {
         "part_number": "15394375",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 62 BLU",
         "mfg": "Aptiv",
@@ -835,7 +835,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15329097": {
+    {
         "part_number": "15329097",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) Red",
         "mfg": "Aptiv",
@@ -854,7 +854,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129530": {
+    {
         "part_number": "12129530",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -873,7 +873,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129669": {
+    {
         "part_number": "12129669",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) NAT",
         "mfg": "Aptiv",
@@ -892,7 +892,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12066170": {
+    {
         "part_number": "12066170",
         "description": "LOCK SECONDARY TPA MIC/P Red",
         "mfg": "Aptiv",
@@ -911,7 +911,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12047843": {
+    {
         "part_number": "12047843",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) NAT",
         "mfg": "Aptiv",
@@ -930,7 +930,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12047845": {
+    {
         "part_number": "12047845",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 17 NAT",
         "mfg": "Aptiv",
@@ -949,7 +949,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12047846": {
+    {
         "part_number": "12047846",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -968,7 +968,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12047838": {
+    {
         "part_number": "12047838",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -987,7 +987,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12065848": {
+    {
         "part_number": "12065848",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -1006,7 +1006,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12066050": {
+    {
         "part_number": "12066050",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) NAT",
         "mfg": "Aptiv",
@@ -1025,7 +1025,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12010852": {
+    {
         "part_number": "12010852",
         "description": "LOCK SECONDARY TPA   CRM",
         "mfg": "Aptiv",
@@ -1044,7 +1044,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_89bbbb6c-3dca-4599-a7f6-31a418e79503",
         "lock_type": ""
     },
-    "15489801": {
+    {
         "part_number": "15489801",
         "description": "LOCK SECONDARY TPA GT 2 BLU",
         "mfg": "Aptiv",
@@ -1063,7 +1063,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15491939": {
+    {
         "part_number": "15491939",
         "description": "LOCK SECONDARY TPA GT BLU DK",
         "mfg": "Aptiv",
@@ -1082,7 +1082,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15404997": {
+    {
         "part_number": "15404997",
         "description": "LOCK SECONDARY TPA MICRO BLU",
         "mfg": "Aptiv",
@@ -1101,7 +1101,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15410977": {
+    {
         "part_number": "15410977",
         "description": "LOCK SECONDARY TPA GT BLU",
         "mfg": "Aptiv",
@@ -1120,7 +1120,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15462653": {
+    {
         "part_number": "15462653",
         "description": "LOCK SECONDARY TPA GRA",
         "mfg": "Aptiv",
@@ -1139,7 +1139,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15328852": {
+    {
         "part_number": "15328852",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -1158,7 +1158,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15404650": {
+    {
         "part_number": "15404650",
         "description": "LOCK SECONDARY TPA MIC/P 32 Red",
         "mfg": "Aptiv",
@@ -1177,7 +1177,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12160437": {
+    {
         "part_number": "12160437",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 16 BLU",
         "mfg": "Aptiv",
@@ -1196,7 +1196,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_8f167075-5848-42ba-96e7-94a1b460643d",
         "lock_type": ""
     },
-    "15418546": {
+    {
         "part_number": "15418546",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -1215,7 +1215,7 @@
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_f03817de-e8d3-4cfb-9122-d263eda305c9",
         "lock_type": "Secondary"
     },
-    "15355359": {
+    {
         "part_number": "15355359",
         "description": "LOCK SECONDARY TPA GT 16 BLU",
         "mfg": "Aptiv",
@@ -1234,7 +1234,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15355360": {
+    {
         "part_number": "15355360",
         "description": "LOCK SECONDARY TPA GT 8 GRA MD",
         "mfg": "Aptiv",
@@ -1253,7 +1253,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15355357": {
+    {
         "part_number": "15355357",
         "description": "LOCK SECONDARY TPA GT  BLU",
         "mfg": "Aptiv",
@@ -1272,7 +1272,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15355358": {
+    {
         "part_number": "15355358",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -1291,7 +1291,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15318020": {
+    {
         "part_number": "15318020",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -1310,7 +1310,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12065249": {
+    {
         "part_number": "12065249",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 1 BLK",
         "mfg": "Aptiv",
@@ -1329,7 +1329,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15359061": {
+    {
         "part_number": "15359061",
         "description": "LOCK SECONDARY TPA MICRO NAT",
         "mfg": "Aptiv",
@@ -1348,7 +1348,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15480440": {
+    {
         "part_number": "15480440",
         "description": "LOCK SECONDARY TPA GT BLU",
         "mfg": "Aptiv",
@@ -1367,7 +1367,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15404970": {
+    {
         "part_number": "15404970",
         "description": "LOCK SECONDARY TPA MICRO Red",
         "mfg": "Aptiv",
@@ -1386,7 +1386,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12176632": {
+    {
         "part_number": "12176632",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 GRA LT",
         "mfg": "Aptiv",
@@ -1405,7 +1405,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12176633": {
+    {
         "part_number": "12176633",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 GRA LT",
         "mfg": "Aptiv",
@@ -1424,7 +1424,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15358785": {
+    {
         "part_number": "15358785",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -1443,7 +1443,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_5b2d8a87-c514-4057-ab7e-449ba7b8f018",
         "lock_type": ""
     },
-    "15418288": {
+    {
         "part_number": "15418288",
         "description": "LOCK SECONDARY TPA GT 10 PPL",
         "mfg": "Aptiv",
@@ -1462,7 +1462,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_87721347-258f-427f-9b41-f63238e1ce80",
         "lock_type": ""
     },
-    "15452678": {
+    {
         "part_number": "15452678",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -1481,7 +1481,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "13511587": {
+    {
         "part_number": "13511587",
         "description": "LOCK SECONDARY TPA GT  BLK",
         "mfg": "Aptiv",
@@ -1500,7 +1500,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_81744967-cb18-44df-b424-c960e45439a3",
         "lock_type": ""
     },
-    "15477824": {
+    {
         "part_number": "15477824",
         "description": "LOCK SECONDARY TPA GT Red",
         "mfg": "Aptiv",
@@ -1519,7 +1519,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15476195": {
+    {
         "part_number": "15476195",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -1538,7 +1538,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12059897": {
+    {
         "part_number": "12059897",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -1557,7 +1557,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f090406b-91f9-4f0d-a25f-06d88ae711b3",
         "lock_type": ""
     },
-    "12185027": {
+    {
         "part_number": "12185027",
         "description": "LOCK SECONDARY TPA 2 BLK",
         "mfg": "Aptiv",
@@ -1576,7 +1576,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15317584": {
+    {
         "part_number": "15317584",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -1595,7 +1595,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15359028": {
+    {
         "part_number": "15359028",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -1614,7 +1614,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12064863": {
+    {
         "part_number": "12064863",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 8 GRA LT",
         "mfg": "Aptiv",
@@ -1633,7 +1633,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12059801": {
+    {
         "part_number": "12059801",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 5 GRA",
         "mfg": "Aptiv",
@@ -1652,7 +1652,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15344855": {
+    {
         "part_number": "15344855",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLK",
         "mfg": "Aptiv",
@@ -1671,7 +1671,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_5b8a1c30-d925-4070-a394-3fe9eceba30a",
         "lock_type": ""
     },
-    "15305083": {
+    {
         "part_number": "15305083",
         "description": "LOCK SECONDARY TPA MIC/P GRA MD",
         "mfg": "Aptiv",
@@ -1690,7 +1690,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15355482": {
+    {
         "part_number": "15355482",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -1709,7 +1709,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15366012": {
+    {
         "part_number": "15366012",
         "description": "LOCK SECONDARY TPA GT BLU",
         "mfg": "Aptiv",
@@ -1728,7 +1728,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15304904": {
+    {
         "part_number": "15304904",
         "description": "LOCK SECONDARY TPA GT 20 GRA",
         "mfg": "Aptiv",
@@ -1747,7 +1747,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15304841": {
+    {
         "part_number": "15304841",
         "description": "LOCK SECONDARY TPA GT 20 BLU",
         "mfg": "Aptiv",
@@ -1766,7 +1766,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15304842": {
+    {
         "part_number": "15304842",
         "description": "LOCK SECONDARY TPA GT  BLU",
         "mfg": "Aptiv",
@@ -1785,7 +1785,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15447734": {
+    {
         "part_number": "15447734",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -1804,7 +1804,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12045699": {
+    {
         "part_number": "12045699",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 BLK",
         "mfg": "Aptiv",
@@ -1823,7 +1823,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a6d68b2b-ab32-4fba-9fe1-8a7908de7095",
         "lock_type": ""
     },
-    "12160494": {
+    {
         "part_number": "12160494",
         "description": "LOCK SECONDARY TPA MIC/P 20 GRA LT",
         "mfg": "Aptiv",
@@ -1842,7 +1842,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15426764": {
+    {
         "part_number": "15426764",
         "description": "LOCK SECONDARY TPA 20 BRN",
         "mfg": "Aptiv",
@@ -1861,7 +1861,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15305028": {
+    {
         "part_number": "15305028",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -1880,7 +1880,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_2021aab7-77c0-41d2-aa0b-eb5c5c9692d4",
         "lock_type": ""
     },
-    "15359005": {
+    {
         "part_number": "15359005",
         "description": "LOCK SECONDARY TPA GT  BLU",
         "mfg": "Aptiv",
@@ -1899,7 +1899,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15426765": {
+    {
         "part_number": "15426765",
         "description": "LOCK SECONDARY TPA 20 BRN",
         "mfg": "Aptiv",
@@ -1918,7 +1918,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15419807": {
+    {
         "part_number": "15419807",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -1937,7 +1937,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15416727": {
+    {
         "part_number": "15416727",
         "description": "LOCK SECONDARY TPA GT  GRA LT",
         "mfg": "Aptiv",
@@ -1956,7 +1956,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15318016": {
+    {
         "part_number": "15318016",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -1975,7 +1975,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15300014": {
+    {
         "part_number": "15300014",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLU",
         "mfg": "Aptiv",
@@ -1994,7 +1994,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ded16179-9bb7-4009-92ac-937238420ab3",
         "lock_type": ""
     },
-    "15326748": {
+    {
         "part_number": "15326748",
         "description": "LOCK SECONDARY TPA MIC/P BLU",
         "mfg": "Aptiv",
@@ -2013,7 +2013,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12045689": {
+    {
         "part_number": "12045689",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -2032,7 +2032,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_bdd25c0c-1e1f-49c7-96c3-f20fa36b5897",
         "lock_type": ""
     },
-    "12045690": {
+    {
         "part_number": "12045690",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 8 NAT",
         "mfg": "Aptiv",
@@ -2051,7 +2051,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6d86340e-4cfd-4679-86b7-2caf7efc4fb4",
         "lock_type": ""
     },
-    "15366686": {
+    {
         "part_number": "15366686",
         "description": "LOCK SECONDARY TPA GT NAT",
         "mfg": "Aptiv",
@@ -2070,7 +2070,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15303535": {
+    {
         "part_number": "15303535",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -2089,7 +2089,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15317579": {
+    {
         "part_number": "15317579",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -2108,7 +2108,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15317363": {
+    {
         "part_number": "15317363",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -2127,7 +2127,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15336378": {
+    {
         "part_number": "15336378",
         "description": "LOCK SECONDARY TPA GT 5 BLK",
         "mfg": "Aptiv",
@@ -2146,7 +2146,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12110540": {
+    {
         "part_number": "12110540",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 5 GRN DK",
         "mfg": "Aptiv",
@@ -2165,7 +2165,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ab3eddd8-8b30-480f-bc04-9502dc9d07f5",
         "lock_type": ""
     },
-    "15393422": {
+    {
         "part_number": "15393422",
         "description": "LOCK SECONDARY TPA MIC/P Red",
         "mfg": "Aptiv",
@@ -2184,7 +2184,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12020807": {
+    {
         "part_number": "12020807",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -2203,7 +2203,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_23793d47-d578-4bf0-8b7f-84de8db9881b",
         "lock_type": ""
     },
-    "15317301": {
+    {
         "part_number": "15317301",
         "description": "LOCK SECONDARY TPA GT GRA LT",
         "mfg": "Aptiv",
@@ -2222,7 +2222,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12176475": {
+    {
         "part_number": "12176475",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 12 GRA MD",
         "mfg": "Aptiv",
@@ -2241,7 +2241,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15318035": {
+    {
         "part_number": "15318035",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -2260,7 +2260,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15318032": {
+    {
         "part_number": "15318032",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -2279,7 +2279,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15318031": {
+    {
         "part_number": "15318031",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -2298,7 +2298,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15317588": {
+    {
         "part_number": "15317588",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -2317,7 +2317,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12064999": {
+    {
         "part_number": "12064999",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -2336,7 +2336,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12065141": {
+    {
         "part_number": "12065141",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 8 GRA MD",
         "mfg": "Aptiv",
@@ -2355,7 +2355,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15324332": {
+    {
         "part_number": "15324332",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 CRM",
         "mfg": "Aptiv",
@@ -2374,7 +2374,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12047900": {
+    {
         "part_number": "12047900",
         "description": "LOCK SECONDARY TPA MIC/P 12 BLU",
         "mfg": "Aptiv",
@@ -2393,7 +2393,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12047901": {
+    {
         "part_number": "12047901",
         "description": "LOCK SECONDARY TPA MIC/P 12 BLU",
         "mfg": "Aptiv",
@@ -2412,7 +2412,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15328851": {
+    {
         "part_number": "15328851",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -2431,7 +2431,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12191731": {
+    {
         "part_number": "12191731",
         "description": "LOCK SECONDARY TPA GT GRA MD",
         "mfg": "Aptiv",
@@ -2450,7 +2450,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12160826": {
+    {
         "part_number": "12160826",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLU",
         "mfg": "Aptiv",
@@ -2469,7 +2469,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b1e875ee-fcfe-4882-b15b-842088aec752",
         "lock_type": "Secondary"
     },
-    "12160480": {
+    {
         "part_number": "12160480",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -2488,7 +2488,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12160478": {
+    {
         "part_number": "12160478",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -2507,7 +2507,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15305557": {
+    {
         "part_number": "15305557",
         "description": "LOCK SECONDARY TPA GT GRA DK",
         "mfg": "Aptiv",
@@ -2526,7 +2526,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15326238": {
+    {
         "part_number": "15326238",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -2545,7 +2545,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12047948": {
+    {
         "part_number": "12047948",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLK",
         "mfg": "Aptiv",
@@ -2564,7 +2564,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_12df5a1f-6f72-4787-b7d1-ce8805384c4f",
         "lock_type": ""
     },
-    "12191649": {
+    {
         "part_number": "12191649",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -2583,7 +2583,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15336530": {
+    {
         "part_number": "15336530",
         "description": "LOCK SECONDARY TPA GT 2 BLK",
         "mfg": "Aptiv",
@@ -2602,7 +2602,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_12b01787-72bf-43f5-a4a8-b5f7c4d70e3b",
         "lock_type": ""
     },
-    "12147060": {
+    {
         "part_number": "12147060",
         "description": "LOCK SECONDARY TPA  2 BLK",
         "mfg": "Aptiv",
@@ -2621,7 +2621,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_d31cc57c-8a26-4ec1-b9a7-8e022c975651",
         "lock_type": "Secondary"
     },
-    "12147169": {
+    {
         "part_number": "12147169",
         "description": "LOCK SECONDARY TPA GT 4 BLK",
         "mfg": "Aptiv",
@@ -2640,7 +2640,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_210e005c-6c38-419d-864b-3796c67c487c",
         "lock_type": "Secondary"
     },
-    "12059969": {
+    {
         "part_number": "12059969",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 7 NAT",
         "mfg": "Aptiv",
@@ -2659,7 +2659,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12124824": {
+    {
         "part_number": "12124824",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLK",
         "mfg": "Aptiv",
@@ -2678,7 +2678,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_a823c370-80f8-444e-aad3-fafbf76ccf1e",
         "lock_type": "Secondary"
     },
-    "15336744": {
+    {
         "part_number": "15336744",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -2697,7 +2697,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15304695": {
+    {
         "part_number": "15304695",
         "description": "LOCK SECONDARY TPA GT BLU",
         "mfg": "Aptiv",
@@ -2716,7 +2716,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15329013": {
+    {
         "part_number": "15329013",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -2735,7 +2735,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129937": {
+    {
         "part_number": "12129937",
         "description": "LOCK SECONDARY TPA 16 GRA LT",
         "mfg": "Aptiv",
@@ -2754,7 +2754,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15327646": {
+    {
         "part_number": "15327646",
         "description": "LOCK SECONDARY TPA 16 BLK",
         "mfg": "Aptiv",
@@ -2773,7 +2773,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15436201": {
+    {
         "part_number": "15436201",
         "description": "LOCK SECONDARY TPA GT 14 GRA MD",
         "mfg": "Aptiv",
@@ -2792,7 +2792,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15436200": {
+    {
         "part_number": "15436200",
         "description": "LOCK SECONDARY TPA GT 12 GRA MD",
         "mfg": "Aptiv",
@@ -2811,7 +2811,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b23b2266-a270-4785-ba6d-dc95371b832b",
         "lock_type": ""
     },
-    "15430904": {
+    {
         "part_number": "15430904",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -2830,7 +2830,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15418415": {
+    {
         "part_number": "15418415",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -2849,7 +2849,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f8c7b70e-06f6-460b-8b16-2b65b94e01e4",
         "lock_type": ""
     },
-    "15418547": {
+    {
         "part_number": "15418547",
         "description": "LOCK SECONDARY TPA GT 5 PPL",
         "mfg": "Aptiv",
@@ -2868,7 +2868,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "13609626": {
+    {
         "part_number": "13609626",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 8 CRM",
         "mfg": "Aptiv",
@@ -2887,7 +2887,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15490624": {
+    {
         "part_number": "15490624",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 8 BLU",
         "mfg": "Aptiv",
@@ -2906,7 +2906,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12146436": {
+    {
         "part_number": "12146436",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -2925,7 +2925,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12146435": {
+    {
         "part_number": "12146435",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -2944,7 +2944,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12146443": {
+    {
         "part_number": "12146443",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -2963,7 +2963,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15436199": {
+    {
         "part_number": "15436199",
         "description": "LOCK SECONDARY TPA GT 16 GRA MD",
         "mfg": "Aptiv",
@@ -2982,7 +2982,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_b50f844b-983c-4a8e-a0a3-e8b3db59f6e4",
         "lock_type": ""
     },
-    "15430900": {
+    {
         "part_number": "15430900",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -3001,7 +3001,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_0b915b93-dd12-43b8-aa87-45bb02960c47",
         "lock_type": ""
     },
-    "15436198": {
+    {
         "part_number": "15436198",
         "description": "LOCK SECONDARY TPA GT 6 GRA MD",
         "mfg": "Aptiv",
@@ -3020,7 +3020,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15318036": {
+    {
         "part_number": "15318036",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -3039,7 +3039,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15326118": {
+    {
         "part_number": "15326118",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -3058,7 +3058,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_19514548-ef9f-4227-bf07-ca208ebbb806",
         "lock_type": ""
     },
-    "15317323": {
+    {
         "part_number": "15317323",
         "description": "LOCK SECONDARY TPA GT 22 BLU",
         "mfg": "Aptiv",
@@ -3077,7 +3077,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12064772": {
+    {
         "part_number": "12064772",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 10 BLK",
         "mfg": "Aptiv",
@@ -3096,7 +3096,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12052898": {
+    {
         "part_number": "12052898",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 5 BLK",
         "mfg": "Aptiv",
@@ -3115,7 +3115,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12177082": {
+    {
         "part_number": "12177082",
         "description": "LOCK SECONDARY TPA GT 10 GRA MD",
         "mfg": "Aptiv",
@@ -3134,7 +3134,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_c8a6471e-65f8-4d52-afd1-bc55d6ca9bb5",
         "lock_type": ""
     },
-    "12045810": {
+    {
         "part_number": "12045810",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 10 BLU",
         "mfg": "Aptiv",
@@ -3153,7 +3153,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_8f9b9b79-aecf-4da0-9fc1-f9ea3811843f",
         "lock_type": ""
     },
-    "12064771": {
+    {
         "part_number": "12064771",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -3172,7 +3172,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15318028": {
+    {
         "part_number": "15318028",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -3191,7 +3191,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15317583": {
+    {
         "part_number": "15317583",
         "description": "LOCK SECONDARY TPA NAT",
         "mfg": "Aptiv",
@@ -3210,7 +3210,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15317368": {
+    {
         "part_number": "15317368",
         "description": "LOCK SECONDARY TPA GT GRA MD",
         "mfg": "Aptiv",
@@ -3229,7 +3229,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12110542": {
+    {
         "part_number": "12110542",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -3248,7 +3248,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12176513": {
+    {
         "part_number": "12176513",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 12 GRA MD",
         "mfg": "Aptiv",
@@ -3267,7 +3267,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12191471": {
+    {
         "part_number": "12191471",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRN",
         "mfg": "Aptiv",
@@ -3286,7 +3286,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12059195": {
+    {
         "part_number": "12059195",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3305,7 +3305,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_1b82a257-3f33-4431-a926-251f9d07dacd",
         "lock_type": ""
     },
-    "15304813": {
+    {
         "part_number": "15304813",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLU",
         "mfg": "Aptiv",
@@ -3324,7 +3324,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15303505": {
+    {
         "part_number": "15303505",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3343,7 +3343,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15300016": {
+    {
         "part_number": "15300016",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLK",
         "mfg": "Aptiv",
@@ -3362,7 +3362,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_e99e580a-868f-4526-a604-35f15533a849",
         "lock_type": "Secondary"
     },
-    "15300015": {
+    {
         "part_number": "15300015",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 CRM",
         "mfg": "Aptiv",
@@ -3381,7 +3381,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ab3df0d4-cbb9-440b-a562-c129d0746337",
         "lock_type": ""
     },
-    "15304912": {
+    {
         "part_number": "15304912",
         "description": "LOCK SECONDARY TPA GT  BLU",
         "mfg": "Aptiv",
@@ -3400,7 +3400,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12059111": {
+    {
         "part_number": "12059111",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3419,7 +3419,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13935620": {
+    {
         "part_number": "13935620",
         "description": "LOCK SECONDARY TPA VLT",
         "mfg": "Aptiv",
@@ -3438,7 +3438,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15336728": {
+    {
         "part_number": "15336728",
         "description": "LOCK SECONDARY TPA GRA MD",
         "mfg": "Aptiv",
@@ -3457,7 +3457,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15324886": {
+    {
         "part_number": "15324886",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3476,7 +3476,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12034363": {
+    {
         "part_number": "12034363",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 GRA",
         "mfg": "Aptiv",
@@ -3495,7 +3495,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_93f24d32-08b9-409b-8347-18dd0e48316d",
         "lock_type": "Secondary"
     },
-    "13885829": {
+    {
         "part_number": "13885829",
         "description": "LOCK SECONDARY TPA Red",
         "mfg": "Aptiv",
@@ -3514,7 +3514,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13869593": {
+    {
         "part_number": "13869593",
         "description": "LOCK SECONDARY TPA GT BLU LT",
         "mfg": "Aptiv",
@@ -3533,7 +3533,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13869592": {
+    {
         "part_number": "13869592",
         "description": "LOCK SECONDARY TPA GT BLU LT",
         "mfg": "Aptiv",
@@ -3552,7 +3552,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13855239": {
+    {
         "part_number": "13855239",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) Red",
         "mfg": "Aptiv",
@@ -3571,7 +3571,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13792126": {
+    {
         "part_number": "13792126",
         "description": "LOCK SECONDARY TPA Red",
         "mfg": "Aptiv",
@@ -3590,7 +3590,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15467634": {
+    {
         "part_number": "15467634",
         "description": "LOCK SECONDARY TPA GT 8 Red",
         "mfg": "Aptiv",
@@ -3609,7 +3609,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13826138": {
+    {
         "part_number": "13826138",
         "description": "LOCK SECONDARY TPA GT BLU",
         "mfg": "Aptiv",
@@ -3628,7 +3628,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13826136": {
+    {
         "part_number": "13826136",
         "description": "LOCK SECONDARY TPA GT VLT",
         "mfg": "Aptiv",
@@ -3647,7 +3647,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13795902": {
+    {
         "part_number": "13795902",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA",
         "mfg": "Aptiv",
@@ -3666,7 +3666,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13795904": {
+    {
         "part_number": "13795904",
         "description": "LOCK SECONDARY TPA Red",
         "mfg": "Aptiv",
@@ -3685,7 +3685,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13792148": {
+    {
         "part_number": "13792148",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3704,7 +3704,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13792142": {
+    {
         "part_number": "13792142",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3723,7 +3723,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13787104": {
+    {
         "part_number": "13787104",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU DK",
         "mfg": "Aptiv",
@@ -3742,7 +3742,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13787105": {
+    {
         "part_number": "13787105",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU DK",
         "mfg": "Aptiv",
@@ -3761,7 +3761,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15467558": {
+    {
         "part_number": "15467558",
         "description": "LOCK SECONDARY TPA GT Red",
         "mfg": "Aptiv",
@@ -3780,7 +3780,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12052290": {
+    {
         "part_number": "12052290",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -3799,7 +3799,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_bfc5c0d5-c97d-4786-83d4-0185cc359931",
         "lock_type": "Secondary"
     },
-    "12064753": {
+    {
         "part_number": "12064753",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -3818,7 +3818,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15483798": {
+    {
         "part_number": "15483798",
         "description": "LOCK SECONDARY TPA GT  PPL",
         "mfg": "Aptiv",
@@ -3837,7 +3837,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13641521": {
+    {
         "part_number": "13641521",
         "description": "LOCK SECONDARY TPA PPL DK",
         "mfg": "Aptiv",
@@ -3856,7 +3856,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13512104": {
+    {
         "part_number": "13512104",
         "description": "LOCK SECONDARY TPA GT  BLU",
         "mfg": "Aptiv",
@@ -3875,7 +3875,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12047783": {
+    {
         "part_number": "12047783",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 GRA MD",
         "mfg": "Aptiv",
@@ -3894,7 +3894,7 @@
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_1bb9f5a9-3991-4ad0-9006-42dcabf90562",
         "lock_type": "Secondary"
     },
-    "12047784": {
+    {
         "part_number": "12047784",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 GRA",
         "mfg": "Aptiv",
@@ -3913,7 +3913,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "13527999": {
+    {
         "part_number": "13527999",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -3932,7 +3932,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13554417": {
+    {
         "part_number": "13554417",
         "description": "LOCK SECONDARY TPA   BLK",
         "mfg": "Aptiv",
@@ -3951,7 +3951,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_94f652ca-b9a0-4471-861b-d89c9fff794c",
         "lock_type": ""
     },
-    "13517800": {
+    {
         "part_number": "13517800",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLU",
         "mfg": "Aptiv",
@@ -3970,7 +3970,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13513473": {
+    {
         "part_number": "13513473",
         "description": "LOCK SECONDARY TPA MICRO  NAT",
         "mfg": "Aptiv",
@@ -3989,7 +3989,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15472830": {
+    {
         "part_number": "15472830",
         "description": "LOCK SECONDARY TPA GT Red",
         "mfg": "Aptiv",
@@ -4008,7 +4008,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15467562": {
+    {
         "part_number": "15467562",
         "description": "LOCK SECONDARY TPA GT BLU",
         "mfg": "Aptiv",
@@ -4027,7 +4027,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12146088": {
+    {
         "part_number": "12146088",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) CRM",
         "mfg": "Aptiv",
@@ -4046,7 +4046,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13503621": {
+    {
         "part_number": "13503621",
         "description": "LOCK SECONDARY TPA GT PPL",
         "mfg": "Aptiv",
@@ -4065,7 +4065,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13503622": {
+    {
         "part_number": "13503622",
         "description": "LOCK SECONDARY TPA MICRO BLU DK",
         "mfg": "Aptiv",
@@ -4084,7 +4084,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "13503601": {
+    {
         "part_number": "13503601",
         "description": "LOCK SECONDARY TPA MICRO BLU DK",
         "mfg": "Aptiv",
@@ -4103,7 +4103,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12147528": {
+    {
         "part_number": "12147528",
         "description": "LOCK SECONDARY TPA  1 BLK",
         "mfg": "Aptiv",
@@ -4122,7 +4122,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15303537": {
+    {
         "part_number": "15303537",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -4141,7 +4141,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12191901": {
+    {
         "part_number": "12191901",
         "description": "LOCK SECONDARY TPA GT  GRA MD",
         "mfg": "Aptiv",
@@ -4160,7 +4160,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129802": {
+    {
         "part_number": "12129802",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -4179,7 +4179,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12176462": {
+    {
         "part_number": "12176462",
         "description": "LOCK SECONDARY TPA GT 12 GRA MD",
         "mfg": "Aptiv",
@@ -4198,7 +4198,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12191067": {
+    {
         "part_number": "12191067",
         "description": "LOCK SECONDARY TPA MIC/P  BLK",
         "mfg": "Aptiv",
@@ -4217,7 +4217,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12077922": {
+    {
         "part_number": "12077922",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -4236,7 +4236,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12084673": {
+    {
         "part_number": "12084673",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 5 BLK",
         "mfg": "Aptiv",
@@ -4255,7 +4255,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_fad3c359-f9f4-4e43-91a4-2fa7aee6f289",
         "lock_type": ""
     },
-    "12147055": {
+    {
         "part_number": "12147055",
         "description": "LOCK SECONDARY TPA YEL",
         "mfg": "Aptiv",
@@ -4274,7 +4274,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12064764": {
+    {
         "part_number": "12064764",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 6 BLU",
         "mfg": "Aptiv",
@@ -4293,7 +4293,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12177076": {
+    {
         "part_number": "12177076",
         "description": "LOCK SECONDARY TPA MIC/P 6 BLU",
         "mfg": "Aptiv",
@@ -4312,7 +4312,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12124264": {
+    {
         "part_number": "12124264",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 10 GRA MD",
         "mfg": "Aptiv",
@@ -4331,7 +4331,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12162300": {
+    {
         "part_number": "12162300",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -4350,7 +4350,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12110782": {
+    {
         "part_number": "12110782",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 15 GRA MD",
         "mfg": "Aptiv",
@@ -4369,7 +4369,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12176865": {
+    {
         "part_number": "12176865",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 15 GRA LT",
         "mfg": "Aptiv",
@@ -4388,7 +4388,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12160717": {
+    {
         "part_number": "12160717",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) CRM",
         "mfg": "Aptiv",
@@ -4407,7 +4407,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12064822": {
+    {
         "part_number": "12064822",
         "description": "LOCK SECONDARY TPA MIC/P GRA MD",
         "mfg": "Aptiv",
@@ -4426,7 +4426,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12146953": {
+    {
         "part_number": "12146953",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 12 GRA LT",
         "mfg": "Aptiv",
@@ -4445,7 +4445,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12110754": {
+    {
         "part_number": "12110754",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA LT",
         "mfg": "Aptiv",
@@ -4464,7 +4464,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_582fcdf2-b3db-4dcd-9ab0-a832a0b41e54",
         "lock_type": ""
     },
-    "12146801": {
+    {
         "part_number": "12146801",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -4483,7 +4483,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12092844": {
+    {
         "part_number": "12092844",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 5 BLU",
         "mfg": "Aptiv",
@@ -4502,7 +4502,7 @@
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_158a055e-f6d1-4ac9-a7ce-4780f77a2dc3",
         "lock_type": "Secondary"
     },
-    "12146039": {
+    {
         "part_number": "12146039",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLU",
         "mfg": "Aptiv",
@@ -4521,7 +4521,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129940": {
+    {
         "part_number": "12129940",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLU",
         "mfg": "Aptiv",
@@ -4540,7 +4540,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12129841": {
+    {
         "part_number": "12129841",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 7 BLK",
         "mfg": "Aptiv",
@@ -4559,7 +4559,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "15324063": {
+    {
         "part_number": "15324063",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLU",
         "mfg": "Aptiv",
@@ -4578,7 +4578,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_6ce34d20-74ae-48bd-8588-98dc062c6dd7",
         "lock_type": "Secondary"
     },
-    "12129492": {
+    {
         "part_number": "12129492",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 GRA LT",
         "mfg": "Aptiv",
@@ -4597,7 +4597,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129384": {
+    {
         "part_number": "12129384",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 1 BLK",
         "mfg": "Aptiv",
@@ -4616,7 +4616,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12129083": {
+    {
         "part_number": "12129083",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 GRA LT",
         "mfg": "Aptiv",
@@ -4635,7 +4635,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12129157": {
+    {
         "part_number": "12129157",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA LT",
         "mfg": "Aptiv",
@@ -4654,7 +4654,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12129137": {
+    {
         "part_number": "12129137",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA LT",
         "mfg": "Aptiv",
@@ -4673,7 +4673,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12045897": {
+    {
         "part_number": "12045897",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 NAT",
         "mfg": "Aptiv",
@@ -4692,7 +4692,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12052816": {
+    {
         "part_number": "12052816",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA MD",
         "mfg": "Aptiv",
@@ -4711,7 +4711,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12092401": {
+    {
         "part_number": "12092401",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 BLU",
         "mfg": "Aptiv",
@@ -4730,7 +4730,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12048413": {
+    {
         "part_number": "12048413",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLK",
         "mfg": "Aptiv",
@@ -4749,7 +4749,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12092164": {
+    {
         "part_number": "12092164",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLU",
         "mfg": "Aptiv",
@@ -4768,7 +4768,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12064765": {
+    {
         "part_number": "12064765",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) BLK",
         "mfg": "Aptiv",
@@ -4787,7 +4787,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12064755": {
+    {
         "part_number": "12064755",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 6 BLU",
         "mfg": "Aptiv",
@@ -4806,7 +4806,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12059185": {
+    {
         "part_number": "12059185",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLU",
         "mfg": "Aptiv",
@@ -4825,7 +4825,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_666cb7ba-a840-4c55-8833-9b880ee3c6be",
         "lock_type": ""
     },
-    "12065826": {
+    {
         "part_number": "12065826",
         "description": "LOCK SECONDARY TPA MIC/P NAT",
         "mfg": "Aptiv",
@@ -4844,7 +4844,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12059160": {
+    {
         "part_number": "12059160",
         "description": "LOCK SECONDARY TPA MIC/P 4 Red",
         "mfg": "Aptiv",
@@ -4863,7 +4863,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12052486": {
+    {
         "part_number": "12052486",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 7 GRA MD",
         "mfg": "Aptiv",
@@ -4882,7 +4882,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_027578fa-f08f-45c3-a96c-625ea366a096",
         "lock_type": "Secondary"
     },
-    "12052199": {
+    {
         "part_number": "12052199",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 7 BLK",
         "mfg": "Aptiv",
@@ -4901,7 +4901,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12066163": {
+    {
         "part_number": "12066163",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA LT",
         "mfg": "Aptiv",
@@ -4920,7 +4920,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12066176": {
+    {
         "part_number": "12066176",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLK",
         "mfg": "Aptiv",
@@ -4939,7 +4939,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_ece0c9c0-1532-466e-bc7f-e0666884441b",
         "lock_type": ""
     },
-    "12064987": {
+    {
         "part_number": "12064987",
         "description": "LOCK SECONDARY TPA MIC/P 5 Red",
         "mfg": "Aptiv",
@@ -4958,7 +4958,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12059860": {
+    {
         "part_number": "12059860",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 GRA MD",
         "mfg": "Aptiv",
@@ -4977,7 +4977,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12065279": {
+    {
         "part_number": "12065279",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLK",
         "mfg": "Aptiv",
@@ -4996,7 +4996,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "15324456": {
+    {
         "part_number": "15324456",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRN DK",
         "mfg": "Aptiv",
@@ -5015,7 +5015,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_f5c9757e-dca8-45f7-b90b-05b18fc4463f",
         "lock_type": "Secondary"
     },
-    "12047936": {
+    {
         "part_number": "12047936",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 8 Black",
         "mfg": "Aptiv",
@@ -5034,7 +5034,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_5e82ebcd-927a-437d-8066-43aa53f4c324",
         "lock_type": ""
     },
-    "12066304": {
+    {
         "part_number": "12066304",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 8 GRA MD",
         "mfg": "Aptiv",
@@ -5053,7 +5053,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_194fbbca-6800-4958-afbf-adfe421f986d",
         "lock_type": ""
     },
-    "12052446": {
+    {
         "part_number": "12052446",
         "description": "LOCK SECONDARY TPA MIC/P 8 CRM",
         "mfg": "Aptiv",
@@ -5072,7 +5072,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12052055": {
+    {
         "part_number": "12052055",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 NAT",
         "mfg": "Aptiv",
@@ -5091,7 +5091,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12048248": {
+    {
         "part_number": "12048248",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 4 BLK",
         "mfg": "Aptiv",
@@ -5110,7 +5110,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12048371": {
+    {
         "part_number": "12048371",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) GRA LT",
         "mfg": "Aptiv",
@@ -5129,7 +5129,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12034145": {
+    {
         "part_number": "12034145",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 3 BLK",
         "mfg": "Aptiv",
@@ -5148,7 +5148,7 @@
         "model3d": "https://productdata.aptiv.com/api/assetstorage/2949_27408a00-420d-4893-a2b8-c9d3634d5e01",
         "lock_type": ""
     },
-    "12033872": {
+    {
         "part_number": "12033872",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 5 CRM",
         "mfg": "Aptiv",
@@ -5167,7 +5167,7 @@
         "model3d": null,
         "lock_type": "Secondary"
     },
-    "12034446": {
+    {
         "part_number": "12034446",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 2 BLK",
         "mfg": "Aptiv",
@@ -5186,7 +5186,7 @@
         "model3d": "https://asset-prod1a-euw.productmarketingcloud.com/api/assetstorage/2949_82c13f85-784b-47cc-98a1-074af2fc928c",
         "lock_type": "Secondary"
     },
-    "12020219": {
+    {
         "part_number": "12020219",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 12 GRA LT",
         "mfg": "Aptiv",
@@ -5205,7 +5205,7 @@
         "model3d": null,
         "lock_type": ""
     },
-    "12020647": {
+    {
         "part_number": "12020647",
         "description": "LOCK SECONDARY TPA MetriPack (M/P) 5 BLK",
         "mfg": "Aptiv",
@@ -5224,4 +5224,4 @@
         "model3d": null,
         "lock_type": ""
     }
-}
+]
