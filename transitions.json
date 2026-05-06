@@ -5711,12 +5711,11 @@
             {
                 "length": 38.4,
                 "bulb_length": 20.9,
-                "Bulb_offset": "[5.5, 0.0]",
+                "bulb_offset": [5.5, 0.0],
                 "angle": -180.0,
                 "min_dia": 6.9,
                 "max_dia": 13.2,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -5788,12 +5787,11 @@
             {
                 "length": 38.4,
                 "bulb_length": 20.9,
-                "Bulb_offset": "[5.5, 0.0]",
+                "bulb_offset": [5.5, 0.0],
                 "angle": -180.0,
                 "min_dia": 6.9,
                 "max_dia": 13.2,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -5865,12 +5863,11 @@
             {
                 "length": 36.1,
                 "bulb_length": 21.5,
-                "Bulb_offset": "[7.1, 0.0]",
+                "bulb_offset": [7.1, 0.0],
                 "angle": -180.0,
                 "min_dia": 9.7,
                 "max_dia": 19.3,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -5942,12 +5939,11 @@
             {
                 "length": 36.1,
                 "bulb_length": 21.5,
-                "Bulb_offset": "[7.1, 0.0]",
+                "bulb_offset": [7.1, 0.0],
                 "angle": -180.0,
                 "min_dia": 9.7,
                 "max_dia": 19.3,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6019,12 +6015,11 @@
             {
                 "length": 36.1,
                 "bulb_length": 21.5,
-                "Bulb_offset": "[7.1, 0.0]",
+                "bulb_offset": [7.1, 0.0],
                 "angle": -180.0,
                 "min_dia": 9.7,
                 "max_dia": 19.3,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6096,12 +6091,11 @@
             {
                 "length": 36.1,
                 "bulb_length": 28.8,
-                "Bulb_offset": "[14.4, 0.0]",
+                "bulb_offset": [14.4, 0.0],
                 "angle": -180.0,
                 "min_dia": 9.7,
                 "max_dia": 19.3,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6173,12 +6167,11 @@
             {
                 "length": 36.1,
                 "bulb_length": 28.8,
-                "Bulb_offset": "[14.4, 0.0]",
+                "bulb_offset": [14.4, 0.0],
                 "angle": -180.0,
                 "min_dia": 9.7,
                 "max_dia": 19.3,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6250,12 +6243,11 @@
             {
                 "length": 51.8,
                 "bulb_length": 34.7,
-                "Bulb_offset": "[14.0, 0.0]",
+                "bulb_offset": [14.0, 0.0],
                 "angle": -180.0,
                 "min_dia": 13.0,
                 "max_dia": 26.9,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6327,12 +6319,11 @@
             {
                 "length": 51.8,
                 "bulb_length": 34.7,
-                "Bulb_offset": "[14.0, 0.0]",
+                "bulb_offset": [14.0, 0.0],
                 "angle": -180.0,
                 "min_dia": 13.0,
                 "max_dia": 26.9,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6404,12 +6395,11 @@
             {
                 "length": 74.9,
                 "bulb_length": 50.4,
-                "Bulb_offset": "[20.4, 0.0]",
+                "bulb_offset": [20.4, 0.0],
                 "angle": -180.0,
                 "min_dia": 18.5,
                 "max_dia": 38.6,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6481,12 +6471,11 @@
             {
                 "length": 74.9,
                 "bulb_length": 50.4,
-                "Bulb_offset": "[20.4, 0.0]",
+                "bulb_offset": [20.4, 0.0],
                 "angle": -180.0,
                 "min_dia": 18.5,
                 "max_dia": 38.6,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6558,12 +6547,11 @@
             {
                 "length": 74.9,
                 "bulb_length": 50.4,
-                "Bulb_offset": "[20.4, 0.0]",
+                "bulb_offset": [20.4, 0.0],
                 "angle": -180.0,
                 "min_dia": 18.5,
                 "max_dia": 38.6,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6635,12 +6623,11 @@
             {
                 "length": 108.5,
                 "bulb_length": 70.0,
-                "Bulb_offset": "[26.6, 0.0]",
+                "bulb_offset": [26.6, 0.0],
                 "angle": -180.0,
                 "min_dia": 26.7,
                 "max_dia": 55.6,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
@@ -6712,12 +6699,11 @@
             {
                 "length": 108.5,
                 "bulb_length": 70.0,
-                "Bulb_offset": "[26.6, 0.0]",
+                "bulb_offset": [26.6, 0.0],
                 "angle": -180.0,
                 "min_dia": 26.7,
                 "max_dia": 55.6,
                 "offset": null,
-                "bulb_offset": null,
                 "flange_height": null,
                 "flange_width": null
             },
