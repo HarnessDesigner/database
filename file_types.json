@@ -55,12 +55,12 @@
     },
     {
         "mimetype": "image/jpeg",
-        "extension": "jpeg",
+        "extension": "jpg",
         "name": "JPEG",
         "is_model": 0,
-        "is_image": 0,
-        "is_datasheet": 0,
-        "is_cad": 0
+        "is_image": 1,
+        "is_datasheet": 1,
+        "is_cad": 1
     },
     {
         "mimetype": "image/pjpg",
