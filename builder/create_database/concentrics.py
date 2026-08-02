@@ -1,0 +1,28 @@
+# © 2025-2026 Kevin G. Schlosser <kevin.g.schlosser@gmail.com>
+
+from . import projects as _projects
+from . import bundle_covers as _bundle_covers
+from . import transition_branches as _transition_branches
+
+from .. import sql_table as _con
+
+
+pjt_id_field = _con.UUIDField('id', is_primary=True)
+
+pjt_table = _con.SQLTable(
+    'pjt_concentrics',
+    pjt_id_field,
+    _con.ProjectIdField(),
+    _con.UUIDField('bundle_id', no_null=True,
+                  references=_con.SQLFieldReference(_bundle_covers.pjt_table,
+                                                    _bundle_covers.pjt_id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+
+    _con.UUIDField('transition_branch_id', no_null=True,
+                  references=_con.SQLFieldReference(_transition_branches.pjt_table,
+                                                    _transition_branches.pjt_id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.TextField('notes', default='""', no_null=True)
+)

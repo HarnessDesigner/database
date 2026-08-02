@@ -1,0 +1,47 @@
+name: Build Database
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'builder/**'
+      - 'Aptiv/**'
+      - 'Bosch/**'
+      - 'TE/**'
+      - 'Universal/**'
+      - '.github/workflows/build-database.yml'
+
+permissions:
+  contents: write   # only needed for the release step
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v7.0.0
+
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: '3.11'
+
+      - name: Run builder
+        run: python builder/build_database.py
+
+      - name: Package build output
+        run: (cd build && zip -r -q ../harness_designer_database.zip .)
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: harness_designer_database
+          path: harness_designer_database.zip
+          if-no-files-found: error
+
+      - name: Publish release
+        if: github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: db-${{ github.run_number }}
+          name: Database build ${{ github.run_number }}
+          files: harness_designer_database.zip

@@ -1,0 +1,106 @@
+# © 2025-2026 Kevin G. Schlosser <kevin.g.schlosser@gmail.com>
+
+from . import housings as _housings
+
+from . import projects as _projects
+from . import points3d as _points3d
+from . import points2d as _points2d
+
+from .. import sql_table as _con
+
+
+id_field = _con.UUIDField('id', is_primary=True)
+
+table = _con.SQLTable(
+    'cavities',
+    id_field,
+    _con.UUIDField('housing_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_housings.table,
+                                                    _housings.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.IntField('idx', no_null=True),
+    _con.TextField('name', default='""', no_null=True),
+    _con.TextField('point2d', default='"[0.0, 0.0]"', no_null=True),
+    _con.TextField('angle2d', default='"[0.0, 0.0, 0.0]"', no_null=True),
+    _con.TextField('quat2d', default='"[1.0, 0.0, 0.0, 0.0]"', no_null=True),
+    _con.TextField('point3d', default='"[0.0, 0.0, 0.0]"', no_null=True),
+    _con.TextField('angle3d', default='"[0.0, 0.0, 0.0]"', no_null=True),
+    _con.TextField('quat3d', default='"[1.0, 0.0, 0.0, 0.0]"', no_null=True),
+    _con.FloatField('width', default='1.0', no_null=True),
+    _con.FloatField('height', default='1.0', no_null=True),
+    _con.FloatField('length', default='3.0', no_null=True),
+    _con.IntField('round_terminal', default='0', no_null=True),
+    _con.TextField('terminal_sizes', default='""', no_null=True),
+    _con.TextField('aabb', default='NULL'),
+    _con.TextField('obb', default='NULL'),
+    _con.IntField('render_terminal_marker', default='NULL'),
+    # Set when this cavity's wire-side mesh surface is shared with one or
+    # more other cavities (no distinguishable per-cavity wire-side geometry
+    # in the source CAD) -- the wire side is then rendered/click-tested as a
+    # synthetic marker built from this cavity's own OBB back face (corners
+    # 0-3) instead of the shared real surface. The terminal side is
+    # unaffected and still uses its own real surface/marker as normal.
+    _con.IntField('render_wire_marker', default='NULL'),
+    # Surface indices (into MeshSurfacePicker.surfaces for this part's mesh)
+    # selected in the housing editor for this cavity's terminal/wire face,
+    # stored as the string repr of a list of ints (e.g. "[3, 7, 12]"), NULL
+    # when not yet assigned. Lets match_cavity_surfaces() skip its nearest-
+    # neighbor OBB-matching heuristic for cavities already mapped this way.
+    _con.TextField('terminal_surf_indices', default='NULL'),
+    _con.TextField('wire_surf_indices', default='NULL')
+)
+
+
+pjt_id_field = _con.UUIDField('id', is_primary=True)
+
+pjt_table = _con.SQLTable(
+    'pjt_cavities',
+    pjt_id_field,
+    _con.ProjectIdField(),
+    _con.UUIDField('part_id', no_null=True,
+                  references=_con.SQLFieldReference(table,
+                                                    id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+
+    _con.UUIDField('point2d_id', no_null=True,
+                  references=_con.SQLFieldReference(_points2d.pjt_table,
+                                                    _points2d.pjt_id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('point3d_id', no_null=True,
+                  references=_con.SQLFieldReference(_points3d.pjt_table,
+                                                    _points3d.pjt_id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('terminal_point3d_id', default='NULL',
+                  references=_con.SQLFieldReference(_points3d.pjt_table,
+                                                    _points3d.pjt_id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    # Wire-side layout point -- where a wire's WireLayout attaches on this
+    # cavity's wire-exit side. Lazily computed (from the cavity's own
+    # wire-side mesh surface centroid, falling back to an OBB-derived
+    # point) and persisted the first time it's needed; see
+    # PJTCavity.wire_position3d.
+    _con.UUIDField('wire_point3d_id', default='NULL',
+                  references=_con.SQLFieldReference(_points3d.pjt_table,
+                                                    _points3d.pjt_id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('housing_id', no_null=True,
+                  references=_con.SQLFieldReference(_housings.pjt_table,
+                                                    _housings.pjt_id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.TextField('name', default='""', no_null=True),
+    _con.TextField('notes', default='""', no_null=True),
+    _con.TextField('quat2d', default='"[1.0, 0.0, 0.0, 0.0]"', no_null=True),
+    _con.TextField('angle2d', default='"[0.0, 0.0, 0.0]"', no_null=True),
+    _con.TextField('quat3d', default='"[1.0, 0.0, 0.0, 0.0]"', no_null=True),
+    _con.TextField('angle3d', default='"[0.0, 0.0, 0.0]"', no_null=True),
+    _con.IntField('is_visible2d', default='1', no_null=True),
+    _con.IntField('is_visible3d', default='0', no_null=True),
+    _con.TextField('aabb', no_null=True),
+    _con.TextField('obb', no_null=True)
+)

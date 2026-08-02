@@ -1,0 +1,244 @@
+"""wires table -- ported from harness_designer/database/create_database/wires.py."""
+
+import logging
+import os
+import json
+
+from . import families as _families
+from . import manufacturers as _manufacturers
+from . import series as _series
+from . import colors as _colors
+from . import materials as _materials
+from . import images as _images
+from . import datasheets as _datasheets
+from . import cads as _cads
+from . import temperatures as _temperatures
+from . import platings as _platings
+
+from . import projects as _projects
+from . import points2d as _points2d
+from . import points3d as _points3d
+from . import circuits as _circuits
+from . import bundle_covers as _bundle_covers
+from . import transitions as _transitions
+from . import concentric_layers as _concentric_layers
+
+from .. import sql_table as _con
+from .. import id_generator as _id_generator
+
+_log = logging.getLogger('builder.wires')
+
+
+def add_wires(con, data: tuple[dict] | list[dict]):
+    for line in data:
+        add_wire(con, **line)
+
+
+def add_records(con, data_path):
+    con.execute('SELECT 1 FROM wires LIMIT 1;')
+    if con.fetchall():
+        return
+
+    dirs = [('', data_path)]
+
+    for file_name in os.listdir(data_path):
+        file = os.path.join(data_path, file_name)
+        if os.path.isdir(file):
+            dirs.append((file_name + ' ', file))
+
+    cwd = os.getcwd()
+    for name, path in dirs:
+        os.chdir(path)
+
+        json_path = os.path.join(path, 'wires.json')
+
+        if os.path.exists(json_path):
+            _log.info('loading %s', json_path)
+
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.loads(f.read())
+
+            if isinstance(data, dict):
+                data = [value for value in data.values()]
+
+            data_len = len(data)
+            _log.info('adding %d %swire(s) to db', data_len, name)
+
+            for item in data:
+                item.pop('id', None)
+
+                try:
+                    add_wire(con, commit=False, **item)
+                except Exception:
+                    _log.exception('failed to add wire %r', item.get('part_number'))
+
+            con.commit()
+
+    os.chdir(cwd)
+
+
+def add_wire(con, part_number, description, mfg=None, family=None, series=None,
+             color=None, image=None, datasheet=None, cad=None, min_temp=None,
+             max_temp=None, material=None, stripe_color=None, core_material=None,
+             num_conductors=1, shielded=0, tpi=0.0, wire_size_dia=None, wire_size_cross=None,
+             wire_size_awg=None, od_mm=0.0, weight_1km=0.0, resistance_1km=0.0, volts=0.0,
+             strands=1, commit=True):
+    mfg, family, series = _manufacturers.inspect_mfg_fam_series(mfg, family, series)
+
+    mfg_id = _manufacturers.get_mfg_id(con, mfg)
+    core_material_id = _platings.get_plating_id(con, core_material)
+    series_id = _series.get_series_id(con, series, mfg_id)
+    family_id = _families.get_family_id(con, family, mfg_id)
+    color_id = _colors.get_color_id(con, color)
+    stripe_color_id = _colors.get_color_id(con, stripe_color)
+    material_id = _materials.get_material_id(con, material)
+    min_temp_id = _temperatures.get_temperature_id(con, min_temp)
+    max_temp_id = _temperatures.get_temperature_id(con, max_temp)
+    datasheet_id = _datasheets.get_datasheet_id(con, datasheet)
+    image_id = _images.get_image_id(con, image)
+    cad_id = _cads.get_cad_id(con, cad)
+
+    new_id = _id_generator.generate_global_row_id().bytes
+
+    con.execute('INSERT INTO wires (id, part_number, description, mfg_id, family_id, '
+                'series_id, color_id, image_id, datasheet_id, cad_id, min_temp_id, '
+                'max_temp_id, material_id, stripe_color_id, core_material_id, '
+                'num_conductors, shielded, tpi, wire_size_dia, wire_size_cross, wire_size_awg, '
+                'od_mm, weight_1km, resistance_1km, volts, strands) '
+                'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                (new_id, part_number, description, mfg_id, family_id, series_id, color_id,
+                 image_id, datasheet_id, cad_id, min_temp_id, max_temp_id, material_id,
+                 stripe_color_id, core_material_id, num_conductors, shielded, tpi,
+                 wire_size_dia, wire_size_cross, wire_size_awg, od_mm, weight_1km, resistance_1km,
+                 volts, strands))
+
+    _log.debug('wire added %r -> %s', part_number, new_id.hex())
+
+    if commit:
+        con.commit()
+        return new_id
+
+
+id_field = _con.UUIDField('id', is_primary=True)
+
+table = _con.SQLTable(
+    'wires',
+    id_field,
+    _con.TextField('part_number', is_unique=True, no_null=True),
+    _con.TextField('description', default='""', no_null=True),
+    _con.UUIDField('mfg_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_manufacturers.table,
+                                                    _manufacturers.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('family_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_families.table,
+                                                    _families.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('series_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_series.table,
+                                                    _series.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('color_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_colors.table,
+                                                    _colors.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('image_id', default='NULL',
+                  references=_con.SQLFieldReference(_images.table,
+                                                    _images.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('datasheet_id', default='NULL',
+                  references=_con.SQLFieldReference(_datasheets.table,
+                                                    _datasheets.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('cad_id', default='NULL',
+                  references=_con.SQLFieldReference(_cads.table,
+                                                    _cads.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('min_temp_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_temperatures.table,
+                                                    _temperatures.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('max_temp_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_temperatures.table,
+                                                    _temperatures.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('material_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_materials.table,
+                                                    _materials.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('stripe_color_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_colors.table,
+                                                    _colors.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('core_material_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_platings.table,
+                                                    _platings.id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.IntField('num_conductors', default='1', no_null=True),
+    _con.IntField('shielded', default='0', no_null=True),
+    _con.FloatField('tpi', default='"0.0"', no_null=True),
+    _con.FloatField('wire_size_dia', default='NULL'),
+    _con.FloatField('wire_size_cross', default='NULL'),
+    _con.IntField('wire_size_awg', default='NULL'),
+    _con.FloatField('od_mm', no_null=True),
+    _con.FloatField('weight_1km', default='"0.0"', no_null=True),
+    _con.FloatField('resistance_1km', default='"0.0"', no_null=True),
+    _con.FloatField('volts', default='"0.0"', no_null=True),
+    _con.IntField('strands', default='1'),
+)
+
+
+pjt_id_field = _con.UUIDField('id', is_primary=True)
+
+pjt_table = _con.SQLTable(
+    'pjt_wires',
+    pjt_id_field,
+    _con.ProjectIdField(),
+    _con.UUIDField('part_id', no_null=True,
+                  references=_con.SQLFieldReference(table,
+                                                    id_field,
+                                                    on_delete=_con.REFERENCE_CASCADE,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('circuit_id', default='NULL',
+                  references=_con.SQLFieldReference(_circuits.pjt_table,
+                                                    _circuits.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('bundle_id', default='NULL',
+                  references=_con.SQLFieldReference(_bundle_covers.pjt_table,
+                                                    _bundle_covers.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('transition_id', default='NULL',
+                  references=_con.SQLFieldReference(_transitions.pjt_table,
+                                                    _transitions.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('start_point3d_id', default="NULL",
+                  references=_con.SQLFieldReference(_points3d.pjt_table,
+                                                    _points3d.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('stop_point3d_id', default="NULL",
+                  references=_con.SQLFieldReference(_points3d.pjt_table,
+                                                    _points3d.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('start_point2d_id', default="NULL",
+                  references=_con.SQLFieldReference(_points2d.pjt_table,
+                                                    _points2d.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('stop_point2d_id', default="NULL",
+                  references=_con.SQLFieldReference(_points2d.pjt_table,
+                                                    _points2d.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('layer_view_point_id', default="NULL",
+                  references=_con.SQLFieldReference(_points2d.pjt_table,
+                                                    _points2d.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.UUIDField('layer_id', default="NULL",
+                  references=_con.SQLFieldReference(_concentric_layers.pjt_table,
+                                                    _concentric_layers.pjt_id_field,
+                                                    on_update=_con.REFERENCE_CASCADE)),
+    _con.IntField('is_filler_wire', default='0', no_null=True),
+    _con.TextField('notes', default='""', no_null=True),
+    _con.IntField('is_visible2d', default='1', no_null=True),
+    _con.IntField('is_visible3d', default='1', no_null=True),
+    _con.IntField('smooth', default='NULL'),
+    _con.TextField('name', default='""', no_null=True),
+)
