@@ -3,7 +3,6 @@
 import json
 import logging
 import os
-import uuid
 
 from .. import sql_table as _con
 from .. import id_generator as _id_generator
@@ -33,18 +32,21 @@ def add_records(con, data_path):
 
         for i, item in enumerate(data):
             _log.info('Adding seal type to db [%d | %d]...', i + 1, data_len)
+
+            # seal_types.json is a pre-UUID-migration seed file and still
+            # carries a leftover integer "id" per entry -- discard it so
+            # every row gets a freshly generated UUID id instead of
+            # colliding integers.
+            item.pop('id', None)
             add_seal_type(con, commit=False, **item)
 
     con.commit()
 
 
-def add_seal_type(con, name, id=None, commit=True):  # NOQA
-    """Insert a single seal type row, generating an id if none is given."""
+def add_seal_type(con, name, commit=True):  # NOQA
+    """Insert a single seal type row with a freshly generated id."""
 
-    if id is None:
-        id = _id_generator.generate_global_row_id().bytes
-    elif isinstance(id, uuid.UUID):
-        id = id.bytes
+    id = _id_generator.generate_global_row_id().bytes
 
     con.execute(
         'INSERT INTO seal_types (id, name) '

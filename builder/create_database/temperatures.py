@@ -28,15 +28,19 @@ def add_records(con, data_path):
             data = [value for value in data.values()]
 
         for item in data:
+            # temperatures.json is a pre-UUID-migration seed file and still
+            # carries a leftover integer "id" per entry -- discard it so
+            # every row gets a freshly generated UUID id instead of
+            # colliding integers.
+            item.pop('id', None)
             add_temperature(con, commit=False, **item)
 
     con.commit()
 
 
-def add_temperature(con, name, id=None, commit=True):  # NOQA
-    """Add a temperature row, generating a new id unless one is supplied."""
-    if id is None:
-        id = _id_generator.generate_global_row_id().bytes
+def add_temperature(con, name, commit=True):  # NOQA
+    """Add a temperature row with a freshly generated id."""
+    id = _id_generator.generate_global_row_id().bytes
 
     con.execute(
         'INSERT INTO temperatures (id, name) '
