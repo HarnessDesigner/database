@@ -15,8 +15,14 @@ def add_records(con, _):
     if con.fetchall():
         return
 
+    data = (('No Lock',),)
+    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
+
+    con.executemany('INSERT INTO cavity_locks (id, name) VALUES (?, ?);', rows)
+
+    con.commit()
+
     data = (
-        ('No Lock',),
         ('Cavity Lock',),
         ('Clean Body',),
         ('Locking Lance',),
