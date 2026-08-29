@@ -15,10 +15,10 @@ def add_records(con, _):
     if con.fetchall():
         return
 
-    data = (dict(name='No Protection'),)
+    new_id = _id_generator.NIL_UUID.bytes
 
-    for item in data:
-        add_protection(con, commit=False, **item)
+    con.execute('INSERT INTO protections (id, name) VALUES(?, ?);',
+                (new_id, 'No Protection'))
 
     con.commit()
 

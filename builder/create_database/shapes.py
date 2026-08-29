@@ -16,7 +16,7 @@ def add_records(con, _):
         return
 
     data = (('No Shape',),)
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
+    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
 
     con.executemany('INSERT INTO shapes (id, name) VALUES (?, ?);', rows)
     con.commit()

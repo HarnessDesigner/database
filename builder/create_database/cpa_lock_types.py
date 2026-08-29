@@ -13,8 +13,15 @@ def add_records(con, _):
     if con.fetchall():
         return
 
+    data = (('No Lock',),)
+
+    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
+
+    con.executemany('INSERT INTO cpa_lock_types (id, name) VALUES (?, ?);', rows)
+
+    con.commit()
+
     data = (
-        ('No Lock',),
         ('Lever',),
         ('Steel Lever',),
         ('Lever at Cover',),

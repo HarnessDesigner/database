@@ -15,7 +15,13 @@ def add_records(con, _):
     if con.fetchall():
         return
 
-    data = (('Unknown',), ('Left',), ('Right',), ('Straight',),
+    data = (('Unknown',),)
+    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
+
+    con.executemany('INSERT INTO directions (id, name) VALUES(?, ?);', rows)
+    con.commit()
+
+    data = (('Left',), ('Right',), ('Straight',),
             ('90°',), ('180°',), ('270°',))
     rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
 
@@ -24,6 +30,7 @@ def add_records(con, _):
 
 
 direction_cache = {}
+
 
 def get_direction_id(con, name):
     """Return the id of the direction named ``name``, creating it if needed."""

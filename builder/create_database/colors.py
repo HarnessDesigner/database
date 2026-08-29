@@ -35,16 +35,22 @@ def add_records(con, data_path):
         # colors.json is a pre-UUID-migration seed file and still carries a
         # leftover integer "id" per entry -- discard it so every row gets a
         # freshly generated UUID id instead of colliding integers.
-        item.pop('id', None)
-        add_color(con, commit=False, **item)
+        id = item.pop('id', None)
+        if id == 0:
+            add_color(con, id=id, commit=False, **item)
+        else:
+            add_color(con, commit=False, **item)
 
     con.commit()
 
 
-def add_color(con, name, rgb, commit=True):  # NOQA
+def add_color(con, name, rgb, id=None, commit=True):  # NOQA
     """Insert a single color row with a freshly generated id."""
 
-    id = _id_generator.generate_global_row_id().bytes
+    if id is None:
+        id = _id_generator.generate_global_row_id().bytes
+    else:
+        id = _id_generator.NIL_UUID.bytes
 
     con.execute('INSERT INTO colors (id, name, rgb) '
                 'VALUES (?, ?, ?);', (id, name, rgb))
@@ -55,7 +61,9 @@ def add_color(con, name, rgb, commit=True):  # NOQA
         con.commit()
         return id
 
+
 color_cache = {}
+
 
 def get_color_id(con, name):
     """Return the id of the color named ``name`` (case-insensitive title fallback)."""

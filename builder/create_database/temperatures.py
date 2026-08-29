@@ -32,15 +32,22 @@ def add_records(con, data_path):
             # carries a leftover integer "id" per entry -- discard it so
             # every row gets a freshly generated UUID id instead of
             # colliding integers.
-            item.pop('id', None)
-            add_temperature(con, commit=False, **item)
+            id = item.pop('id', None)
+            if id == 0:
+                add_temperature(con, id=id, commit=False, **item)
+
+            else:
+                add_temperature(con, commit=False, **item)
 
     con.commit()
 
 
-def add_temperature(con, name, commit=True):  # NOQA
+def add_temperature(con, name, id=None, commit=True):  # NOQA
     """Add a temperature row with a freshly generated id."""
-    id = _id_generator.generate_global_row_id().bytes
+    if id is None:
+        id = _id_generator.generate_global_row_id().bytes
+    else:
+        id = _id_generator.NIL_UUID.bytes
 
     con.execute(
         'INSERT INTO temperatures (id, name) '

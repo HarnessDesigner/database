@@ -16,7 +16,7 @@ def add_records(con, _):
         return
 
     data = (('Unknown Material',),)
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
+    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
 
     try:
         con.executemany('INSERT INTO materials (id, name) VALUES(?, ?);', rows)

@@ -16,7 +16,7 @@ def add_records(con, _):
     if con.fetchall():
         return
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.NIL_UUID.bytes
 
     con.execute('INSERT INTO families (id, name, mfg_id) VALUES(?, ?, ?);',
                 (new_id, 'No Family', _id_generator.NIL_UUID.bytes))
