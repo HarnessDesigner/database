@@ -259,7 +259,12 @@ def add_records(con, data_path):
                 model3d_id = model3ds_mapping.get(model3d, None)
                 directions_id = directions_mapping.get(direction, _id_generator.NIL_UUID.bytes)
                 cavity_lock_id = cavity_locks_mapping.get(cavity_lock, _id_generator.NIL_UUID.bytes)
-                seal_type_id = seal_types_mapping.get(seal_type, _id_generator.NIL_UUID.bytes)
+                # No sentinel fallback -- a housing's own seal type is
+                # genuinely optional (unlike this row's other lookup
+                # FKs), so an unset/unrecognized seal_type here means a
+                # real SQL NULL, not a dangling reference to a
+                # placeholder row (seal_types no longer has one).
+                seal_type_id = seal_types_mapping.get(seal_type, None)
                 cpa_lock_type_id = cpa_lock_types_mapping.get(cpa_lock_type, _id_generator.NIL_UUID.bytes)
                 family_id = families_mapping.get(family, _id_generator.NIL_UUID.bytes)
                 series_id = series_mapping.get(series, _id_generator.NIL_UUID.bytes)
@@ -348,7 +353,12 @@ table = _con.SQLTable(
                   references=_con.SQLFieldReference(_ip_ratings.table,
                                                     _ip_ratings.id_field,
                                                     on_update=_con.REFERENCE_CASCADE)),
-    _con.UUIDField('seal_type_id', default="X'00000000000000000000000000000000'", no_null=True,
+    # Genuinely nullable (SQL NULL, no nil-UUID sentinel default) --
+    # unlike this table's other lookup FKs, a housing legitimately may
+    # have no seal type at all, and seal_types no longer carries a
+    # placeholder "None"/"Unknown" row for a sentinel to point at (see
+    # create_database.seal_types.get_seal_type_id's own docstring).
+    _con.UUIDField('seal_type_id',
                   references=_con.SQLFieldReference(_seal_types.table,
                                                     _seal_types.id_field,
                                                     on_update=_con.REFERENCE_CASCADE)),

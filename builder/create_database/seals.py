@@ -266,7 +266,12 @@ def add_records(con, data_path):
                 datasheet_id = datasheets_mapping.get(datasheet, None)
                 cad_id = cads_mapping.get(cad, None)
                 model3d_id = model3ds_mapping.get(model3d, None)
-                type_id = types_mapping.get(type_, _id_generator.NIL_UUID.bytes)
+                # No sentinel fallback -- a seal part's own type is
+                # required (see the type_id field's own definition
+                # below); an unrecognized/blank type_ here should fail
+                # loudly against that NOT NULL constraint on insert,
+                # not silently reference a dangling id.
+                type_id = types_mapping.get(type_, None)
 
                 item[3] = mfg_id
                 item[4] = family_id
@@ -338,7 +343,12 @@ table = _con.SQLTable(
                   references=_con.SQLFieldReference(_models3d.table,
                                                     _models3d.id_field,
                                                     on_update=_con.REFERENCE_CASCADE)),
-    _con.UUIDField('type_id', default="X'00000000000000000000000000000000'", no_null=True,
+    # No sentinel default -- an actual seal part's own type is required,
+    # so omitting it on insert must fail loudly against this NOT NULL
+    # constraint rather than silently falling back to a placeholder row
+    # (seal_types no longer carries one -- see create_database.
+    # seal_types.get_seal_type_id's own docstring).
+    _con.UUIDField('type_id', no_null=True,
                   references=_con.SQLFieldReference(_seal_types.table,
                                                     _seal_types.id_field,
                                                     on_update=_con.REFERENCE_CASCADE)),

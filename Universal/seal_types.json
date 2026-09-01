@@ -1,30 +1,207 @@
 [
     {
         "id": 0,
-        "name": "None"
+        "name": "Accessories",
+        "category": "ACC"
     },
     {
         "id": 1,
-        "name": "Unknown Seal"
+        "name": "Axial Seal",
+        "category": "ACC"
     },
     {
         "id": 2,
-        "name": "Axial Seal"
+        "name": "Cable Seal",
+        "category": "SWS"
     },
     {
         "id": 3,
-        "name": "Radial Seal"
+        "name": "Cavity Blanking Plug",
+        "category": "PLUG"
     },
     {
         "id": 4,
-        "name": "Rubber Cap Over Wires"
+        "name": "Cavity Mask",
+        "category": "MAT"
     },
     {
         "id": 5,
-        "name": "Single Wire Seal"
+        "name": "Cavity Plug",
+        "category": "PLUG"
     },
     {
         "id": 6,
-        "name": "Mat Seal"
+        "name": "Cavity Reducer",
+        "category": "ACC"
+    },
+    {
+        "id": 7,
+        "name": "Dummy Terminal",
+        "category": "PLUG"
+    },
+    {
+        "id": 8,
+        "name": "Facial Seal",
+        "category": "MAT"
+    },
+    {
+        "id": 9,
+        "name": "Family Seal",
+        "category": "MAT"
+    },
+    {
+        "id": 10,
+        "name": "Filler Plug",
+        "category": "PLUG"
+    },
+    {
+        "id": 11,
+        "name": "Flange Seal",
+        "category": "ACC"
+    },
+    {
+        "id": 12,
+        "name": "Flange Sealing",
+        "category": "ACC"
+    },
+    {
+        "id": 13,
+        "name": "Front 2Rear Spacer",
+        "category": "ACC"
+    },
+    {
+        "id": 14,
+        "name": "Gang Wire Seal",
+        "category": "SWS"
+    },
+    {
+        "id": 15,
+        "name": "Gasket",
+        "category": "ACC"
+    },
+    {
+        "id": 16,
+        "name": "Grommet Seal",
+        "category": "ACC"
+    },
+    {
+        "id": 17,
+        "name": "Interface Seal",
+        "category": "MAT"
+    },
+    {
+        "id": 18,
+        "name": "Interfacial Seal",
+        "category": "MAT"
+    },
+    {
+        "id": 19,
+        "name": "Keying Plug",
+        "category": "ACC"
+    },
+    {
+        "id": 20,
+        "name": "Mat Seal",
+        "category": "MAT"
+    },
+    {
+        "id": 21,
+        "name": "Multi Wire Seal",
+        "category": "MAT"
+    },
+    {
+        "id": 22,
+        "name": "NPT Threaded",
+        "category": "ACC"
+    },
+    {
+        "id": 23,
+        "name": "O-Ring",
+        "category": "ACC"
+    },
+    {
+        "id": 24,
+        "name": "Panel Gasket",
+        "category": "ACC"
+    },
+    {
+        "id": 25,
+        "name": "Panel Mount Flange",
+        "category": "ACC"
+    },
+    {
+        "id": 26,
+        "name": "Peripheral Seal",
+        "category": "MAT"
+    },
+    {
+        "id": 27,
+        "name": "Plug",
+        "category": "PLUG"
+    },
+    {
+        "id": 28,
+        "name": "Radial Seal",
+        "category": "ACC"
+    },
+    {
+        "id": 29,
+        "name": "Rubber Cap Over Wires",
+        "category": "ACC"
+    },
+    {
+        "id": 30,
+        "name": "Rubber Plug",
+        "category": "PLUG"
+    },
+    {
+        "id": 31,
+        "name": "Rubber Seal",
+        "category": "SWS"
+    },
+    {
+        "id": 32,
+        "name": "Seal Assembly",
+        "category": "SWS"
+    },
+    {
+        "id": 33,
+        "name": "Seal Protector",
+        "category": "ACC"
+    },
+    {
+        "id": 34,
+        "name": "Sealing Plug",
+        "category": "PLUG"
+    },
+    {
+        "id": 35,
+        "name": "Single Cavity Plug Seal",
+        "category": "PLUG"
+    },
+    {
+        "id": 36,
+        "name": "Single Wire Seal",
+        "category": "SWS"
+    },
+    {
+        "id": 37,
+        "name": "Spacer",
+        "category": "ACC"
+    },
+    {
+        "id": 38,
+        "name": "Wire Entry Seal",
+        "category": "SWS"
+    },
+    {
+        "id": 39,
+        "name": "Wire Entry Seal Kit",
+        "category": "MAT"
+    },
+    {
+        "id": 40,
+        "name": "Wire Seal",
+        "category": "SWS"
     }
 ]
