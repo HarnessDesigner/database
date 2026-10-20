@@ -67,7 +67,7 @@
         "phone": "",
         "ext": "",
         "email": "",
-        "website": ""
+        "website": "https://connector.yazaki-group.com/english/"
     },
     {
         "id": 7,
@@ -78,5 +78,15 @@
         "ext": "",
         "email": "",
         "website": "https://www.milspecwiring.com"
+    },
+    {
+        "id": 8,
+        "name": "KET",
+        "description": "Korea Electric Terminal Co., Ltd.",
+        "address": "38, Gaetbeol-ro, Yeonsu-gu, Incheon City, Korea, 21999",
+        "phone": "+82-32-814-9981",
+        "ext": "",
+        "email": "",
+        "website": "https://www.ket.com/en/"
     }
 ]

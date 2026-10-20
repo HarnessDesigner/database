@@ -1,0 +1,626 @@
+[
+    {
+        "id": 0,
+        "name": "IP00",
+        "solid": "0",
+        "fluid": "0"
+    },
+    {
+        "id": 1,
+        "name": "IPXX",
+        "solid": "X",
+        "fluid": "X"
+    },
+    {
+        "id": 2,
+        "name": "IP01",
+        "solid": "0",
+        "fluid": "1"
+    },
+    {
+        "id": 3,
+        "name": "IP02",
+        "solid": "0",
+        "fluid": "2"
+    },
+    {
+        "id": 4,
+        "name": "IP03",
+        "solid": "0",
+        "fluid": "3"
+    },
+    {
+        "id": 5,
+        "name": "IP04",
+        "solid": "0",
+        "fluid": "4"
+    },
+    {
+        "id": 6,
+        "name": "IP05",
+        "solid": "0",
+        "fluid": "5"
+    },
+    {
+        "id": 7,
+        "name": "IP06",
+        "solid": "0",
+        "fluid": "6"
+    },
+    {
+        "id": 8,
+        "name": "IP07",
+        "solid": "0",
+        "fluid": "7"
+    },
+    {
+        "id": 9,
+        "name": "IP08",
+        "solid": "0",
+        "fluid": "8"
+    },
+    {
+        "id": 10,
+        "name": "IP09",
+        "solid": "0",
+        "fluid": "9"
+    },
+    {
+        "id": 11,
+        "name": "IP06K",
+        "solid": "0",
+        "fluid": "6K"
+    },
+    {
+        "id": 12,
+        "name": "IP09K",
+        "solid": "0",
+        "fluid": "9K"
+    },
+    {
+        "id": 13,
+        "name": "IP0X",
+        "solid": "0",
+        "fluid": "X"
+    },
+    {
+        "id": 14,
+        "name": "IP10",
+        "solid": "1",
+        "fluid": "0"
+    },
+    {
+        "id": 15,
+        "name": "IP11",
+        "solid": "1",
+        "fluid": "1"
+    },
+    {
+        "id": 16,
+        "name": "IP12",
+        "solid": "1",
+        "fluid": "2"
+    },
+    {
+        "id": 17,
+        "name": "IP13",
+        "solid": "1",
+        "fluid": "3"
+    },
+    {
+        "id": 18,
+        "name": "IP14",
+        "solid": "1",
+        "fluid": "4"
+    },
+    {
+        "id": 19,
+        "name": "IP15",
+        "solid": "1",
+        "fluid": "5"
+    },
+    {
+        "id": 20,
+        "name": "IP16",
+        "solid": "1",
+        "fluid": "6"
+    },
+    {
+        "id": 21,
+        "name": "IP17",
+        "solid": "1",
+        "fluid": "7"
+    },
+    {
+        "id": 22,
+        "name": "IP18",
+        "solid": "1",
+        "fluid": "8"
+    },
+    {
+        "id": 23,
+        "name": "IP19",
+        "solid": "1",
+        "fluid": "9"
+    },
+    {
+        "id": 24,
+        "name": "IP16K",
+        "solid": "1",
+        "fluid": "6K"
+    },
+    {
+        "id": 25,
+        "name": "IP19K",
+        "solid": "1",
+        "fluid": "9K"
+    },
+    {
+        "id": 26,
+        "name": "IP1X",
+        "solid": "1",
+        "fluid": "X"
+    },
+    {
+        "id": 27,
+        "name": "IP20",
+        "solid": "2",
+        "fluid": "0"
+    },
+    {
+        "id": 28,
+        "name": "IP21",
+        "solid": "2",
+        "fluid": "1"
+    },
+    {
+        "id": 29,
+        "name": "IP22",
+        "solid": "2",
+        "fluid": "2"
+    },
+    {
+        "id": 30,
+        "name": "IP23",
+        "solid": "2",
+        "fluid": "3"
+    },
+    {
+        "id": 31,
+        "name": "IP24",
+        "solid": "2",
+        "fluid": "4"
+    },
+    {
+        "id": 32,
+        "name": "IP25",
+        "solid": "2",
+        "fluid": "5"
+    },
+    {
+        "id": 33,
+        "name": "IP26",
+        "solid": "2",
+        "fluid": "6"
+    },
+    {
+        "id": 34,
+        "name": "IP27",
+        "solid": "2",
+        "fluid": "7"
+    },
+    {
+        "id": 35,
+        "name": "IP28",
+        "solid": "2",
+        "fluid": "8"
+    },
+    {
+        "id": 36,
+        "name": "IP29",
+        "solid": "2",
+        "fluid": "9"
+    },
+    {
+        "id": 37,
+        "name": "IP26K",
+        "solid": "2",
+        "fluid": "6K"
+    },
+    {
+        "id": 38,
+        "name": "IP29K",
+        "solid": "2",
+        "fluid": "9K"
+    },
+    {
+        "id": 39,
+        "name": "IP2X",
+        "solid": "2",
+        "fluid": "X"
+    },
+    {
+        "id": 40,
+        "name": "IP30",
+        "solid": "3",
+        "fluid": "0"
+    },
+    {
+        "id": 41,
+        "name": "IP31",
+        "solid": "3",
+        "fluid": "1"
+    },
+    {
+        "id": 42,
+        "name": "IP32",
+        "solid": "3",
+        "fluid": "2"
+    },
+    {
+        "id": 43,
+        "name": "IP33",
+        "solid": "3",
+        "fluid": "3"
+    },
+    {
+        "id": 44,
+        "name": "IP34",
+        "solid": "3",
+        "fluid": "4"
+    },
+    {
+        "id": 45,
+        "name": "IP35",
+        "solid": "3",
+        "fluid": "5"
+    },
+    {
+        "id": 46,
+        "name": "IP36",
+        "solid": "3",
+        "fluid": "6"
+    },
+    {
+        "id": 47,
+        "name": "IP37",
+        "solid": "3",
+        "fluid": "7"
+    },
+    {
+        "id": 48,
+        "name": "IP38",
+        "solid": "3",
+        "fluid": "8"
+    },
+    {
+        "id": 49,
+        "name": "IP39",
+        "solid": "3",
+        "fluid": "9"
+    },
+    {
+        "id": 50,
+        "name": "IP36K",
+        "solid": "3",
+        "fluid": "6K"
+    },
+    {
+        "id": 51,
+        "name": "IP39K",
+        "solid": "3",
+        "fluid": "9K"
+    },
+    {
+        "id": 52,
+        "name": "IP3X",
+        "solid": "3",
+        "fluid": "X"
+    },
+    {
+        "id": 53,
+        "name": "IP40",
+        "solid": "4",
+        "fluid": "0"
+    },
+    {
+        "id": 54,
+        "name": "IP41",
+        "solid": "4",
+        "fluid": "1"
+    },
+    {
+        "id": 55,
+        "name": "IP42",
+        "solid": "4",
+        "fluid": "2"
+    },
+    {
+        "id": 56,
+        "name": "IP43",
+        "solid": "4",
+        "fluid": "3"
+    },
+    {
+        "id": 57,
+        "name": "IP44",
+        "solid": "4",
+        "fluid": "4"
+    },
+    {
+        "id": 58,
+        "name": "IP45",
+        "solid": "4",
+        "fluid": "5"
+    },
+    {
+        "id": 59,
+        "name": "IP46",
+        "solid": "4",
+        "fluid": "6"
+    },
+    {
+        "id": 60,
+        "name": "IP47",
+        "solid": "4",
+        "fluid": "7"
+    },
+    {
+        "id": 61,
+        "name": "IP48",
+        "solid": "4",
+        "fluid": "8"
+    },
+    {
+        "id": 62,
+        "name": "IP49",
+        "solid": "4",
+        "fluid": "9"
+    },
+    {
+        "id": 63,
+        "name": "IP46K",
+        "solid": "4",
+        "fluid": "6K"
+    },
+    {
+        "id": 64,
+        "name": "IP49K",
+        "solid": "4",
+        "fluid": "9K"
+    },
+    {
+        "id": 65,
+        "name": "IP4X",
+        "solid": "4",
+        "fluid": "X"
+    },
+    {
+        "id": 66,
+        "name": "IP50",
+        "solid": "5",
+        "fluid": "0"
+    },
+    {
+        "id": 67,
+        "name": "IP51",
+        "solid": "5",
+        "fluid": "1"
+    },
+    {
+        "id": 68,
+        "name": "IP52",
+        "solid": "5",
+        "fluid": "2"
+    },
+    {
+        "id": 69,
+        "name": "IP53",
+        "solid": "5",
+        "fluid": "3"
+    },
+    {
+        "id": 70,
+        "name": "IP54",
+        "solid": "5",
+        "fluid": "4"
+    },
+    {
+        "id": 71,
+        "name": "IP55",
+        "solid": "5",
+        "fluid": "5"
+    },
+    {
+        "id": 72,
+        "name": "IP56",
+        "solid": "5",
+        "fluid": "6"
+    },
+    {
+        "id": 73,
+        "name": "IP57",
+        "solid": "5",
+        "fluid": "7"
+    },
+    {
+        "id": 74,
+        "name": "IP58",
+        "solid": "5",
+        "fluid": "8"
+    },
+    {
+        "id": 75,
+        "name": "IP59",
+        "solid": "5",
+        "fluid": "9"
+    },
+    {
+        "id": 76,
+        "name": "IP56K",
+        "solid": "5",
+        "fluid": "6K"
+    },
+    {
+        "id": 77,
+        "name": "IP59K",
+        "solid": "5",
+        "fluid": "9K"
+    },
+    {
+        "id": 78,
+        "name": "IP5X",
+        "solid": "5",
+        "fluid": "X"
+    },
+    {
+        "id": 79,
+        "name": "IP60",
+        "solid": "6",
+        "fluid": "0"
+    },
+    {
+        "id": 80,
+        "name": "IP61",
+        "solid": "6",
+        "fluid": "1"
+    },
+    {
+        "id": 81,
+        "name": "IP62",
+        "solid": "6",
+        "fluid": "2"
+    },
+    {
+        "id": 82,
+        "name": "IP63",
+        "solid": "6",
+        "fluid": "3"
+    },
+    {
+        "id": 83,
+        "name": "IP64",
+        "solid": "6",
+        "fluid": "4"
+    },
+    {
+        "id": 84,
+        "name": "IP65",
+        "solid": "6",
+        "fluid": "5"
+    },
+    {
+        "id": 85,
+        "name": "IP66",
+        "solid": "6",
+        "fluid": "6"
+    },
+    {
+        "id": 86,
+        "name": "IP67",
+        "solid": "6",
+        "fluid": "7"
+    },
+    {
+        "id": 87,
+        "name": "IP68",
+        "solid": "6",
+        "fluid": "8"
+    },
+    {
+        "id": 88,
+        "name": "IP69",
+        "solid": "6",
+        "fluid": "9"
+    },
+    {
+        "id": 89,
+        "name": "IP66K",
+        "solid": "6",
+        "fluid": "6K"
+    },
+    {
+        "id": 90,
+        "name": "IP69K",
+        "solid": "6",
+        "fluid": "9K"
+    },
+    {
+        "id": 91,
+        "name": "IP6X",
+        "solid": "6",
+        "fluid": "X"
+    },
+    {
+        "id": 92,
+        "name": "IPX0",
+        "solid": "X",
+        "fluid": "0"
+    },
+    {
+        "id": 93,
+        "name": "IPX1",
+        "solid": "X",
+        "fluid": "1"
+    },
+    {
+        "id": 94,
+        "name": "IPX2",
+        "solid": "X",
+        "fluid": "2"
+    },
+    {
+        "id": 95,
+        "name": "IPX3",
+        "solid": "X",
+        "fluid": "3"
+    },
+    {
+        "id": 96,
+        "name": "IPX4",
+        "solid": "X",
+        "fluid": "4"
+    },
+    {
+        "id": 97,
+        "name": "IPX5",
+        "solid": "X",
+        "fluid": "5"
+    },
+    {
+        "id": 98,
+        "name": "IPX6",
+        "solid": "X",
+        "fluid": "6"
+    },
+    {
+        "id": 99,
+        "name": "IPX7",
+        "solid": "X",
+        "fluid": "7"
+    },
+    {
+        "id": 100,
+        "name": "IPX8",
+        "solid": "X",
+        "fluid": "8"
+    },
+    {
+        "id": 101,
+        "name": "IPX9",
+        "solid": "X",
+        "fluid": "9"
+    },
+    {
+        "id": 102,
+        "name": "IPX6K",
+        "solid": "X",
+        "fluid": "6K"
+    },
+    {
+        "id": 103,
+        "name": "IPX9K",
+        "solid": "X",
+        "fluid": "9K"
+    }
+]

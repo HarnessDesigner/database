@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "name": "No Lock"
+    },
+    {
+        "id": 1,
+        "name": "Cavity Lock"
+    },
+    {
+        "id": 2,
+        "name": "Clean Body"
+    },
+    {
+        "id": 3,
+        "name": "Locking Lance"
+    },
+    {
+        "id": 4,
+        "name": "Clean Body and Lance"
+    },
+    {
+        "id": 5,
+        "name": "Flex Arm"
+    },
+    {
+        "id": 6,
+        "name": "Insert Molded"
+    },
+    {
+        "id": 7,
+        "name": "Molded On"
+    },
+    {
+        "id": 8,
+        "name": "Nose Piece"
+    },
+    {
+        "id": 9,
+        "name": "Press Fit"
+    }
+]

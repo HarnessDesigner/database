@@ -3,29 +3,16 @@
 import logging
 
 from .. import sql_table as _con
+from .. import seed_json as _seed_json
 from .. import id_generator as _id_generator
 
 _log = logging.getLogger('builder.genders')
 
 
-def add_records(con, _):
-    """Seed the fixed set of gender rows."""
+def add_records(con, data_path):
+    """Seed genders from genders.json; its "id": 0 entry ('Unknown') is the nil UUID default row."""
 
-    con.execute('SELECT 1 FROM genders LIMIT 1;')
-    if con.fetchall():
-        return
-
-    data = (('Unknown',),)
-    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO genders (id, name) VALUES(?, ?);', rows)
-    con.commit()
-
-    data = (('Male',), ('Female',))
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO genders (id, name) VALUES(?, ?);', rows)
-    con.commit()
+    _seed_json.seed(con, data_path, 'genders.json', 'genders', ('name',))
 
 
 gender_cache = {}

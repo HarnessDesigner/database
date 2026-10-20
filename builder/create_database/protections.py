@@ -3,24 +3,16 @@
 import logging
 
 from .. import sql_table as _con
+from .. import seed_json as _seed_json
 from .. import id_generator as _id_generator
 
 _log = logging.getLogger('builder.protections')
 
 
-def add_records(con, _):
-    """Seed the sentinel 'No Protection' row."""
+def add_records(con, data_path):
+    """Seed protections from protections.json; its "id": 0 entry ('No Protection') is the nil UUID default row."""
 
-    con.execute('SELECT 1 FROM protections LIMIT 1;')
-    if con.fetchall():
-        return
-
-    new_id = _id_generator.NIL_UUID.bytes
-
-    con.execute('INSERT INTO protections (id, name) VALUES(?, ?);',
-                (new_id, 'No Protection'))
-
-    con.commit()
+    _seed_json.seed(con, data_path, 'protections.json', 'protections', ('name',))
 
 
 def add_protection(con, name, commit=True):  # NOQA

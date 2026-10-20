@@ -31,7 +31,7 @@ from builder.create_database import (  # noqa: E402
     ip_fluids, ip_solids, ip_supps, ip_ratings, images, cads, datasheets,
     models3d, accessories, cavities, transition_branches, settings,
     housings, covers, cpa_locks, boots, tpa_locks, terminals, seals,
-    transitions, wire_markers, splices, bundle_covers, wires,
+    transitions, wire_markers, splices, bundle_covers, wire_types, wires,
 )  # noqa: E501
 
 _log = logging.getLogger('builder')
@@ -47,7 +47,7 @@ TABLE_MODULES = [
     ip_fluids, ip_solids, ip_supps, ip_ratings, images, cads, datasheets,
     models3d, accessories, cavities, transition_branches, settings,
     housings, covers, cpa_locks, boots, tpa_locks, terminals, seals,
-    transitions, wire_markers, splices, bundle_covers, wires,
+    transitions, wire_markers, splices, bundle_covers, wire_types, wires,
 ]
 
 # Two different add_records() shapes exist in the ORIGINAL upstream code
@@ -64,13 +64,16 @@ WALKING_SEED_MODULES = [
     splices, bundle_covers,
 ]
 
-# data_path is the Universal folder directly (or unused entirely -- some of
-# these, like accessories/ip_solids/ip_fluids/ip_supps/ip_ratings, seed
-# hardcoded data and ignore the arg). ip_solids/ip_fluids/ip_supps must run
-# before ip_ratings -- it resolves their rows by name.
+# data_path is the Universal folder directly. Each of these loads its own
+# Universal/<table>.json, whose "id": 0 entry is the table's default row
+# (stored with the nil UUID); only accessories still seeds hardcoded data
+# and ignores the arg (its manufacturer accessories.json files load below). These all run before the part loaders so every default
+# row exists first. ip_solids/ip_fluids/ip_supps must run before ip_ratings
+# -- it resolves their rows by name.
 DIRECT_SEED_MODULES = [
     manufacturers, colors, platings, seal_types, splice_types, temperatures,
-    file_types, accessories, ip_solids, ip_fluids, ip_supps, ip_ratings,
+    families, series, materials, genders, directions, cavity_locks, cpa_lock_types, protections,
+    wire_types, file_types, accessories, ip_solids, ip_fluids, ip_supps, ip_ratings,
 ]
 
 
@@ -99,6 +102,10 @@ def build(repo_root: str, output_dir: str):
     for module in WALKING_SEED_MODULES:
         _log.info('seeding %s', module.__name__)
         module.add_records(con, repo_root)
+
+    # accessories: the hard-coded rows were seeded above; the manufacturers' accessories.json (Molex) are added now
+    _log.info('seeding accessories from the manufacturer folders')
+    accessories.add_json_records(con, repo_root)
 
     _log.info('build complete: %s', db_path)
 

@@ -3,41 +3,16 @@
 import logging
 
 from .. import sql_table as _con
+from .. import seed_json as _seed_json
 from .. import id_generator as _id_generator
 
 _log = logging.getLogger('builder.cavity_locks')
 
 
-def add_records(con, _):
-    """Seed the fixed set of cavity lock rows."""
+def add_records(con, data_path):
+    """Seed cavity_locks from cavity_locks.json; its "id": 0 entry ('No Lock') is the nil UUID default row."""
 
-    con.execute('SELECT 1 FROM cavity_locks LIMIT 1;')
-    if con.fetchall():
-        return
-
-    data = (('No Lock',),)
-    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO cavity_locks (id, name) VALUES (?, ?);', rows)
-
-    con.commit()
-
-    data = (
-        ('Cavity Lock',),
-        ('Clean Body',),
-        ('Locking Lance',),
-        ('Clean Body and Lance',),
-        ('Flex Arm',),
-        ('Insert Molded',),
-        ('Molded On',),
-        ('Nose Piece',),
-        ('Press Fit',)
-    )
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO cavity_locks (id, name) VALUES (?, ?);', rows)
-
-    con.commit()
+    _seed_json.seed(con, data_path, 'cavity_locks.json', 'cavity_locks', ('name',))
 
 
 cavity_lock_cache = {}

@@ -1,0 +1,30 @@
+[
+    {
+        "name": "D",
+        "description": "Wire"
+    },
+    {
+        "name": "G",
+        "description": "Oil resistant"
+    },
+    {
+        "name": "F",
+        "description": "Oil resistant"
+    },
+    {
+        "name": "H",
+        "description": "High voltage apparatus"
+    },
+    {
+        "name": "M",
+        "description": "Motion during water test"
+    },
+    {
+        "name": "S",
+        "description": "Stationary during water test"
+    },
+    {
+        "name": "W",
+        "description": "Weather conditions"
+    }
+]

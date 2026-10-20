@@ -3,30 +3,16 @@
 import logging
 
 from .. import sql_table as _con
+from .. import seed_json as _seed_json
 from .. import id_generator as _id_generator
 
 _log = logging.getLogger('builder.directions')
 
 
-def add_records(con, _):
-    """Seed the fixed set of direction rows."""
+def add_records(con, data_path):
+    """Seed directions from directions.json; its "id": 0 entry ('Unknown') is the nil UUID default row."""
 
-    con.execute('SELECT 1 FROM directions LIMIT 1;')
-    if con.fetchall():
-        return
-
-    data = (('Unknown',),)
-    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO directions (id, name) VALUES(?, ?);', rows)
-    con.commit()
-
-    data = (('Left',), ('Right',), ('Straight',),
-            ('90°',), ('180°',), ('270°',))
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO directions (id, name) VALUES(?, ?);', rows)
-    con.commit()
+    _seed_json.seed(con, data_path, 'directions.json', 'directions', ('name',))
 
 
 direction_cache = {}

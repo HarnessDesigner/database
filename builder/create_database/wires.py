@@ -14,6 +14,7 @@ from . import datasheets as _datasheets
 from . import cads as _cads
 from . import temperatures as _temperatures
 from . import platings as _platings
+from . import wire_types as _wire_types
 
 from . import projects as _projects
 from . import points2d as _points2d
@@ -82,7 +83,7 @@ def add_wire(con, part_number, description, mfg=None, family=None, series=None,
              max_temp=None, material=None, stripe_color=None, core_material=None,
              num_conductors=1, shielded=0, tpi=0.0, wire_size_dia=None, wire_size_cross=None,
              wire_size_awg=None, od_mm=0.0, weight_1km=0.0, resistance_1km=0.0, volts=0.0,
-             strands=1, commit=True):
+             strands=1, wire_type=None, commit=True):
     mfg, family, series = _manufacturers.inspect_mfg_fam_series(mfg, family, series)
 
     mfg_id = _manufacturers.get_mfg_id(con, mfg)
@@ -97,6 +98,7 @@ def add_wire(con, part_number, description, mfg=None, family=None, series=None,
     datasheet_id = _datasheets.get_datasheet_id(con, datasheet)
     image_id = _images.get_image_id(con, image)
     cad_id = _cads.get_cad_id(con, cad)
+    wire_type_id = _wire_types.get_wire_type_id(con, wire_type)
 
     new_id = _id_generator.generate_global_row_id().bytes
 
@@ -104,13 +106,13 @@ def add_wire(con, part_number, description, mfg=None, family=None, series=None,
                 'series_id, color_id, image_id, datasheet_id, cad_id, min_temp_id, '
                 'max_temp_id, material_id, stripe_color_id, core_material_id, '
                 'num_conductors, shielded, tpi, wire_size_dia, wire_size_cross, wire_size_awg, '
-                'od_mm, weight_1km, resistance_1km, volts, strands) '
-                'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+                'od_mm, weight_1km, resistance_1km, volts, strands, wire_type_id) '
+                'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
                 (new_id, part_number, description, mfg_id, family_id, series_id, color_id,
                  image_id, datasheet_id, cad_id, min_temp_id, max_temp_id, material_id,
                  stripe_color_id, core_material_id, num_conductors, shielded, tpi,
                  wire_size_dia, wire_size_cross, wire_size_awg, od_mm, weight_1km, resistance_1km,
-                 volts, strands))
+                 volts, strands, wire_type_id))
 
     _log.debug('wire added %r -> %s', part_number, new_id.hex())
 
@@ -129,51 +131,51 @@ table = _con.SQLTable(
     _con.UUIDField('mfg_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_manufacturers.table,
                                                     _manufacturers.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('family_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_families.table,
                                                     _families.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('series_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_series.table,
                                                     _series.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('color_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_colors.table,
                                                     _colors.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('image_id', default='NULL',
                   references=_con.SQLFieldReference(_images.table,
                                                     _images.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('datasheet_id', default='NULL',
                   references=_con.SQLFieldReference(_datasheets.table,
                                                     _datasheets.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('cad_id', default='NULL',
                   references=_con.SQLFieldReference(_cads.table,
                                                     _cads.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('min_temp_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_temperatures.table,
                                                     _temperatures.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('max_temp_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_temperatures.table,
                                                     _temperatures.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('material_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_materials.table,
                                                     _materials.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('stripe_color_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_colors.table,
                                                     _colors.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('core_material_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_platings.table,
                                                     _platings.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.IntField('num_conductors', default='1', no_null=True),
     _con.IntField('shielded', default='0', no_null=True),
     _con.FloatField('tpi', default='"0.0"', no_null=True),
@@ -185,6 +187,10 @@ table = _con.SQLTable(
     _con.FloatField('resistance_1km', default='"0.0"', no_null=True),
     _con.FloatField('volts', default='"0.0"', no_null=True),
     _con.IntField('strands', default='1'),
+    _con.UUIDField('wire_type_id', default="X'00000000000000000000000000000000'", no_null=True,
+                  references=_con.SQLFieldReference(_wire_types.table,
+                                                    _wire_types.id_field,
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
 )
 
 

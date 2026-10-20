@@ -1,0 +1,625 @@
+[
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35081644",
+    "description": "SEAL HOLE FILLER PLUG GRA",
+    "derived_color": "Gray",
+    "_reason": "GRA"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35790629",
+    "description": "SEAL CBL 1W HOLE PLUG WHT",
+    "derived_color": "White",
+    "_reason": "WHT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35747488",
+    "description": "Single Wire Seal",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35748167",
+    "description": "Single Wire Seal",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13963810",
+    "description": "SEAL HOLE FILLER PLUG BLK",
+    "derived_color": "Black",
+    "_reason": "BLK"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35572559",
+    "description": "SEAL HOLE FILLER PLUG NAT",
+    "derived_color": "Natural",
+    "_reason": "NAT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35572561",
+    "description": "SEAL HOLE FILLER PLUG GRA DK",
+    "derived_color": "Dark Gray",
+    "_reason": "GRA DK"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13927323",
+    "description": "SEAL HOLE FILLER PLUG BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35522042",
+    "description": "SEAL CBL 1W",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35522043",
+    "description": "SEAL CBL 1W GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35407244",
+    "description": "SEAL CBL 1W GRA",
+    "derived_color": "Gray",
+    "_reason": "GRA"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13688074",
+    "description": "SEAL HOLE FILLER PLUG PPL",
+    "derived_color": "Purple",
+    "_reason": "PPL"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33348208",
+    "description": "SEAL CONN",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33348209",
+    "description": "SEAL CBL 0W",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33504677",
+    "description": "SEAL CONN BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33504675",
+    "description": "SEAL CBL/CONN BLU LT",
+    "derived_color": "Light Blue",
+    "_reason": "BLU LT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33501764",
+    "description": "SEAL CBL 1W Red",
+    "derived_color": "Red",
+    "_reason": "RED"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33501763",
+    "description": "SEAL CBL 1W BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35240442",
+    "description": "SEAL CBL/CONN",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35230976",
+    "description": "SEAL CBL/CONN",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35206307",
+    "description": "SEAL CBL/CONN GRA",
+    "derived_color": "Gray",
+    "_reason": "GRA"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35082288",
+    "description": "SEAL CBL 1W GRA LT",
+    "derived_color": "Light Gray",
+    "_reason": "GRA LT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35151812",
+    "description": "SEAL CONN CAVITY PLUG",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35082291",
+    "description": "SEAL CONN",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13644795",
+    "description": "SEAL CONN CAVITY PLUG NAT",
+    "derived_color": "Natural",
+    "_reason": "NAT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13602967",
+    "description": "SEAL HOLE FILLER PLUG Red",
+    "derived_color": "Red",
+    "_reason": "RED"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33503298",
+    "description": "SEAL CONN INTERFACE ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33504639",
+    "description": "SEAL CBL 10W ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13806069",
+    "description": "SEAL HOLE FILLER PLUG YEL",
+    "derived_color": "Yellow",
+    "_reason": "YEL"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "35150387",
+    "description": "SEAL HOLE",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33198869",
+    "description": "SEAL CONN RedBRN",
+    "derived_color": "Red/Brown",
+    "_reason": "compound"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33168991",
+    "description": "SEAL CBL/CONN GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13831889",
+    "description": "SEAL CBL 54W GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13831885",
+    "description": "SEAL CONN BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15513451",
+    "description": "SEAL CBL/CONN Red",
+    "derived_color": "Red",
+    "_reason": "RED"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15513452",
+    "description": "SEAL CBL/CONN GRA",
+    "derived_color": "Gray",
+    "_reason": "GRA"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12052842",
+    "description": "SEAL CONN INTERFACE  VLT",
+    "derived_color": "Violet",
+    "_reason": "VLT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13926843",
+    "description": "SEAL CBL 1W HOLE PLUG NAT",
+    "derived_color": "Natural",
+    "_reason": "NAT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12065849",
+    "description": "SEAL CONN MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15483009",
+    "description": "SEAL CBL 1W GT YEL",
+    "derived_color": "Yellow",
+    "_reason": "YEL"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12040750",
+    "description": "SEAL CONN MetriPack (M/P) BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15336177",
+    "description": "SEAL CONN GT  GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15326866",
+    "description": "Interfacial Seal",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15439078",
+    "description": "SEAL CONN GT YEL",
+    "derived_color": "Yellow",
+    "_reason": "YEL"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12034170",
+    "description": "SEAL CBL 1W MetriPack (M/P) ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15326811",
+    "description": "SEAL CONN INTERFACE GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12129909",
+    "description": "SEAL CONN GASKET  BLK",
+    "derived_color": "Black",
+    "_reason": "BLK"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12160481",
+    "description": "SEAL CONN MetriPack (M/P) BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12176807",
+    "description": "SEAL CBL 1W CAVITY ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15326236",
+    "description": "SEAL CONN Tan",
+    "derived_color": "Tan",
+    "_reason": "TAN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15344714",
+    "description": "SEAL CBL 1W CAVITY RedBRN",
+    "derived_color": "Red/Brown",
+    "_reason": "compound"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15336703",
+    "description": "SEAL CBL 1W MetriPack (M/P) BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15497745",
+    "description": "SEAL CBL 1W MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12040756",
+    "description": "SEAL CONN INTERFACE  BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12040757",
+    "description": "SEAL CBL 4W MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12110213",
+    "description": "SEAL CBL 1W MetriPack (M/P) BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12040751",
+    "description": "SEAL CBL 2W MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12129930",
+    "description": "Single Wire Seal",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13584300",
+    "description": "Seal Connector",
+    "derived_color": null,
+    "_reason": "unrecognized"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13567793",
+    "description": "SEAL CBL 8W MICRO HVT GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "13567794",
+    "description": "SEAL CONN YEL",
+    "derived_color": "Yellow",
+    "_reason": "YEL"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15356671",
+    "description": "SEAL CONN BLU LT",
+    "derived_color": "Light Blue",
+    "_reason": "BLU LT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "15356988",
+    "description": "ASM SEAL CBL 12W STRAIN RLF COMOLD ORN LT",
+    "derived_color": "Light Orange",
+    "_reason": "ORN LT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12191230",
+    "description": "SEAL CBL 1W CAVITY GRA",
+    "derived_color": "Gray",
+    "_reason": "GRA"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12160845",
+    "description": "SEAL CBL 80W YEL",
+    "derived_color": "Yellow",
+    "_reason": "YEL"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12176391",
+    "description": "SEAL CONN MIC/P ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12191066",
+    "description": "SEAL CBL 16W MIC/P  ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12129026",
+    "description": "SEAL CBL 32W MIC/P  GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12160684",
+    "description": "SEAL CONN MIC/P ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12177085",
+    "description": "SEAL CONN MIC/P BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12047907",
+    "description": "SEAL CBL 3W CAVITY  GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12047908",
+    "description": "SEAL CONN MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12110822",
+    "description": "SEAL CONN MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12110403",
+    "description": "SEAL CBL 24W MIC/P  GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12045893",
+    "description": "SEAL CBL 2W MetriPack (M/P) GRA LT",
+    "derived_color": "Light Gray",
+    "_reason": "GRA LT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12020818",
+    "description": "SEAL CONN MetriPack (M/P) ORN",
+    "derived_color": "Orange",
+    "_reason": "ORN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12110489",
+    "description": "SEAL CBL 36W MIC/P  GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12110269",
+    "description": "SEAL CONN MetriPack (M/P) BLU",
+    "derived_color": "Blue",
+    "_reason": "BLU"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12059215",
+    "description": "SEAL CBL 2W MetriPack (M/P) GRA",
+    "derived_color": "Gray",
+    "_reason": "GRA"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12065285",
+    "description": "SEAL CBL 3W MetriPack (M/P) Red DK",
+    "derived_color": "Dark Red",
+    "_reason": "RED DK"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12052893",
+    "description": "SEAL CONN INTERFACE  VLT",
+    "derived_color": "Violet",
+    "_reason": "VLT"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12059184",
+    "description": "SEAL CONN INTERFACE  Tan",
+    "derived_color": "Tan",
+    "_reason": "TAN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12103067",
+    "description": "SEAL CONN MetriPack (M/P) GRA",
+    "derived_color": "Gray",
+    "_reason": "GRA"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12065297",
+    "description": "SEAL CONN MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12040879",
+    "description": "SEAL CBL 15W MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12048370",
+    "description": "SEAL CONN MetriPack (M/P) Black",
+    "derived_color": "Black",
+    "_reason": "BLACK"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12040972",
+    "description": "SEAL CBL 2W MetriPack (M/P) GRN",
+    "derived_color": "Green",
+    "_reason": "GRN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "12077383",
+    "description": "SEAL CONN MetriPack (M/P) Tan",
+    "derived_color": "Tan",
+    "_reason": "TAN"
+  },
+  {
+    "_source_file": "Aptiv",
+    "part_number": "33511807",
+    "description": "SEAL CBL 1W 2.8 BLK",
+    "derived_color": "Black",
+    "_reason": "BLK"
+  }
+]

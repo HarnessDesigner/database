@@ -13,6 +13,11 @@ pjt_table = _con.SQLTable(
     _con.ProjectIdField(),
     _con.FloatField('x', no_null=True),
     _con.FloatField('y', no_null=True),
+    # Added after the table already existed in users' project databases, so
+    # it needs a default for the ALTER TABLE ADD COLUMN to be legal on a
+    # NOT NULL column. See harness_designer's PJTPoints2DTable.
+    # _update_table_in_db for the one-time y -> z migration of old rows.
+    _con.FloatField('z', default='0.0', no_null=True),
     # Wire-waypoint-only columns -- NULL for every other point2d row (an
     # anchor referenced FROM its owning row's own position2d_id/*_point2d_id
     # FK, same as always). Self-identifying via wire_id/idx instead of being

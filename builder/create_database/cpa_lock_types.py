@@ -3,46 +3,16 @@
 import logging
 
 from .. import sql_table as _con
+from .. import seed_json as _seed_json
 from .. import id_generator as _id_generator
 
 _log = logging.getLogger('builder.cpa_lock_types')
 
 
-def add_records(con, _):
-    con.execute('SELECT 1 FROM cpa_lock_types LIMIT 1;')
-    if con.fetchall():
-        return
+def add_records(con, data_path):
+    """Seed cpa_lock_types from cpa_lock_types.json; its "id": 0 entry ('No Lock') is the nil UUID default row."""
 
-    data = (('No Lock',),)
-
-    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO cpa_lock_types (id, name) VALUES (?, ?);', rows)
-
-    con.commit()
-
-    data = (
-        ('Lever',),
-        ('Steel Lever',),
-        ('Lever at Cover',),
-        ('Locking Lever',),
-        ('Lever Claw',),
-        ('Locking Slide',),
-        ('Slide',),
-        ('Lever and Locking Slide',),
-        ('Locking Lever and Locking Slide',),
-        ('External CPA Lock',),
-        ('Plastic Clip or Metal Holder',),
-        ('Plastic Lever or Metal Lever',),
-        ('Plastic Clip',),
-        ('Groove',)
-    )
-
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
-
-    con.executemany('INSERT INTO cpa_lock_types (id, name) VALUES (?, ?);', rows)
-
-    con.commit()
+    _seed_json.seed(con, data_path, 'cpa_lock_types.json', 'cpa_lock_types', ('name',))
 
 
 cpa_lock_type_cache = {}

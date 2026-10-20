@@ -1,0 +1,62 @@
+[
+    {
+        "id": 0,
+        "name": "No Lock"
+    },
+    {
+        "id": 1,
+        "name": "Lever"
+    },
+    {
+        "id": 2,
+        "name": "Steel Lever"
+    },
+    {
+        "id": 3,
+        "name": "Lever at Cover"
+    },
+    {
+        "id": 4,
+        "name": "Locking Lever"
+    },
+    {
+        "id": 5,
+        "name": "Lever Claw"
+    },
+    {
+        "id": 6,
+        "name": "Locking Slide"
+    },
+    {
+        "id": 7,
+        "name": "Slide"
+    },
+    {
+        "id": 8,
+        "name": "Lever and Locking Slide"
+    },
+    {
+        "id": 9,
+        "name": "Locking Lever and Locking Slide"
+    },
+    {
+        "id": 10,
+        "name": "External CPA Lock"
+    },
+    {
+        "id": 11,
+        "name": "Plastic Clip or Metal Holder"
+    },
+    {
+        "id": 12,
+        "name": "Plastic Lever or Metal Lever"
+    },
+    {
+        "id": 13,
+        "name": "Plastic Clip"
+    },
+    {
+        "id": 14,
+        "name": "Groove"
+    }
+]

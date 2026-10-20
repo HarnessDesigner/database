@@ -3,6 +3,13 @@
 Universal/transitions.json only (no per-manufacturer transitions.json exists
 in this repo) -- the original code already unconditionally nulls image/cad/
 datasheet for every transition row (not manufacturer-specific), kept as-is.
+
+Each entry's `branches` list is passed straight through to
+`transition_branches.add_transition_branch` (see that module for the actual
+column handling); as of the 3-axis migration, `offset` and `angle` in that
+JSON are `[x, y, z]` lists (or `null`, treated as `[0.0, 0.0, 0.0]`), not the
+old single-float `angle` / 2-element `offset` -- nothing here needs to
+change for that, since this file never touches those fields directly.
 """
 
 import logging
@@ -117,7 +124,16 @@ def add_records(con, data_path):
             for item in data:
                 item.pop('id', None)
 
-                item['protection'] = '\n'.join(item['protection'])
+                # transitions.json already stores 'protection' as one
+                # complete string (multi-protection entries are pre-joined
+                # with '\n' in the JSON itself) -- joining it again here
+                # iterates its own characters instead, producing a
+                # one-letter-per-line name ("L", "o", "n", "g", ...).
+                # Confirmed against Universal/transitions.json: every
+                # entry is already a plain str, never a list.
+                protection = item['protection']
+                if isinstance(protection, list):
+                    item['protection'] = '\n'.join(protection)
 
                 item['image'] = None
                 item['datasheet'] = None
@@ -143,52 +159,52 @@ table = _con.SQLTable(
     _con.UUIDField('mfg_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_manufacturers.table,
                                                     _manufacturers.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('family_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_families.table,
                                                     _families.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('series_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_series.table,
                                                     _series.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('color_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_colors.table,
                                                     _colors.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('image_id', default='NULL',
                   references=_con.SQLFieldReference(_images.table,
                                                     _images.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('datasheet_id', default='NULL',
                   references=_con.SQLFieldReference(_datasheets.table,
                                                     _datasheets.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('cad_id', default='NULL',
                   references=_con.SQLFieldReference(_cads.table,
                                                     _cads.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
 
     _con.UUIDField('min_temp_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_temperatures.table,
                                                     _temperatures.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('max_temp_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_temperatures.table,
                                                     _temperatures.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('material_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_materials.table,
                                                     _materials.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('shape_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_shapes.table,
                                                     _shapes.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('protection_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_protections.table,
                                                     _protections.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.IntField('branch_count', default='0', no_null=True),
     _con.TextField('adhesive_ids', default='"[]"', no_null=True),
     _con.FloatField('weight', default='"0.0"', no_null=True)
@@ -223,5 +239,6 @@ pjt_table = _con.SQLTable(
     _con.TextField('quatpeg', default='"[1.0, 0.0, 0.0, 0.0]"', no_null=True),
     _con.TextField('anglepeg', default='"[0.0, 0.0, 0.0]"', no_null=True),
     _con.IntField('is_visible3d', default='1', no_null=True),
+    _con.IntField('is_visible_pegboard', default='1', no_null=True),
     _con.IntField('smooth', default='NULL')
 )

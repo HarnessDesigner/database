@@ -3,23 +3,17 @@
 import logging
 
 from .. import sql_table as _con
+from .. import seed_json as _seed_json
 from . import manufacturers as _manufacturers
 from .. import id_generator as _id_generator
 
 _log = logging.getLogger('builder.series')
 
 
-def add_records(con, _):
-    """Seed the sentinel 'No Series' row."""
+def add_records(con, data_path):
+    """Seed series from series.json; its "id": 0 entry ('No Series') is the nil UUID default row."""
 
-    con.execute('SELECT 1 FROM series LIMIT 1;')
-    if con.fetchall():
-        return
-
-    new_id = _id_generator.NIL_UUID.bytes
-
-    con.execute('INSERT INTO series (id, name) VALUES(?, ?);', (new_id, 'No Series'))
-    con.commit()
+    _seed_json.seed(con, data_path, 'series.json', 'series', ('name',), {'mfg_id': _id_generator.NIL_UUID.bytes})
 
 
 series_cache = {}
@@ -62,5 +56,5 @@ table = _con.SQLTable(
     _con.UUIDField('mfg_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_manufacturers.table,
                                                     _manufacturers.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE))
+                                                    on_update=_con.REFERENCE_NO_ACTION))
 )

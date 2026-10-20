@@ -1,0 +1,33 @@
+[
+    {
+        "part_number": "KR00801-20",
+        "description": "WP FAKRA WIRE SEAL (\u03a63)",
+        "mfg": "KET",
+        "family": "FAKRA Component SERIES",
+        "series": null,
+        "color": null,
+        "image": "https://www.ket.com/cm/fileDownMan.ket?attcFilSn=144607&file=KR00801-20.jpg",
+        "datasheet": null,
+        "cad": "https://www.ket.com/resources/web/KR00801-20/KR00801-20_2d.pdf",
+        "min_temp": null,
+        "max_temp": null,
+        "model3d": "https://www.ket.com/cm/fileDownMan.ket?attcFilSn=154590&file=KR00801-20.stp",
+        "type": "Single Wire Seal",
+        "hardness": -1,
+        "lubricant": "",
+        "length": 0.0,
+        "width": 0.0,
+        "height": 0.0,
+        "weight": 0.29,
+        "o_dia": 0.0,
+        "i_dia": 0.0,
+        "wire_size_awg_min": null,
+        "wire_size_awg_max": null,
+        "wire_size_dia_min": null,
+        "wire_size_dia_max": null,
+        "wire_size_cross_min": null,
+        "wire_size_cross_max": null,
+        "compat_housings": [],
+        "compat_terminals": []
+    }
+]

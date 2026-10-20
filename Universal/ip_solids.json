@@ -1,0 +1,50 @@
+[
+    {
+        "id": 0,
+        "name": "0",
+        "short_desc": "No Protection",
+        "description": "No protection against contact and ingress of objects."
+    },
+    {
+        "id": 1,
+        "name": "1",
+        "short_desc": ">= 50.00mm sized objects",
+        "description": ">= 50.00mm sized objects\nAny large surface of the body, such as the back\nof a hand, but no protection against deliberate\ncontact with a body part."
+    },
+    {
+        "id": 2,
+        "name": "2",
+        "short_desc": ">= 12.50mm sized objects",
+        "description": ">= 12.50mm sized objects\nFingers or similar objects."
+    },
+    {
+        "id": 3,
+        "name": "3",
+        "short_desc": ">= 2.50mm sized objects",
+        "description": ">= 2.50mm sized objects\nTools, thick wires, etc."
+    },
+    {
+        "id": 4,
+        "name": "4",
+        "short_desc": ">= 1.00mm sized objects",
+        "description": ">= 1.00mm sized objects\nMost wires, slender screws, large ants, etc."
+    },
+    {
+        "id": 5,
+        "name": "5",
+        "short_desc": "Dust Protected",
+        "description": "Dust Protected\nIngress of dust is not entirely prevented."
+    },
+    {
+        "id": 6,
+        "name": "6",
+        "short_desc": "Dust Tight",
+        "description": "Dust Tight\nNo ingress of dust."
+    },
+    {
+        "id": 7,
+        "name": "X",
+        "short_desc": "Unknown",
+        "description": "No data is available to specify a protection\nrating about this criterion."
+    }
+]

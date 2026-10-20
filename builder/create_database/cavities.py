@@ -17,7 +17,7 @@ table = _con.SQLTable(
     _con.UUIDField('housing_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_housings.table,
                                                     _housings.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.IntField('idx', no_null=True),
     _con.TextField('name', default='""', no_null=True),
     _con.TextField('point2d', default='"[0.0, 0.0]"', no_null=True),

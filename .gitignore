@@ -209,3 +209,6 @@ __marimo__/
 
 
 .idea
+
+# Molex scraper download cache (re-created by scrapers/molex/collect.py)
+scrapers/*/raw/

@@ -1,0 +1,30 @@
+[
+    {
+        "id": 0,
+        "name": "Unknown"
+    },
+    {
+        "id": 1,
+        "name": "Left"
+    },
+    {
+        "id": 2,
+        "name": "Right"
+    },
+    {
+        "id": 3,
+        "name": "Straight"
+    },
+    {
+        "id": 4,
+        "name": "90°"
+    },
+    {
+        "id": 5,
+        "name": "180°"
+    },
+    {
+        "id": 6,
+        "name": "270°"
+    }
+]

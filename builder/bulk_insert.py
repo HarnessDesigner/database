@@ -27,7 +27,9 @@ def insert_data(con, container, table_name, column, mfg_id=None):
     entries would each get queued for their own INSERT and collide on the
     column's unique constraint.
     """
-    container = [item for item in container if item is not None]
+    # None and blank values mean "no value" -- they get no row of their own; the loaders resolve them to the
+    # table's default row (the nil UUID) with mapping.get(value, <default>).
+    container = [item for item in container if item is not None and item != '']
     if not container:
         return {}
 

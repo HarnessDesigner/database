@@ -3,28 +3,16 @@
 import logging
 
 from .. import sql_table as _con
+from .. import seed_json as _seed_json
 from .. import id_generator as _id_generator
 
 _log = logging.getLogger('builder.materials')
 
 
-def add_records(con, _):
-    """Seed the sentinel 'Unknown Material' row."""
+def add_records(con, data_path):
+    """Seed materials from materials.json; its "id": 0 entry ('Unknown Material') is the nil UUID default row."""
 
-    con.execute('SELECT 1 FROM materials LIMIT 1;')
-    if con.fetchall():
-        return
-
-    data = (('Unknown Material',),)
-    rows = [(_id_generator.NIL_UUID.bytes, *row) for row in data]
-
-    try:
-        con.executemany('INSERT INTO materials (id, name) VALUES(?, ?);', rows)
-        con.commit()
-    except:  # NOQA
-        res = con.execute('SELECT * FROM materials;').fetchall()
-        _log.error(res)
-        raise
+    _seed_json.seed(con, data_path, 'materials.json', 'materials', ('name',))
 
 
 material_cache = {}

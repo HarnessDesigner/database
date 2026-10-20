@@ -1,0 +1,14 @@
+[
+    {
+        "id": 0,
+        "name": "Wire"
+    },
+    {
+        "id": 1,
+        "name": "Coaxial"
+    },
+    {
+        "id": 2,
+        "name": "Ribbon"
+    }
+]

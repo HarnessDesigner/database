@@ -17,12 +17,27 @@ _log = logging.getLogger('builder.transition_branches')
 def add_transition_branch(con, idx, transition_id, bulb_offset=None, bulb_length=None,
                           min_dia=0.0, max_dia=0.0, length=0.0, offset=None, angle=None,
                           flange_height=None, flange_width=None, commit=True):
-    """Add a transition branch row, generating a new id."""
-    if offset is not None:
-        offset = str(offset)
+    """Add a transition branch row, generating a new id.
+
+    `offset` and `angle` are 3-axis: a ``[x, y, z]`` list (offset in mm,
+    angle in euler degrees about X, Y, Z -- see TRANSITION_DESIGN.md in the
+    harness_designer app repo for the composition order and why euler,
+    not quaternions, is the permanent on-disk form). Both columns are
+    NOT NULL in the schema, so ``None`` here is stored as the neutral
+    ``[0.0, 0.0, 0.0]`` rather than left unset. `bulb_offset` stays
+    nullable/optional -- ``None`` means "no bulb offset", not "at the
+    origin", so it is only ever stringified when actually given.
+    """
+    if offset is None:
+        offset = [0.0, 0.0, 0.0]
+    offset = str([float(v) for v in offset])
+
+    if angle is None:
+        angle = [0.0, 0.0, 0.0]
+    angle = str([float(v) for v in angle])
 
     if bulb_offset is not None:
-        bulb_offset = str(bulb_offset)
+        bulb_offset = str([float(v) for v in bulb_offset])
 
     new_id = _id_generator.generate_global_row_id().bytes
 
@@ -62,16 +77,20 @@ table = _con.SQLTable(
     _con.UUIDField('transition_id', no_null=True,
                   references=_con.SQLFieldReference(_transitions.table,
                                                     _transitions.id_field,
-                                                    on_delete=_con.REFERENCE_CASCADE,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_delete=_con.REFERENCE_NO_ACTION,
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.IntField('idx', no_null=True),
     _con.TextField('bulb_offset', default='NULL'),
     _con.FloatField('bulb_length', default='NULL'),
     _con.FloatField('min_dia', no_null=True),
     _con.FloatField('max_dia', no_null=True),
     _con.FloatField('length', no_null=True),
-    _con.TextField('offset', default='NULL'),
-    _con.FloatField('angle', default='NULL'),
+    # 3-axis text columns ("[x, y, z]"), NOT NULL -- offset/angle are always
+    # a concrete point/euler-triple now, never "unset" (that distinction
+    # used to be carried by NULL under the old 1-axis angle/2-axis offset
+    # scheme; see add_transition_branch's docstring).
+    _con.TextField('offset', default="'[0.0, 0.0, 0.0]'", no_null=True),
+    _con.TextField('angle', default="'[0.0, 0.0, 0.0]'", no_null=True),
     _con.FloatField('flange_height', default='NULL'),
     _con.FloatField('flange_width', default='NULL')
 )

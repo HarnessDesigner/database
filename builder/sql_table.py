@@ -28,6 +28,11 @@ FIELD_TYPE_UUID = 'BLOB'
 
 REFERENCE_CASCADE = 'CASCADE'
 REFERENCE_DEFAULT = 'SET DEFAULT'
+# The application never lets the database engine remove or reassign a row's foreign keys on its own: every
+# cascade / cleanup is done in Python (each entry class's own delete()), so a Python object that still refers
+# to a row is never left pointing at one that silently changed. This is the action every foreign key in the
+# schema uses.
+REFERENCE_NO_ACTION = 'NO ACTION'
 
 
 class SQLTable:
@@ -169,10 +174,24 @@ class SQLField:
         return self.name in column_names
 
     def add_to_table(self, db_cursor, table_name: str):
-        """Add this field definition to an existing table."""
+        """Add this field definition to an existing table.
+
+        SQLite refuses ``ALTER TABLE ... ADD COLUMN`` outright when the new column carries an inline ``UNIQUE``
+        constraint, so a unique field is added WITHOUT it and a separate ``UNIQUE INDEX`` is created instead --
+        the same net constraint, expressed as two statements.
+        """
         field = str(self)
 
+        if self.is_unique:
+            field = field.replace(' UNIQUE', '', 1)
+
         db_cursor.execute(f'ALTER TABLE {table_name} ADD COLUMN {field}')
+
+        if self.is_unique:
+            index_name = f'idx_{table_name}_{self.name}_unique'
+            db_cursor.execute(
+                f'CREATE UNIQUE INDEX IF NOT EXISTS {index_name} ON {table_name}({self.name})')
+
         db_cursor.commit()
 
 

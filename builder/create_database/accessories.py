@@ -1,6 +1,8 @@
 # © 2025-2026 Kevin G. Schlosser <kevin.g.schlosser@gmail.com>
 
+import json
 import logging
+import os
 
 from . import manufacturers as _manufacturers
 from . import families as _families
@@ -47,6 +49,41 @@ def add_records(con, _):
 
     con.executemany('INSERT INTO accessories (id, part_number, description) VALUES(?, ?, ?);', rows)
     con.commit()
+
+
+def add_json_records(con, repo_root):
+    """Add the accessories of every manufacturer folder's accessories.json (the hard-coded rows are add_records).
+
+    A part without a colour gets the nil colour, not add_accessory's 'Dark Gray' fallback, so it is passed as ''.
+    """
+    for folder in sorted(os.listdir(repo_root)):
+        json_path = os.path.join(repo_root, folder, 'accessories.json')
+
+        if not os.path.isfile(json_path):
+            continue
+
+        _log.info('loading %s', json_path)
+
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.loads(f.read())
+
+        if isinstance(data, dict):
+            data = [value for value in data.values()]
+
+        _log.info('adding %d %s accessory(ies) to db', len(data), folder)
+
+        for item in data:
+            item.pop('id', None)
+
+            if item.get('color') is None:
+                item['color'] = ''
+
+            try:
+                add_accessory(con, commit=False, **item)
+            except Exception:
+                _log.exception('failed to add accessory %r', item.get('part_number'))
+
+        con.commit()
 
 
 def add_accessory(con, part_number, mfg, description=None, series=None,
@@ -114,39 +151,39 @@ table = _con.SQLTable(
     _con.UUIDField('mfg_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_manufacturers.table,
                                                     _manufacturers.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('family_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_families.table,
                                                     _families.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('series_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_series.table,
                                                     _series.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('color_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_colors.table,
                                                     _colors.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('material_id', default="X'00000000000000000000000000000000'", no_null=True,
                   references=_con.SQLFieldReference(_materials.table,
                                                     _materials.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('image_id', default='NULL',
                   references=_con.SQLFieldReference(_images.table,
                                                     _images.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('datasheet_id', default='NULL',
                   references=_con.SQLFieldReference(_datasheets.table,
                                                     _datasheets.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('cad_id', default='NULL',
                   references=_con.SQLFieldReference(_cads.table,
                                                     _cads.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
     _con.UUIDField('model3d_id', default='NULL',
                   references=_con.SQLFieldReference(_models3d.table,
                                                     _models3d.id_field,
-                                                    on_update=_con.REFERENCE_CASCADE)),
+                                                    on_update=_con.REFERENCE_NO_ACTION)),
 
 
     _con.FloatField('length', default='"0.0"', no_null=True),

@@ -1,0 +1,80 @@
+[
+    {
+        "id": 0,
+        "name": "0",
+        "short_desc": "No Protection",
+        "description": "No protection against ingress of water."
+    },
+    {
+        "id": 1,
+        "name": "1",
+        "short_desc": "Dripping water",
+        "description": "Dripping water (vertically falling drops)\nshall have no unsafe effect on the specimen\nwhen mounted upright."
+    },
+    {
+        "id": 2,
+        "name": "2",
+        "short_desc": "Dripping water when tilted at 15°",
+        "description": "Vertically dripping water shall have no harmful\neffect when the enclosure is tilted at an angle\nof 15° from its normal position."
+    },
+    {
+        "id": 3,
+        "name": "3",
+        "short_desc": "Spraying water",
+        "description": "Water falling as a spray at any angle up to 60°\nfrom the vertical shall have no harmful effect."
+    },
+    {
+        "id": 4,
+        "name": "4",
+        "short_desc": "Splashing water",
+        "description": "Water splashing against the enclosure from any\ndirection shall have no harmful effect."
+    },
+    {
+        "id": 5,
+        "name": "5",
+        "short_desc": "Water jets",
+        "description": "Water projected by a nozzle (6.3 mm) against enclosure\nfrom any direction shall have no harmful effects."
+    },
+    {
+        "id": 6,
+        "name": "6",
+        "short_desc": "Powerful water jets",
+        "description": "Water projected in powerful jets (12.5 mm nozzle)\nagainst the enclosure from any direction shall have\nno harmful effects."
+    },
+    {
+        "id": 7,
+        "name": "7",
+        "short_desc": "Immersion, up to 1 meter",
+        "description": "Ingress of water in harmful quantity shall not be\npossible when the enclosure is immersed in water."
+    },
+    {
+        "id": 8,
+        "name": "8",
+        "short_desc": "Immersion, 1 meter or more depth",
+        "description": "The equipment is suitable for continuous\nimmersion in water."
+    },
+    {
+        "id": 9,
+        "name": "9",
+        "short_desc": "Powerful high-temperature water jets",
+        "description": "Protected against close-range high-pressure,\nhigh-temperature spray downs."
+    },
+    {
+        "id": 10,
+        "name": "6K",
+        "short_desc": "Powerful water jets with increased pressure",
+        "description": "Water projected in powerful jets (6.3 mm nozzle)\nagainst the enclosure from any direction, under\nelevated pressure."
+    },
+    {
+        "id": 11,
+        "name": "9K",
+        "short_desc": "Steam Cleaning",
+        "description": "Protection against high-pressure, high-temperature\njet sprays, wash-downs or steam-cleaning procedures"
+    },
+    {
+        "id": 12,
+        "name": "X",
+        "short_desc": "Unknown",
+        "description": "No data is available to specify a\nprotection rating about this criterion."
+    }
+]
