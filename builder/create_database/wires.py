@@ -51,9 +51,21 @@ def add_records(con, data_path):
     for name, path in dirs:
         os.chdir(path)
 
-        json_path = os.path.join(path, 'wires.json')
+        # a manufacturer folder has one wires.json; the generated catalog has a `wires` folder holding one file per wire
+        # MODEL (M22759-16.json, M22759-32.json, M27500-M22759-32.json ...) to keep every file a manageable size
+        json_paths = []
 
+        json_path = os.path.join(path, 'wires.json')
         if os.path.exists(json_path):
+            json_paths.append(json_path)
+
+        wires_dir = os.path.join(path, 'wires')
+        if os.path.isdir(wires_dir):
+            # sorted: new keys are numbered in this order (see id_generator), so it must not depend on the OS
+            json_paths.extend(os.path.join(wires_dir, file_name) for file_name in sorted(os.listdir(wires_dir))
+                              if file_name.endswith('.json'))
+
+        for json_path in json_paths:
             _log.info('loading %s', json_path)
 
             with open(json_path, 'r', encoding='utf-8') as f:

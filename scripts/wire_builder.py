@@ -1,5 +1,8 @@
+import argparse
+import itertools
 import json
 import math
+import os
 
 
 # ---------------------------------------------------------------------------
@@ -1037,9 +1040,13 @@ def _build_wires():
 _CONDUCTOR_MULTIPLIER = {1: 1.000, 2: 2.000, 3: 2.155, 4: 2.414,
                          5: 2.701, 6: 3.000, 7: 3.000, 8: 3.613}
 
-# Typical twists per inch by AWG for twisted variants
-_AWG_TPI = {8:  0.8, 10: 1.0, 12: 1.2, 14: 1.4, 16: 1.6,
-            18: 1.8, 20: 2.0, 22: 2.5, 24: 3.0, 26: 3.5, 28: 4.0}
+# MIL-STD-681 colour codes, in code order (the same table _build_wires uses for the single wires)
+_MIL_COLORS = {0: 'Black', 1: 'Brown', 2: 'Red', 3: 'Orange', 4: 'Yellow',
+               5: 'Green', 6: 'Blue', 7: 'Violet', 8: 'Gray', 9: 'White'}
+
+# Twists per inch of a multi-conductor M27500 cable: 1. A seller's listing for M27500-20SB2U00 reads "1 twist per inch
+# as per MIL standards" (the spec itself was not available). This replaces a table of per-AWG values that was a guess.
+_M27500_TPI = 1.0
 
 # Shield braid wall thickness added to bundle diameter (mm)
 # Back-calculated from spec tabulated 1-conductor data
@@ -1067,9 +1074,14 @@ _JACKET_DESC = {'06': 'PTFE tape white 260°C',
 _JACKET_COLOR = {'06': 'White', '14': 'White', '05': 'Natural'}
 _NO_JACKET_COLOR = 'None'
 
-# Colour of each conductor inside a cable, by its position (idx 0 first): NEMA WC 27500 Table A-1 (colour code "-"),
-# solid colours, taken from Wiremasters' M27500 guide (a secondary source; the standard itself was not available).
-_CABLE_CONDUCTOR_COLORS = ['White', 'Blue', 'Orange', 'Green', 'Red', 'Black', 'Yellow', 'Violet']
+# The colour of each conductor of an M27500 cable is set by the colour-code character after "M27500" (source: the
+# Wiremasters M27500 guide, a secondary source; the standard itself was not available). Conductor 1 comes first.
+#  "-"  (the default, no letter), the PREFERRED method, NEMA WC 27500 Table A-1: every conductor is WHITE, and
+#       conductors 2 and up carry a stripe in this order; conductor 1 has no stripe.
+#  "A", Optional Method A, Table A-1: the same sequence, but as SOLID insulation colours (conductor 1 white).
+# Only the first 8 positions are used (the cable generator stops at 8 conductors).
+_CABLE_STRIPE_COLORS = ['Blue', 'Orange', 'Green', 'Red', 'Black', 'Yellow', 'Violet']
+_CABLE_SOLID_COLORS = ['White'] + _CABLE_STRIPE_COLORS
 
 # Jacket max temp limits (°C)
 _JACKET_MAX_TEMP = {'06': 260, '14': 150, '05': 200}
@@ -1212,7 +1224,7 @@ def _max_temp(component_max_temp: int, shield_code: str | None,
     return min(temps)
 
 
-def _conductor_entry(cable: dict, wire: dict) -> dict:
+def _conductor_entry(cable: dict, wire: dict, solid: bool = False) -> dict:
     """The conductors of a multi-conductor cable, for ``wire_conductors.json``.
 
     One entry per CABLE, not per conductor, because every conductor of an M27500 cable is the same component
@@ -1229,8 +1241,17 @@ def _conductor_entry(cable: dict, wire: dict) -> dict:
             wire_size_dia=wire['wire_size_dia'], wire_size_cross=wire['wire_size_cross'],
             wire_size_awg=wire['wire_size_awg'], strands=wire['strands'], od_mm=wire['od_mm'],
             resistance_1km=cable['resistance_1km']),
-        conductors=[dict(color=_CABLE_CONDUCTOR_COLORS[idx], stripe_color=None)
-                    for idx in range(cable['num_conductors'])])
+        conductors=_cable_conductor_looks(cable['num_conductors'], solid))
+
+
+def _cable_conductor_looks(num_conductors: int, solid: bool) -> list[dict]:
+    """The colour and stripe of each conductor of an M27500 cable: colour code "-" (white, with a stripe from the
+    second conductor on) or, when ``solid``, colour code "A" (solid colours)."""
+    if solid:
+        return [dict(color=_CABLE_SOLID_COLORS[idx], stripe_color=None) for idx in range(num_conductors)]
+
+    return [dict(color='White', stripe_color=None if idx == 0 else _CABLE_STRIPE_COLORS[idx - 1])
+            for idx in range(num_conductors)]
 
 
 def _build_cables(wire_data: list[dict]) -> tuple[list[dict], list[dict]]:
@@ -1286,17 +1307,18 @@ def _build_cables(wire_data: list[dict]) -> tuple[list[dict], list[dict]]:
         comp_volts = wire['volts']
         comp_mat = wire['material']
         comp_plate = wire['core_material']
-        tpi = _AWG_TPI.get(awg, 2.0)
+        tpi = _M27500_TPI
 
         # Twist factor uses the component wire OD as the helix diameter
         twist_factor = _twist_length_factor(component_od, tpi)
 
         for num_conductors in range(1, 9):
-            # Twisted only makes sense for 2+ conductors
-            if num_conductors == 1:
-                twist_options = [False]
-            else:
-                twist_options = [False, True]
+            # Every cable of 2 or more conductors is twisted (cabled); a single conductor has nothing to twist. The part
+            # number says nothing about it: M27500 has no twist code, so there is one cable per number, not a twisted
+            # and an untwisted one.
+            twist_options = [num_conductors > 1]
+            first_cable = len(values)
+            first_conductors = len(conductors)
 
             for twisted in twist_options:
                 if twisted:
@@ -1307,32 +1329,33 @@ def _build_cables(wire_data: list[dict]) -> tuple[list[dict], list[dict]]:
                     effective_tpi = 0.0
 
                 # --- Unshielded, unjacketed ---
-                od = _assembly_od_mm(
-                    component_od, num_conductors, False, None)
-
-                weight = _assembly_weight_1km(
-                    component_od, comp_weight, num_conductors, tf, False, None)
-
-                resistance = _assembly_resistance_1km(comp_res, tf)
-                max_t = _max_temp(comp_max_t, None, None)
-
-                pn = (f'M27500-{awg}{wire_code}{num_conductors}'
-                      f'U00{"T" if twisted else ""}')
-
-                desc = (f'{awg}AWG {num_conductors}-conductor '
-                        f'{"twisted " if twisted else ""}'
-                        f'unshielded unjacketed {series} milspec cable')
-
-                values.append(dict(
-                    part_number=pn, description=desc, mfg='TE Connectivity', family='M27500',
-                    series=series, image=None, datasheet=None, color=_NO_JACKET_COLOR,
-                    cad=None, min_temp=comp_min_t, max_temp=max_t, material=comp_mat,
-                    core_material=comp_plate, num_conductors=num_conductors,
-                    shielded=0, tpi=effective_tpi, wire_size_dia=comp_dia,
-                    wire_size_cross=comp_mm2, wire_size_awg=awg, od_mm=od,
-                    weight_1km=weight, resistance_1km=resistance, strands=comp_strands,
-                    volts=comp_volts))
+                # One conductor with no shield and no jacket is not a cable, it is the plain wire again (already
+                # generated from its M22759 sheet), so M27500 has the unshielded, unjacketed form from 2 conductors up.
                 if num_conductors > 1:
+                    od = _assembly_od_mm(
+                        component_od, num_conductors, False, None)
+
+                    weight = _assembly_weight_1km(
+                        component_od, comp_weight, num_conductors, tf, False, None)
+
+                    resistance = _assembly_resistance_1km(comp_res, tf)
+                    max_t = _max_temp(comp_max_t, None, None)
+
+                    pn = f'M27500-{awg}{wire_code}{num_conductors}U00'
+
+                    desc = (f'{awg}AWG {num_conductors}-conductor '
+                            f'{"twisted " if twisted else ""}'
+                            f'unshielded unjacketed {series} milspec cable')
+
+                    values.append(dict(
+                        part_number=pn, description=desc, mfg='TE Connectivity', family='M27500',
+                        series=series, image=None, datasheet=None, color=_NO_JACKET_COLOR,
+                        cad=None, min_temp=comp_min_t, max_temp=max_t, material=comp_mat,
+                        core_material=comp_plate, num_conductors=num_conductors,
+                        shielded=0, tpi=effective_tpi, wire_size_dia=comp_dia,
+                        wire_size_cross=comp_mm2, wire_size_awg=awg, od_mm=od,
+                        weight_1km=weight, resistance_1km=resistance, strands=comp_strands,
+                        volts=comp_volts))
                     conductors.append(_conductor_entry(values[-1], wire))
 
                 # --- Shielded + jacketed combos ---
@@ -1345,8 +1368,7 @@ def _build_cables(wire_data: list[dict]) -> tuple[list[dict], list[dict]]:
                     resistance = _assembly_resistance_1km(comp_res, tf)
                     max_t = _max_temp(comp_max_t, shield_code, jacket_code)
 
-                    pn = (f'M27500-{awg}{wire_code}{num_conductors}'
-                          f'{shield_code}{jacket_code}{"T" if twisted else ""}')
+                    pn = f'M27500-{awg}{wire_code}{num_conductors}{shield_code}{jacket_code}'
                     desc = (f'{awg}AWG {num_conductors}-conductor '
                             f'{"twisted " if twisted else ""}'
                             f'shielded ({shield_desc}) '
@@ -1365,52 +1387,206 @@ def _build_cables(wire_data: list[dict]) -> tuple[list[dict], list[dict]]:
                     if num_conductors > 1:
                         conductors.append(_conductor_entry(values[-1], wire))
 
+            # Colour code "A": the same cables with solid-colour conductors, "M27500A..." instead of "M27500-...".
+            # Only from 2 conductors up; with one conductor both codes mean the same white wire.
+            if num_conductors > 1:
+                for cable, entry in zip(values[first_cable:], conductors[first_conductors:]):
+                    solid_pn = 'M27500A' + cable['part_number'][len('M27500-'):]
+
+                    values.append(dict(cable, part_number=solid_pn,
+                                       description=cable['description'] + ', solid colour conductors (colour code A)'))
+                    conductors.append(dict(entry, wire=solid_pn,
+                                           conductors=_cable_conductor_looks(num_conductors, True)))
+
+    return values, conductors
+
+
+# ---------------------------------------------------------------------------
+# Automotive twisted pairs
+# ---------------------------------------------------------------------------
+
+# Two conductors of M22759/32 (XL-ETFE) or M22759/18 (thin-wall ETFE), both tin-plated copper, 150 C, twisted together
+# with no shield and NO JACKET (colour "None"), so both coloured conductors show. Every combination of two different
+# conductor looks is made, where a look is a solid colour or a colour with a stripe.
+_PAIR_SERIES = ('M22759/32', 'M22759/18')
+_PAIR_AWGS = (20, 22, 24, 26, 28)  # a sheet that lacks a size (/18 stops at 26) just has no pair of it
+
+# Twists per inch. There is no standard for the automotive pair: ISO 11898 does not say, the supplier listings found
+# (Interstate Electronics' 20 AWG GXL and TXL pairs) give a lay of 1.0 inch, and a seller's M27500-20SB2U00 listing says
+# "1 twist per inch as per MIL standards". Some sellers list 2 TPI for 18 AWG; that is not generated.
+_PAIR_TPI = 1.0
+
+
+def _build_twisted_pairs(wire_data: list[dict]) -> tuple[list[dict], list[dict]]:
+    """
+    Generate unshielded, unjacketed twisted pairs made of M22759/32 and M22759/18 wire, 20 to 28 AWG.
+
+    There is no MIL part number for an arbitrary colour pair (M27500 only has its fixed colour codes), so the numbers
+    follow the way sellers number them, with the MIL-STD-681 colour digits (``9`` white, ``6`` blue):
+
+    * both conductors solid:  ``M22759/32-24-5/4-1TPI``  (green and yellow, 1 twist per inch)
+    * any conductor striped:  ``M22759/32-18-9-9/6``     (white, and white with a blue stripe: ``base/stripe``)
+
+    The first conductor of a pair is the one with the higher colour digit (white before blue); with the same digit a
+    solid one comes before a striped one. Returns the cables and their ``wire_conductors`` entries.
+    """
+
+    colors = list(_MIL_COLORS.values())
+
+    # a look is (colour code, stripe code or None). Highest colour first, solid before striped, so the first of a
+    # pair is the one a seller would list first: 9 (white), then 9/0 ... 9/8, then 8 (gray) ...
+    looks = []
+    for p_id in range(len(colors) - 1, -1, -1):
+        looks.append((p_id, None))
+        looks.extend((p_id, s_id) for s_id in range(len(colors)) if s_id != p_id)
+
+    def look_code(look):
+        if look[1] is None:
+            return str(look[0])
+        return f'{look[0]}/{look[1]}'
+
+    def look_name(look):
+        if look[1] is None:
+            return colors[look[0]]
+        return f'{colors[look[0]]}/{colors[look[1]]}'
+
+    values = []
+    conductors = []
+
+    for series in _PAIR_SERIES:
+        components = {}
+        for wire in wire_data:
+            if wire['series'] == series and wire['wire_size_awg'] in _PAIR_AWGS:
+                components.setdefault(wire['wire_size_awg'], wire)
+
+        for awg in _PAIR_AWGS:
+            if awg not in components:
+                continue
+
+            wire = components[awg]
+            component_od = wire['od_mm']
+            twist_factor = _twist_length_factor(component_od, _PAIR_TPI)
+            od = _assembly_od_mm(component_od, 2, False, None)
+            weight = _assembly_weight_1km(component_od, wire['weight_1km'], 2, twist_factor, False, None)
+            resistance = _assembly_resistance_1km(wire['resistance_1km'], twist_factor)
+
+            for look_1, look_2 in itertools.combinations(looks, 2):
+                if look_1[1] is None and look_2[1] is None:
+                    pn = f'{series}-{awg}-{look_1[0]}/{look_2[0]}-{_PAIR_TPI:g}TPI'
+                else:
+                    pn = f'{series}-{awg}-{look_code(look_1)}-{look_code(look_2)}'
+
+                values.append(dict(
+                    part_number=pn,
+                    description=(f'{awg}AWG unshielded unjacketed twisted pair of {series} wire, '
+                                 f'{look_name(look_1)} + {look_name(look_2)}, {_PAIR_TPI:g} twist per inch'),
+                    mfg='TE Connectivity', family='Twisted Pair', series=series, image=None, datasheet=None,
+                    color=_NO_JACKET_COLOR, cad=None, min_temp=wire['min_temp'], max_temp=wire['max_temp'],
+                    material=wire['material'], core_material=wire['core_material'], num_conductors=2, shielded=0,
+                    tpi=_PAIR_TPI, wire_size_dia=wire['wire_size_dia'], wire_size_cross=wire['wire_size_cross'],
+                    wire_size_awg=awg, od_mm=od, weight_1km=weight, resistance_1km=resistance,
+                    strands=wire['strands'], volts=wire['volts']))
+
+                conductors.append(dict(
+                    wire=pn,
+                    common=dict(
+                        core_material=wire['core_material'], material=wire['material'],
+                        wire_size_dia=wire['wire_size_dia'], wire_size_cross=wire['wire_size_cross'],
+                        wire_size_awg=awg, strands=wire['strands'], od_mm=component_od,
+                        resistance_1km=resistance),
+                    conductors=[dict(color=colors[look[0]],
+                                     stripe_color=None if look[1] is None else colors[look[1]])
+                                for look in (look_1, look_2)]))
+
     return values, conductors
 
 
 def check_for_dupes(all_wires):
-    pns = []
+    """Remove from te/wires.json (relative to the working directory) any part the generator now makes itself."""
+    pns = set(part['part_number'] for part in all_wires)
 
-    def _iter_parts(pth):
-        output = []
+    with open('te/wires.json', 'r') as file:
+        data = json.loads(file.read())
 
-        with open(pth, 'r') as file:
-            data = json.loads(file.read())
-
-        for prt in data:
-            part_num = prt['part_number']
-            if part_num in pns:
-                continue
-            pns.append(part_num)
-            output.append(prt)
-
-        with open(pth, 'w') as file:
-            file.write(json.dumps(output, indent=4))
-
-    for part in all_wires:
-        pn = part['part_number']
-        if pn in pns:
+    output = []
+    for prt in data:
+        part_num = prt['part_number']
+        if part_num in pns:
             continue
+        pns.add(part_num)
+        output.append(prt)
 
-        pns.append(pn)
+    with open('te/wires.json', 'w') as file:
+        file.write(json.dumps(output, indent=4))
 
-    _iter_parts('te/wires.json')
 
-    with open('wires.json', 'w') as f:
-        f.write(json.dumps(all_wires, indent=4))
+def _model_file_name(wire: dict) -> str:
+    """The file a wire is written to: one file per wire MODEL, so no file gets huge.
+
+    A single wire goes in its slash sheet's file (``M22759-32``), the M27500 cables built from that wire in
+    ``M27500-M22759-32``, and the twisted pairs in one file per size (``TP-M22759-32-22AWG``).
+    """
+    series = wire['series'].replace('/', '-')
+
+    if wire['family'] == 'M27500':
+        return f'M27500-{series}'
+
+    if wire['family'] == 'Twisted Pair':
+        return f"TP-{series}-{wire['wire_size_awg']}AWG"
+
+    return series
+
+
+def write_split(all_wires: list[dict], all_conductors: list[dict], out_dir: str) -> None:
+    """Write ``<out_dir>/wires/<model>.json`` and ``<out_dir>/wire_conductors/<model>.json``.
+
+    The conductors of a cable go in the file with the same name as the cable's, so the two folders mirror each other.
+    The two folders are replaced, so a model that is no longer generated does not linger.
+    """
+    wires_dir = os.path.join(out_dir, 'wires')
+    conductors_dir = os.path.join(out_dir, 'wire_conductors')
+
+    file_of = {wire['part_number']: _model_file_name(wire) for wire in all_wires}
+
+    for folder in (wires_dir, conductors_dir):
+        os.makedirs(folder, exist_ok=True)
+
+        for file_name in os.listdir(folder):
+            if file_name.endswith('.json'):
+                os.remove(os.path.join(folder, file_name))
+
+    by_file = {}
+    for wire in all_wires:
+        by_file.setdefault(file_of[wire['part_number']], []).append(wire)
+
+    for name, wires in by_file.items():
+        with open(os.path.join(wires_dir, f'{name}.json'), 'w') as f:
+            f.write(json.dumps(wires, indent=4))
+
+    conductors_by_file = {}
+    for entry in all_conductors:
+        conductors_by_file.setdefault(file_of[entry['wire']], []).append(entry)
+
+    for name, entries in conductors_by_file.items():
+        with open(os.path.join(conductors_dir, f'{name}.json'), 'w') as f:
+            f.write(json.dumps(entries, separators=(',', ':')))
+
+    print(f'{len(all_wires)} wires in {len(by_file)} files, {len(all_conductors)} cables with conductors '
+          f'in {len(conductors_by_file)} files, under {out_dir}')
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Generate the milspec wires, cables and twisted pairs.')
+    parser.add_argument(
+        '--out', default=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Universal'),
+        help='Folder that gets the wires/ and wire_conductors/ folders (default: the Universal folder of this repo).')
+    args = parser.parse_args()
+
     wires = _build_wires()
     cables, cable_conductors = _build_cables(wires)
+    pairs, pair_conductors = _build_twisted_pairs(wires)
 
-    check_for_dupes(wires + cables)
+    all_wires = wires + cables + pairs
 
-    # the conductors of the multi-conductor cables; load with builder/create_database/wire_conductors.py
-    with open('wire_conductors.json', 'w') as f:
-        f.write(json.dumps(cable_conductors, separators=(',', ':')))
-
-    print(len(cable_conductors))
-
-    print(len(wires))
-    print(len(cables))
+    check_for_dupes(all_wires)
+    write_split(all_wires, cable_conductors + pair_conductors, args.out)

@@ -6,8 +6,8 @@ the cable in ``wires``, ``idx`` is the conductor's place in the cable, and the r
 conductor to conductor. A conductor's ``stripe_color_id`` is the "no color" row (``id_generator.NO_COLOR_UUID``) when it
 has no stripe, and a cable's ``wires.color_id`` is that same row when it has no outer jacket.
 
-Seeded from ``Universal/wire_conductors.json``, written by ``scripts/wire_builder.py``. The file has one entry per
-CABLE, not per conductor, because the conductors of a cable are usually the same component wire in different colours::
+Seeded from the files in ``Universal/wire_conductors/`` (one per wire model, named like the matching file in
+``Universal/wires/``), written by ``scripts/wire_builder.py``. Each file has one entry per CABLE, not per conductor, because the conductors of a cable are usually the same component wire in different colours::
 
     {"wire": "<the part number of the cable>",
      "common": {core_material, material, wire_size_dia, wire_size_cross, wire_size_awg, strands, od_mm, resistance_1km},
@@ -36,18 +36,34 @@ _NIL_DEFAULT = "X'00000000000000000000000000000000'"
 
 
 def add_records(con, data_path):
-    """Expand ``Universal/wire_conductors.json`` into one row per conductor. Run after the wires are loaded."""
+    """Expand the ``Universal/wire_conductors`` files into one row per conductor. Run after the wires are loaded."""
     con.execute('SELECT 1 FROM wire_conductors LIMIT 1;')
     if con.fetchall():
         return
 
+    # one wire_conductors.json, and/or a `wire_conductors` folder with one file per wire model, named like the files in
+    # the `wires` folder (M22759-32.json ...)
+    json_paths = []
+
     json_path = os.path.join(data_path, 'wire_conductors.json')
-    if not os.path.exists(json_path):
-        _log.info('no %s, no conductors to add', json_path)
+    if os.path.exists(json_path):
+        json_paths.append(json_path)
+
+    conductors_dir = os.path.join(data_path, 'wire_conductors')
+    if os.path.isdir(conductors_dir):
+        json_paths.extend(os.path.join(conductors_dir, file_name) for file_name in sorted(os.listdir(conductors_dir))
+                          if file_name.endswith('.json'))
+
+    if not json_paths:
+        _log.info('no wire conductors in %s, none to add', data_path)
         return
 
-    with open(json_path, 'r', encoding='utf-8') as f:
-        data = json.loads(f.read())
+    data = []
+    for json_path in json_paths:
+        _log.info('loading %s', json_path)
+
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data.extend(json.loads(f.read()))
 
     con.execute('SELECT part_number, id FROM wires;')
     wire_ids = {part_number: db_id for part_number, db_id in con.fetchall()}
