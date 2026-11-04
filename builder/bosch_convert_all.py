@@ -98,7 +98,7 @@ def convert_all_bosch_models(con, bosch_data_dir: str, models_output_dir: str,
             _log.error('failed to convert %s: %s', res['stp_path'], res['error'])
             continue
 
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('models3d', res['stp_path']).bytes
         con.execute(
             'INSERT INTO models3d (id, uuid, file_type_id, vertex_count, aabb, obb, path) '
             'VALUES (?, ?, ?, ?, ?, ?, ?);',

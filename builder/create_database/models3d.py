@@ -43,7 +43,7 @@ def get_model3d_id(con, path: str):
         _log.warning('model3d path is local and unconverted, skipping: %r', path)
         return None
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('models3d', path).bytes
     con.execute('INSERT INTO models3d (id, path) VALUES (?, ?);', (new_id, path))
     _log.debug('model3d added %r -> %s', path, new_id.hex())
 

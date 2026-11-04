@@ -43,7 +43,7 @@ def get_cad_id(con, path: str):
         _log.warning('cad path is local, refusing to embed (copyright): %r', path)
         return None
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('cads', path).bytes
     con.execute('INSERT INTO cads (id, path) VALUES (?, ?);', (new_id, path))
     _log.debug('cad added %r -> %s', path, new_id.hex())
     cad_id_cache[path] = new_id

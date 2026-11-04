@@ -64,7 +64,7 @@ def add_transition(con, part_number, description, mfg=None, family=None, series=
     cad_id = _cads.get_cad_id(con, cad)
     datasheet_id = _datasheets.get_datasheet_id(con, datasheet)
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('transitions', part_number).bytes
 
     con.execute('INSERT INTO transitions (id, part_number, description, mfg_id, '
                 'family_id, series_id, color_id, image_id, datasheet_id, cad_id, '

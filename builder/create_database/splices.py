@@ -120,7 +120,7 @@ def add_records(con, data_path):
                 max_temp_id = _temperatures.get_temperature_id(con, max_temp)
                 plating_id = _platings.get_plating_id(con, plating)
 
-                new_id = _id_generator.generate_global_row_id().bytes
+                new_id = _id_generator.static_row_id('splices', part_number).bytes
 
                 row = [new_id, part_number, description,
                        mfg, family, series, color_id, image, datasheet, cad,
@@ -213,7 +213,7 @@ def add_splice(con, part_number, description, mfg=None, family=None, series=None
     type_id = _splice_types.get_splice_type_id(con, type)
     model3d_id = _models3d.get_model3d_id(con, model3d)
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('splices', part_number).bytes
 
     con.execute('INSERT INTO splices (id, part_number, description, mfg_id, family_id, '
                 'series_id, color_id, image_id, datasheet_id, cad_id, min_temp_id, '

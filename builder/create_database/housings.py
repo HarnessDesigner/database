@@ -216,7 +216,7 @@ def add_records(con, data_path):
                 compat_housings = ', '.join(compat_housings)
                 compat_boots = ', '.join(compat_boots)
 
-                new_id = _id_generator.generate_global_row_id().bytes
+                new_id = _id_generator.static_row_id('housings', part_number).bytes
 
                 row = [new_id, part_number, description,
                        mfg, family, series, image, datasheet, cad, model3d, direction,

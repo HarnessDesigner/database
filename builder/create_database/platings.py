@@ -50,7 +50,7 @@ def add_plating(con, symbol, description='', id=None, commit=True):  # NOQA
     """Insert a single plating row with a freshly generated id."""
 
     if id is None:
-        id = _id_generator.generate_global_row_id().bytes
+        id = _id_generator.static_row_id('platings', symbol).bytes
     else:
         id = _id_generator.NIL_UUID.bytes
 
@@ -118,7 +118,7 @@ def get_plating_id(con, symbol):
         else:
             description = ''
 
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('platings', symbol).bytes
         con.execute('INSERT INTO platings (id, symbol, description) VALUES (?, ?, ?);',
                     (new_id, symbol, description))
 

@@ -72,7 +72,7 @@ def add_cover(con, part_number, description, mfg=None, family=None, series=None,
 
     compat_housings = ', '.join(compat_housings)
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('covers', part_number).bytes
 
     con.execute('INSERT INTO covers (id, part_number, description, mfg_id, family_id, '
                 'series_id, color_id, direction_id, image_id, datasheet_id, cad_id, '
@@ -198,7 +198,7 @@ def add_records(con, data_path):
 
                 compat_housings = ', '.join(compat_housings)
 
-                new_id = _id_generator.generate_global_row_id().bytes
+                new_id = _id_generator.static_row_id('covers', part_number).bytes
 
                 row = [new_id, part_number, description,
                        mfg, family, series, color_id, direction, image, datasheet, cad,

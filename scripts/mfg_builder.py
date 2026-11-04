@@ -7,7 +7,7 @@ def _build_mfgs():
 
     data = (
         (0, 'None', '', '', '', ''),
-        (1, 'TE', '1-800-522-6752', '', '', 'https://www.te.com/en/home.html'),
+        (1, 'TE Connectivity', '1-800-522-6752', '', '', 'https://www.te.com/en/home.html'),
         (2, 'Bosch', '+49 304 036 94077',
          'Robert-Bosch-Platz 1\n70839 Gerlingen-Schillerhöhe\nGERMANY\n',
          'Connectors-Webshop-Hotline.PSCTS1-CO@de.bosch.com',

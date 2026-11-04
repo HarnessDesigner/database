@@ -33,7 +33,7 @@ def get_cavity_lock_id(con, name):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('cavity_locks', name).bytes
         con.execute('INSERT INTO cavity_locks (id, name) VALUES (?, ?);', (new_id, name))
 
         _log.debug('cavity lock added %r -> %s', name, new_id.hex())

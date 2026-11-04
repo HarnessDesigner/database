@@ -40,7 +40,7 @@ def get_shape_id(con, name):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('shapes', name).bytes
         con.execute('INSERT INTO shapes (id, name) VALUES (?, ?);', (new_id, name))
 
         _log.debug('shape added %r -> %s', name, new_id.hex())

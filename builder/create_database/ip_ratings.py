@@ -42,7 +42,7 @@ def add_records(con, data_path):
             raise RuntimeError(f'ip_ratings.json: {entry["name"]!r} uses {error}, which is not in ip_solids / '
                                f'ip_fluids -- seed those before ip_ratings') from None
 
-        rows.append((_seed_json.row_id(entry), entry['name'], solid_id, fluid_id))
+        rows.append((_seed_json.row_id(entry, 'ip_ratings', [entry['name']]), entry['name'], solid_id, fluid_id))
 
     con.executemany('INSERT INTO ip_ratings (id, name, solid_id, fluid_id) VALUES (?, ?, ?, ?);', rows)
     con.commit()

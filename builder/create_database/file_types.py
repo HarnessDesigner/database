@@ -34,7 +34,7 @@ def add_file_type(con, name, extension, is_model: bool | int = 0,
                   is_image: bool | int = 0, is_datasheet: bool | int = 0,
                   is_cad: bool | int = 0, mimetype: str = '', commit: bool = True):
     """Add a file type row, generating a new id."""
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('file_types', extension, mimetype or '', name).bytes
 
     con.execute('INSERT INTO file_types (id, mimetype, extension, name, is_model, is_image, is_datasheet, is_cad) '
                 'VALUES (?, ?, ?, ?, ?, ?, ?, ?);',
@@ -68,7 +68,7 @@ def get_file_type(con, extension=None, mimetype=None):
             file_type_cache[(extension, mimetype)] = res[0][0]
             return res[0][0]
 
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('file_types', extension, mimetype or '', '').bytes
         con.execute('INSERT INTO file_types (id, extension, mimetype) VALUES (?, ?, ?);', (new_id, extension, mimetype))
 
         _log.debug('file type added %r -> %s', extension, new_id.hex())
@@ -89,7 +89,7 @@ def get_file_type(con, extension=None, mimetype=None):
             file_type_cache[(extension, None)] = res[0][0]
             return res[0][0]
 
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('file_types', extension, '', '').bytes
         con.execute('INSERT INTO file_types (id, extension) VALUES (?, ?);', (new_id, extension))
 
         _log.debug('file type added %r -> %s', extension, new_id.hex())

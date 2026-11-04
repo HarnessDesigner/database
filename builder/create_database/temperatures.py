@@ -45,7 +45,7 @@ def add_records(con, data_path):
 def add_temperature(con, name, id=None, commit=True):  # NOQA
     """Add a temperature row with a freshly generated id."""
     if id is None:
-        id = _id_generator.generate_global_row_id().bytes
+        id = _id_generator.static_row_id('temperatures', name).bytes
     else:
         id = _id_generator.NIL_UUID.bytes
 
@@ -92,7 +92,7 @@ def get_temperature_id(con, name):
         temp_cache[name] = res[0][0]
         return res[0][0]
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('temperatures', name).bytes
     con.execute('INSERT INTO temperatures (id, name) VALUES (?, ?);', (new_id, name))
 
     _log.debug('temperature added %r -> %s', name, new_id.hex())

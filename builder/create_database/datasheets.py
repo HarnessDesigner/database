@@ -36,7 +36,7 @@ def get_datasheet_id(con, path: str):
         _log.warning('datasheet path is local, refusing to embed (copyright): %r', path)
         return None
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('datasheets', path).bytes
     con.execute('INSERT INTO datasheets (id, path) VALUES (?, ?);', (new_id, path))
     _log.debug('datasheet added %r -> %s', path, new_id.hex())
 

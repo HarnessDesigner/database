@@ -48,7 +48,7 @@ def add_color(con, name, rgb, id=None, commit=True):  # NOQA
     """Insert a single color row with a freshly generated id."""
 
     if id is None:
-        id = _id_generator.generate_global_row_id().bytes
+        id = _id_generator.static_row_id('colors', name).bytes
     else:
         id = _id_generator.NIL_UUID.bytes
 
@@ -65,11 +65,20 @@ def add_color(con, name, rgb, id=None, commit=True):  # NOQA
 color_cache = {}
 
 
-def get_color_id(con, name):
-    """Return the id of the color named ``name`` (case-insensitive title fallback)."""
+def get_color_id(con, name, unset=None):
+    """Return the id of the color named ``name`` (case-insensitive title fallback).
+
+    ``unset`` is the id to return for a blank or unknown name: the nil id (Black, colour code 0) by default, which is
+    what every column that has no "no color" meaning defaults to. A wire's colour (its jacket) and stripe, and a
+    conductor's, pass ``id_generator.NO_COLOR_UUID.bytes`` so that "not given" means no jacket / no stripe and is
+    not mistaken for Black.
+    """
+
+    if unset is None:
+        unset = _id_generator.NIL_UUID.bytes
 
     if not name:
-        return _id_generator.NIL_UUID.bytes
+        return unset
 
     try:
         return color_cache[name]
@@ -85,7 +94,7 @@ def get_color_id(con, name):
 
     if not res:
         _log.warning('MISSING COLOR: %r', name)
-        return _id_generator.NIL_UUID.bytes
+        return unset
         # raise RuntimeError(name)
 
     color_cache[name] = res[0][0]

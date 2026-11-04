@@ -33,7 +33,7 @@ def get_direction_id(con, name):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('directions', name).bytes
         con.execute('INSERT INTO directions (id, name) VALUES (?, ?);', (new_id, name))
 
         _log.debug('direction added %r -> %s', name, new_id.hex())

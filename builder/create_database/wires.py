@@ -90,8 +90,8 @@ def add_wire(con, part_number, description, mfg=None, family=None, series=None,
     core_material_id = _platings.get_plating_id(con, core_material)
     series_id = _series.get_series_id(con, series, mfg_id)
     family_id = _families.get_family_id(con, family, mfg_id)
-    color_id = _colors.get_color_id(con, color)
-    stripe_color_id = _colors.get_color_id(con, stripe_color)
+    color_id = _colors.get_color_id(con, color, _id_generator.NO_COLOR_UUID.bytes)
+    stripe_color_id = _colors.get_color_id(con, stripe_color, _id_generator.NO_COLOR_UUID.bytes)
     material_id = _materials.get_material_id(con, material)
     min_temp_id = _temperatures.get_temperature_id(con, min_temp)
     max_temp_id = _temperatures.get_temperature_id(con, max_temp)
@@ -100,7 +100,7 @@ def add_wire(con, part_number, description, mfg=None, family=None, series=None,
     cad_id = _cads.get_cad_id(con, cad)
     wire_type_id = _wire_types.get_wire_type_id(con, wire_type)
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('wires', part_number).bytes
 
     con.execute('INSERT INTO wires (id, part_number, description, mfg_id, family_id, '
                 'series_id, color_id, image_id, datasheet_id, cad_id, min_temp_id, '
@@ -121,6 +121,10 @@ def add_wire(con, part_number, description, mfg=None, family=None, series=None,
         return new_id
 
 
+# A wire's colour (its jacket) and stripe colour start out as "no color" -- no jacket, no stripe -- not as the nil row,
+# which is Black. The same value as the app's create_database/wires.py.
+_NO_COLOR_DEFAULT = f"X'{_id_generator.NO_COLOR_UUID.hex}'"
+
 id_field = _con.UUIDField('id', is_primary=True)
 
 table = _con.SQLTable(
@@ -140,7 +144,7 @@ table = _con.SQLTable(
                   references=_con.SQLFieldReference(_series.table,
                                                     _series.id_field,
                                                     on_update=_con.REFERENCE_NO_ACTION)),
-    _con.UUIDField('color_id', default="X'00000000000000000000000000000000'", no_null=True,
+    _con.UUIDField('color_id', default=_NO_COLOR_DEFAULT, no_null=True,
                   references=_con.SQLFieldReference(_colors.table,
                                                     _colors.id_field,
                                                     on_update=_con.REFERENCE_NO_ACTION)),
@@ -168,7 +172,7 @@ table = _con.SQLTable(
                   references=_con.SQLFieldReference(_materials.table,
                                                     _materials.id_field,
                                                     on_update=_con.REFERENCE_NO_ACTION)),
-    _con.UUIDField('stripe_color_id', default="X'00000000000000000000000000000000'", no_null=True,
+    _con.UUIDField('stripe_color_id', default=_NO_COLOR_DEFAULT, no_null=True,
                   references=_con.SQLFieldReference(_colors.table,
                                                     _colors.id_field,
                                                     on_update=_con.REFERENCE_NO_ACTION)),

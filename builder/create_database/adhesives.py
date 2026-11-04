@@ -25,7 +25,7 @@ def add_records(con, _):
         ('S1125', 'Epoxy/polyamide two-part paste (Thermoset)', 'S1125-KIT-1, S1125-KIT-4, S1125-KIT-5, S1125-KIT-8, S1125-APPLICATOR')
     )
 
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
+    rows = [(_id_generator.static_row_id('adhesives', row[0]).bytes, *row) for row in data]
 
     con.executemany('INSERT INTO adhesives (id, code, description, accessory_part_nums) VALUES (?, ?, ?, ?);', rows)
 
@@ -52,7 +52,7 @@ def get_adhesive_id(con, code):
         adhesive_cache[code] = res[0][0]
         return res[0][0]
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('adhesives', code).bytes
     con.execute('INSERT INTO adhesives (id, code) VALUES (?, ?);', (new_id, code))
 
     _log.debug('adhesive added %r -> %s', code, new_id.hex())

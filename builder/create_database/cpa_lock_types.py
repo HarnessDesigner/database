@@ -35,7 +35,7 @@ def get_cpa_lock_type_id(con, name):
         cpa_lock_type_cache[name] = res[0][0]
         return res[0][0]
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('cpa_lock_types', name).bytes
     con.execute('INSERT INTO cpa_lock_types (id, name) VALUES (?, ?);', (new_id, name))
 
     _log.debug('cpa lock type added %r -> %s', name, new_id.hex())

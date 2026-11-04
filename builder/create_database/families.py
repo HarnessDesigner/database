@@ -32,7 +32,7 @@ def get_family_id(con, name, mfg_id):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('families', mfg_id, name).bytes
         con.execute('INSERT INTO families (id, name, mfg_id) VALUES (?, ?, ?);', (new_id, name, mfg_id))
 
         _log.debug('family added %r -> %s', name, new_id.hex())

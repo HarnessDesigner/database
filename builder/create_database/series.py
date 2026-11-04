@@ -34,7 +34,7 @@ def get_series_id(con, name, mfg_id):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('series', mfg_id, name).bytes
         con.execute('INSERT INTO series (id, name, mfg_id) VALUES (?, ?, ?);', (new_id, name, mfg_id))
 
         _log.debug('series added %r -> %s', name, new_id.hex())

@@ -26,7 +26,7 @@ def get_setting(con, name):
 
 
 def add_setting(con, key, value, commit=True):
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('settings', key).bytes
     con.execute('INSERT INTO settings (id, name, value) VALUES (?, ?, ?);', (new_id, key, value))
     _log.debug('setting added %r', key)
 

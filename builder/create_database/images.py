@@ -42,7 +42,7 @@ def get_image_id(con, path: str):
         _log.warning('image path is not a URL, skipping (not embedded by this builder): %r', path)
         return None
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('images', path).bytes
     con.execute('INSERT INTO images (id, path) VALUES (?, ?);', (new_id, path))
     _log.debug('image added %r -> %s', path, new_id.hex())
 

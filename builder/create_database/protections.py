@@ -18,7 +18,7 @@ def add_records(con, data_path):
 def add_protection(con, name, commit=True):  # NOQA
     """Insert a single protection row with a freshly generated id."""
 
-    id = _id_generator.generate_global_row_id().bytes
+    id = _id_generator.static_row_id('protections', name).bytes
 
     con.execute(
         'INSERT INTO protections (id, name) '
@@ -50,7 +50,7 @@ def get_protection_id(con, name):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('protections', name).bytes
         con.execute('INSERT INTO protections (id, name) VALUES (?, ?);', (new_id, name))
 
         _log.debug('protection added %r -> %s', name, new_id.hex())

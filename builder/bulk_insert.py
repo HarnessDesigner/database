@@ -29,7 +29,8 @@ def insert_data(con, container, table_name, column, mfg_id=None):
     """
     # None and blank values mean "no value" -- they get no row of their own; the loaders resolve them to the
     # table's default row (the nil UUID) with mapping.get(value, <default>).
-    container = [item for item in container if item is not None and item != '']
+    # sorted: new keys are numbered in this order, so it must not depend on the process's set ordering
+    container = sorted(item for item in container if item is not None and item != '')
     if not container:
         return {}
 
@@ -59,10 +60,11 @@ def insert_data(con, container, table_name, column, mfg_id=None):
 
     insert_rows = []
     for item in to_insert:
-        new_id = _id_generator.generate_global_row_id().bytes
         if mfg_id is None:
+            new_id = _id_generator.static_row_id(table_name, item).bytes
             insert_rows.append((new_id, item))
         else:
+            new_id = _id_generator.static_row_id(table_name, mfg_id, item).bytes
             insert_rows.append((new_id, item, mfg_id))
         mapping[item] = new_id
 

@@ -122,7 +122,7 @@ def add_records(con, data_path):
 
                 adhesive_ids = ', '.join(adhesive_ids)
 
-                new_id = _id_generator.generate_global_row_id().bytes
+                new_id = _id_generator.static_row_id('bundle_covers', part_number).bytes
 
                 row = [new_id, part_number, description,
                        mfg, family, series, color_id, material, image, datasheet, cad,
@@ -204,7 +204,7 @@ def add_bundle_cover(con, part_number, description, mfg=None, family=None, serie
 
     adhesive_ids = ', '.join(adhesive_ids)
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('bundle_covers', part_number).bytes
 
     con.execute('INSERT INTO bundle_covers (id, part_number, description, mfg_id, family_id, '
                 'series_id, color_id, material_id, image_id, datasheet_id, cad_id, '

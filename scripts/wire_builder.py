@@ -564,6 +564,89 @@ def _build_wires():
                 28: {'dia': 0.38, 'od': 0.91, 'weight': 1.90, 'resistance': 259.00, 'strands': 7},
             }
         },
+        'M22759/32': {
+            'start': 12,
+            'stop': 31,
+            'step': 2,
+            'con_plate': 'Sn/Cu',
+            'material': 'Extruded XL-ETFE (cross-linked modified ETFE), single wall',
+            'volts': 600,
+            'min_temp': -65,
+            'max_temp': 150,
+            'data': {
+                30: {'dia': 0.28, 'od': 0.66, 'weight': 0.98, 'resistance': 355.643, 'strands': 7},
+                28: {'dia': 0.36, 'od': 0.74, 'weight': 1.35, 'resistance': 225.066, 'strands': 7},
+                26: {'dia': 0.46, 'od': 0.86, 'weight': 2.08, 'resistance': 135.499, 'strands': 19},
+                24: {'dia': 0.58, 'od': 0.99, 'weight': 2.98, 'resistance': 85.958, 'strands': 19},
+                22: {'dia': 0.74, 'od': 1.14, 'weight': 4.17, 'resistance': 53.15, 'strands': 19},
+                20: {'dia': 0.94, 'od': 1.32, 'weight': 6.40, 'resistance': 32.415, 'strands': 19},
+                18: {'dia': 1.17, 'od': 1.57, 'weight': 9.67, 'resistance': 20.44, 'strands': 19},
+                16: {'dia': 1.32, 'od': 1.78, 'weight': 12.35, 'resistance': 15.781, 'strands': 19},
+                14: {'dia': 1.65, 'od': 2.31, 'weight': 19.35, 'resistance': 10.039, 'strands': 19},
+                12: {'dia': 2.13, 'od': 2.77, 'weight': 29.32, 'resistance': 6.627, 'strands': 37},
+            }
+        },
+        'M22759/33': {
+            'start': 20,
+            'stop': 31,
+            'step': 2,
+            'con_plate': 'Ag/Cu',
+            'material': 'Extruded XL-ETFE (cross-linked modified ETFE), single wall, high-strength copper alloy conductor',
+            'volts': 600,
+            'min_temp': -65,
+            'max_temp': 200,
+            'data': {
+                30: {'dia': 0.29, 'od': 0.66, 'weight': 0.98, 'resistance': 385.171, 'strands': 7},
+                28: {'dia': 0.38, 'od': 0.74, 'weight': 1.35, 'resistance': 244.094, 'strands': 7},
+                26: {'dia': 0.48, 'od': 0.86, 'weight': 2.08, 'resistance': 146.982, 'strands': 19},
+                24: {'dia': 0.61, 'od': 0.99, 'weight': 2.98, 'resistance': 93.176, 'strands': 19},
+                22: {'dia': 0.76, 'od': 1.14, 'weight': 4.32, 'resistance': 57.415, 'strands': 19},
+                20: {'dia': 0.96, 'od': 1.32, 'weight': 6.55, 'resistance': 35.105, 'strands': 19},
+            }
+        },
+        'M22759/43': {
+            'start': 8,
+            'stop': 27,
+            'step': 2,
+            'con_plate': 'Ag/Cu',
+            'material': 'Extruded XL-ETFE (cross-linked modified ETFE), dual wall',
+            'volts': 600,
+            'min_temp': -65,
+            'max_temp': 200,
+            'data': {
+                26: {'dia': 0.47, 'od': 1.07, 'weight': 2.53, 'resistance': 125.984, 'strands': 19},
+                24: {'dia': 0.60, 'od': 1.19, 'weight': 3.42, 'resistance': 79.724, 'strands': 19},
+                22: {'dia': 0.75, 'od': 1.32, 'weight': 4.91, 'resistance': 49.541, 'strands': 19},
+                20: {'dia': 0.95, 'od': 1.52, 'weight': 6.99, 'resistance': 30.151, 'strands': 19},
+                18: {'dia': 1.19, 'od': 1.85, 'weight': 10.71, 'resistance': 18.996, 'strands': 19},
+                16: {'dia': 1.34, 'od': 2.03, 'weight': 13.39, 'resistance': 14.829, 'strands': 19},
+                14: {'dia': 1.69, 'od': 2.46, 'weight': 20.54, 'resistance': 9.449, 'strands': 19},
+                12: {'dia': 2.17, 'od': 2.90, 'weight': 30.51, 'resistance': 6.234, 'strands': 37},
+                10: {'dia': 2.77, 'od': 3.51, 'weight': 48.22, 'resistance': 3.904, 'strands': 37},
+                8: {'dia': 4.15, 'od': 5.16, 'weight': 96.73, 'resistance': 2.159, 'strands': 133},
+            }
+        },
+        'M22759/44': {
+            'start': 12,
+            'stop': 29,
+            'step': 2,
+            'con_plate': 'Ag/Cu',
+            'material': 'Extruded XL-ETFE (cross-linked modified ETFE), lightweight single wall',
+            'volts': 600,
+            'min_temp': -65,
+            'max_temp': 200,
+            'data': {
+                28: {'dia': 0.37, 'od': 0.74, 'weight': 1.35, 'resistance': 209.318, 'strands': 7},
+                26: {'dia': 0.47, 'od': 0.86, 'weight': 2.08, 'resistance': 125.984, 'strands': 19},
+                24: {'dia': 0.61, 'od': 0.99, 'weight': 2.98, 'resistance': 79.724, 'strands': 19},
+                22: {'dia': 0.75, 'od': 1.14, 'weight': 4.17, 'resistance': 49.541, 'strands': 19},
+                20: {'dia': 0.96, 'od': 1.32, 'weight': 6.40, 'resistance': 30.151, 'strands': 19},
+                18: {'dia': 1.19, 'od': 1.57, 'weight': 9.67, 'resistance': 18.996, 'strands': 19},
+                16: {'dia': 1.34, 'od': 1.78, 'weight': 12.35, 'resistance': 14.829, 'strands': 19},
+                14: {'dia': 1.69, 'od': 2.24, 'weight': 19.35, 'resistance': 9.449, 'strands': 19},
+                12: {'dia': 2.17, 'od': 2.69, 'weight': 29.32, 'resistance': 6.234, 'strands': 37},
+            }
+        },
         'M22759/80': {
             'start': 10,
             'stop': 27,
@@ -883,7 +966,7 @@ def _build_wires():
                 values.append(dict(
                     part_number=part_number,
                     description=description,
-                    mfg='TE',
+                    mfg='TE Connectivity',
                     family='Milspec',
                     series=family,
                     color=color,
@@ -918,7 +1001,7 @@ def _build_wires():
                             f'{awg}AWG ({mm_2}mm²) {color_mapping[p_id]}/{color_mapping[s_id]} '
                             f'milspec single conductor wire'
                         ),
-                        mfg='TE',
+                        mfg='TE Connectivity',
                         family='Milspec',
                         series=family,
                         color=color,
@@ -979,6 +1062,15 @@ _JACKET_DESC = {'06': 'PTFE tape white 260°C',
                 '14': 'ETFE extruded white 150°C',
                 '05': 'FEP extruded clear 200°C'}
 
+# Jacket colour, by jacket code (matches _JACKET_DESC; the FEP jacket is clear, the closest colour row is "Natural").
+# A cable with no jacket has the colour "None": a "None" colour means no outer jacket (TWISTED_WIRE_DESIGN.md).
+_JACKET_COLOR = {'06': 'White', '14': 'White', '05': 'Natural'}
+_NO_JACKET_COLOR = 'None'
+
+# Colour of each conductor inside a cable, by its position (idx 0 first): NEMA WC 27500 Table A-1 (colour code "-"),
+# solid colours, taken from Wiremasters' M27500 guide (a secondary source; the standard itself was not available).
+_CABLE_CONDUCTOR_COLORS = ['White', 'Blue', 'Orange', 'Green', 'Red', 'Black', 'Yellow', 'Violet']
+
 # Jacket max temp limits (°C)
 _JACKET_MAX_TEMP = {'06': 260, '14': 150, '05': 200}
 
@@ -1000,7 +1092,8 @@ _WIRE_TYPE_CODE = {'M22759/5':  'VA', 'M22759/6':  'WA', 'M22759/7':  'SA',
                    'M22759/17': 'TF', 'M22759/18': 'TG', 'M22759/19': 'TH',
                    'M22759/20': 'TK', 'M22759/21': 'TL', 'M22759/22': 'TM',
                    'M22759/23': 'TN', 'M22759/28': 'JB', 'M22759/29': 'JC',
-                   'M22759/30': 'JD', 'M22759/31': 'JE', 'M22759/80': 'WB',
+                   'M22759/30': 'JD', 'M22759/31': 'JE', 'M22759/32': 'SB',
+                   'M22759/33': 'SC', 'M22759/43': 'SP', 'M22759/44': 'SR', 'M22759/80': 'WB',
                    'M22759/81': 'WC', 'M22759/82': 'WE', 'M22759/83': 'WF',
                    'M22759/84': 'WG', 'M22759/85': 'WH', 'M22759/86': 'WJ',
                    'M22759/87': 'WK', 'M22759/88': 'WL', 'M22759/89': 'WM',
@@ -1119,7 +1212,28 @@ def _max_temp(component_max_temp: int, shield_code: str | None,
     return min(temps)
 
 
-def _build_cables(wire_data: list[dict]) -> list[dict]:
+def _conductor_entry(cable: dict, wire: dict) -> dict:
+    """The conductors of a multi-conductor cable, for ``wire_conductors.json``.
+
+    One entry per CABLE, not per conductor, because every conductor of an M27500 cable is the same component
+    wire and only the colour differs: the fields they share are in ``common`` and ``conductors`` lists one item per
+    conductor in order (its position is its ``idx``), holding what is specific to it. An item may also name any
+    field of ``common`` to override it. ``builder/create_database/wire_conductors.py`` expands it into one
+    ``wire_conductors`` row per conductor. ``wire`` is the cable's part number; ``wire`` here is the component
+    wire (an M22759 entry) the cable is built from.
+    """
+    return dict(
+        wire=cable['part_number'],
+        common=dict(
+            core_material=wire['core_material'], material=wire['material'],
+            wire_size_dia=wire['wire_size_dia'], wire_size_cross=wire['wire_size_cross'],
+            wire_size_awg=wire['wire_size_awg'], strands=wire['strands'], od_mm=wire['od_mm'],
+            resistance_1km=cable['resistance_1km']),
+        conductors=[dict(color=_CABLE_CONDUCTOR_COLORS[idx], stripe_color=None)
+                    for idx in range(cable['num_conductors'])])
+
+
+def _build_cables(wire_data: list[dict]) -> tuple[list[dict], list[dict]]:
     """
     Generate M27500 shielded/twisted cable variants from M22759 component wire data.
 
@@ -1155,6 +1269,7 @@ def _build_cables(wire_data: list[dict]) -> list[dict]:
             unique_wires.append(w)
 
     values = []
+    conductors = []
 
     for wire in unique_wires:
         series = wire['series']
@@ -1209,14 +1324,16 @@ def _build_cables(wire_data: list[dict]) -> list[dict]:
                         f'unshielded unjacketed {series} milspec cable')
 
                 values.append(dict(
-                    part_number=pn, description=desc, mfg='TE', family='M27500',
-                    series=series, image=None, datasheet=None, color='Vanilla',
+                    part_number=pn, description=desc, mfg='TE Connectivity', family='M27500',
+                    series=series, image=None, datasheet=None, color=_NO_JACKET_COLOR,
                     cad=None, min_temp=comp_min_t, max_temp=max_t, material=comp_mat,
                     core_material=comp_plate, num_conductors=num_conductors,
                     shielded=0, tpi=effective_tpi, wire_size_dia=comp_dia,
                     wire_size_cross=comp_mm2, wire_size_awg=awg, od_mm=od,
                     weight_1km=weight, resistance_1km=resistance, strands=comp_strands,
                     volts=comp_volts))
+                if num_conductors > 1:
+                    conductors.append(_conductor_entry(values[-1], wire))
 
                 # --- Shielded + jacketed combos ---
                 for shield_code, jacket_code in shield_jacket_combos:
@@ -1237,16 +1354,18 @@ def _build_cables(wire_data: list[dict]) -> list[dict]:
                             f'{series} milspec cable')
 
                     values.append(dict(
-                        part_number=pn, description=desc, mfg='TE', family='M27500',
-                        series=series, image=None, datasheet=None, color='Vanilla',
+                        part_number=pn, description=desc, mfg='TE Connectivity', family='M27500',
+                        series=series, image=None, datasheet=None, color=_JACKET_COLOR[jacket_code],
                         cad=None, min_temp=comp_min_t, max_temp=max_t, material=comp_mat,
                         core_material=comp_plate, num_conductors=num_conductors,
                         shielded=1, tpi=effective_tpi, wire_size_dia=comp_dia,
                         wire_size_cross=comp_mm2, wire_size_awg=awg, od_mm=od,
                         weight_1km=weight, resistance_1km=resistance, strands=comp_strands,
                         volts=comp_volts))
+                    if num_conductors > 1:
+                        conductors.append(_conductor_entry(values[-1], wire))
 
-    return values
+    return values, conductors
 
 
 def check_for_dupes(all_wires):
@@ -1283,9 +1402,15 @@ def check_for_dupes(all_wires):
 
 if __name__ == '__main__':
     wires = _build_wires()
-    cables = _build_cables(wires)
+    cables, cable_conductors = _build_cables(wires)
 
     check_for_dupes(wires + cables)
+
+    # the conductors of the multi-conductor cables; load with builder/create_database/wire_conductors.py
+    with open('wire_conductors.json', 'w') as f:
+        f.write(json.dumps(cable_conductors, separators=(',', ':')))
+
+    print(len(cable_conductors))
 
     print(len(wires))
     print(len(cables))

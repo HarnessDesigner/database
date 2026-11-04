@@ -3,7 +3,8 @@
 A file is a list of entries, "id" first, like colors.json. The entry with "id": 0 is the table's default row
 ("No Family", "No Series", "Unknown", IP00 ...) and is stored with the nil UUID -- the value an unassigned foreign
 key defaults to -- so every foreign key in the database points at a row that exists. Every other entry gets a
-generated id; the "id" in the file is only a label and is never stored.
+static id (id_generator.static_row_id), keyed on the table and the value of the entry's first column (plus the
+row's mfg_id for the tables scoped to a manufacturer); the "id" in the file is only a label and is never stored.
 """
 
 import json
@@ -27,12 +28,12 @@ def load_entries(data_path, file_name):
     return entries
 
 
-def row_id(entry):
-    """The nil UUID for the default ("id": 0) entry, a generated id for every other one."""
+def row_id(entry, table_name, key_parts):
+    """The nil UUID for the default ("id": 0) entry, the static id of ``(table_name, *key_parts)`` for every other one."""
     if entry.get('id') == 0:
         return _id_generator.NIL_UUID.bytes
 
-    return _id_generator.generate_global_row_id().bytes
+    return _id_generator.static_row_id(table_name, *key_parts).bytes
 
 
 def seed(con, data_path, file_name, table_name, columns, constants=None):
@@ -51,7 +52,11 @@ def seed(con, data_path, file_name, table_name, columns, constants=None):
 
     rows = []
     for entry in load_entries(data_path, file_name):
-        rows.append((row_id(entry), *[entry[column] for column in columns], *values))
+        key_parts = [entry[columns[0]]]
+        if 'mfg_id' in constants:
+            key_parts.insert(0, constants['mfg_id'])
+
+        rows.append((row_id(entry, table_name, key_parts), *[entry[column] for column in columns], *values))
 
     placeholders = ', '.join('?' for _ in range(len(names) + 1))
     con.executemany(f'INSERT INTO {table_name} (id, {", ".join(names)}) VALUES ({placeholders});', rows)

@@ -15,7 +15,7 @@ def add_records(con, _):
 
     data = (('Internal Use DO NOT DELETE',),)
 
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
+    rows = [(_id_generator.static_row_id('transition_series', row[0]).bytes, *row) for row in data]
 
     con.executemany('INSERT INTO transition_series (id, name) VALUES (?, ?);', rows)
     con.commit()
@@ -41,7 +41,7 @@ def get_transition_series_id(con, name):
         transition_series_cache[name] = res[0][0]
         return res[0][0]
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('transition_series', name).bytes
     con.execute('INSERT INTO transition_series (id, name) VALUES (?, ?);', (new_id, name))
 
     _log.debug('transition series added %r -> %s', name, new_id.hex())

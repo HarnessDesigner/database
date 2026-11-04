@@ -108,7 +108,7 @@ def add_records(con, data_path):
                 min_temp_id = _temperatures.get_temperature_id(con, min_temp)
                 max_temp_id = _temperatures.get_temperature_id(con, max_temp)
 
-                new_id = _id_generator.generate_global_row_id().bytes
+                new_id = _id_generator.static_row_id('wire_markers', part_number).bytes
 
                 row = [new_id, part_number, description,
                        mfg, family, series, color_id, image, datasheet, cad,
@@ -180,7 +180,7 @@ def add_wire_marker(con, part_number, description, mfg=None, family=None, series
     datasheet_id = _datasheets.get_datasheet_id(con, datasheet)
     cad_id = _cads.get_cad_id(con, cad)
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('wire_markers', part_number).bytes
 
     con.execute('INSERT INTO wire_markers (id, part_number, description, mfg_id, family_id, '
                 'series_id, color_id, image_id, datasheet_id, cad_id, min_temp_id, '

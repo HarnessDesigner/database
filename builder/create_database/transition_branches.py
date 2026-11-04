@@ -39,7 +39,7 @@ def add_transition_branch(con, idx, transition_id, bulb_offset=None, bulb_length
     if bulb_offset is not None:
         bulb_offset = str([float(v) for v in bulb_offset])
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('transition_branches', transition_id, idx).bytes
 
     con.execute('INSERT INTO transition_branches (id, transition_id, idx, bulb_offset, '
                 'bulb_length, min_dia, max_dia, length, offset, angle, flange_height, '
@@ -52,20 +52,6 @@ def add_transition_branch(con, idx, transition_id, bulb_offset=None, bulb_length
     if commit:
         con.commit()
         return new_id
-
-
-def add_pjt_transition_branch(con, project_id, part_id, transition_id,
-                              point3d_id=None, diameter=0.0, branch_id=0):
-    """Add a pjt_transition_branches row, generating a new id."""
-    new_id = _id_generator.generate_global_row_id().bytes
-
-    con.execute('INSERT INTO pjt_transition_branches (id, project_id, part_id, transition_id, '
-                'point3d_id, diameter, branch_id) VALUES (?, ?, ?, ?, ?, ?, ?);',
-                (new_id, project_id, part_id, transition_id, point3d_id, diameter, branch_id))
-
-    con.commit()
-
-    return new_id
 
 
 id_field = _con.UUIDField('id', is_primary=True)

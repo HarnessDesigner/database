@@ -44,7 +44,7 @@ def add_records(con, data_path):
 def add_splice_type(con, name, id=None, commit=True):  # NOQA
     """Add a splice type row with a freshly generated id."""
     if id is None:
-        id = _id_generator.generate_global_row_id().bytes
+        id = _id_generator.static_row_id('splice_types', name).bytes
     else:
         id = _id_generator.NIL_UUID.bytes
 
@@ -80,7 +80,7 @@ def get_splice_type_id(con, name):
         splice_type_cache[name] = res[0][0]
         return res[0][0]
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('splice_types', name).bytes
     con.execute('INSERT INTO splice_types (id, name) VALUES (?, ?);', (new_id, name))
 
     _log.debug('splice type added %r -> %s', name, new_id.hex())

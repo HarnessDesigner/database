@@ -45,7 +45,7 @@ def add_records(con, _):
         ('S1125-APPLICATOR', 'Epoxy Adhesives Dispensing Gun')
     )
 
-    rows = [(_id_generator.generate_global_row_id().bytes, *row) for row in data]
+    rows = [(_id_generator.static_row_id('accessories', row[0]).bytes, *row) for row in data]
 
     con.executemany('INSERT INTO accessories (id, part_number, description) VALUES(?, ?, ?);', rows)
     con.commit()
@@ -122,7 +122,7 @@ def add_accessory(con, part_number, mfg, description=None, series=None,
 
         description += ' Accessory'
 
-    new_id = _id_generator.generate_global_row_id().bytes
+    new_id = _id_generator.static_row_id('accessories', part_number).bytes
 
     _log.debug('adding accessory %s, %s', part_number, description)
     con.execute('INSERT INTO accessories (id, part_number, description, mfg_id, '

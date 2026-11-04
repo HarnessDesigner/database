@@ -23,6 +23,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from builder import id_generator as _id_generator  # noqa: E402
 from builder import sqlite_connector as _sqlite_connector  # noqa: E402
 from builder.create_database import (  # noqa: E402
     manufacturers, families, series, colors, materials, platings, directions,
@@ -31,7 +32,7 @@ from builder.create_database import (  # noqa: E402
     ip_fluids, ip_solids, ip_supps, ip_ratings, images, cads, datasheets,
     models3d, accessories, cavities, transition_branches, settings,
     housings, covers, cpa_locks, boots, tpa_locks, terminals, seals,
-    transitions, wire_markers, splices, bundle_covers, wire_types, wires,
+    transitions, wire_markers, splices, bundle_covers, wire_types, wires, deratings, wire_conductors,
 )  # noqa: E501
 
 _log = logging.getLogger('builder')
@@ -48,6 +49,7 @@ TABLE_MODULES = [
     models3d, accessories, cavities, transition_branches, settings,
     housings, covers, cpa_locks, boots, tpa_locks, terminals, seals,
     transitions, wire_markers, splices, bundle_covers, wire_types, wires,
+    deratings, wire_conductors,
 ]
 
 # Two different add_records() shapes exist in the ORIGINAL upstream code
@@ -90,6 +92,11 @@ def build(repo_root: str, output_dir: str):
     for module in TABLE_MODULES:
         module.table.add_to_db(con)
 
+    # SQLite does not index a foreign key's column; without these a part's derating rows would be found by reading
+    # every row. The table is created empty: nothing seeds it yet (there is no source data for it).
+    deratings.add_indexes(con)
+    wire_conductors.add_indexes(con)
+
     _log.info('seeding settings (appdata=%s)', output_dir)
     settings.add_records(con, output_dir)
 
@@ -103,11 +110,18 @@ def build(repo_root: str, output_dir: str):
         _log.info('seeding %s', module.__name__)
         module.add_records(con, repo_root)
 
+    # the conductors inside the multi-conductor wires; they point at the wires, so they go in after them
+    _log.info('seeding wire_conductors')
+    wire_conductors.add_records(con, universal_dir)
+
     # accessories: the hard-coded rows were seeded above; the manufacturers' accessories.json (Molex) are added now
     _log.info('seeding accessories from the manufacturer folders')
     accessories.add_json_records(con, repo_root)
 
     _log.info('build complete: %s', db_path)
+
+    # the ids handed out for rows that are new to the ledger become permanent now; commit builder/row_ids.txt
+    _log.info('row id ledger: %d new entries written', _id_generator.save_ledger())
 
     con.execute('SELECT name FROM sqlite_master WHERE type="table";')
     table_names = sorted(row[0] for row in con.fetchall())

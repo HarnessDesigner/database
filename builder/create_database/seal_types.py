@@ -75,7 +75,7 @@ def add_seal_type(con, name, category, id=None, commit=True):  # NOQA
     """
 
     if id is None:
-        id = _id_generator.generate_global_row_id().bytes
+        id = _id_generator.static_row_id('seal_types', name).bytes
     else:
         id = _id_generator.NIL_UUID.bytes
 
@@ -131,7 +131,7 @@ def get_seal_type_id(con, name, category=None):
                 'adding seal type %r with no category given -- defaulting to %s, '
                 'needs a real classification later', name, _DEFAULT_CATEGORY)
 
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('seal_types', name).bytes
         con.execute(
             'INSERT INTO seal_types (id, name, category) VALUES (?, ?, ?);',
             (new_id, name, category))

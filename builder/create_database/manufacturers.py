@@ -10,10 +10,29 @@ from .. import id_generator as _id_generator
 _log = logging.getLogger('builder.manufacturers')
 
 
+# Alternate spellings of a manufacturer name that must all resolve to a single
+# manufacturers row. Keys are lower-cased.
+_MFG_ALIASES = {
+    'te': 'TE Connectivity',
+    'raychem': 'Raychem',
+}
+
+
+def normalize_mfg_name(mfg_name):
+    """Fold alternate spellings of a manufacturer name (e.g. "TE") into the
+    canonical name (e.g. "TE Connectivity")."""
+
+    if not mfg_name:
+        return mfg_name
+
+    return _MFG_ALIASES.get(mfg_name.strip().lower(), mfg_name)
+
+
 def inspect_mfg_fam_series(mfg_name, family_name, series_name):
     """Normalize a (manufacturer, family, series) name triple, folding
-    manufacturer-name prefixes out of family/series and special-casing the
-    Raychem/TE Connectivity relationship.
+    manufacturer-name prefixes out of family/series and special-casing Raychem
+    (its own manufacturer, even where the source data lists it under a
+    TE Connectivity manufacturer with a "Raychem ..." family).
     """
 
     if family_name is None:
@@ -27,18 +46,21 @@ def inspect_mfg_fam_series(mfg_name, family_name, series_name):
     if series_name.lower().startswith(family_name.lower()):
         series_name = series_name[len(family_name):]
 
-    if mfg_name in ('RAYCHEM', 'Raychem'):
+    if (mfg_name.strip().lower() == 'raychem' or
+            family_name.strip().lower().startswith('raychem')):
         if not family_name.strip():
             family_name = 'Raychem'
+        elif family_name.strip().lower().startswith('raychem'):
+            pass
         elif not series_name.strip():
             series_name = family_name.strip()
             family_name = 'Raychem'
         else:
             family_name = 'Raychem ' + family_name.strip()
 
-        mfg_name = 'TE Connectivity'
+        mfg_name = 'Raychem'
 
-    mfg_name = mfg_name.strip()
+    mfg_name = normalize_mfg_name(mfg_name.strip())
     family_name = family_name.strip()
     series_name = series_name.strip()
 
@@ -92,7 +114,7 @@ def add_manufacturer(con, name, description='', address='', contact_person='', p
     """Insert a single manufacturer row with a freshly generated id."""
 
     if id is None:
-        id = _id_generator.generate_global_row_id().bytes
+        id = _id_generator.static_row_id('manufacturers', name).bytes
     else:
         id = _id_generator.NIL_UUID.bytes
 
@@ -118,6 +140,8 @@ def get_mfg_id(con, name):
     if not name:
         return _id_generator.NIL_UUID.bytes
 
+    name = normalize_mfg_name(name)
+
     try:
         return mfg_cache[name]
     except KeyError:
@@ -127,7 +151,7 @@ def get_mfg_id(con, name):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('manufacturers', name).bytes
         con.execute('INSERT INTO manufacturers (id, name, phone, address, email, website) '
                     'VALUES (?, ?, ?, ?, ?, ?);', (new_id, name, '', '', '', ''))
 

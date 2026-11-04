@@ -33,7 +33,7 @@ def get_gender_id(con, name):
     res = con.fetchall()
 
     if not res:
-        new_id = _id_generator.generate_global_row_id().bytes
+        new_id = _id_generator.static_row_id('genders', name).bytes
         con.execute('INSERT INTO genders (id, name) VALUES (?, ?);', (new_id, name))
 
         _log.debug('gender added %r -> %s', name, new_id.hex())
