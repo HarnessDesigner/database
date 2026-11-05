@@ -22,7 +22,8 @@ prints a `warning` line for every value it could not map to a lookup table.
 | Molex | done (50,000+ parts) | `search.molex.com/api/search` JSON (open), part-detail relations for the `compat_*` lists |
 | Yazaki | done (2,477 parts) | `connector.yazaki-group.com` search page (the result set is embedded as a script array) and one detail page per part |
 | KET | done (5,356 parts) | `ket.com/en/product/feature-search.ket` JSON (needs the session cookie the site sets) and the product pages for the 2D / 3D file links |
-| Aptiv, Bosch, TE | older scrapers in `aptiv/`, `bosch/`, `te/` | |
+| TE | done (`te/`: `collect.py`, `convert.py`, `genders.py`) | `api.te.com` search API, whole catalog; see `te/README.md` |
+| Aptiv, Bosch | older scrapers in `aptiv/`, `bosch/` | |
 | Amphenol | not runnable | `amphenol/scraper.py` is a set of captured requests for the amphenol-cs.com Magento GraphQL; that site answers the collector's client with 403 (bot protection), which is not worked around |
 | JAE, Wurth Elektronik, amphenol.com | blocked | the start pages answer 403 "Access Denied" / a challenge page to plain requests; not worked around |
 | Harting | possible, not built | industrial Han connectors; the list pages load further products ("Load more") through `webapi.harting.com`, whose subscription key is part of the page's own configuration |

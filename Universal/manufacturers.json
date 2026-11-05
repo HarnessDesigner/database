@@ -88,5 +88,215 @@
         "ext": "",
         "email": "",
         "website": "https://www.ket.com/en/"
+    },
+    {
+        "id": 9,
+        "name": "AMP",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 10,
+        "name": "Raychem",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 11,
+        "name": "Deutsch",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 12,
+        "name": "ERNI",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 13,
+        "name": "Microdot",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 14,
+        "name": "Nanonics",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 15,
+        "name": "Simel",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 16,
+        "name": "Greenpar",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 17,
+        "name": "Elcon",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 18,
+        "name": "Precision Interconnect",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 19,
+        "name": "B&H",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 20,
+        "name": "Buchanan",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 21,
+        "name": "POLAMCO",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 22,
+        "name": "HTS",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 23,
+        "name": "Kissling",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 24,
+        "name": "TDI Batteries",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 25,
+        "name": "Madison Cable",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 26,
+        "name": "Potter & Brumfield",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 27,
+        "name": "Transpower",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 28,
+        "name": "ADC",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
+    },
+    {
+        "id": 29,
+        "name": "Crompton Instruments",
+        "description": "A TE Connectivity company.",
+        "address": "",
+        "phone": "",
+        "ext": "",
+        "email": "",
+        "website": ""
     }
 ]

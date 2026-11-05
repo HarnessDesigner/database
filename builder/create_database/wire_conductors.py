@@ -35,8 +35,12 @@ _NO_COLOR_DEFAULT = f"X'{_id_generator.NO_COLOR_UUID.hex}'"
 _NIL_DEFAULT = "X'00000000000000000000000000000000'"
 
 
-def add_records(con, data_path):
-    """Expand the ``Universal/wire_conductors`` files into one row per conductor. Run after the wires are loaded."""
+def add_records(con, data_path, repo_root=None):
+    """Expand the wire_conductors files into one row per conductor. Run after the wires are loaded.
+
+    ``data_path`` is the ``Universal`` folder; with ``repo_root`` the ``wire_conductors.json`` of every manufacturer folder
+    (``TE/wire_conductors.json``, written by ``scrapers/te/convert.py``) is read as well.
+    """
     con.execute('SELECT 1 FROM wire_conductors LIMIT 1;')
     if con.fetchall():
         return
@@ -53,6 +57,13 @@ def add_records(con, data_path):
     if os.path.isdir(conductors_dir):
         json_paths.extend(os.path.join(conductors_dir, file_name) for file_name in sorted(os.listdir(conductors_dir))
                           if file_name.endswith('.json'))
+
+    if repo_root:
+        for folder in sorted(os.listdir(repo_root)):
+            path = os.path.join(repo_root, folder, 'wire_conductors.json')
+
+            if os.path.isfile(path) and path not in json_paths:
+                json_paths.append(path)
 
     if not json_paths:
         _log.info('no wire conductors in %s, none to add', data_path)

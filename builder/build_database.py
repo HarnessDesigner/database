@@ -112,7 +112,7 @@ def build(repo_root: str, output_dir: str):
 
     # the conductors inside the multi-conductor wires; they point at the wires, so they go in after them
     _log.info('seeding wire_conductors')
-    wire_conductors.add_records(con, universal_dir)
+    wire_conductors.add_records(con, universal_dir, repo_root)
 
     # accessories: the hard-coded rows were seeded above; the manufacturers' accessories.json (Molex) are added now
     _log.info('seeding accessories from the manufacturer folders')
