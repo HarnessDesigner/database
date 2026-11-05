@@ -490,6 +490,10 @@ def wire(p: Product, catalog: common.Catalog) -> tuple[dict, dict | None, list[s
         color = cable_colors[0] if cable_colors else None  # the jacket; no colour means no jacket
         stripe = None
 
+    # TE gives no twist rate, only that a cable is a twisted pair / triple, so those get 1.0, the value that marks a wire as
+    # twisted (user, 2026-11-05); every other wire is 0.0
+    twisted = 'Twisted' in p.category or 'Twisted' in style
+
     kind = ' '.join(p.values('Cable Type') + p.values('Cable Style')).lower()
     wire_type = 'Ribbon' if p.category == 'Ribbon & Flat Cable' else 'Coaxial' if 'coax' in kind else None
 
@@ -497,7 +501,7 @@ def wire(p: Product, catalog: common.Catalog) -> tuple[dict, dict | None, list[s
         'wires', **identity(p, catalog), material=p.first('Jacket Material', 'Wire & Cable Insulation Material'),
         stripe_color=catalog.color(stripe, COLORS) if stripe else None,
         core_material=catalog.plating(core_plating(p.first('Conductor Material'))), num_conductors=count,
-        shielded=int(bool(shielded)), tpi=0.0, wire_size_dia=dia, wire_size_cross=cross, wire_size_awg=awg,
+        shielded=int(bool(shielded)), tpi=1.0 if twisted else 0.0, wire_size_dia=dia, wire_size_cross=cross, wire_size_awg=awg,
         od_mm=round(sum(od) / 2, 4) if od else 0.0, weight_1km=round(weight * 1000, 3) if weight else 0.0,
         resistance_1km=resistance_1km(p), volts=volts or 0.0, strands=int(p.number('Number of Strands') or 1),
         wire_type=catalog.choose('wire_types', wire_type))
