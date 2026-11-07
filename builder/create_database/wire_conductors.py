@@ -16,6 +16,14 @@ Seeded from the files in ``Universal/wire_conductors/`` (one per wire model, nam
 ``conductors`` is in order (the position in the list is ``idx``), and an item may name any field of ``common`` to
 override it for that conductor, so a cable of unlike conductors is described the same way. Mirrored in the app repo's
 ``database/create_database/wire_conductors.py``; keep the two aligned.
+
+EVERY CABLE HAS CONDUCTORS (user, 2026-11-05). A cable is a wire with more than one conductor (``num_conductors``) or with
+shielding (``shielded``). The files only describe the cables a maker gives per-conductor data for (TE's twisted pairs and
+triples). Every other cable gets default rows, made by ``add_records`` from its own ``wires`` row: ``num_conductors`` rows
+(one for a shielded single-conductor cable such as coax), each with the cable's size, strands, core material, insulation
+material and resistance, the colour WHITE and no stripe. The real colours are set by the user on the placed cable (the
+object editor). The shielding is NOT a row here: it is a flag on the app's ``pjt_cable_conductors`` row. ``od_mm`` stays
+0.0 for these rows because the cable's outside diameter is not a conductor's.
 """
 
 import json
@@ -65,10 +73,6 @@ def add_records(con, data_path, repo_root=None):
             if os.path.isfile(path) and path not in json_paths:
                 json_paths.append(path)
 
-    if not json_paths:
-        _log.info('no wire conductors in %s, none to add', data_path)
-        return
-
     data = []
     for json_path in json_paths:
         _log.info('loading %s', json_path)
@@ -98,7 +102,31 @@ def add_records(con, data_path, repo_root=None):
                 fields.get('wire_size_dia'), fields.get('wire_size_cross'), fields.get('wire_size_awg'),
                 fields.get('strands', 1), fields.get('od_mm', 0.0), fields.get('resistance_1km', 0.0)))
 
-    _log.info('adding %d conductor(s) of %d cable(s) to db', len(rows), len(data))
+    described = {entry['wire'] for entry in data}
+    described_rows = len(rows)
+
+    # every other cable gets default conductors (see the module docstring)
+    white = _colors.get_color_id(con, 'White', no_color)
+
+    con.execute('SELECT id, part_number, num_conductors, core_material_id, material_id, wire_size_dia, wire_size_cross, '
+                'wire_size_awg, strands, resistance_1km FROM wires WHERE num_conductors > 1 OR shielded = 1;')
+
+    default_cables = 0
+    for (wire_id, part_number, num_conductors, core_material_id, material_id, wire_size_dia, wire_size_cross,
+         wire_size_awg, strands, resistance_1km) in con.fetchall():
+        if part_number in described:
+            continue
+
+        default_cables += 1
+
+        for idx in range(max(1, num_conductors)):
+            rows.append((
+                _id_generator.static_row_id('wire_conductors', part_number, idx).bytes, wire_id, idx,
+                white, no_color, core_material_id, material_id,
+                wire_size_dia, wire_size_cross, wire_size_awg, strands, 0.0, resistance_1km))
+
+    _log.info('adding %d conductor(s) of %d described cable(s) and %d default conductor(s) of %d cable(s) to db',
+              described_rows, len(data), len(rows) - described_rows, default_cables)
 
     con.executemany('INSERT INTO wire_conductors (id, wire_id, idx, color_id, stripe_color_id, core_material_id, '
                     'material_id, wire_size_dia, wire_size_cross, wire_size_awg, strands, od_mm, resistance_1km) '
