@@ -357,6 +357,21 @@ def splice(p: Product, catalog: common.Catalog) -> dict:
             name = 'Cable'
     span = p.span('Compatible Insulation Diameter Range')
 
+    if name == 'Solder Sleeve':
+        # A solder sleeve (a shield terminator) is a heat shrink tube: it slides over the cable at its EXPANDED inside diameter and
+        # shrinks onto it down to its RECOVERED one, so a cable fits when it is between the two. Same convention as ``bundle()``
+        # (min = recovered, max = expanded). It has no "Compatible Insulation Diameter Range" (that is the range of wire a
+        # splice takes), which is why these columns were 0.0 for every sleeve.
+        recovered = p.number('Recovered Inside Diameter (Max)', to='mm')
+        expanded = p.number('Expanded Inside Diameter (Min)', to='mm')
+
+        if recovered or expanded:
+            span = (min(v for v in (recovered, expanded) if v), max(recovered or 0.0, expanded or 0.0))
+
+        # with its own wire already fitted (the pigtail) it is a different kind of part to the app: no wire may be snapped to it
+        if (p.first('Pre-Installed Lead') or '').lower() == 'yes':
+            name = 'Solder Sleeve w/Pigtail'
+
     return common.new_row(
         'splices', **identity(p, catalog), length=p.number('Product Length', to='mm') or 0.0,
         weight=p.number('Terminal & Contact Weight', 'Product Weight', to='g') or 0.0, model3d=p.model3d,

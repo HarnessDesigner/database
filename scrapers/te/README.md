@@ -111,3 +111,21 @@ is not downloaded.
 
 * A twisted pair's turns per inch (`tpi`): TE gives the style (Twisted Pair / Triple) but not the lay, so it stays 0 until the
   user decides.
+
+## Solder sleeves (shield terminators), 2026-11-11
+
+`te_tables.splice` gives a `Solder Sleeve` its OWN sizes: `min_dia` is TE's "Recovered Inside Diameter (Max)" (what it shrinks to) and
+`max_dia` its "Expanded Inside Diameter (Min)" (the largest cable it slides over), the same convention as heat shrink (`bundle()`);
+a cable fits when it is between the two. They used to be 0.0 because `Compatible Insulation Diameter Range` (the range of wire a
+splice takes) does not exist for a sleeve. A sleeve whose "Pre-Installed Lead" is Yes gets the type `Solder Sleeve w/Pigtail`.
+`Product Length` is the sleeve's length when TE gives one (about half of them do). `TE/splices.json` holds more rows than `convert.py`
+writes from the current raw download (2,844 against 916), so it is not replaced: `scripts/sleeve_sizes_from_te.py` copies only the
+three values of the sleeve rows from a converted file.
+
+Not changed: 600 of the 681 products of the category `SolderSleeve Shield Terminators` are still classified as TERMINALS
+(`te_classify.SOLDERSLEEVE_CATEGORY`: only a "SolderSleeve" splice type becomes a splice), so the catalog has 72 sleeves.
+
+
+## Solder sleeves: the drawings win (user, 2026-11-11)
+
+TE's own data for the sleeves is often wrong or missing, so the sizes that `te_tables.splice` / `sleeve_sizes_from_te.py` write are corrected from the customer drawings by `scripts/sleeve_sizes_from_drawings.py --raw FOLDER` (length, recovered and expanded diameter per part; it also adds the sleeves TE files as terminals and sets the type `Shielding Solder Sleeve` on the 41 that are plain round sleeves). **Run it after every re-scrape / `sleeve_sizes_from_te.py`**; it is idempotent. The type is in `Universal/splice_types.json`.

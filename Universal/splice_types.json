@@ -38,5 +38,9 @@
     {
         "id": 9,
         "name": "Solder Sleeve w/Pigtail"
+    },
+    {
+        "id": 10,
+        "name": "Shielding Solder Sleeve"
     }
 ]
